@@ -26,7 +26,7 @@ netID Account Providers are in charge for authentication, authorization and tran
 For details see [Single Sign-On Documentation][2].
 [2]: sso/doc_sso_developer.md
 
-<!-- ## netID Privacy Management
+## netID Privacy Management
 
 In addition to the Single Sign-on netID Partners can also leverage netID to allow their users to manage their overall privacy settings in terms of commercial data use and offers a convenient, scalable and most importantly server-based/permanent way to manage a user’s consent status or more generally a status in terms of legal grounds for commercial data use. To enable that netID provides services to integrate a netID Partners Consent Management Platform in addition to its Single Sign-on services. 
 
