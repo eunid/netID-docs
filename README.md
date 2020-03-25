@@ -1,17 +1,18 @@
 # EnID Documentation Proof of Concept
 
 - Static Site Generator: MkDocs
-- Material Design Theme (V4.60) for MkDocs (V5 brings more  customizing possibilities)
+    - https://www.mkdocs.org
+- Material Design Theme for MkDocs (V5 RC3)
+    - https://squidfunk.github.io/mkdocs-material/
 
 ## Access Documentation
 
 - Rendered MkDocs HTML output on Github Pages:
-    - **https://doc.appmazing.net**
-    - or: https://1701.github.io/d
+    - https://eunid.github.io/netID-docs/
 
 ## Project Structure
 
-- Github Repo: https://github.com/1701/d
+- Github Repo: https://github.com/eunid/netID-docs/
 - Master Branch:
     - docs folder
         - *.md documentation pages (markdown)
