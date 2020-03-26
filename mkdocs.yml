@@ -1,8 +1,8 @@
 # Project information
 site_name: 'netID Developer Zone'
-site_description: 'Developer Zone for netID, the european login standard of the European netID Foundation.'
-site_author: 'mste'
-site_url: 'https://1701.github.io/d/'
+site_description: 'Developer Zone for netID, the european login standard of the European netID Foundation'
+site_author: 'European netID Foundation'
+site_url: 'https://eunid.github.io/netID-docs/'
 
 # Theme Configuration
 theme:
@@ -21,8 +21,8 @@ theme:
     - tabs
 
 # Github Repo
-# repo_name: '1701/d'
-# repo_url: 'https://github.com/1701/d'
+# repo_name: 'eunid/netID-docs'
+# repo_url: 'https://github.com/eunid/netID-docs/'
 
 # Site Navigation
 nav:
