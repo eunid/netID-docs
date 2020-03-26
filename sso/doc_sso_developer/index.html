@@ -8,13 +8,13 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Developer Zone for netID, the european login standard of the European netID Foundation.">
+        <meta name="description" content="Developer Zone for netID, the european login standard of the European netID Foundation">
       
       
-        <link rel="canonical" href="https://1701.github.io/d/sso/doc_sso_developer/">
+        <link rel="canonical" href="https://eunid.github.io/netID-docs/sso/doc_sso_developer/">
       
       
-        <meta name="author" content="mste">
+        <meta name="author" content="European netID Foundation">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.0.0rc3">
@@ -105,7 +105,7 @@
     
       <header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
-    <a href="https://1701.github.io/d/" title="netID Developer Zone" class="md-header-nav__button md-logo" aria-label="netID Developer Zone">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-header-nav__button md-logo" aria-label="netID Developer Zone">
       
         <img src="../../images/logo.png" alt="logo">
       
@@ -230,7 +230,7 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="https://1701.github.io/d/" title="netID Developer Zone" class="md-nav__button md-logo" aria-label="netID Developer Zone">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-nav__button md-logo" aria-label="netID Developer Zone">
       
         <img src="../../images/logo.png" alt="logo">
       
@@ -479,30 +479,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example-endpoint-calls" class="md-nav__link">
+    Example Endpoint Calls
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Example Endpoint Calls">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorize" class="md-nav__link">
-    authorize
+  <a href="#authorize-enpoint" class="md-nav__link">
+    Authorize enpoint
+  </a>
+  
+    <nav class="md-nav" aria-label="Authorize enpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-query" class="md-nav__link">
+    Minimum Query
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
-    token
+  <a href="#query-for-profile-information" class="md-nav__link">
+    Query for “profile” information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-endoint" class="md-nav__link">
+    Token endoint
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo" class="md-nav__link">
-    userinfo
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    Userinfo endpoint
   </a>
   
 </li>
@@ -516,6 +536,19 @@
   <a href="#timing-and-error-messages" class="md-nav__link">
     Timing and Error Messages
   </a>
+  
+    <nav class="md-nav" aria-label="Timing and Error Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifetimes" class="md-nav__link">
+    Lifetimes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -563,7 +596,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#examples_1" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     Examples
   </a>
   
@@ -687,30 +720,50 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#example-endpoint-calls" class="md-nav__link">
+    Example Endpoint Calls
   </a>
   
-    <nav class="md-nav" aria-label="Examples">
+    <nav class="md-nav" aria-label="Example Endpoint Calls">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorize" class="md-nav__link">
-    authorize
+  <a href="#authorize-enpoint" class="md-nav__link">
+    Authorize enpoint
+  </a>
+  
+    <nav class="md-nav" aria-label="Authorize enpoint">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#minimum-query" class="md-nav__link">
+    Minimum Query
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
-    token
+  <a href="#query-for-profile-information" class="md-nav__link">
+    Query for “profile” information
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-endoint" class="md-nav__link">
+    Token endoint
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo" class="md-nav__link">
-    userinfo
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    Userinfo endpoint
   </a>
   
 </li>
@@ -724,6 +777,19 @@
   <a href="#timing-and-error-messages" class="md-nav__link">
     Timing and Error Messages
   </a>
+  
+    <nav class="md-nav" aria-label="Timing and Error Messages">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifetimes" class="md-nav__link">
+    Lifetimes
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -771,7 +837,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#examples_1" class="md-nav__link">
+  <a href="#examples" class="md-nav__link">
     Examples
   </a>
   
@@ -799,19 +865,18 @@
                 
                 
                 <h1 id="single-sign-on-documentation">Single Sign-On Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
-<p>This documentation describes the netID Single Sign-On to support the integration with interested relying parties. In order to aquire the necessary credentials to leverage this service please refer to the <a href="/../devportal/get_started/">Developer Portal Documentation</a></p>
+<p>This documentation describes federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the <a href="/../devportal/get_started/">Developer Portal Documentation</a></p>
 <h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
-<p>The protocol standard applied is OpenID Connect as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
-<p>Partners manage their data and clients in the netID Developer Portal. There, partners are able to manage their services, which may constitute groups of clients. These services receive the rights granted to partners by end users, which all clients in the group then have access to.</p>
-<p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker distributes requests among the participating account providers, end users always authenticate to the account provider responsible for them, which is also where they authorize the release of their data for partners' services.</p>
-<p>Where necessary, clients request that data be released netID users; if the user agrees, the client receives an id_token and a userinfo object as a JSON structure.</p>
-<p>What the id_token and userinfo objects contain in particular is the end user's subject identifier (sub), which constitutes an ID for both the end user with regard to the service he or she is using as well as the actual client's redirect URI (redirect_uri). This sub value allows the end user to be recognized on the client.</p>
+<p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
+<p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <strong>services</strong> and associated <strong>clients</strong> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
+<p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker manages requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service. </p>
+<p>Clients specify during authenication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an id_token and a userinfo object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<em>sub</em>). </p>
+<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the redirect_uri (Callback URL) and used to store data transfer authorization grants in the backend. That means clients of a specific service must use the same callback urls (in terms of host portion) during their authentication calls to avoid duplicated data transfer authorization / differents subject identifiers between clients.</p>
 <h3 id="claims-und-scopes">Claims und Scopes<a class="headerlink" href="#claims-und-scopes" title="Permanent link">&para;</a></h3>
-<p>Every time netID is used to initiate an SSO process, details regarding which information is expected from the end user in the context of the request have to be provided.</p>
-<p>For that purpose, the OpenID Connect/OAuth2 scope and claim mechanisms serve as definitions.</p>
-<p>Every OpenID Connect request must always request the openid scope. Moreover, the master data required are to be expressed as essential claims.</p>
-<p>Once released by the end user, master data need not be provided again unless revoked by the user. The user's approval is saved.</p>
+<p>Each time a partner initiates a login flow by calling the authoriziation endpoint he can define which master data the user should authorize to be tranfered. For that purpose, the OpenID Connect/OAuth2 standart defines <em>scope</em> and <em>claim</em> mechanisms.</p>
+<p>Every OpenID Connect request must always request the openid scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.</p>
+<p>Once the user authorizes the transfer of that master data, this authorization is stored and not beeing asked for again unless the users revokes the authorization using the netID Privacy Center. </p>
 <p>The following claims are supported by netID:</p>
 <ul>
 <li><strong>gender</strong> - the end user's gender</li>
@@ -822,22 +887,29 @@
 <li><strong>email_verified</strong> - the verification status of the end user's email address</li>
 <li><strong>address</strong> - physical mailing address, containing informations on postal code (ZIP), city or town, steet address and country where the end user's address is located</li>
 </ul>
-<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases where not all requested claims are provided, the client must find a way around this.</p>
-<p>Claims and scopes that are not requested as essential are ignored.</p>
-<h2 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h2>
-<h3 id="authorize">authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
-<p>authorize requests initiate SSO processes, the clients identify themselves with their client_id and redirect_uri and specify which claims and scopes are to be requested. Some optional parameters are also supported.</p>
-<p>Here, the endpoint <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a> is used with the SSO broker.</p>
-<p>Examples, given both easy readable as well as in valid URL encoding. The encoding needs to be used for the redirect_uri as well:</p>
-<p><strong>Minimum Query - SSO without requesting any additional data</strong>
-    <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
+<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly. </p>
+<div class="admonition warning">
+<p>Claims that are not requested as essential are ignored, same holds true for scopes as they are by definition purely voluntary. </p>
+</div>
+<h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
+<h3 id="authorize-enpoint">Authorize enpoint<a class="headerlink" href="#authorize-enpoint" title="Permanent link">&para;</a></h3>
+<p>Requests to the authorize endpoint initiate the Single Sign-on processe,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also supported.</p>
+<p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a> </p>
+<p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the redirect_uri as well:</p>
+<h4 id="minimum-query">Minimum Query<a class="headerlink" href="#minimum-query" title="Permanent link">&para;</a></h4>
+<p>SSO without requesting any additional data
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div></p>
-<p><strong>Query for “profile” scope as essential claim</strong>
-    <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
+<p><strong>URL encoding</strong>
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type=code&amp;amp;client_id=[clientID]&amp;amp;redirect_uri=[redirect_uri]&amp;amp;scope=openid
+</code></pre></div></p>
+<h4 id="query-for-profile-information">Query for “profile” information<a class="headerlink" href="#query-for-profile-information" title="Permanent link">&para;</a></h4>
+<p>Profile scope expressed in essential claims</p>
+<p><div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
@@ -850,43 +922,41 @@
             <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>
             <span class="o">}</span>
         <span class="o">}</span>
-</code></pre></div></p>
-<p><strong>Query for claims that correspond to the “profile” scope and “address” as essential</strong>
-    <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
-    <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
-    <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
+</code></pre></div>
+<strong>URL encoding</strong></p>
+<div class="highlight"><pre><span></span><code>ttps://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid&amp;claims={&quot;userinfo&quot;:{&quot;birthdate&quot;:{&quot;essential&quot;:true},&quot;gender&quot;:{&quot;essential&quot;:true},&quot;given_name&quot;:{&quot;essential&quot;:true},&quot;family_name&quot;:{&quot;essential&quot;:true}}}
+</code></pre></div>
+
+<h3 id="token-endoint">Token endoint<a class="headerlink" href="#token-endoint" title="Permanent link">&para;</a></h3>
+<p>Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.</p>
+<p>The netID Broker endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Credential need to be provided via basic authentication</p>
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/token?
+    <span class="nv">code</span><span class="o">=[</span>code<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
-    <span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span>
-    <span class="nv">claims</span><span class="o">={</span>
-        <span class="s2">&quot;userinfo&quot;</span>:<span class="o">{</span>
-            <span class="s2">&quot;birthdate&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;address&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;gender&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>
-            <span class="o">}</span>
-        <span class="o">}</span>
-</code></pre></div></p>
-<h3 id="token">token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h3>
-<p>Token requests are carried out after the callback to the client in order to exchange the code provided for an access token. It is absolutely necessary that the code used remains unmodified.</p>
-<p>Here, the endpoint <a href="https://broker.netid.de/token">https://broker.netid.de/token</a> is used with the SSO broker. Client Credentials are required for basic authentication.</p>
+    <span class="nv">grant_type</span><span class="o">=</span>authorization_code
+</code></pre></div>
+
 <p>Example request per curl:</p>
 <div class="highlight"><pre><span></span><code>curl -v -u [user:pass] -X POST https://broker.netid.de/token -H &#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39; -d &#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;
 </code></pre></div>
 
-<h3 id="userinfo">userinfo<a class="headerlink" href="#userinfo" title="Permanent link">&para;</a></h3>
-<p>The access token is used to retrieve userinfo and id_token.</p>
-<p>Here, the endpoint <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a> is used with the SSO broker.</p>
+<h3 id="userinfo-endpoint">Userinfo endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
+<p>The access token is used to retrieve userinfo and id_token from the userinfo endpoint.</p>
+<p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
 <h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
-<p>If the authorize request fails, the redirect_uri in the callback is given the reason why this occurred.</p>
-<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and to be able to assume that basic authentication is being used properly here. Each code is only valid for 30 seconds!</p>
-<p>Access tokens for the userinfo request are valid for 15 minutes and may also be used multiple times within this timeframe.</p>
+<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.</p>
+<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct. </p>
+<h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Authorization codes are only valid for 30 seconds and may only be used once</li>
+<li>Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times</li>
+</ul>
 <h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
 <p>The following request parameters are supported for initiating the SSO process:</p>
 <ul>
 <li><em>prompt</em><ul>
-<li>login for requiring reauthentication with the account provider</li>
-<li>consent for requiring consent to be given again</li>
+<li><strong>login</strong> for requiring reauthentication of a user during the login process</li>
+<li><strong>consent</strong> for requiring consent to be given again</li>
 </ul>
 </li>
 <li><em>max_age</em><ul>
@@ -966,7 +1036,7 @@ Using the Client Credentials from the developer portal, the local host entry, an
 <li>When testing with browsers, it's a good idea to use private windows; otherwise cookies left behind from previous run-throughs may cause confusion.
 to top</li>
 </ol>
-<h3 id="examples_1">Examples<a class="headerlink" href="#examples_1" title="Permanent link">&para;</a></h3>
+<h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p><strong>PHP</strong>
 In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP.However">https://github.com/jumbojett/OpenID-Connect-PHP.However</a>, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.</p>
 <p>Installation according to instructions is no problem. The package derives the redirect_uri from its own URL; here, the position of the script in the path of the web server can either be used as redirect_uri when creating the client or configured accordingly in the web server using rewrite rules.</p>
