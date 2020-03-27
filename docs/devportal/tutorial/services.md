@@ -3,7 +3,7 @@
 ## Prerequisites 
 We assume that you have already registered a service provider account at netID. If not, register a [netID developer account](https://developer.netid.de/).
 
-## Creating a Service 
+## Create a Service 
 
 To start, log in into the [netID Developer Portal](https://developer.netid.de/login). Create a **service** for which you want to leverage the netID single sign-on. Select **Services** in the menu, 
 click **Add service** and fill in the required details in the following screen. Read the detailed documentation if you need further information.

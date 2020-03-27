@@ -1,4 +1,4 @@
-# Single Sign-On Documentation
+# Single Sign-on Documentation
 
 This documentation describes federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/../devportal/get_started/)
 
@@ -42,7 +42,7 @@ The availability of these claims may, however, vary depending on the end user's 
 
 ## Example Endpoint Calls 
 
-### Authorize enpoint
+### Authorize 
 
 Requests to the authorize endpoint initiate the Single Sign-on processe,  clients identify themselves with their *client_id* and *redirect_uri* and specify which claims and scopes are to be requested. Some optional parameters are also supported.
 
@@ -91,7 +91,7 @@ https://broker.netid.de/authorize?
 ttps://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims={"userinfo":{"birthdate":{"essential":true},"gender":{"essential":true},"given_name":{"essential":true},"family_name":{"essential":true}}}
 ```
 
-### Token endoint
+### Token 
 
 Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.
 
@@ -109,7 +109,7 @@ Example request per curl:
 ```
 curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
 ```
-### Userinfo endpoint
+### Userinfo 
 
 The access token is used to retrieve userinfo and id_token from the userinfo endpoint.
 
@@ -144,29 +144,28 @@ The sequence of the calls is summarized as follows:
 
 ![High Level Authentication Code Flow](../diagrams/out/seq_sso_overview.svg)
 
-Detailed description of diagram:
-  
-1. The end user initiates a process on the client's site that involves the use of netID.
-2. At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.
-3. The SSO broker validates the client's authorize request.
-4. The SSO broker generates a new authorize request and redirects the user to the OpenID provider. For their part, the broker appears to the OpenID provider as a relying party client.
-5. The OpenID provider validates the SSO broker's authorize request and displays the login screen to the end user; the user logs in with the account provider.
-6. The OpenID provider shows an approval page to the end user on which all the data he or she is asked to allow transfer of is displayed.
-7. The end user agrees to provide the requested data.
-8. The OpenID provider generates an AuthN Response and redirects to the SSO broker.
-9. The SSO broker receives the AuthN Response from the OpenID provider.
-10. The SSO broker generates a new AuthN Response and redirects to the client's redirect_uri.
-11. The client receives the SSO broker's AuthN Response.
-12. The actual data query is initiated.
-13. The client requests the access token with the SSO broker using the Auth Code (from the AuthN Response) and the Client Credentials.
-14. The SSO broker requests the access token from the OP using the Auth Code (from the AuthN Response) and the Client Credentials taken from the client.
-15. The OpenID provider issues an access token, giving it to the SSO broker.
-16. The SSO broker uses the access token to generate a new access token, giving this one to the client.
-17. The client uses the access token with the SSO broker to request the userinfo object.
-18. The SSO broker uses the access token to request the userinfo object from the OpenID provider.
-19. The OpenID provider grants the userinfo object to the SSO broker.
-20. The SSO broker grants the userinfo object to the client.
-21. The client has now received the userinfo object.
+??? info "Detailed description of diagram"
+    1. The end user initiates a process on the client's site that involves the use of netID.
+    2. At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.
+    3. The SSO broker validates the client's authorize request.
+    4. The SSO broker generates a new authorize request and redirects the user to the OpenID provider. For their part, the broker appears to the OpenID provider as a relying party client.
+    5. The OpenID provider validates the SSO broker's authorize request and displays the login screen to the end user; the user logs in with the account provider.
+    6. The OpenID provider shows an approval page to the end user on which all the data he or she is asked to allow transfer of is displayed.
+    7. The end user agrees to provide the requested data.
+    8. The OpenID provider generates an AuthN Response and redirects to the SSO broker.
+    9. The SSO broker receives the AuthN Response from the OpenID provider.
+    10. The SSO broker generates a new AuthN Response and redirects to the client's redirect_uri.
+    11. The client receives the SSO broker's AuthN Response.
+    12. The actual data query is initiated.
+    13. The client requests the access token with the SSO broker using the Auth Code (from the AuthN Response) and the Client Credentials.
+    14. The SSO broker requests the access token from the OP using the Auth Code (from the AuthN Response) and the Client Credentials taken from the client.
+    15. The OpenID provider issues an access token, giving it to the SSO broker.
+    16. The SSO broker uses the access token to generate a new access token, giving this one to the client.
+    17. The client uses the access token with the SSO broker to request the userinfo object.
+    18. The SSO broker uses the access token to request the userinfo object from the OpenID provider.
+    19. The OpenID provider grants the userinfo object to the SSO broker.
+    20. The SSO broker grants the userinfo object to the client.
+    21. The client has now received the userinfo object.
 
 ## Styling
 
