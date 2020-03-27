@@ -487,11 +487,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorize-enpoint" class="md-nav__link">
-    Authorize enpoint
+  <a href="#authorize" class="md-nav__link">
+    Authorize
   </a>
   
-    <nav class="md-nav" aria-label="Authorize enpoint">
+    <nav class="md-nav" aria-label="Authorize">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -514,15 +514,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token-endoint" class="md-nav__link">
-    Token endoint
+  <a href="#token" class="md-nav__link">
+    Token
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo-endpoint" class="md-nav__link">
-    Userinfo endpoint
+  <a href="#userinfo" class="md-nav__link">
+    Userinfo
   </a>
   
 </li>
@@ -728,11 +728,11 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#authorize-enpoint" class="md-nav__link">
-    Authorize enpoint
+  <a href="#authorize" class="md-nav__link">
+    Authorize
   </a>
   
-    <nav class="md-nav" aria-label="Authorize enpoint">
+    <nav class="md-nav" aria-label="Authorize">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -755,15 +755,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token-endoint" class="md-nav__link">
-    Token endoint
+  <a href="#token" class="md-nav__link">
+    Token
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo-endpoint" class="md-nav__link">
-    Userinfo endpoint
+  <a href="#userinfo" class="md-nav__link">
+    Userinfo
   </a>
   
 </li>
@@ -864,7 +864,7 @@
                   
                 
                 
-                <h1 id="single-sign-on-documentation">Single Sign-On Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
+                <h1 id="single-sign-on-documentation">Single Sign-on Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
 <p>This documentation describes federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the <a href="/../devportal/get_started/">Developer Portal Documentation</a></p>
 <h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
@@ -892,7 +892,7 @@
 <p>Claims that are not requested as essential are ignored, same holds true for scopes as they are by definition purely voluntary. </p>
 </div>
 <h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
-<h3 id="authorize-enpoint">Authorize enpoint<a class="headerlink" href="#authorize-enpoint" title="Permanent link">&para;</a></h3>
+<h3 id="authorize">Authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
 <p>Requests to the authorize endpoint initiate the Single Sign-on processe,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also supported.</p>
 <p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a> </p>
 <p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the redirect_uri as well:</p>
@@ -927,7 +927,7 @@
 <div class="highlight"><pre><span></span><code>ttps://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid&amp;claims={&quot;userinfo&quot;:{&quot;birthdate&quot;:{&quot;essential&quot;:true},&quot;gender&quot;:{&quot;essential&quot;:true},&quot;given_name&quot;:{&quot;essential&quot;:true},&quot;family_name&quot;:{&quot;essential&quot;:true}}}
 </code></pre></div>
 
-<h3 id="token-endoint">Token endoint<a class="headerlink" href="#token-endoint" title="Permanent link">&para;</a></h3>
+<h3 id="token">Token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h3>
 <p>Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.</p>
 <p>The netID Broker endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Credential need to be provided via basic authentication</p>
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/token?
@@ -940,7 +940,7 @@
 <div class="highlight"><pre><span></span><code>curl -v -u [user:pass] -X POST https://broker.netid.de/token -H &#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39; -d &#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;
 </code></pre></div>
 
-<h3 id="userinfo-endpoint">Userinfo endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
+<h3 id="userinfo">Userinfo<a class="headerlink" href="#userinfo" title="Permanent link">&para;</a></h3>
 <p>The access token is used to retrieve userinfo and id_token from the userinfo endpoint.</p>
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
 <h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
@@ -974,8 +974,7 @@
 </ul>
 <p>The sequence of the calls is summarized as follows:</p>
 <p><img alt="High Level Authentication Code Flow" src="../../diagrams/out/seq_sso_overview.svg" /></p>
-<p>Detailed description of diagram:</p>
-<ol>
+<details class="info"><summary>Detailed description of diagram</summary><ol>
 <li>The end user initiates a process on the client's site that involves the use of netID.</li>
 <li>At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.</li>
 <li>The SSO broker validates the client's authorize request.</li>
@@ -998,6 +997,7 @@
 <li>The SSO broker grants the userinfo object to the client.</li>
 <li>The client has now received the userinfo object.</li>
 </ol>
+</details>
 <h2 id="styling">Styling<a class="headerlink" href="#styling" title="Permanent link">&para;</a></h2>
 <p>The depiction of the netID button is explained in the brand book.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
