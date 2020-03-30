@@ -36,7 +36,7 @@ The following claims are supported by netID:
 
 The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly.
 
-!!! danger "warning"
+!!! danger "Please note!"
     Claims that are **not** requested as essential are ignored, and the same applies to the scope, which is by definition purely voluntary.
 
 ## Example Endpoint Calls
@@ -147,7 +147,7 @@ The sequence of the calls is summarized as follows:
 
 ![High Level Authentication Code Flow](../diagrams/out/seq_sso_overview.svg)
 
-??? info "Detailed description of diagram"
+??? info "Detailed description of the sequence diagram"
     1. The end user initiates a process on the client's site that involves the use of netID.
     2. At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.
     3. The SSO broker validates the client's authorize request.
