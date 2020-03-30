@@ -36,7 +36,7 @@ The following claims are supported by netID:
 
 The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly.
 
-!!! danger "Please note!"
+!!! danger "Important: please note!"
     Claims that are **not** requested as essential are ignored, and the same applies to the scope, which is by definition purely voluntary.
 
 ## Example Endpoint Calls
@@ -170,7 +170,7 @@ The sequence of the calls is summarized as follows:
     20. The SSO broker grants the userinfo object to the client.
     21. The client has now received the userinfo object.
 
-## Styling
+## netID Button
 
 The depiction of the netID button is explained in the [styleguide](/sso/styleguide/).
 
@@ -239,7 +239,73 @@ The following minimal diff makes OpenIDConnectClient.php netID-compatible:
 <           break;
 ```
 
-A simple sample client may then look like this: client_example.php
+A simple sample client may then look like this:
+
+```php
+<?php
+
+/**
+ *
+ * Copyright MITRE 2012
+ *
+ * OpenIDConnectClient for PHP5
+ * Author: Michael Jett <mjett@mitre.org>
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations
+ * under the License.
+ *
+ */
+
+require __DIR__ . '/vendor/autoload.php';
+
+use Jumbojett\OpenIDConnectClient;
+
+// specify ClientID und secret!
+$oidc = new OpenIDConnectClient(
+    'https://broker.netid.de/',
+    'example-clientid',
+    'example-secret'
+);
+
+// if the default redirect_uri is not to be used, a custom value can be set here:
+// $oidc->setRedirectURL('https://clientexample.org/callback');
+// then however a URL-rewrite is necessary, as for example with mod_rewrite from apache:
+//  RewriteEngine On
+//  RewriteRule "^callback(.*)" "/client_example.php$1"
+
+$oidc->authenticate();
+$sub = $oidc->getVerifiedClaims('sub');
+
+?>
+
+<html>
+<head>
+    <title>Example OpenID Connect Client Use</title>
+    <style>
+        body {
+            font-family: 'Lucida Grande', Verdana, Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        netID login successful, the Subject Identifier is: <?php echo $sub; ?>
+    </div>
+
+</body>
+</html>
+```
+
 
 **Javascript**
 One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <https://www.npmjs.com/package/openid-client>
