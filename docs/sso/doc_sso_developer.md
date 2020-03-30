@@ -278,9 +278,10 @@ $oidc = new OpenIDConnectClient(
 
 // if the default redirect_uri is not to be used, a custom value can be set here:
 // $oidc->setRedirectURL('https://clientexample.org/callback');
+
 // then however a URL-rewrite is necessary, as for example with mod_rewrite from apache:
-//  RewriteEngine On
-//  RewriteRule "^callback(.*)" "/client_example.php$1"
+// RewriteEngine On
+// RewriteRule "^callback(.*)" "/client_example.php$1"
 
 $oidc->authenticate();
 $sub = $oidc->getVerifiedClaims('sub');
