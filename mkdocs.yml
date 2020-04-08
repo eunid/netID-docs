@@ -44,7 +44,7 @@ nav:
  #       - Browser-based API: cmp/browser-based.md
  #       - Server-based API: cmp/server-based.md
  #       - Data export API: cmp/export.md
-    - Glossary: glossary.md
+ #   - Glossary: glossary.md
     - FAQ: faq.md
 
 # Extensions
