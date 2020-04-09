@@ -214,8 +214,6 @@
       
         
       
-        
-      
     </ul>
   </div>
 </nav>
@@ -560,8 +558,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#styling" class="md-nav__link">
-    Styling
+  <a href="#netid-button" class="md-nav__link">
+    netID Button
   </a>
   
 </li>
@@ -640,18 +638,6 @@
         
       </ul>
     </nav>
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../../glossary/" title="Glossary" class="md-nav__link">
-      Glossary
-    </a>
   </li>
 
     
@@ -801,8 +787,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#styling" class="md-nav__link">
-    Styling
+  <a href="#netid-button" class="md-nav__link">
+    netID Button
   </a>
   
 </li>
@@ -870,13 +856,13 @@
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
 <p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
 <p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <strong>services</strong> and associated <strong>clients</strong> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
-<p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker manages requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service. </p>
-<p>Clients specify during authenication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an id_token and a userinfo object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<em>sub</em>). </p>
+<p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker manages requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.</p>
+<p>Clients specify during authenication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an id_token and a userinfo object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<em>sub</em>).</p>
 <p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the redirect_uri (Callback URL) and used to store data transfer authorization grants in the backend. That means clients of a specific service must use the same callback urls (in terms of host portion) during their authentication calls to avoid duplicated data transfer authorization / differents subject identifiers between clients.</p>
 <h3 id="claims-und-scopes">Claims und Scopes<a class="headerlink" href="#claims-und-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authoriziation endpoint he can define which master data the user should authorize to be tranfered. For that purpose, the OpenID Connect/OAuth2 standart defines <em>scope</em> and <em>claim</em> mechanisms.</p>
 <p>Every OpenID Connect request must always request the openid scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.</p>
-<p>Once the user authorizes the transfer of that master data, this authorization is stored and not beeing asked for again unless the users revokes the authorization using the netID Privacy Center. </p>
+<p>Once the user authorizes the transfer of that master data, this authorization is stored and not beeing asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
 <p>The following claims are supported by netID:</p>
 <ul>
 <li><strong>gender</strong> - the end user's gender</li>
@@ -887,29 +873,32 @@
 <li><strong>email_verified</strong> - the verification status of the end user's email address</li>
 <li><strong>address</strong> - physical mailing address, containing informations on postal code (ZIP), city or town, steet address and country where the end user's address is located</li>
 </ul>
-<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly. </p>
-<div class="admonition warning">
-<p>Claims that are not requested as essential are ignored, same holds true for scopes as they are by definition purely voluntary. </p>
+<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly.</p>
+<div class="admonition danger">
+<p class="admonition-title">Important: please note!</p>
+<p>Claims that are <strong>not</strong> requested as essential are ignored, and the same applies to the scope, which is by definition purely voluntary.</p>
 </div>
 <h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
 <h3 id="authorize">Authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
 <p>Requests to the authorize endpoint initiate the Single Sign-on processe,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also supported.</p>
-<p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a> </p>
+<p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a></p>
 <p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the redirect_uri as well:</p>
 <h4 id="minimum-query">Minimum Query<a class="headerlink" href="#minimum-query" title="Permanent link">&para;</a></h4>
-<p>SSO without requesting any additional data
+<p>SSO without requesting any additional data</p>
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">scope</span><span class="o">=</span>openid
-</code></pre></div></p>
-<p><strong>URL encoding</strong>
-<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type=code&amp;amp;client_id=[clientID]&amp;amp;redirect_uri=[redirect_uri]&amp;amp;scope=openid
-</code></pre></div></p>
+</code></pre></div>
+
+<p><strong>URL encoding</strong></p>
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">scope</span><span class="o">=</span>openid
+</code></pre></div>
+
 <h4 id="query-for-profile-information">Query for “profile” information<a class="headerlink" href="#query-for-profile-information" title="Permanent link">&para;</a></h4>
 <p>Profile scope expressed in essential claims</p>
-<p><div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
@@ -923,8 +912,9 @@
             <span class="o">}</span>
         <span class="o">}</span>
 </code></pre></div>
-<strong>URL encoding</strong></p>
-<div class="highlight"><pre><span></span><code>ttps://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid&amp;claims={&quot;userinfo&quot;:{&quot;birthdate&quot;:{&quot;essential&quot;:true},&quot;gender&quot;:{&quot;essential&quot;:true},&quot;given_name&quot;:{&quot;essential&quot;:true},&quot;family_name&quot;:{&quot;essential&quot;:true}}}
+
+<p><strong>URL encoding</strong></p>
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span><span class="nv">claims</span><span class="o">={</span><span class="s2">&quot;userinfo&quot;</span>:<span class="o">{</span><span class="s2">&quot;birthdate&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;gender&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}}}</span>
 </code></pre></div>
 
 <h3 id="token">Token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h3>
@@ -937,7 +927,7 @@
 </code></pre></div>
 
 <p>Example request per curl:</p>
-<div class="highlight"><pre><span></span><code>curl -v -u [user:pass] -X POST https://broker.netid.de/token -H &#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39; -d &#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;
+<div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
 </code></pre></div>
 
 <h3 id="userinfo">Userinfo<a class="headerlink" href="#userinfo" title="Permanent link">&para;</a></h3>
@@ -974,7 +964,7 @@
 </ul>
 <p>The sequence of the calls is summarized as follows:</p>
 <p><img alt="High Level Authentication Code Flow" src="../../diagrams/out/seq_sso_overview.svg" /></p>
-<details class="info"><summary>Detailed description of diagram</summary><ol>
+<details class="info"><summary>Detailed description of the sequence diagram</summary><ol>
 <li>The end user initiates a process on the client's site that involves the use of netID.</li>
 <li>At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.</li>
 <li>The SSO broker validates the client's authorize request.</li>
@@ -998,8 +988,8 @@
 <li>The client has now received the userinfo object.</li>
 </ol>
 </details>
-<h2 id="styling">Styling<a class="headerlink" href="#styling" title="Permanent link">&para;</a></h2>
-<p>The depiction of the netID button is explained in the brand book.</p>
+<h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
+<p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <p>It is largely up to the relying parties to decide where netID is to be incorporated in clients.</p>
 <p>Typical cases involve the use of netID as a login or data enrichment mechanism.</p>
@@ -1038,7 +1028,7 @@ to top</li>
 </ol>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
 <p><strong>PHP</strong>
-In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP.However">https://github.com/jumbojett/OpenID-Connect-PHP.However</a>, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.</p>
+In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP">https://github.com/jumbojett/OpenID-Connect-PHP</a>. However, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.</p>
 <p>Installation according to instructions is no problem. The package derives the redirect_uri from its own URL; here, the position of the script in the path of the web server can either be used as redirect_uri when creating the client or configured accordingly in the web server using rewrite rules.</p>
 <p>The following minimal diff makes OpenIDConnectClient.php netID-compatible:</p>
 <div class="highlight"><pre><span></span><code>844a845,848
@@ -1053,7 +1043,72 @@ In PHP it's possible to use the package <a href="https://github.com/jumbojett/Op
 &lt;           break;
 </code></pre></div>
 
-<p>A simple sample client may then look like this: client_example.php</p>
+<p>A simple sample client may then look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="sd">/**</span>
+<span class="sd"> *</span>
+<span class="sd"> * Copyright MITRE 2012</span>
+<span class="sd"> *</span>
+<span class="sd"> * OpenIDConnectClient for PHP5</span>
+<span class="sd"> * Author: Michael Jett &lt;mjett@mitre.org&gt;</span>
+<span class="sd"> *</span>
+<span class="sd"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may</span>
+<span class="sd"> * not use this file except in compliance with the License. You may obtain</span>
+<span class="sd"> * a copy of the License at</span>
+<span class="sd"> *</span>
+<span class="sd"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="sd"> *</span>
+<span class="sd"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="sd"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT</span>
+<span class="sd"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the</span>
+<span class="sd"> * License for the specific language governing permissions and limitations</span>
+<span class="sd"> * under the License.</span>
+<span class="sd"> *</span>
+<span class="sd"> */</span>
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Jumbojett\OpenIDConnectClient</span><span class="p">;</span>
+
+<span class="c1">// specify ClientID und secret!</span>
+<span class="nv">$oidc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpenIDConnectClient</span><span class="p">(</span>
+    <span class="s1">&#39;https://broker.netid.de/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;example-clientid&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;example-secret&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// if the default redirect_uri is not to be used, a custom value can be set here:</span>
+<span class="c1">// $oidc-&gt;setRedirectURL(&#39;https://clientexample.org/callback&#39;);</span>
+
+<span class="c1">// then however a URL-rewrite is necessary, as for example with mod_rewrite from apache:</span>
+<span class="c1">// RewriteEngine On</span>
+<span class="c1">// RewriteRule &quot;^callback(.*)&quot; &quot;/client_example.php$1&quot;</span>
+
+<span class="nv">$oidc</span><span class="o">-&gt;</span><span class="na">authenticate</span><span class="p">();</span>
+<span class="nv">$sub</span> <span class="o">=</span> <span class="nv">$oidc</span><span class="o">-&gt;</span><span class="na">getVerifiedClaims</span><span class="p">(</span><span class="s1">&#39;sub&#39;</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example OpenID Connect Client Use&lt;/title&gt;</span>
+<span class="x">    &lt;style&gt;</span>
+<span class="x">        body {</span>
+<span class="x">            font-family: &#39;Lucida Grande&#39;, Verdana, Arial, sans-serif;</span>
+<span class="x">        }</span>
+<span class="x">    &lt;/style&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+
+<span class="x">    &lt;div&gt;</span>
+<span class="x">        netID login successful, the Subject Identifier is: </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$sub</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+
 <p><strong>Javascript</strong>
 One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <a href="https://www.npmjs.com/package/openid-client">https://www.npmjs.com/package/openid-client</a></p>
 <p><strong>Java</strong>
@@ -1066,12 +1121,12 @@ Spring Security examples for Java:</p>
 A good OpenID Connect relying party client for Rust can be found here: <a href="https://docs.rs/crate/oidc/0.2.0">https://docs.rs/crate/oidc/0.2.0</a>.</p>
 <p><strong>Go</strong>
 For go the package GitHub:coreos/go-oidc makes a netID login possible. The package may be installed here:</p>
-<div class="highlight"><pre><span></span><code>go get github.com/coreos/go-oidc
+<div class="highlight"><pre><span></span><code><span class="k">go</span> <span class="nx">get</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">coreos</span><span class="o">/</span><span class="k">go</span><span class="o">-</span><span class="nx">oidc</span>
 </code></pre></div>
 
 <p>There is no explicit support for entering claims, essential or otherwise.</p>
 <p>The simple example client netid.go first needs to be edited before Client Credentials, host name, and certificates may be entered, after which it can be run using:</p>
-<div class="highlight"><pre><span></span><code>go run netid.go
+<div class="highlight"><pre><span></span><code><span class="k">go</span> <span class="nx">run</span> <span class="nx">netid</span><span class="p">.</span><span class="k">go</span>
 </code></pre></div>
                 
               
