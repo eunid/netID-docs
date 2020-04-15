@@ -34,7 +34,7 @@ In addition to the Single Sign-on netID Partners can also leverage netID to allo
     Please note that the integration in terms of privacy management/commercial data use is not free of charge and cannot be managed via the netID Developer Portal in a self-service fashion. In case you are interested please reach out to us.
 
 For details see [CMP Integration][3].
-[3]: cmp/index.md -->
+[3]: cmp/index.md 
 
 ## User base and advantages
 
