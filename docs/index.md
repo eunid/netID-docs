@@ -4,7 +4,7 @@
 
 The European netID Foundation (EnID) was founded in March 2018 by Mediengruppe RTL Deutschland, ProSiebenSat.1 and United Internet. Its aim is to establish the netID Single Sign-on as a European alternative to US providers. With netID, users can organize their privacy settings for digital services transparently and in compliance with data protection regulations. To this end, the foundation has developed an open standard that enables users from all sectors to access all internet services of partners of the European netID Foundation with the same login. Right from the start which focuses the initial core market Germany, 38 million accounts covering roughly about 60% of the Germany online population are ready to be used.
 
-## Developer Portal
+## netID Developer Portal
 
 The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on. 
 
@@ -17,7 +17,7 @@ For details see [Developer Portal][1].
 
 netID is the new, European login standard.
 
-The European netID Foundation provides the federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their Account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.   
+The European netID Foundation provides the federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.   
 
 netID Account Providers are in charge for authentication, authorization and transfer of profile information, whereas the so called netID Broker, that is operated by the EnID, orchestrates data transfer and routing between users and the digital services they are using. Technically netID is based on the industry standard OpenID Connect, thus is easily and seamlessly usable by netID Partners. 
 
