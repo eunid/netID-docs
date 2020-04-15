@@ -3,4 +3,6 @@ site/
 .vscode/settings.json 
 .vscode/tasks.json
 .vscode/ws.code-workspace
-docs/diagrams/out/
+docs/diagrams/out/seq_cmp_api.svg
+docs/diagrams/out/seq_cmp_webapi.svg
+docs/diagrams/out/seq_sso_overview.svg
