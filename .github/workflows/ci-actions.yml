@@ -32,7 +32,7 @@ jobs:
       # Install theme and dependencies
       - run: |
           pip install mkdocs-minify-plugin>=0.2
-      # Build documentation
+      # Build documentation to check general setup errors with pull-request/push
       - run: |
           mkdocs build
           mkdocs --version
