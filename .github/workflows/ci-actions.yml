@@ -1,6 +1,7 @@
 name: build-documentation
 
-on: [push, pull_request]
+# Build changes 
+on: [pull_request]
 
 jobs:
  # Build and deploy documentation site
