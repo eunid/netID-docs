@@ -1,14 +1,39 @@
-name: markdownlint
+name: deploy-on-master-pushes
 
 on: [push, pull_request]
 
 jobs:
-  delivery:
-
+ # Build and deploy documentation site
+  deploy:
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
-
     steps:
-    - name: Check out code
-      uses: actions/checkout@master
-    - name: Run mdl
-      uses: actionshub/markdownlint@master
+
+      # Checkout source form GitHub
+      - uses: actions/checkout@v2
+
+      # Install Python runtime and dependencies
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.x
+
+      - run: pip install -r requirements.txt
+
+      # Set configuration for repository and deploy documentation
+      - env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_NAME: ${{ secrets.GH_NAME }}
+          GH_EMAIL: ${{ secrets.GH_EMAIL }}
+        run: |
+          REMOTE="https://${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git config --global user.name "${GH_NAME}"
+          git config --global user.email "${GH_EMAIL}"
+          git remote set-url origin ${REMOTE}
+      # Install theme and dependencies
+      - run: |
+          pip install .
+          pip install mkdocs-minify-plugin>=0.2
+      # Build documentation
+      - run: |
+          mkdocs gh-deploy --force
+          mkdocs --version
