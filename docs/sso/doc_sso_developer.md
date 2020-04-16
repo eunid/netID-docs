@@ -133,14 +133,14 @@ With token requests, it's particularly important to ensure that the code provide
 
 The following request parameters are supported for initiating the SSO process:
 
-* *prompt*
+- *prompt*
     + **login** for requiring reauthentication of a user during the login process
     + **consent** for requiring consent to be given again
-* *max_age*
+- *max_age*
     + in cases where time of authentication may not be too far in the past
-* *login_hint*
+- *login_hint*
     + to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
-* *state*
+ *state*
     + The value of this parameter is passed through the entire flow transparently and included when calling back to the redirect_uri. It may be used to recognize how authorize request and asynchronous response are associated in the client.
 
 The sequence of the calls is summarized as follows:
