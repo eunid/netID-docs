@@ -122,7 +122,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
 
 If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
 
-With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct. 
+With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.
 
 ### Lifetimes
 
@@ -134,14 +134,14 @@ With token requests, it's particularly important to ensure that the code provide
 The following request parameters are supported for initiating the SSO process:
 
 * *prompt*
-    * **login** for requiring reauthentication of a user during the login process
-    * **consent** for requiring consent to be given again
+    + **login** for requiring reauthentication of a user during the login process
+    + **consent** for requiring consent to be given again
 * *max_age*
-    * in cases where time of authentication may not be too far in the past
+    + in cases where time of authentication may not be too far in the past
 * *login_hint*
-    * to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
+    + to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
 * *state*
-    * The value of this parameter is passed through the entire flow transparently and included when calling back to the redirect_uri. It may be used to recognize how authorize request and asynchronous response are associated in the client.
+    + The value of this parameter is passed through the entire flow transparently and included when calling back to the redirect_uri. It may be used to recognize how authorize request and asynchronous response are associated in the client.
 
 The sequence of the calls is summarized as follows:
 
@@ -306,7 +306,6 @@ $sub = $oidc->getVerifiedClaims('sub');
 </body>
 </html>
 ```
-
 
 **Javascript**
 One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <https://www.npmjs.com/package/openid-client>

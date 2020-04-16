@@ -2,11 +2,11 @@
 
 Description of the browser-based integration by the CMP (Headless CMP)
 
-##  API flow examples
+## API flow examples
 
 ### Obtaining a privacy status
 
-The following sequence illustrates the API calls initiated by a Partners CMP to establish a privacy status for an already authenticated user. 
+The following sequence illustrates the API calls initiated by a Partners CMP to establish a privacy status for an already authenticated user.
 
 ![Browser based API](../diagrams/out/seq_cmp_webapi.svg)
 

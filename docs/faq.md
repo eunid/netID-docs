@@ -38,7 +38,6 @@
 ??? question "Is there an indicator for the system status?"
     A Health Check report for the availability of the netID systems and subsystems is available in the netID Developer Portal. A login is required.
 
-
 ## Contact
 
 ??? question "How can I get in contact with you?"
@@ -48,5 +47,5 @@
     Please use our contact options in the Developer Portal to inform us about a bug or to submit a feature request.
 
 ??? question "How can I add my service to the partner page?"
-    The partner page is available at <https://partner.netid.de/>. 
+    The partner page is available at <https://partner.netid.de/>.
     For further information please contact us at <partnermanagement@netid.de>.
