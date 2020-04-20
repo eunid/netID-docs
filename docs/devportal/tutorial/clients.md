@@ -4,7 +4,7 @@
 
 Create a Client for this service by clicking on Add client.
 
-![netid](../../images/devportal/netid_dev_portal_add_client.png){: style="width:50%;display: block; margin: 0 auto;" }
+![netid](../../images/devportal/netid_dev_portal_add_client.png){: style="width:70%;display: block; margin: 0 auto;" }
 
 Please enter the relevant data here and make sure that the "Callback URL", needs to point to your backendand the prefix part is the same as your domain name in the service.
 

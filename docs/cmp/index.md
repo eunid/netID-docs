@@ -1,13 +1,13 @@
 # General information
 
-In addition to the Single Sign-on, netID Partners can also leverage netID to allow users to manage their overall privacy settings in terms of commercial data usage. This offers a convenient, scalable and most importantly server-based/permanent way to manage a user’s consent status or more generally a status in terms of legal grounds for commercial data usage. 
+In addition to the Single Sign-on, netID Partners can also leverage netID to allow users to manage their overall privacy settings in terms of commercial data usage. This offers a convenient, scalable and most importantly server-based/permanent way to manage a user’s consent status or more generally a status in terms of legal grounds for commercial data usage.
 
 To enable that netID (here specifically the netID Permission Center) provides the following services to integrate a netID Partners Consent Management Platform. Overall these APIs enable a Partner/his CMP to manage a TC-String associated to an individual user as well as netID specific consents (netID Permissions) which allow him to identity a user while using his services.
 
 In the following descriptions we will refer to the user’s overall privacy setting as **privacy status**.
 
 !!! info  ""
-    All permissions (netID specific/TCF) stored/managed using netID are always scoped to an individual netID Partner. That means in terms of the CMP, that netID solely supports service scoped TC-Strings, and more importantly that the user’s explicit consent to be identified is managed/given per netID Partner   
+    All permissions (netID specific/TCF) stored/managed using netID are always scoped to an individual netID Partner. That means in terms of the CMP, that netID solely supports service scoped TC-Strings, and more importantly that the user’s explicit consent to be identified is managed/given per netID Partner
 
 ## netID Permission Center Services
 
@@ -80,4 +80,3 @@ access independently of the browser session (limited in time).
 If, depending on the context, the `token` or the `tpid_sec` does not
 exist, has expired or is invalid, a publisher cannot read/write the TC
 String and of course cannot access the TPID.
-

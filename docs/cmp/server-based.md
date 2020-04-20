@@ -4,8 +4,6 @@ Description of the backend integration of the netID Permission Center by the CMP
 
 A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and requests manage a privacy status receives the authentication token (`token`) after the successful login, based on which a user can be authenticated at the netID Permission Center to enable read/write access for that specific users privacy status.
 
-
-
 !!! info  ""
     The server-based requests are secured via the authentication token.
     Calls of this type are blocked from the browser environments for security reasons (no Origin header is allowed!)
@@ -76,6 +74,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 | CONSENT_REQUIRED | Consent for passing on the `tpid` missing ("Identification"). | x | - |
 
 ## Write APIs
+
 ### Privacy status
 
 ``` shell
@@ -100,7 +99,7 @@ Location: https://READSERVICE.netid.de/permissions/iab-permissions?
 
 Remarks:
 
-- If permission "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP. 
+- If permission "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
 - If only the TC string is to be updated and the permission "Identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
 - In case of revocation of permission "Identification", would pass only "identification: false".
 
