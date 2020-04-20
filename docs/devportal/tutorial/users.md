@@ -14,9 +14,6 @@ The e-mail addresses and roles of all active users are listed.
 
 - Make the desired changes and then confirm your entries by clicking on **Apply changes**.
 
-!!! info ""
-    Your personal data has been successfully changed.
-
 ## Invite a new user
 
 To give your team quick and easy access to the netID Developer Portal, you as a representative can send invitations to new users.
@@ -56,9 +53,6 @@ A developer gets access to all functions that are necessary for the technical im
 - Confirm the changes by clicking on **Apply Changes**.
 
 !!! info ""
-    The role of the user was changed successfully.
-
-!!! info ""
     Since users with the role Representative have the right to invite new users to the netID Developer Portal, at least one Representative must remain registered. If the user whose role is to be changed is the last or only representative, he cannot be downgraded to the role of Developer.
 
 ## Delete user
@@ -66,9 +60,6 @@ A developer gets access to all functions that are necessary for the technical im
 - To remove a user from the netID Developer Portal, click **User Management** in the navigation on the left.
 - Click **Details** next to the user you want to remove.
 - Under User Details, click **Remove user** from the company.
-
-!!! info ""
-    The user has been removed from the netID Developer portal.
 
 !!! info ""
     Since users with the role representative have the right to invite new users to the netID Developer Portal, at least one representative must remain registered. If the user to be removed is the last or only representative, it cannot be removed. It is therefore also not possible to downgrade the user to developer.
@@ -83,6 +74,3 @@ The contact data of a contact person is required for contractual agreements or t
 
 - Under Contact Person Details, adjust all necessary information about the contact person.
 - To save the information, click **Apply Changes**.
-
-!!! info ""
-    The partner data was successfully adjusted.

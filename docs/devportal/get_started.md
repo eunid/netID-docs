@@ -23,7 +23,6 @@ Fill out the requested details and continue by clicking **Next**
 
 ![reg step 1](../images/devportal/netid_dev_portal_register_step_one.png){: style="width:70%;display: block; margin: 0 auto;" }
 
-
 !!! info  ""
     A strong password does not need to be changed regularly. However, it should consist of at least 8 characters, better 12 or more. The longer your password, the harder it is to crack. Also mix letters, numbers and special characters and switch between upper and lower case.
 
