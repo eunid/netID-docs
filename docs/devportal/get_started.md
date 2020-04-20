@@ -10,7 +10,7 @@ The following steps will guide you through the process.
 ## Register
 To create an account for the netID Developer Portal, click on **Create developer account**.
 
-![reg](../images/devportal/netid_dev_portal_start_page.png)
+![reg](../images/devportal/netid_dev_portal_start_page.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 You will be forwarded to the registration page of the netID Developer Portal. Setting up an account is a three step process 
 
@@ -21,7 +21,7 @@ You will be forwarded to the registration page of the netID Developer Portal. Se
 ### Account Details
 Fill out the requested details and continue by clicking **Next**
 
-![reg step 1](../images/devportal/netid_dev_portal_register_step_one.png)
+![reg step 1](../images/devportal/netid_dev_portal_register_step_one.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 
 !!! info  ""
@@ -40,7 +40,7 @@ For Details on Roles/User-Management see [User Management][1].
 
 [1]: tutorial/users.md
 
-![reg step 2](../images/devportal/netid_dev_portal_register_step_two.png)
+![reg step 2](../images/devportal/netid_dev_portal_register_step_two.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 ### Activate Account
 
@@ -51,13 +51,13 @@ Once the  registration has been completed an activation code will be send to the
 
 To active your account enter the activation code into the form and click **Complete activation**.
 
-![reg step 3](../images/devportal/netid_dev_portal_register_step_three.png)
+![reg step 3](../images/devportal/netid_dev_portal_register_step_three.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 ## Initial Login
 
 Once you have registered and activated your account you can sign-in with your chosen credentials.
 
-![login](../images/devportal/netid_dev_portal_login.png)
+![login](../images/devportal/netid_dev_portal_login.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 
 ## Troubleshooting Login
@@ -69,10 +69,10 @@ The Developer Portal offers you to:
 - Reset your password, by clicking **Password reset**
 - Resend an activation code, in case you had problems during the registration process. Click **Send activation code**
 
-![problems login](../images/devportal/netid_dev_portal_problems_login.png)
+![problems login](../images/devportal/netid_dev_portal_problems_login.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 In any other case, you can also contact support via e-mail or phone.
 
 ## Contact us
 
-![login](../images/devportal/netid_dev_portal_contact_us.png)
+![login](../images/devportal/netid_dev_portal_contact_us.png){: style="width:50%;display: block; margin: 0 auto;" }

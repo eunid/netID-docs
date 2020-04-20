@@ -6,11 +6,11 @@
 
 The e-mail addresses and roles of all active users are listed.
 
-![netid](../../images/devportal/netid_dev_portal_user_management.png)
+![netid](../../images/devportal/netid_dev_portal_user_management.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 - Click **Details** next to your user name.
 
-![netid](../../images/devportal/netid_dev_portal_user_details.png)
+![netid](../../images/devportal/netid_dev_portal_user_details.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 - Make the desired changes and then confirm your entries by clicking on **Apply changes**.
 
@@ -70,7 +70,7 @@ The contact data of a contact person is required for contractual agreements or t
 
 - To adjust partner data, click on **Company Profile** in the navigation on the left.
 
-![netid](../../images/devportal/netid_dev_portal_company_details.png)
+![netid](../../images/devportal/netid_dev_portal_company_details.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 - Under Contact Person Details, adjust all necessary information about the contact person.
 - To save the information, click **Apply Changes**.
