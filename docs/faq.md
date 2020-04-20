@@ -3,7 +3,7 @@
 ## General
 
 ??? question "What is netID?"
-    The European netID Foundation provides the federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.
+    The European netID Foundation provides the federated Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.
 
 ??? question "What is the netID Developer Portal?"
     The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on.
