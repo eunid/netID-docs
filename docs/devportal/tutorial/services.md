@@ -8,7 +8,7 @@ We assume that you have already registered a service provider account at netID. 
 To start, log in into the [netID Developer Portal](https://developer.netid.de/login). Create a **service** for which you want to leverage the netID single sign-on. Select **Services** in the menu, 
 click **Add service** and fill in the required details in the following screen. Read the detailed documentation if you need further information.
 
-![netid](../../images/devportal/netid_dev_portal_add_service.png)
+![netid](../../images/devportal/netid_dev_portal_add_service.png){: style="width:70%;display: block; margin: 0 auto;" }
 
 
 A sample service could look like this, where the service domain (Dienst Domain) is the domain of your customer facing website. 
@@ -25,7 +25,7 @@ In order to use a service in your live environment, it must be approved by the n
 
 - Open the detailed view of the service you want to activate.
 
-![netid](../../images/devportal/netid_dev_portal_request_service_release.png)
+![netid](../../images/devportal/netid_dev_portal_request_service_release.png){: style="width:70%;display: block; margin: 0 auto;" }
 
 - Click on **Request service release**.
 
