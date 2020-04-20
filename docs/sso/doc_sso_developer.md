@@ -1,6 +1,6 @@
 # Single Sign-on Documentation
 
-This documentation describes federated Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/../devportal/get_started/)
+This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to aquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/../devportal/get_started/)
 
 ## Integration Guide
 

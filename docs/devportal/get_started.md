@@ -4,21 +4,22 @@ The netID Developer Portal is the main resource for developers/digital services 
 
 In the future, individual reports, information about planned further developments of the netID and much more will be available in the Developer Portal.
 
-In order to use these capabilities, you need to <a href="https://developer.netid.de" target="_blank">register yourself</a>
+In order to use these capabilities, you need to register [here](https://developer.netid.de). The following steps will guide you through the process.
 
-The following steps will guide you through the process.
 ## Register
+
 To create an account for the netID Developer Portal, click on **Create developer account**.
 
 ![reg](../images/devportal/netid_dev_portal_start_page.png){: style="width:50%;display: block; margin: 0 auto;" }
 
-You will be forwarded to the registration page of the netID Developer Portal. Setting up an account is a three step process 
+You will be forwarded to the registration page of the netID Developer Portal. Setting up an account is a three step process:
 
 1. Account Details - Specify your e-mail address and a strong password
 2. Company Details - Specify company details needed for the netID Single-on (Company operating the services integration the Single Sign-on)
-3. Activate Account 
+3. Activate Account
 
 ### Account Details
+
 Fill out the requested details and continue by clicking **Next**
 
 ![reg step 1](../images/devportal/netid_dev_portal_register_step_one.png){: style="width:70%;display: block; margin: 0 auto;" }
@@ -35,8 +36,7 @@ To complete the registration, click on **Complete registration**.
 !!! info  ""
     Accepting the user contract requires you to be eligible to act on behalf of your company (as registered in this step). The developer portal supports different roles to address that, namely **Developer** and **Representative**. After finishing the signup process the registered user has the role **Representative**
 
-For Details on Roles/User-Management see [User Management][1].
-
+For details on roles/wser-management see [User Management][1].
 [1]: tutorial/users.md
 
 ![reg step 2](../images/devportal/netid_dev_portal_register_step_two.png){: style="width:70%;display: block; margin: 0 auto;" }
@@ -57,7 +57,6 @@ To active your account enter the activation code into the form and click **Compl
 Once you have registered and activated your account you can sign-in with your chosen credentials.
 
 ![login](../images/devportal/netid_dev_portal_login.png){: style="width:70%;display: block; margin: 0 auto;" }
-
 
 ## Troubleshooting Login
 
