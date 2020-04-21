@@ -1,19 +1,19 @@
 # netID Clients
 
-## Creating a Client 
+## Creating a Client
 
 Create a Client for this service by clicking on Add client.
 
 ![netid](../../images/devportal/netid_dev_portal_add_client.png){: style="width:70%;display: block; margin: 0 auto;" }
 
-Please enter the relevant data here and make sure that the "Callback URL", needs to point to your backendand the prefix part is the same as your domain name in the service.
+Please enter the relevant data here and make sure that the "Callback URL", needs to point to your backend and the prefix part is the same as your domain name in the service.
 
-Once the client is created it will initially run in a sandboxed mode, which means it can only be used with whitelisted netID-Accounts (email addresses). 
+If your service is not activated the client will initially run in a sandboxed mode, which means it can only be used with whitelisted netID-Accounts (email addresses).
 
-In order to successfully run through the initial integration add a test user (email address) to the whitelist by selecting **Add Test-Account**, 
-outlined on the developer portal. Up to 10 accounts can be whitelisted per sandboxed client.
+In order to successfully run through the initial integration add a test user (email address) to the whitelist by selecting **Add Test-Account** in the service section. Up to 10 accounts can be whitelisted per sandboxed client. Once the service is released the test users will be no longer needed and removed from the service.
 
-Finally, find the **Client ID** and **netID Token - Sandbox** (later referred to as **client secret**) by expanding the client details. 
+You will find the client Id and client secret in the client details.
+After activation of the service, your client secret will change from **netID Token - Sandbox** to **client secret**.
 
 ## Edit a Client
 
