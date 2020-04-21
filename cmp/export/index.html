@@ -350,18 +350,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devportal/tutorial/testuser/" title="Test User" class="md-nav__link">
-      Test User
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -495,7 +483,7 @@
                 
                 <h1 id="data-export">Data export<a class="headerlink" href="#data-export" title="Permanent link">&para;</a></h1>
 <p>Via this API partners get the ability to query privacy status (netID permissions and TC strings of users) unrelated to a specific context, via the specification of changed_since  deltas can also be queried. There is an HTTP service with a REST API for this service.</p>
-<div class="highlight"><pre><span></span><code>GET https://DATA-EXPORT-SERVICE/permissions/iab-permissions? 
+<div class="highlight"><pre><span></span><code>GET https://DATA-EXPORT-SERVICE/permissions/iab-permissions?
     <span class="nv">tapp_id</span><span class="o">=</span>&lt;TAPP_ID&gt;<span class="p">&amp;</span>
     <span class="nv">changed_since</span><span class="o">=</span>&lt;DATE&gt;
     Authorization: Basic &lt;b64<span class="o">(</span>USERNAME:PASSWORD<span class="o">)</span>&gt;

@@ -352,18 +352,6 @@
   </li>
 
         
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../../devportal/tutorial/testuser/" title="Test User" class="md-nav__link">
-      Test User
-    </a>
-  </li>
-
-        
       </ul>
     </nav>
   </li>
@@ -855,7 +843,7 @@
                 
                 
                 <h1 id="single-sign-on-documentation">Single Sign-on Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
-<p>This documentation describes federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the <a href="/../devportal/get_started/">Developer Portal Documentation</a></p>
+<p>This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to aquire the necessary credentials to leverage this service please refer to the <a href="/../devportal/get_started/">Developer Portal Documentation</a></p>
 <h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
 <p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
@@ -939,7 +927,7 @@
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
 <h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
 <p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.</p>
-<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct. </p>
+<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.</p>
 <h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Authorization codes are only valid for 30 seconds and may only be used once</li>
@@ -958,10 +946,8 @@
 </ul>
 </li>
 <li><em>login_hint</em><ul>
-<li>to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider</li>
-</ul>
-</li>
-<li><em>state</em><ul>
+<li>to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
+ <em>state</em></li>
 <li>The value of this parameter is passed through the entire flow transparently and included when calling back to the redirect_uri. It may be used to recognize how authorize request and asynchronous response are associated in the client.</li>
 </ul>
 </li>

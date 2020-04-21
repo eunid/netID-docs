@@ -98,7 +98,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#netid-clients" class="md-skip">
+        <a href="#clients" class="md-skip">
           Skip to content
         </a>
       
@@ -373,37 +373,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-functionality" class="md-nav__link">
+    Detailed Functionality
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Functionality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#creating-a-client" class="md-nav__link">
     Creating a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#edit-a-client" class="md-nav__link">
     Edit a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#deactivate-a-client" class="md-nav__link">
     Deactivate a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#reactivate-a-client" class="md-nav__link">
+    Reactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#delete-a-client" class="md-nav__link">
     Delete a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#reactivate-a-client" class="md-nav__link">
-    Reactivate a Client
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -422,18 +442,6 @@
   <li class="md-nav__item">
     <a href="../users/" title="User Management" class="md-nav__link">
       User Management
-    </a>
-  </li>
-
-        
-          
-          
-          
-
-
-  <li class="md-nav__item">
-    <a href="../testuser/" title="Test User" class="md-nav__link">
-      Test User
     </a>
   </li>
 
@@ -564,37 +572,57 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-functionality" class="md-nav__link">
+    Detailed Functionality
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Functionality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#creating-a-client" class="md-nav__link">
     Creating a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#edit-a-client" class="md-nav__link">
     Edit a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#deactivate-a-client" class="md-nav__link">
     Deactivate a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
+  <a href="#reactivate-a-client" class="md-nav__link">
+    Reactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#delete-a-client" class="md-nav__link">
     Delete a Client
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#reactivate-a-client" class="md-nav__link">
-    Reactivate a Client
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -614,79 +642,47 @@
                   
                 
                 
-                <h1 id="netid-clients">netID Clients<a class="headerlink" href="#netid-clients" title="Permanent link">&para;</a></h1>
-<h2 id="creating-a-client">Creating a Client<a class="headerlink" href="#creating-a-client" title="Permanent link">&para;</a></h2>
-<p>Create a Client for this service by clicking on Add client.</p>
-<p><img alt="netid" src="../../../images/devportal/netid_dev_portal_add_client.png" /></p>
+                <h1 id="clients">Clients<a class="headerlink" href="#clients" title="Permanent link">&para;</a></h1>
+<p>Using clients you can manage the technical details for an integration into your services. <strong>Services</strong> may have multiple clients to cater for different types of integration (mobile, website, ...).</p>
+<h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
+<p><strong>Clients</strong> have a simple lifecycle, once they are created they immediately get into the <strong>active</strong> state and can be used. At any point in time you can choose to</p>
+<ol>
+<li>
+<p><a href="#delete-a-client">Delete</a> a specific client, which puts it into the state <strong>deleted</strong>. Clients remain in the state deleted for 14 days, once these are passed it will be permanently removed. Within the 14 days grace period clients can be <a href="#reactivate-a-client">re-activated</a> and return to into the <strong>active</strong> state.</p>
+</li>
+<li>
+<p><a href="#deactivate-a-client">De-active</a> a specific client which puts into <strong>inactive</strong> status (disabling its usage). It can be <a href="#reactivate-a-client">re-activated</a> and returns to into the <strong>active</strong> state.</p>
+</li>
+</ol>
 <div class="admonition info">
-<p>Note: the values here should be adjusted to your needs, especially "Callback URL", which needs to point to your backend</p>
+<p>Status changes on the overall <a href="../services/">service</a> this client belongs to will also have immediate effect on all of its clients.</p>
 </div>
-<p>Once the client is created it will initially run in a sandboxed mode, which means it can only be used with whitelisted netID-Accounts (email addresses).</p>
-<p>In order to successfully run through the initial integration add a test user (email address) to the whitelist by selecting <strong>Add Test-Account</strong>, 
-outlined on the developer portal. Up to 10 accounts can be whitelisted per sandboxed client.</p>
-<p>Finally, find the <strong>Client ID</strong> and <strong>netID Token - Sandbox</strong> (later referred to as <strong>client secret</strong>) by expanding the client details. </p>
-<h2 id="edit-a-client">Edit a Client<a class="headerlink" href="#edit-a-client" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Under the appropriate service, select the client to be changed.</li>
-<li>Click <strong>Edit</strong> next to the Client name.</li>
-</ul>
-<p>A text box will appear asking you to confirm the operation with your password.</p>
-<ul>
-<li>Enter the password that you created during the registration in the netID Developer Portal and confirm your entry by clicking on <strong>Confirm</strong>.</li>
-</ul>
-<p>You now have the possibility to change the entered information about the Client.</p>
-<ul>
-<li>Make the desired changes and updates and save the information with a click on <strong>Update Client</strong>.</li>
-</ul>
+<h2 id="detailed-functionality">Detailed Functionality<a class="headerlink" href="#detailed-functionality" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-client">Creating a Client<a class="headerlink" href="#creating-a-client" title="Permanent link">&para;</a></h3>
+<p>To create a client for a service, select <strong>Add client</strong> in the <a href="../services/#service-details-view">details view</a> of the service. Client Details can be defined in the provided form.</p>
+<p><img alt="netid" src="../../../images/devportal/netid_dev_portal_add_client.png" style="width:50%;display: block; margin: 0 auto;" /></p>
+<p>Fill out the necessary details, most importantly in case this client is meant for production use make sure that the <strong>Callback URL</strong> points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.</p>
 <div class="admonition info">
-<p>The client was successfully changed.</p>
+<p>Please note that netID uses <a href="../../../sso/doc_sso_developer/#general-overview">pairwise subject identifiers</a>, which are derived respective to the clients callback url set here.</p>
 </div>
-<h2 id="deactivate-a-client">Deactivate a Client<a class="headerlink" href="#deactivate-a-client" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Under the appropriate service, select the client to be disabled.</li>
-<li>Click <strong>Edit</strong> next to the Client name.</li>
-</ul>
-<p>A text box will appear asking you to confirm the operation with your password.</p>
-<ul>
-<li>Enter the password you created for logging into the netID Developer Portal and confirm your entry by clicking on <strong>Confirm</strong>.</li>
-</ul>
-<p>You now have the possibility to change the status of the Client.</p>
-<ul>
-<li>To deactivate the client, select the entry Inactive in the drop down menu under Status.</li>
-</ul>
-<div class="admonition info">
-<p>The client was successfully deactivated.</p>
-</div>
-<div class="admonition info">
-<p>You have the possibility to <a href="#reactivate-a-client">reactivate the client</a> within 14 days before it is finally deleted and removed from the overview.</p>
-</div>
-<h2 id="delete-a-client">Delete a Client<a class="headerlink" href="#delete-a-client" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Under the appropriate service, select the client to be removed.</li>
-<li>Click the arrow next to the Client name to expand the entire Client.</li>
-<li>Click <strong>Delete Client</strong> below.</li>
-</ul>
-<p>A text box will appear asking you to confirm the operation with your password.</p>
-<ul>
-<li>Enter the password that you created during the registration in the netID Developer Portal and confirm your entry by clicking on <strong>Confirm</strong>.</li>
-</ul>
-<div class="admonition info">
-<p>The client has been deleted. The status of the deleted client is set to DELETE.</p>
-</div>
-<div class="admonition info">
-<p>You have the possibility to reactivate the client within 14 days before it is finally deleted and removed from the overview.</p>
-</div>
-<h2 id="reactivate-a-client">Reactivate a Client<a class="headerlink" href="#reactivate-a-client" title="Permanent link">&para;</a></h2>
-<p>A deactivated client remains in the overview. The status of the deleted client is set to DELETE. This gives you the opportunity to reactivate a deactivated client within 14 days before it is finally deleted and removed from the overview.</p>
-<ul>
-<li>Under the appropriate service, select the client to be reactivated.</li>
-<li>Click the arrow next to the Client name to expand the entire Client.</li>
-<li>Click <strong>Reactivate Client</strong> under the Client Status.</li>
-<li>To finally reactivate the client, confirm the process with your developer account password.</li>
-</ul>
-<div class="admonition info">
-<p>The client has been reactivated. The status is now displayed again as ACTIVE.</p>
-</div>
+<p>Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely <strong>Client ID</strong> and <strong>Client Secret</strong>.</p>
+<p>A client has two sets of credentials (<strong>Client ID</strong> is the same):</p>
+<ol>
+<li><strong>Client secret - sandbox</strong>: which is to be used in case the service is still in sandboxed mode</li>
+<li><strong>Client secret - live</strong>: which becomes available for use in a production environment once the service has been approved for production use. For details see <a href="../services/#approval-for-production-use">Approval for production use</a></li>
+</ol>
+<h3 id="edit-a-client">Edit a Client<a class="headerlink" href="#edit-a-client" title="Permanent link">&para;</a></h3>
+<p>To edit a client select <strong>Edit</strong> in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client. Client details can be edited in the provided form.</p>
+<p>Make the desired changes and updates and save the information by confirmation using <strong>Update Client</strong>.</p>
+<h3 id="deactivate-a-client">Deactivate a Client<a class="headerlink" href="#deactivate-a-client" title="Permanent link">&para;</a></h3>
+<p>To temporarily deactivate a client select <strong>Edit</strong> in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>In the client details form select the <strong>Inactive</strong> in the drop down menu under <strong>Status</strong>.</p>
+<h3 id="reactivate-a-client">Reactivate a Client<a class="headerlink" href="#reactivate-a-client" title="Permanent link">&para;</a></h3>
+<p>To reactivate a client select <strong>Edit</strong> in the <strong>Clients</strong> listing in the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>In the client details form select the <strong>Active</strong> in the drop down menu under <strong>Status</strong>.</p>
+<h3 id="delete-a-client">Delete a Client<a class="headerlink" href="#delete-a-client" title="Permanent link">&para;</a></h3>
+<p>To delete a client permanently expand the client details in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>Click on <strong>Delete client</strong> at the bottom of the expanded details and confirm the deletion. See notes on <a href="#lifecycle">lifecycle</a></p>
                 
               
               
