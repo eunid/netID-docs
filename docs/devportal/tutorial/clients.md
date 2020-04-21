@@ -1,4 +1,4 @@
-# netID Clients
+# Clients
 
 ## Creating a Client
 
