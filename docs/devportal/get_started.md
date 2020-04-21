@@ -1,6 +1,6 @@
 # Getting Started
 
-The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on. 
+The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on.
 
 In the future, individual reports, information about planned further developments of the netID and much more will be available in the Developer Portal.
 
@@ -36,8 +36,7 @@ To complete the registration, click on **Complete registration**.
 !!! info  ""
     Accepting the user contract requires you to be eligible to act on behalf of your company (as registered in this step). The developer portal supports different roles to address that, namely **Developer** and **Representative**. After finishing the signup process the registered user has the role **Representative**
 
-For details on roles/wser-management see [User Management][1].
-[1]: tutorial/users.md
+For details on roles/user-management see [User Management](tutorial/users.md)
 
 ![reg step 2](../images/devportal/netid_dev_portal_register_step_two.png){: style="width:70%;display: block; margin: 0 auto;" }
 
@@ -60,7 +59,7 @@ Once you have registered and activated your account you can sign-in with your ch
 
 ## Troubleshooting Login
 
-In case you have issues with you login, click **Problems loggin in?**
+In case you have issues with you login, click **Problems logging in?**
 
 The Developer Portal offers you to:
 
@@ -70,7 +69,3 @@ The Developer Portal offers you to:
 ![problems login](../images/devportal/netid_dev_portal_problems_login.png){: style="width:70%;display: block; margin: 0 auto;" }
 
 In any other case, you can also contact support via e-mail or phone.
-
-## Contact us
-
-![login](../images/devportal/netid_dev_portal_contact_us.png){: style="width:70%;display: block; margin: 0 auto;" }

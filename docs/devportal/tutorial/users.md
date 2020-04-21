@@ -1,76 +1,69 @@
 # User Management
 
-## Change personal data
+The netID Developer Portal supports different roles with different levels of access, namely Developer and Representative. Creating a new developer portal account from scratch (and thus a new managed company profile) will assign you the role Representative. Roles can be [changed](#changing-the-role-of-a-user) and users can be [invited](#invite-a-new-user) to participate in the management of a company profile. For details on roles see [roles/rights](#rolesrights).
 
-- Click on **User Management** in the navigation on the left.
+## Detailed Functionality
 
-The e-mail addresses and roles of all active users are listed.
+In order to access the user management functionality, navigate to **User Management** view by clicking on it in the left hand menu. This view lists all the active users and exposes the below described functionality.
 
 ![netid](../../images/devportal/netid_dev_portal_user_management.png){: style="width:70%;display: block; margin: 0 auto;" }
 
-- Click **Details** next to your user name.
+### Change personal data
+
+Click on **Details** for the respective user in the User Management View.
 
 ![netid](../../images/devportal/netid_dev_portal_user_details.png){: style="width:70%;display: block; margin: 0 auto;" }
 
-- Make the desired changes and then confirm your entries by clicking on **Apply changes**.
+Make the desired changes and then confirm your entries by clicking on **Apply changes**.
 
-## Invite a new user
+### Invite a new user
 
-To give your team quick and easy access to the netID Developer Portal, you as a representative can send invitations to new users.
+To add relevant team members to your company profile, users with the role representative can invite new users. Click on **Invite User** in the User Management view.
 
-- Click on **User Management** in the navigation on the left.
-- Below the Active Users overview, click on **Invite User**.
-- In the form, enter the name of the person who should have access to the netID Developer Portal. 
-- In the form, enter the e-mail address of the person who is to receive access to the netID Developer portal. 
-- Select whether the person in the role of representative or developer should use the netID Developer Portal.
+Add the necessary details for the new user (name, email address, ...) and the role he will be assigned to once added. Choose the role carefully, see [roles/rights](#rolesrights) for details. To start the invitation process click on **Send invitation**, the invited user will receive an email with the necessary details.
 
-A representative receives access to the full range of functions as an administrator.
+### Changing the role of a user
 
-- A developer receives access to all functions that are necessary for the technical implementation of the service.
-- If the future user is a developer, select the services to which the future user should have access.
-- Restrict the access of the future user to selected clients by selecting the required clients.
-- Once you have entered all the information, click Send Invitation.
+Representatives can change the role of users at any point in time, by clicking **Details** for the respective user in the User Management View. Simply select a new role in the details dialog and confirm with **Accept changes**.
+
+Choose the role carefully: Representatives have full administrative access, Developers can only manage the necessary technical details for clients, see [roles/rights](#rolesrights) for details.
 
 !!! info ""
-    An invitation for the netID Developer Portal has been sent to the deposited e-mail address.
+    At least one user must have the role Representative. Conflicting changes will be rejected.
 
-## Changing the role of a user
+### Delete user
 
-Each user of the netID Developer portal is assigned a role that defines which functions of the portal the user has access to. You can change an assigned role to grant or restrict permissions.
-
-- To change the role of a user, click **User Management** in the navigation.
-  
-The e-mail addresses and roles of all active users are listed.
-
-- Click **Details** next to the user name whose role you want to change.
-- In the Permissions drop-down menu, select the role with which the user should use the netID Developer portal.
-
-A representative receives access to the full range of functions as an administrator.
-
-A developer gets access to all functions that are necessary for the technical implementation of the service.
-
-- If the user is assigned the role of developer, select the service to which the user should have access.
-- Confirm the changes by clicking on **Apply Changes**.
+Representatives can remove users at any point in time, by clicking **Details** for the respective user in the User Management View and clicking **Delete user account**.
 
 !!! info ""
-    Since users with the role Representative have the right to invite new users to the netID Developer Portal, at least one Representative must remain registered. If the user whose role is to be changed is the last or only representative, he cannot be downgraded to the role of Developer.
+    At least one user must have the role Representative. Conflicting changes will be rejected.
 
-## Delete user
+## Company Profile Main Contact
 
-- To remove a user from the netID Developer Portal, click **User Management** in the navigation on the left.
-- Click **Details** next to the user you want to remove.
-- Under User Details, click **Remove user** from the company.
-
-!!! info ""
-    Since users with the role representative have the right to invite new users to the netID Developer Portal, at least one representative must remain registered. If the user to be removed is the last or only representative, it cannot be removed. It is therefore also not possible to downgrade the user to developer.
-
-## Adjust partner data
-
-The contact data of a contact person is required for contractual agreements or the release of services. You have the possibility to manage all necessary contact person data in the netID Developer Portal.
-
-- To adjust partner data, click on **Company Profile** in the navigation on the left.
+To manage/adjust you general main company contact select **Company Profile** in the navigation on the left.
 
 ![netid](../../images/devportal/netid_dev_portal_company_details.png){: style="width:70%;display: block; margin: 0 auto;" }
 
-- Under Contact Person Details, adjust all necessary information about the contact person.
-- To save the information, click **Apply Changes**.
+Adjust the details under Contact details and click on **Apply Changes**.
+
+## Roles/Rights
+
+The following table show the rights per role:
+
+|Function|Representative|Developer|
+|---|:---:|:---:|
+| View Service         |        X       |     X     |
+| Create Service       |        X       |           |
+| Edit Service         |        X       |           |
+| Delete Service       |        X       |           |
+| View Client          |        X       |     X     |
+| Create Client        |        X       |           |
+| Edit Client          |        X       |     X     |
+| Delete Client        |        X       |           |
+| Manage Test Users    |        X       |     X     |
+| View Users           |        X       |Himself only|
+| Invite Users         |        X       |           |
+| Edit Users           | Own details + all roles|own details|
+| Delete Users         |        X       |           |
+| View Company Profile |        X       |     X     |
+| Edit Company Profile |        X       |           |
