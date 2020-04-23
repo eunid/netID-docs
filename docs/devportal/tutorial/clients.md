@@ -24,7 +24,7 @@ To create a client for a service, select **Add client** in the [details view](se
 Fill out the necessary details, most importantly in case this client is meant for production use make sure that the **Callback URL** points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.
 
 !!! info ""
-    Please note that netID uses [pairwise subject identifiers](../../sso/doc_sso_developer.md#general-overview), which are derived respective to the clients callback url set here.
+    Please note that netID uses [pairwise subject identifiers](../../sso/doc_sso_developer.md#general-overview), which are derived respective to the **clients callback url** (more specifically the **hostname** portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion.
 
 Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely **Client ID** and **Client Secret**.
 
