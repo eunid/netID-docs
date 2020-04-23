@@ -8,14 +8,15 @@
 ## Access Documentation
 
 - Rendered MkDocs HTML output on Github Pages:
-    - https://eunid.github.io/netID-docs/
+    - https://developerzone.netid.dev
 
 ## Project Structure
 
 - Github Repo: https://github.com/eunid/netID-docs/
+- Deployment Repo: https://github.com/eunid/eunid.github.io
 - Master Branch:
     - docs folder
-        - *.md documentation pages (markdown)
+    - *.md documentation pages (markdown)
         - Folder '/stylesheets/' (override theme preset)
         - Folder '/images/' (image files)
         - Folder '/diagrams/src' -> PlantUML source files
@@ -26,10 +27,25 @@
         - /site Folder
         - **/.DS_Store
         - .vscode/settings.json
-- gh-pages Branch
-    - MkDocs HTML Site Structure
-      - git add/commit/push via 'mkdocs gh-deploy' command
     - CNAME file for custom domain settings
+
+## Deployment
+
+Documentation is deployed at EnID organisation site with a custom domain (see above).
+Deployment is done as described in the mkdocs documentation https://www.mkdocs.org/user-guide/deploying-your-docs/#organization-and-user-pages
+
+Folder structure:
+```
+netID-docs/
+    mkdocs.yml
+    docs/
+eunid.github.io/
+```
+Push documentation from eunid master repo
+```
+eunid.github.io# mkdocs gh-deploy --config-file ../netID-docs/mkdocs.yml --remote-branch master
+```
+
 
 ## Content Creation
 
