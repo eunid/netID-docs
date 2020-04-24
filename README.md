@@ -2,7 +2,7 @@
 
 - Static Site Generator: MkDocs
     - https://www.mkdocs.org
-- Material Design Theme for MkDocs (V5 RC3)
+- Material Design Theme for MkDocs (V5.1)
     - https://squidfunk.github.io/mkdocs-material/
 
 ## Access Documentation
