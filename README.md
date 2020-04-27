@@ -14,7 +14,7 @@
 
 - Github Repo: https://github.com/eunid/netID-docs/
 - Deployment Repo: https://github.com/eunid/eunid.github.io
-- Master Branch:
+- master branch:
     - docs folder
     - *.md documentation pages (markdown)
         - Folder '/stylesheets/' (override theme preset)
@@ -27,23 +27,24 @@
         - /site Folder
         - **/.DS_Store
         - .vscode/settings.json
-    - CNAME file for custom domain settings
+    - docs/CNAME file for custom domain settings
+- gh-pages branch
+    - deployment to production site
 
 ## Deployment
 
-Documentation is deployed at EnID organisation site with a custom domain (see above).
-Deployment is done as described in the mkdocs documentation https://www.mkdocs.org/user-guide/deploying-your-docs/#organization-and-user-pages
+Documentation is deployed via the gh-pages (see above) branch to a custom domains.
+Deployment is done as described in the mkdocs documentation https://www.mkdocs.org/user-guide/deploying-your-docs/#deploying-your-docs
 
 Folder structure:
 ```
 netID-docs/
     mkdocs.yml
     docs/
-eunid.github.io/
 ```
-Push documentation from eunid master repo
+Push documentation to gh-pages branch
 ```
-eunid.github.io# mkdocs gh-deploy --config-file ../netID-docs/mkdocs.yml --remote-branch master
+# mkdocs gh-deploy
 ```
 
 
