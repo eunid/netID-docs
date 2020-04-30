@@ -17,7 +17,7 @@ For details see [Developer Portal][1].
 
 netID is the new, European login standard.
 
-The European netID Foundation provides the federated Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.
+The European netID Foundation provides the federated Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Providers. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.
 
 netID Account Providers are in charge for authentication, authorization and transfer of profile information, whereas the so called netID Broker, that is operated by the EnID, orchestrates data transfer and routing between users and the digital services they are using. Technically netID is based on the industry standard OpenID Connect, thus is easily and seamlessly usable by netID Partners.
 
