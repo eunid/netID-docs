@@ -38,7 +38,7 @@ For details see [CMP Integration][3].
 
 ## User base and advantages
 
-netID can be used with any e-mail address in general. Having that said over 35 million users can already use netID without further registration. This includes all e-mail users of the brands WEB.DE and GMX. Users who do not yet have a netID Account can create a free netID Account with one of the netID account providers with just a few clicks.
+netID can be used with any e-mail address in general. Having that said over 35 million users can already use netID without further registration. This includes all e-mail users of the brands WEB.DE and GMX. Users who do not yet have a netID Account can create a free netID Account with one of the netID Account Providers with just a few clicks.
 
 **Optimized & convenient**: Fewer interruptions in the purchasing process, less "password recovery" effort. Significantly better conversion rates in the registration process for new customers.
 
@@ -46,4 +46,4 @@ netID can be used with any e-mail address in general. Having that said over 35 m
 
 **Secure & independent**: Decentralized Data Storage. netID Partners are in full control of their (respectively their users) own first-party data.
 
-**User base & convenience**: Already more than 35 million users with existing netID Accounts. Typically not need for an additional registration for end-users.
+**User base & convenience**: Already more than 35 million users with existing netID Accounts. Usually no need for an additional registration for end-users when using netID.
