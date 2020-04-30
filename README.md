@@ -2,20 +2,21 @@
 
 - Static Site Generator: MkDocs
     - https://www.mkdocs.org
-- Material Design Theme for MkDocs (V5 RC3)
+- Material Design Theme for MkDocs (V5.1)
     - https://squidfunk.github.io/mkdocs-material/
 
 ## Access Documentation
 
 - Rendered MkDocs HTML output on Github Pages:
-    - https://eunid.github.io/netID-docs/
+    - https://developerzone.netid.dev
 
 ## Project Structure
 
 - Github Repo: https://github.com/eunid/netID-docs/
-- Master Branch:
+- Deployment Repo: https://github.com/eunid/eunid.github.io
+- master branch:
     - docs folder
-        - *.md documentation pages (markdown)
+    - *.md documentation pages (markdown)
         - Folder '/stylesheets/' (override theme preset)
         - Folder '/images/' (image files)
         - Folder '/diagrams/src' -> PlantUML source files
@@ -26,10 +27,26 @@
         - /site Folder
         - **/.DS_Store
         - .vscode/settings.json
-- gh-pages Branch
-    - MkDocs HTML Site Structure
-      - git add/commit/push via 'mkdocs gh-deploy' command
-    - CNAME file for custom domain settings
+    - docs/CNAME file for custom domain settings
+- gh-pages branch
+    - deployment to production site
+
+## Deployment
+
+Documentation is deployed via the gh-pages (see above) branch to a custom domains.
+Deployment is done as described in the mkdocs documentation https://www.mkdocs.org/user-guide/deploying-your-docs/#deploying-your-docs
+
+Folder structure:
+```
+netID-docs/
+    mkdocs.yml
+    docs/
+```
+Push documentation to gh-pages branch
+```
+# mkdocs gh-deploy
+```
+
 
 ## Content Creation
 

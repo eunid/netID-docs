@@ -33,7 +33,6 @@ nav:
             - Services: devportal/tutorial/services.md
             - Clients: devportal/tutorial/clients.md
             - User Management: devportal/tutorial/users.md
-            - Test User: devportal/tutorial/testuser.md
         - KPI Reports: devportal/reporting.md
     - Single Sign-on Integration: 
         - Technical Details: sso/doc_sso_developer.md
@@ -50,6 +49,7 @@ nav:
 # Extensions
 markdown_extensions:
   - admonition
+  - attr_list
   - codehilite
   - footnotes
   - meta

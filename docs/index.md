@@ -6,7 +6,7 @@ The European netID Foundation (EnID) was founded in March 2018 by Mediengruppe R
 
 ## netID Developer Portal
 
-The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on. 
+The netID Developer Portal is the main resource for developers/digital services that want to leverage netID with their online services. It provides all the necessary resources and features to integrate the netID Single Sign-on.
 
 In the future, individual reports, information about planned further developments of the netID and much more will be available in the Developer Portal.
 
@@ -17,11 +17,11 @@ For details see [Developer Portal][1].
 
 netID is the new, European login standard.
 
-The European netID Foundation provides the federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.   
+The European netID Foundation provides the federated Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Providers. netID Partners can individually request authorized data transfer (profile information) via netID, whereas users get a centralized overview and control about which services they are using, and which data was/is transferred to each of them via netID.
 
-netID Account Providers are in charge for authentication, authorization and transfer of profile information, whereas the so called netID Broker, that is operated by the EnID, orchestrates data transfer and routing between users and the digital services they are using. Technically netID is based on the industry standard OpenID Connect, thus is easily and seamlessly usable by netID Partners. 
+netID Account Providers are in charge for authentication, authorization and transfer of profile information, whereas the so called netID Broker, that is operated by the EnID, orchestrates data transfer and routing between users and the digital services they are using. Technically netID is based on the industry standard OpenID Connect, thus is easily and seamlessly usable by netID Partners.
 
- Based on the above, visitors and customers can discover and use your digital services and websites leveraging netID in a particularly secure, simple and convenient way. The netID Single Sign-on is provided free of charge and is open for anyone after registration and setup using the afore mentioned netID Developer Portal. 
+ Based on the above, visitors and customers can discover and use your digital services and websites leveraging netID in a particularly secure, simple and convenient way. The netID Single Sign-on is provided free of charge and is open for anyone after registration and setup using the afore mentioned netID Developer Portal.
 
 For details see [Single Sign-On Documentation][2].
 [2]: sso/doc_sso_developer.md
@@ -42,7 +42,7 @@ netID can be used with any e-mail address in general. Having that said over 35 m
 
 **Optimized & convenient**: Fewer interruptions in the purchasing process, less "password recovery" effort. Significantly better conversion rates in the registration process for new customers.
 
-**Free & Federal**: Easy registration and free administration of your netID Developer Account with as many netID integrations as you wish.
+**Free & Federated**: Easy registration and free administration of your netID Developer Account with as many netID integrations as you wish.
 
 **Secure & independent**: Decentralized Data Storage. netID Partners are in full control of their (respectively their users) own first-party data.
 

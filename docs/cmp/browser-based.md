@@ -2,11 +2,11 @@
 
 The folllowing APIs rely on using a previously established authentication status, stored as a JWT within the users browser. It enables access to the Permission Center APIs as described below for eligible Partners (their respective CMPs). 
 
-##  API flow examples
+## API flow examples
 
 ### Obtaining a privacy status
 
-The following sequence illustrates the API calls initiated by a Partners CMP to establish a privacy status for an already authenticated user. 
+The following sequence illustrates the API calls initiated by a Partners CMP to establish a privacy status for an already authenticated user.
 
 ![Browser based API](../diagrams/out/seq_cmp_webapi.svg)
 

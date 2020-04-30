@@ -1,6 +1,6 @@
 # Single Sign-on Documentation
 
-This documentation describes federal Single Sign-on "netID", which allows digital services (netID partners) to register and login netID Users based on their account at so called netID Account Provides. In order to aquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/../devportal/get_started/)
+This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/../devportal/get_started/)
 
 ## Integration Guide
 
@@ -10,19 +10,19 @@ The netID Single Sign-on implements the OpenID Connect standard as per the OpenI
 
 Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage **services** and associated **clients** for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  
 
-All the clients' communication takes place via EnID's central SSO broker. The SSO broker manages requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.
+All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.
 
-Clients specify during authenication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an id_token and a userinfo object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (*sub*).
+Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an *id_token* and a *userinfo* object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (*sub*).
 
-netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the redirect_uri (Callback URL) and used to store data transfer authorization grants in the backend. That means clients of a specific service must use the same callback urls (in terms of host portion) during their authentication calls to avoid duplicated data transfer authorization / differents subject identifiers between clients.
+netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the *redirect_uri* (Callback URL) and used to store data transfer authorization grants in the backend. That means clients of a specific service must use the same callback urls (in terms of host portion) during their authentication calls to avoid duplicated data transfer authorization / different subject identifiers between clients.
 
-### Claims und Scopes
+### Claims and Scopes
 
-Each time a partner initiates a login flow by calling the authoriziation endpoint he can define which master data the user should authorize to be tranfered. For that purpose, the OpenID Connect/OAuth2 standart defines *scope* and *claim* mechanisms.
+Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines *scope* and *claim* mechanisms.
 
-Every OpenID Connect request must always request the openid scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.
+Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.
 
-Once the user authorizes the transfer of that master data, this authorization is stored and not beeing asked for again unless the users revokes the authorization using the netID Privacy Center.
+Once the user authorizes the transfer of that master data, this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.
 
 The following claims are supported by netID:
 
@@ -32,22 +32,22 @@ The following claims are supported by netID:
 - **birthdate** - the end user's date of birth
 - **email** - the end user's email address
 - **email_verified** - the verification status of the end user's email address
-- **address** - physical mailing address, containing informations on postal code (ZIP), city or town, steet address and country where the end user's address is located
+- **address** - physical mailing address, containing informations on postal code (ZIP), city or town, street address and country where the end user's address is located
 
-The availability of these claims may, however, vary depending on the end user's account provider; in such cases not supported claims are ignored and the client needs to handle this accordingly.
+The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.
 
 !!! danger "Important: please note!"
-    Claims that are **not** requested as essential are ignored, and the same applies to the scope, which is by definition purely voluntary.
+    Claims that are **not** requested as essential are ignored. The same applies to OIDC scope based claims requests, which are by definition also voluntary.
 
 ## Example Endpoint Calls
 
 ### Authorize
 
-Requests to the authorize endpoint initiate the Single Sign-on processe,  clients identify themselves with their *client_id* and *redirect_uri* and specify which claims and scopes are to be requested. Some optional parameters are also supported.
+Requests to the authorize endpoint initiate the Single Sign-on process,  clients identify themselves with their *client_id* and *redirect_uri* and specify which claims and scopes are to be requested. Some optional parameters are also [supported](#implementation-details).
 
 The netID Broker endpoint for authorize requests is <https://broker.netid.de/authorize>. All endpoints and supported OpenID Connect features are also available here: <https://broker.netid.de/.well-known/openid-configuration>
 
-Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the redirect_uri as well:
+Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the *redirect_uri* as well:
 
 #### Minimum Query
 
@@ -97,7 +97,7 @@ https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redire
 
 Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.
 
-The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credential need to be provided via basic authentication
+The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credentials need to be provided via basic authentication
 
 ```bash
 https://broker.netid.de/token?
@@ -114,7 +114,7 @@ curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: a
 
 ### Userinfo
 
-The access token is used to retrieve userinfo and id_token from the userinfo endpoint.
+The access token is used to retrieve userinfo and *id_token* from the userinfo endpoint.
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
@@ -122,7 +122,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
 
 If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
 
-With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct. 
+With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.
 
 ### Lifetimes
 
@@ -133,15 +133,15 @@ With token requests, it's particularly important to ensure that the code provide
 
 The following request parameters are supported for initiating the SSO process:
 
-* *prompt*
-    * **login** for requiring reauthentication of a user during the login process
-    * **consent** for requiring consent to be given again
-* *max_age*
-    * in cases where time of authentication may not be too far in the past
-* *login_hint*
-    * to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
-* *state*
-    * The value of this parameter is passed through the entire flow transparently and included when calling back to the redirect_uri. It may be used to recognize how authorize request and asynchronous response are associated in the client.
+- *prompt*
+    + **login** for requiring re-authentication of a user during the login process
+    + **consent** for requiring consent to be given again
+- *max_age*
+    + in cases where time of authentication may not be too far in the past
+- *login_hint*
+    + to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
+- *state*
+    + The value of this parameter is passed through the entire flow transparently and included when calling back to the *redirect_uri*. It may be used to recognize how authorize request and asynchronous response are associated in the client.
 
 The sequence of the calls is summarized as follows:
 
@@ -157,7 +157,7 @@ The sequence of the calls is summarized as follows:
     7. The end user agrees to provide the requested data.
     8. The OpenID provider generates an AuthN Response and redirects to the SSO broker.
     9. The SSO broker receives the AuthN Response from the OpenID provider.
-    10. The SSO broker generates a new AuthN Response and redirects to the client's redirect_uri.
+    10. The SSO broker generates a new AuthN Response and redirects to the client's *redirect_uri*.
     11. The client receives the SSO broker's AuthN Response.
     12. The actual data query is initiated.
     13. The client requests the access token with the SSO broker using the Auth Code (from the AuthN Response) and the Client Credentials.
@@ -193,7 +193,7 @@ One thing to be aware of is the verification status of email addresses: if an em
 ## Security Information
 
 - All communication with netID must be secured by TLS. This also applies to all URLs entered in the developer portal.
-- netID exclusively supports the Authorization Code Flow, so that id_token is only transferred in TLS-secured back-end to back-end communication. Currently, the only token signature supported is none.
+- netID exclusively supports the Authorization Code Flow, so that *id_token* is only transferred in TLS-secured back-end to back-end communication. Currently, the only token signature supported is none.
 
 ## Use of SDKs
 
@@ -222,7 +222,7 @@ to top
 **PHP**
 In PHP it's possible to use the package <https://github.com/jumbojett/OpenID-Connect-PHP>. However, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.
 
-Installation according to instructions is no problem. The package derives the redirect_uri from its own URL; here, the position of the script in the path of the web server can either be used as redirect_uri when creating the client or configured accordingly in the web server using rewrite rules.
+Installation according to instructions is no problem. The package derives the *redirect_uri* from its own URL; here, the position of the script in the path of the web server can either be used as *redirect_uri* when creating the client or configured accordingly in the web server using rewrite rules.
 
 The following minimal diff makes OpenIDConnectClient.php netID-compatible:
 
@@ -306,7 +306,6 @@ $sub = $oidc->getVerifiedClaims('sub');
 </body>
 </html>
 ```
-
 
 **Javascript**
 One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <https://www.npmjs.com/package/openid-client>
