@@ -1,6 +1,6 @@
-# Browser-based API
+# Browser-based API (Headless Integration)
 
-The folllowing APIs rely on using a previously established authentication status, stored as a JWT within the users browser. It enables access to the Permission Center APIs as described below for eligible Partners (their respective CMPs). 
+Description of the browser-based integration by the CMP (Headless CMP)
 
 ## API flow examples
 
