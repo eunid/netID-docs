@@ -2,7 +2,7 @@
 
 In addition to the Single Sign-on, netID Partners can also leverage netID to allow users to manage their overall privacy settings in terms of commercial data usage. This offers a convenient, scalable and most importantly server-based/permanent way to manage a user’s consent status or more generally a status in terms of legal grounds for commercial data usage.
 
-To enable that netID (here specifically the netID Permission Center) provides the following services to integrate a netID Partners Consent Management Platform. Overall these APIs enable a Partner/his CMP to manage a TC-String associated to an individual user as well as netID specific consents (netID Permissions) which allow him to identity a user while using his services.
+To enable that netID (here specifically the netID Permission Center) provides the following services to integrate a netID Partners Consent Management Platform. Overall these APIs enable a Partner/his CMP to manage a TC String associated to an individual user as well as netID specific consents (netID Permissions) which allow him to identity a user while using his services.
 
 In the following descriptions we will refer to the user’s overall privacy setting as **privacy status**.
 
@@ -30,7 +30,7 @@ The READ and WRITE services rely on prior user authenticating and are provided i
 ### Variants
 
 1. **Browser based** API: Usage based on an already established user authentication stored within the respective browser (ex-ante)
-2. **Server based** API: Usage based on a authentication token acquired via a Single Sign-on.
+2. **Server based** API: Usage based on an access token acquired via a Single Sign-on (OpenID Connect / OAuth 2.0)
 
 The distinction browser vs. server-based refers mainly to how active users are authenticated prior to API usage/from where the APIs are being called.
 
@@ -38,20 +38,18 @@ Call information: Parameters / Header / Cookies
 
 | name | type | function  | description |
 | ----------- | ----------- | ----------- | ----------- |
-| tapp_id | parameter | authentication | is made available by netID for each publisher when it is onboarded on and must be passed unchanged with each request. |
+| tapp_id | parameter | authentication | is made available by netID for each Partner during onboarding and must be passed unchanged with each request. |
 | origin | header | authentication | is passed by the browser for each XMLHttpsRequest (AJAX). The value must be a URL registered for this netID Partner (TAPP). |
 | tpid_sec | cookie | user authentication/access token | Only relevant for the browser-based API: is located in the netid.de domain and is automatically passed on by the browser - if available. |
-| token | parameter | user authentication/access token | Only relevant for the server-based API: Can be retrieved by the partner via the SSO process, is passed to access the API/identify the user |
+| token | parameter |  access token | Only relevant for the server-based API: Can be retrieved by the partner via the Single Sign-on process, is passed to access the API to enable access to the Privacy Center API |
 
 ## Data export service
 
-The export APIs allows a partner to export the netID Permissions/TC String as well as deltas on those. The APIs is available solely **server based**.
+The export APIs allows a partner to export the netID Permissions/TC Strings as well as deltas on those. The APIs is available solely **server based**.
 
 ## Authentication for API usage
 
-Authentication of partners for the browser-based APIs is handled via the
-parameter `tapp_id` and the `Origin` header. Access is secured via
-[CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
+Authentication of partners for the browser-based APIs is handled via the parameter `tapp_id` and the `Origin` header. Access is secured via [CORS](https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
 
 - Multiple URLs are allowed per publisher (TAPP). Those URLs must be registered upfront
 - The read/write request must be made from an eligible URL.
@@ -63,20 +61,10 @@ Authentication with the server-based APIs is done as follows.
 
 ## User authentication when using APIs
 
-Authentication of the individual netID User is done depending on the
-API used by means of the `tpid_sec` (browser-based) or the
-`token` (server-based).
+Authentication of the individual netID User is done depending on the API used by means of the `tpid_sec` (browser-based) or the `token` (server-based).
 
-`tpid_sec` is an ID Token (JWT) which is stored on the domain
-netid.de as part of the Single Sign-on session information for the provision of the
-netID service during login processes via the SSO/general login with the
-netID Account Provider. This token is not accessible for netID Partners /
-the CMP.
+`tpid_sec` is an ID Token (JWT) which is stored on the domain netid.de as part of the Single Sign-on session information for the provision of the netID service during login processes via the SSO/general login with the netID Account Provider. This token is not accessible for netID Partners / the CMP.
 
-The Login `token` can be retrieved by a netID Partner during the Single Sign-on
-process (OpenID Connect) in the form of a claim. This enables read/write
-access independently of the browser session (limited in time).
+The access `token` can be retrieved by a netID Partner during the Single Sign-on process (OpenID Connect/OAuth) in the form of a claim. This enables read/write access independently of the browser session (limited in time).
 
-If, depending on the context, the `token` or the `tpid_sec` does not
-exist, has expired or is invalid, a publisher cannot read/write the TC
-String and of course cannot access the TPID.
+If, depending on the context, the `token` or the `tpid_sec` does not exist, has expired or is invalid, a publisher cannot read/write the TC String and of course cannot access the TPID.

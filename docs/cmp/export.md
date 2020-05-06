@@ -1,6 +1,6 @@
 # Data export
 
-Via this API partners get the ability to query privacy status (netID permissions and TC strings of users) unrelated to a specific context, via the specification of changed_since  deltas can also be queried. There is an HTTP service with a REST API for this service.
+Via this API partners get the ability to query privacy status (netID permissions and TC strings of users) unrelated to a specific context, via the specification of changed_since deltas can also be queried. There is an HTTP service with a REST API for this service.
 
 ``` shell
 GET https://DATA-EXPORT-SERVICE/permissions/iab-permissions?

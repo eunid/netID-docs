@@ -1,6 +1,6 @@
 # Browser-based API
 
-The folllowing APIs rely on using a previously established authentication status, stored as a JWT within the users browser. It enables access to the Permission Center APIs as described below for eligible Partners (their respective CMPs). 
+The following APIs rely on using a previously established authentication status, stored as a JWT within the users browser. It enables access to the Permission Center APIs as described below for eligible Partners (their respective CMPs).
 
 ## API flow examples
 
@@ -124,7 +124,7 @@ Remarks:
 
 | |Description|
 |---|---|
-| identification | Boolean flag, indicating the status of the permission "Identification". <br>*Yes* = Consent given <br> *No* = consent not given / revoked |
+| identification | Boolean flag, indicating the status of the permission "Identification". <br>*Yes* = consent given <br> *No* = consent not given / revoked |
 | tc | The TC String which should be stored for this this user in relation to the netID Partner (TCF 2.0) |
 
 **response**

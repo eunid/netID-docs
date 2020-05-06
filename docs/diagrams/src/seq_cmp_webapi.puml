@@ -43,7 +43,7 @@ group Display CMP User Interface - establish privacy status
     deactivate br
     end
 Group Permantenly store privacy status with user account
-cmp -> ws : store no privacy status via the WRITE SERVICE
+cmp -> ws : store privacy status via the WRITE SERVICE (TC String, Identification)
 activate ws
 ws -> cmp : response: OK, TPID, privacy status 
 deactivate ws

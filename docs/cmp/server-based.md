@@ -2,10 +2,10 @@
 
 Description of the backend integration of the netID Permission Center by the CMP (integration from the server side / backend of the CMP if available).
 
-A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and requests manage a privacy status receives the authentication token (`token`) after the successful login, based on which a user can be authenticated at the netID Permission Center to enable read/write access for that specific users privacy status.
+A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and requests to manage his privacy status receives an access token (`token`) after the successful login. Based on this token access to the netID Permission Center is authorized enabling read/write access for that specific users privacy status.
 
 !!! info  ""
-    The server-based requests are secured via the authentication token.
+    The server-based requests are secured using an access token.
     Calls of this type are blocked from the browser environments for security reasons (no Origin header is allowed!)
 
 ## Read APIs
@@ -32,13 +32,13 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 
 | |Description|
 |---|---|
-| tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null. |
+| tpid | Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
 
 | status | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | A TC string was stored for this TPID. | x |
-| NO_TOKEN | No authentication token was transferred. | - |
-| TOKEN_ERROR | Authentication token (JWT) has expired or is invalid. | - |
+| NO_TOKEN | No access token provided. | - |
+| TOKEN_ERROR | Access token has expired or is invalid. | - |
 | CONSENT_REQUIRED | Consent for passing on the TPID missing ("Identification"). | - |
 
 ### Privacy status
@@ -63,14 +63,14 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 
 | |Description|
 |---|---|
-| tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null. |
+| tpid | Users identifier (`tpid`). Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
 | tc | The TC String which should be stored for this this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null. |
 
 | status | significance | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
 | OK | TC String stored for this `tpid`. | x | x |
-| NO_TPID | No authentication token was transferred. | - | - |
-| TOKEN_ERROR | Authentication token (JWT) has expired or is invalid. | - | - |
+| NO_TPID | No access token provided. | - | - |
+| TOKEN_ERROR | Access token has expired or is invalid. | - | - |
 | CONSENT_REQUIRED | Consent for passing on the `tpid` missing ("Identification"). | x | - |
 
 ## Write APIs
@@ -89,7 +89,6 @@ POST https://WRITESERVICE.netid.de/permissions/iab-permissions?
 ``` shell
 201 CREATED
 Location: https://READSERVICE.netid.de/permissions/iab-permissions?
-      token=<TOKEN>
 
 {
   "tpid": "<TPID>|null",
@@ -116,10 +115,10 @@ Remarks:
 
 | |Description|
 |---|---|
-| tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null. |
+| tpid | Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
 
 | status | significance |
 | ----------- | ----------- |
 | OK | TC String / ID CONSENT was saved. |
-| NO_TOKEN | No authentication token was transferred. |
-| TOKEN_ERROR | Authentication token (JWT) has expired or is invalid. |
+| NO_TOKEN | No access token was transferred. |
+| TOKEN_ERROR | Access token has expired or is invalid. |
