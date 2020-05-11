@@ -523,6 +523,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    Implementation Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    Optional Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-call-sequence" class="md-nav__link">
+    Detailed Call Sequence
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#timing-and-error-messages" class="md-nav__link">
     Timing and Error Messages
   </a>
@@ -539,13 +566,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementation-details" class="md-nav__link">
-    Implementation Details
-  </a>
   
 </li>
       
@@ -752,6 +772,33 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    Implementation Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    Optional Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-call-sequence" class="md-nav__link">
+    Detailed Call Sequence
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#timing-and-error-messages" class="md-nav__link">
     Timing and Error Messages
   </a>
@@ -768,13 +815,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#implementation-details" class="md-nav__link">
-    Implementation Details
-  </a>
   
 </li>
       
@@ -925,35 +965,36 @@
 <h3 id="userinfo">Userinfo<a class="headerlink" href="#userinfo" title="Permanent link">&para;</a></h3>
 <p>The access token is used to retrieve userinfo and <em>id_token</em> from the userinfo endpoint.</p>
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
-<h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
-<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.</p>
-<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.</p>
-<h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Authorization codes are only valid for 30 seconds and may only be used once</li>
-<li>Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times</li>
-</ul>
 <h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
-<p>The following request parameters are supported for initiating the SSO process:</p>
-<ul>
-<li><em>prompt</em><ul>
-<li><strong>login</strong> for requiring re-authentication of a user during the login process</li>
-<li><strong>consent</strong> for requiring consent to be given again</li>
-</ul>
-</li>
-<li><em>max_age</em><ul>
-<li>in cases where time of authentication may not be too far in the past</li>
-</ul>
-</li>
-<li><em>login_hint</em><ul>
-<li>to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider</li>
-</ul>
-</li>
-<li><em>state</em><ul>
-<li>The value of this parameter is passed through the entire flow transparently and included when calling back to the <em>redirect_uri</em>. It may be used to recognize how authorize request and asynchronous response are associated in the client.</li>
-</ul>
-</li>
-</ul>
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
+<p>The following request parameters are supported for initiating the SSO process and may be passed to the <em>authorize</em> <a href="#authorize">endpoint</a>. For Details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC specification</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prompt</td>
+<td><strong>login</strong> for requiring re-authentication of a user during the login process <br> <strong>consent</strong> for requiring consent to be given again</td>
+</tr>
+<tr>
+<td>max_age</td>
+<td>in cases where time of authentication may not be too far in the past - elapsed time in seconds since the last time the End-User was actively authenticated</td>
+</tr>
+<tr>
+<td>login_hint</td>
+<td>to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider</td>
+</tr>
+<tr>
+<td>state</td>
+<td>The value of this parameter is passed through the entire flow transparently and included when calling back to the <em>redirect_uri</em>. It may be used to recognize how authorize request and asynchronous response are associated in the client</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-call-sequence">Detailed Call Sequence<a class="headerlink" href="#detailed-call-sequence" title="Permanent link">&para;</a></h3>
 <p>The sequence of the calls is summarized as follows:</p>
 <p><img alt="High Level Authentication Code Flow" src="../diagrams/out/seq_sso_overview.svg" /></p>
 <details class="info"><summary>Detailed description of the sequence diagram</summary><ol>
@@ -980,6 +1021,14 @@
 <li>The client has now received the userinfo object.</li>
 </ol>
 </details>
+<h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
+<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.</p>
+<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.</p>
+<h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Authorization codes are only valid for 30 seconds and may only be used once</li>
+<li>Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times</li>
+</ul>
 <h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
 <p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
