@@ -28,14 +28,14 @@ theme:
 nav:
     - About netID: index.md
     - Developer Portal:
-        - Getting started: devportal/get_started.md
+        - Getting started: devportal/index.md
         - Tutorials:
             - Services: devportal/tutorial/services.md
             - Clients: devportal/tutorial/clients.md
             - User Management: devportal/tutorial/users.md
         - KPI Reports: devportal/reporting.md
     - Single Sign-on Integration: 
-        - Technical Details: sso/doc_sso_developer.md
+        - Technical Details: sso/index.md
         - Styleguide: sso/styleguide.md
         - Plugins: sso/plugins.md
     - FAQ: faq.md

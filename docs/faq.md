@@ -19,7 +19,7 @@
 ## Developer Portal
 
 ??? question "Where can I find information on using the Developer Portal?"
-    Please check the [Getting Started Guide](/devportal/get_started/) and the step by step [Tutorials](/devportal/tutorial/services/).
+    Please check the [Getting Started Guide](/devportal/) and the step by step [Tutorials](/devportal/tutorial/services/).
 
 ??? question "How often are reports created?"
     Reports are generated at daily intervals.
@@ -33,7 +33,7 @@
     There are several [plugins](/sso/plugins/) for various popular CMS and e-Commerce systems. The number of supported systems is constantly growing.
 
 ??? question "Are there SDKs or frameworks that I can use for netID integration?"
-    There are several implementations of OpenID Connect in different programming languages. More details can be found in the [Single Sign-on Documentation](/sso/doc_sso_developer/#use-of-sdks).
+    There are several implementations of OpenID Connect in different programming languages. More details can be found in the [Single Sign-on Documentation](/sso/#use-of-sdks).
 
 ??? question "Is there an indicator for the system status?"
     A Health Check report for the availability of the netID systems and subsystems is available in the netID Developer Portal. A login is required.
