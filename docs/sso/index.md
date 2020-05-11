@@ -118,30 +118,20 @@ The access token is used to retrieve userinfo and *id_token* from the userinfo e
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
-## Timing and Error Messages
-
-If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
-
-With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.
-
-### Lifetimes
-
-- Authorization codes are only valid for 30 seconds and may only be used once
-- Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times
-
 ## Implementation Details
 
-The following request parameters are supported for initiating the SSO process:
+### Optional Parameters
 
-- *prompt*
-    + **login** for requiring re-authentication of a user during the login process
-    + **consent** for requiring consent to be given again
-- *max_age*
-    + in cases where time of authentication may not be too far in the past
-- *login_hint*
-    + to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider
-- *state*
-    + The value of this parameter is passed through the entire flow transparently and included when calling back to the *redirect_uri*. It may be used to recognize how authorize request and asynchronous response are associated in the client.
+The following request parameters are supported for initiating the SSO process and may be passed to the *authorize* [endpoint](#authorize). For Details please refer to the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).
+
+| Parameter | Description |
+|---|---|
+|prompt| **login** for requiring re-authentication of a user during the login process <br> **consent** for requiring consent to be given again|
+|max_age|in cases where time of authentication may not be too far in the past - elapsed time in seconds since the last time the End-User was actively authenticated|
+|login_hint| to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider|
+|state| The value of this parameter is passed through the entire flow transparently and included when calling back to the *redirect_uri*. It may be used to recognize how authorize request and asynchronous response are associated in the client|
+
+### Detailed Call Sequence
 
 The sequence of the calls is summarized as follows:
 
@@ -169,6 +159,17 @@ The sequence of the calls is summarized as follows:
     19. The OpenID provider grants the userinfo object to the SSO broker.
     20. The SSO broker grants the userinfo object to the client.
     21. The client has now received the userinfo object.
+
+## Timing and Error Messages
+
+If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
+
+With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.
+
+### Lifetimes
+
+- Authorization codes are only valid for 30 seconds and may only be used once
+- Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times
 
 ## netID Button
 
