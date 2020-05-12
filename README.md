@@ -20,7 +20,7 @@
         - Folder '/stylesheets/' (override theme preset)
         - Folder '/images/' (image files)
         - Folder '/diagrams/src' -> PlantUML source files
-        - Folder '/diagrams/out' -> PlantUML SVG output 
+        - Folder '/diagrams/out' -> PlantUML SVG output
     - custom theme folder
         - main.html (override standard footer)
     - .gitignore

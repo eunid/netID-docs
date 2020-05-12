@@ -122,7 +122,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
 
 ### Optional Parameters
 
-The following request parameters are supported for initiating the SSO process and may be passed to the *authorize* [endpoint](#authorize). For Details please refer to the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).
+The following request parameters are supported for initiating the SSO process and may be passed to the *authorize* [endpoint](#authorize). For details please refer to the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest).
 
 | Parameter | Description |
 |---|---|

@@ -61,9 +61,9 @@ The following table show the rights per role:
 | Edit Client          |        X       |     X     |
 | Delete Client        |        X       |           |
 | Manage Test Users    |        X       |     X     |
-| View Users           |        X       |Himself only|
+| View Users           |        X       |himself only|
 | Invite Users         |        X       |           |
-| Edit Users           | Own details + all roles|own details|
+| Edit Users           | own details + all roles | own details |
 | Delete Users         |        X       |           |
 | View Company Profile |        X       |     X     |
 | Edit Company Profile |        X       |           |
