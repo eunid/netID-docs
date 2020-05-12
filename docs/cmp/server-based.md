@@ -12,27 +12,29 @@ A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and req
 
 ### Accessing a user identifier
 
-A CMP can retrieve the user's identifier (TPID) via the following interface:
+A CMP/netID Partner can retrieve the user's identifier (TPID) via the following interface:
 
-``` shell
-GET https://READSERVICE.netid.de/identification/tpid?
-      token=<TOKEN>
-```
+=== "Query"
+    ``` shell
+    GET https://READSERVICE.netid.de/identification/tpid?
+          token=<TOKEN>
+    ```
 
-``` shell
-200 OK
-Content-Type: application/vnd.netid.identification.tpid-read-v1+json
-{
-  "tpid": "<TPID>|null"
-  "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
-}
-```
+=== "Response"
+    ``` shell
+    {
+      "tpid": "<TPID>|null"
+      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+    }
+    ```
 
-**JSON Properties**
+#### Response Parameters
 
-| |Description|
+| parameter |Description|
 |---|---|
 | tpid | Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
+
+Depending on *status*, *tpid* is returned
 
 | status | meaning | tpid |
 | ----------- | ----------- | ----------- |
@@ -43,30 +45,29 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 
 ### Privacy status
 
-``` shell
-GET https://READSERVICE.netid.de/permissions/iab-permissions?
-      token=<TOKEN>
-```
+=== "Query"
+    ``` shell
+    GET https://READSERVICE.netid.de/permissions/iab-permissions?
+          token=<TOKEN>
+    ```
+=== "Reponse"
 
-``` shell
-200 OK
-Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
+    ``` shell
+    {
+      "tpid": "<TPID>|null",
+      "tc": "<TC string>|null",
+      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+    }
+    ```
 
-{
-  "tpid": "<TPID>|null",
-  "tc": "<TC string>|null",
-  "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
-}
-```
+#### Response Parameters
 
-**JSON Properties**
-
-| |Description|
+| parameter |description|
 |---|---|
 | tpid | Users identifier (`tpid`). Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
 | tc | The TC String which should be stored for this this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null. |
 
-| status | significance | tc | tpid |
+| status | description | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
 | OK | TC String stored for this `tpid`. | x | x |
 | NO_TPID | No access token provided. | - | - |
@@ -77,24 +78,23 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 
 ### Privacy status
 
-``` shell
-POST https://WRITESERVICE.netid.de/permissions/iab-permissions?
-      token=<TOKEN>
-{
-  "identification": "true|false",
-  "tc": "<TC string>"
-}
-```
+=== "Query"
+    ``` shell
+    https://WRITESERVICE.netid.de/permissions/iab-permissions?
+          token=<TOKEN>
+    {
+      "identification": "true|false",
+      "tc": "<TC string>"
+    }
+    ```
 
-``` shell
-201 CREATED
-Location: https://READSERVICE.netid.de/permissions/iab-permissions?
-
-{
-  "tpid": "<TPID>|null",
-  "status": "OK|NO_TOKEN|TOKEN_ERROR"
-}
-```
+=== "Response"
+    ``` shell
+    {
+      "tpid": "<TPID>|null",
+      "status": "OK|NO_TOKEN|TOKEN_ERROR"
+    }
+    ```
 
 Remarks:
 
@@ -102,22 +102,20 @@ Remarks:
 - If only the TC string is to be updated and the permission "Identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
 - In case of revocation of permission "Identification", would pass only "identification: false".
 
-**JSON Properties**
+#### Request Parameters
 
-**request**
-
-| |Description|
+|parameter|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the permission "Identification". <br>*Yes* = Consent given <br> *No* = consent not given / revoked |
 | tc | The TC String which should be stored for this this user in relation to the netID Partner (TCF 2.0)  |
 
-**response**
+#### Reponse Parameters
 
-| |Description|
+|parameter|description|
 |---|---|
 | tpid | Users identifier (`tpid`). Only present if consent "Identification" is given and status "OK". Otherwise null. |
 
-| status | significance |
+| status | description |
 | ----------- | ----------- |
 | OK | TC String / ID CONSENT was saved. |
 | NO_TOKEN | No access token was transferred. |

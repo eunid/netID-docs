@@ -16,32 +16,33 @@ The following sequence illustrates the API calls initiated by a Partners CMP to 
 
 If the ORIGIN is eligible, a publisher (TAPP) can retrieve the user’s identifier (TPID) via the following interface:
 
-``` shell
-GET https://READSERVICE.netid.de/identification/tpid?tapp_id=<TAPP_ID>
-Accept: application/vnd.netid.identification.tpid-read-v1+json
-Cookie: tpid_sec=<JWT_TOKEN>
-Origin: <ORIGIN>
-```
+=== "Query"
+    ``` shell
+    https://READSERVICE.netid.de/identification/tpid?
+      tapp_id=<TAPP_ID>
+      Cookie: tpid_sec=<JWT_TOKEN>
+      Origin: <ORIGIN>
+    ```
 
-``` shell
-200 OK
-Content-Type: application/vnd.netid.identification.tpid-read-v1+json
-Access-Control-Allow-Origin: <ORIGIN>
-Access-Control-Allow-Credentials: true
+=== "Response"
+    ``` shell
+    Access-Control-Allow-Origin: <ORIGIN>
+    Access-Control-Allow-Credentials: true
+    {
+      "tpid": "<TPID>|null"
+      "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
+    }
+    ```
 
-{
-  "tpid": "<TPID>|null"
-  "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
-}
-```
+#### Response Parameters
 
-**JSON Properties**
-
-| |Description|
+|parameter|description|
 |---|---|
 | tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null. |
 
-| status | meaning | tpid |
+Depending on the *status* *tpid* is returned
+
+| status | description | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
 | NO_TPID | There was no tpid_sec cookie available. | - |
@@ -50,33 +51,34 @@ Access-Control-Allow-Credentials: true
 
 ### Privacy status
 
-``` shell
-GET https://READSERVICE.netid.de/permissions/iab-permissions?
-    tapp_id=<TAPP_ID>
-    Cookie: tpid_sec=<JWT_TOKEN>
-    Origin: <ORIGIN>
-```
+=== "Query"
+    ```
+    https://READSERVICE.netid.de/permissions/iab-permissions?
+        tapp_id=<TAPP_ID>
+        Cookie: tpid_sec=<JWT_TOKEN>
+        Origin: <ORIGIN>
+    ```
+=== "Response"
+    ```shell
+    Access-Control-Allow-Origin: <ORIGIN>
+    Access-Control-Allow-Credentials: true
+    {
+      "tpid": "<TPID>|null",
+      "tc": "<TC string>|null",
+      "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
+    }
+    ```
 
-``` shell
-200 OK
-Access-Control-Allow-Origin: <ORIGIN>
-Access-Control-Allow-Credentials: true
+#### Response Parameters
 
-{
-  "tpid": "<TPID>|null",
-  "tc": "<TC string>|null",
-  "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
-}
-```
-
-**JSON Properties**
-
-| |Description|
+| parameter|description|
 |---|---|
 | tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null. |
 | tc | The TC string stored for this `tpid` for this publisher (TCF 2.0). Only with status "OK". Otherwise null. |
 
-| status | meaning | tc | pid |
+Depending on the status *tpid* and *tc* are returned
+
+| status | description | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
 | OK | Status successfully retrieved | x | x |
 | NO_TPID | There was no tpid_sec cookie available. | - | - |
@@ -87,53 +89,50 @@ Access-Control-Allow-Credentials: true
 
 ### Privacy status
 
-``` shell
-POST https://WRITESERVICE.netid.de/permissions/iab-permissions?
-      tapp_id=<TAPP_ID>
-      Cookie: tpid_sec=<JWT_TOKEN>
-      Origin: <ORIGIN>
+=== "Query"
 
-{
-  "identification": "true|false",
-  "tc": "<TC string>"
-}
-```
+    ``` shell
+    https://WRITESERVICE.netid.de/permissions/iab-permissions?
+        tapp_id=<TAPP_ID>
+        Cookie: tpid_sec=<JWT_TOKEN>
+        Origin: <ORIGIN>
+    {
+      "identification": "true|false",
+      "tc": "<TC string>"
+    }
+    ```
 
-``` shell
-201 CREATED
-Location: https://READSERVICE.netid.de/permissions/iab-permissions?
-      tapp_id=<TAPP_ID>
-      Access-Control-Allow-Origin: <ORIGIN>
-      Access-Control-Allow-Credentials: true
+=== "Response"
 
-{
-  "tpid": "<TPID>|null",
-  "status": "OK|NO_TPID|TOKEN_ERROR"
-}
-```
+    ``` shell
+    Access-Control-Allow-Origin: <ORIGIN>
+    Access-Control-Allow-Credentials: true
+    {
+      "tpid": "<TPID>|null",
+      "status": "OK|NO_TPID|TOKEN_ERROR"
+    }
+    ```
 
 Remarks:
 
-- If permission "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
-- If only the TC string is to be updated and the permission "Identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
-- In case of revocation of permission "Identification", would pass only "identification: false".
+- If permission "identification" has been given by the user, this must be signaled by passing ```identification: true```. For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
+- If only the TC string is to be updated and the permission "Identification" already exists, only the ```tc``` attribute can be passed. Both can also be written at the same time.
+- In case of revocation of permission "Identification", one would pass only ```identification: false```.
 
-**JSON Properties**
+#### Request Parameters
 
-**request**
-
-| |Description|
+| parameter|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the permission "Identification". <br>*Yes* = consent given <br> *No* = consent not given / revoked |
 | tc | The TC String which should be stored for this this user in relation to the netID Partner (TCF 2.0) |
 
-**response**
+#### Response Parameters
 
-| |Description|
+|parameter|description|
 |---|---|
 | tpid | Users identifier (`tpid`). Only present if consent "Identification" is given, the `tpid` is present and status "OK". Otherwise null.|
 
-| status | meaning |
+| status | description |
 | ----------- | ----------- |
 | OK | TC String / ID CONSENT was saved. |
 | NO_TPID | There was no `tpid_sec` cookie available. |
