@@ -481,26 +481,6 @@
     Authorize
   </a>
   
-    <nav class="md-nav" aria-label="Authorize">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#minimum-query" class="md-nav__link">
-    Minimum Query
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query-for-profile-information" class="md-nav__link">
-    Query for “profile” information
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -730,26 +710,6 @@
     Authorize
   </a>
   
-    <nav class="md-nav" aria-label="Authorize">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#minimum-query" class="md-nav__link">
-    Minimum Query
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#query-for-profile-information" class="md-nav__link">
-    Query for “profile” information
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
         
           <li class="md-nav__item">
@@ -915,8 +875,8 @@
 <p>Requests to the authorize endpoint initiate the Single Sign-on process,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also <a href="#implementation-details">supported</a>.</p>
 <p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a></p>
 <p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the <em>redirect_uri</em> as well:</p>
-<h4 id="minimum-query">Minimum Query<a class="headerlink" href="#minimum-query" title="Permanent link">&para;</a></h4>
-<p>SSO without requesting any additional data</p>
+<h4>SSO without requesting any additional data</h4>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
@@ -924,12 +884,15 @@
     <span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div>
 
-<p><strong>URL encoding</strong></p>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">URL encoding</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>amp<span class="p">;</span><span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div>
 
-<h4 id="query-for-profile-information">Query for “profile” information<a class="headerlink" href="#query-for-profile-information" title="Permanent link">&para;</a></h4>
-<p>Profile scope expressed in essential claims</p>
+</div>
+</div>
+<h4>Profile scope expressed in essential claims</h4>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
@@ -941,14 +904,17 @@
             <span class="s2">&quot;gender&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
             <span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
             <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>
-            <span class="o">}</span>
         <span class="o">}</span>
+    <span class="o">}</span>  
 </code></pre></div>
 
-<p><strong>URL encoding</strong></p>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">URL encoding</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span><span class="nv">claims</span><span class="o">={</span><span class="s2">&quot;userinfo&quot;</span>:<span class="o">{</span><span class="s2">&quot;birthdate&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;gender&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,<span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}}}</span>
 </code></pre></div>
 
+</div>
+</div>
 <h3 id="token">Token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h3>
 <p>Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.</p>
 <p>The netID Broker endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Credentials need to be provided via basic authentication</p>
@@ -967,7 +933,7 @@
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
 <h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
-<p>The following request parameters are supported for initiating the SSO process and may be passed to the <em>authorize</em> <a href="#authorize">endpoint</a>. For Details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC specification</a>.</p>
+<p>The following request parameters are supported for initiating the SSO process and may be passed to the <em>authorize</em> <a href="#authorize">endpoint</a>. For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC specification</a>.</p>
 <table>
 <thead>
 <tr>
