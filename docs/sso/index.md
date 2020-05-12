@@ -49,49 +49,47 @@ The netID Broker endpoint for authorize requests is <https://broker.netid.de/aut
 
 Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the *redirect_uri* as well:
 
-#### Minimum Query
+#### SSO without requesting any additional data
 
-SSO without requesting any additional data
+=== "Query"
+    ```bash
+    https://broker.netid.de/authorize?
+        response_type=code&
+        client_id=[clientID]&
+        redirect_uri=[redirect_uri]&
+        scope=openid
+    ```
 
-```bash
-https://broker.netid.de/authorize?
-    response_type=code&
-    client_id=[clientID]&
-    redirect_uri=[redirect_uri]&
-    scope=openid
-```
+=== "URL encoding"
+    ```bash
+    https://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid
+    ```
 
-**URL encoding**
+#### Profile scope expressed in essential claims
 
-```bash
-https://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid
-```
+=== "Query"
 
-#### Query for “profile” information
-
-Profile scope expressed in essential claims
-
-```bash
-https://broker.netid.de/authorize?
-    response_type=code&
-    client_id=[clientID]&
-    redirect_uri=[redirect_uri]&
-    scope=openid&
-    claims={
-        "userinfo":{
-            "birthdate":{"essential":true},
-            "gender":{"essential":true},
-            "given_name":{"essential":true},
-            "family_name":{"essential":true}
+    ```bash
+    https://broker.netid.de/authorize?
+        response_type=code&
+        client_id=[clientID]&
+        redirect_uri=[redirect_uri]&
+        scope=openid&
+        claims={
+            "userinfo":{
+                "birthdate":{"essential":true},
+                "gender":{"essential":true},
+                "given_name":{"essential":true},
+                "family_name":{"essential":true}
             }
-        }
-```
+        }  
+    ```
 
-**URL encoding**
+=== "URL encoding"
 
-```bash
-https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims={"userinfo":{"birthdate":{"essential":true},"gender":{"essential":true},"given_name":{"essential":true},"family_name":{"essential":true}}}
-```
+    ```bash
+    https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims={"userinfo":{"birthdate":{"essential":true},"gender":{"essential":true},"given_name":{"essential":true},"family_name":{"essential":true}}}
+    ```
 
 ### Token
 
