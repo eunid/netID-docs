@@ -2,114 +2,155 @@
 
 Description of the backend integration of the netID Permission Center by the CMP (integration from the server side / backend of the CMP if available).
 
-A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and requests to manage his privacy status receives an access token (`token`) after the successful login. Based on this token access to the netID Permission Center is authorized enabling read/write access for that specific users privacy status.
+A netID Partner (TAPP) that sends a user through the Single Sign-On Flow and requests the authentication token (`token`) after the successful login, based on which a user can be authenticated at the netID Permission Center to enable read/write access for that specific users privacy status.
+
+
 
 !!! info  ""
-    The server-based requests are secured using an access token.
+    The server-based requests are secured via the authentication token.
     Calls of this type are blocked from the browser environments for security reasons (no Origin header is allowed!)
 
 ## Read APIs
 
-### Accessing a user identifier
+### netID Identifier
 
-A CMP/netID Partner can retrieve the user's identifier (TPID) via the following interface:
+A CMP can retrieve the user's netID identifier (TPID) via the following interface:
 
-=== "Query"
-    ``` shell
-    GET https://READSERVICE.netid.de/identification/tpid?
-          token=<TOKEN>
-    ```
+``` shell
+GET https://einwilligungsspeicher.netid.de/identification/tpid?token=<TOKEN>
+Accept: application/vnd.netid.identification.tpid-read-v1+json
+```
 
-=== "Response"
-    ``` shell
-    {
-      "tpid": "<TPID>|null"
-      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
-    }
-    ```
+``` shell
+200 OK
+Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 
-#### Response Parameters
+{
+  "tpid": "<TPID>|null"
+  "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+}
+```
 
-```tpid```- Users identifier. Only returned if consent for "Identification" is given and status "OK"
+**JSON Properties**
 
-| status | description | tpid |
+| |Description|
+|---|---|
+| tpid | Users netID identifier (`tpid`). Only if consent "identification" is given, the `tpid` is passed and status "OK". Otherwise null. |
+
+| status | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
-| NO_TOKEN | No access token provided. | - |
-| TOKEN_ERROR | Access token has expired or is invalid | - |
-| CONSENT_REQUIRED | Consent for passing on the TPID missing ("Identification") | - |
+| NO_TOKEN | No authentication token was passed. | - |
+| TOKEN_ERROR | Authentication token is expired or invalid. | - |
+| CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | - |
 
-### Privacy status
+**Response behaviour**
 
-=== "Query"
-    ``` shell
-    GET https://READSERVICE.netid.de/permissions/iab-permissions?
-          token=<TOKEN>
-    ```
-=== "Reponse"
+| status code | meaning |
+| ----------- | ----------- |
+| 200 OK | - TPID of the netID user is delivered | 
+| 400 BAD REQUEST | - missing authentication token <br> - authentication token is expired or invalid | 
+| 403 FORBIDDEN | - requesting TAPP isn't active <br> - consent for 'identification' isn't granted |
+| 404 NOT FOUND | - TPID in authentication token does not exist |
+| 410 GONE | - TPID in authentication token isn't active |
 
-    ``` shell
-    {
-      "tpid": "<TPID>|null",
-      "tc": "<TC string>|null",
-      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
-    }
-    ```
+### Read consent status (privacy status)
 
-#### Response Parameters
+``` shell
+GET https://einwilligungsspeicher.netid.de/permissions/iab-permissions?token=<TOKEN>
+Accept: application/vnd.netid.permissions.iab-permission-read-v1+json
+```
 
-```tpid``` - Only present if consent "Identification" is given and status "OK"
+``` shell
+200 OK
+Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 
-```tc``` - The TC String stored for this user in relation to the netID Partner (TCF 2.0)
+{
+  "tpid": "<TPID>|null",
+  "tc": "<TC string>|null",
+  "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+}
+```
 
-| status | description | tc | tpid |
+**JSON Properties**
+
+| |Description|
+|---|---|
+| tpid | Users netID identifier (`tpid`). Only if consent "identification" is given, the `tpid` is passed and status "OK". Otherwise null. |
+| tc | The TC String which should be stored for  this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null. |
+
+| status | significance | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | TC String stored for this user | x | x |
-| NO_TPID | No access token provided | - | - |
-| TOKEN_ERROR | Access token has expired or is invalid | - | - |
-| CONSENT_REQUIRED | Consent for passing on the `tpid` missing ("Identification"). In case there is a tc string stored this will still be returned anyway| x | - |
+| OK | TC String stored for this `tpid`. | x | x |
+| NO_TPID | No authentication token was passed. | - | - |
+| TOKEN_ERROR | Authentication token is expired or invalid. | - | - |
+| CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | x | - |
+
+**Response behaviour**
+
+| status code | meaning |
+| ----------- | ----------- |
+| 201 CREATED | - Call successful | 
+| 400 BAD REQUEST | - missing authentication token <br> - authentication token is expired or invalid | 
+| 403 FORBIDDEN | - requesting TAPP isn't active  |
+| 404 NOT FOUND | - TPID in authentication token is not active <br> - TC String is not available |
+| 410 GONE | - TPID in authentication token isn't active |
 
 ## Write APIs
+### Write consent status (privacy status)
 
-### Privacy status
+``` shell
+POST https://einwilligen.netid.de/permissions/iab-permissions?token=<TOKEN>
+Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
 
-=== "Query"
-    ``` shell
-    https://WRITESERVICE.netid.de/permissions/iab-permissions?
-          token=<TOKEN>
-    {
-      "identification": "true|false",
-      "tc": "<TC string>"
-    }
-    ```
+{
+  "identification": "true|false",
+  "tc": "<TC string>"
+}
+```
 
-=== "Response"
-    ``` shell
-    {
-      "tpid": "<TPID>|null",
-      "status": "OK|NO_TOKEN|TOKEN_ERROR"
-    }
-    ```
+``` shell
+201 CREATED
+Location: https://einwilligen.netid.de/permissions/iab-permissions?token=<TOKEN>
 
-Remarks:
+{
+  "tpid": "<TPID>|null",
+  "status": "OK|NO_TOKEN|TOKEN_ERROR"
+}
+```
 
-- If permission "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
-- If only the TC string is to be updated and the permission "Identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
-- In case of revocation of permission "Identification", would pass only "identification: false".
+Notes:
 
-#### Request Parameters
+- If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
+- If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
+- In case of revocation the consent for "identification", only "identification: false" is passed.
 
-|parameter|description|
+**JSON Properties**
+
+**request**
+
+| |Description|
 |---|---|
-| identification | Boolean flag, indicating the status of the permission "Identification". <br>**Yes** = Consent given <br> **No** = consent not given / revoked |
-| tc | The TC String to be stored for this this user in relation to the netID Partner (TCF 2.0)  |
+| identification | Boolean flag, indicating the status of the permission "Identification". <br>*true* = consent is given <br> *false* = consent is not given or revoked |
+| tc | TC String which should be stored for this user in relation to the netID Partner (TCF 2.0) |
 
-#### Reponse Parameters
+**response**
 
-```tpid```- Users identifier. Only returned if consent for "Identification" is given and status "OK"
+| |Description|
+|---|---|
+| tpid | Users netID identifier (`tpid`). Only passed if consent "identification" is given, the `tpid` does exist and status "OK". Otherwise null.|
 
-| status | description |
+| status | meaning |
 | ----------- | ----------- |
-| OK | Successfully stored |
-| NO_TOKEN | No access token provided |
-| TOKEN_ERROR | Access token has expired or is invalid |
+| OK | TC String/consent for "identifcation" was stored. |
+| NO_TOKEN | No authentication token was transferred. |
+| TOKEN_ERROR | Authentication token is expired or invalid. |
+
+**Response behaviour**
+
+| status code | meaning |
+| ----------- | ----------- |
+| 200 OK | - TPID of the netID user is delivered, if consent for "identification" is granted <br> - TC String is delivered | 
+| 400 BAD REQUEST | - missing authentication token <br> - authentication token is expired or invalid | 
+| 403 FORBIDDEN | - requesting TAPP isn't active  |
+| 410 GONE | - TPID in authentication token isn't active |

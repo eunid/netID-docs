@@ -1,134 +1,169 @@
-# Browser-based API
+# Browser-based API (Webbrowser Integration)
 
-The following APIs rely on using a previously established authentication status, stored as a JWT within the users browser. It enables access to the Permission Center APIs as described below for eligible Partners (their respective CMPs).
+Description of the browser-based integration by the CMP 
 
-## API flow examples
+##  API flow examples
 
 ### Obtaining a privacy status
 
-The following sequence illustrates the API calls initiated by a Partners CMP to establish a privacy status for an already authenticated user.
+The following sequence illustrates the API calls initiated by a netID Partners CMP to establish a privacy status for an already authenticated user. 
 
 ![Browser based API](../diagrams/out/seq_cmp_webapi.svg)
 
 ## Read APIs
 
-### User identifier
+### netID identifier
 
-If the ORIGIN is eligible, a publisher (TAPP) can retrieve the user’s identifier (TPID) via the following interface:
+If the `origin` is eligible, a publisher (TAPP) can access the user’s identifier (TPID) via the following interface:
 
-=== "Query"
+``` shell
+GET https://einwilligungsspeicher.netid.de/identification/tpid?tapp_id=<TAPP_ID>
+Accept: application/vnd.netid.identification.tpid-read-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
+```
 
-    ``` shell
-    https://READSERVICE.netid.de/identification/tpid?
-      tapp_id=<TAPP_ID>
-      Cookie: tpid_sec=<JWT_TOKEN>
-      Origin: <ORIGIN>
-    ```
+``` shell
+200 OK
+Content-Type: application/vnd.netid.identification.tpid-read-v1+json
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-=== "Response"
+{
+  "tpid": "<TPID>|null"
+  "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
+}
+```
 
-    ``` shell
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
-    {
-      "tpid": "<TPID>|null"
-      "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
-    }
-    ```
+**JSON Properties**
 
-#### Response Parameters
+| |Description|
+|---|---|
+| tpid | Users netID identifier (`TPID`). Only if consent "identification" is given, the `TPID` is passed and status "OK". Otherwise null. |
 
-```tpid``` -  Users identifier. Only present if consent "Identification" is given, the `tpid` is known and status is "OK". Otherwise null.
-
-| status | description | tpid |
+| status | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
 | NO_TPID | There was no tpid_sec cookie available. | - |
-| TOKEN_ERROR | Token (JWT) in the cookie has expired or is invalid. | - |
-| CONSENT_REQUIRED | Consent for passing on the TPID missing ("Identification"). | - |
+| TOKEN_ERROR | Token (JWT) in the cookie is expired or  invalid. | - |
+| CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | - |
 
-### Privacy status
+**Response behaviour**
 
-=== "Query"
+| status code | meaning |
+| ----------- | ----------- |
+| 200 OK | - TPID of the netID user is delivered | 
+| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie <br> - token (JWT) in the tpid_sec cookie is expired or invalid | 
+| 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active \ - consent for 'identification' isn't granted |
+| 404 NOT FOUND | - TPID in tpid_sec cookie does not exist |
+| 410 GONE | - TPID in tpid_sec cookie isn't active |
 
-    ```
-    https://READSERVICE.netid.de/permissions/iab-permissions?
-        tapp_id=<TAPP_ID>
-        Cookie: tpid_sec=<JWT_TOKEN>
-        Origin: <ORIGIN>
-    ```
-=== "Response"
+### Read consent status (privacy status)
 
-    ```shell
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
-    {
-      "tpid": "<TPID>|null",
-      "tc": "<TC string>|null",
-      "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
-    }
-    ```
+``` shell
+GET https://einwilligungsspeicher.netid.de/permissions/iab-permissions?tapp_id=<TAPP_ID>
+Accept: application/vnd.netid.permissions.iab-permissions-read-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
+```
 
-#### Response Parameters
+``` shell
+200 OK
+Content-Type: application/vnd.netid.permissions.iab-permissions-read-v1+json
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-```tpid``` -  Users identifier. Only present if consent "Identification" is given, the `tpid` is known and status is "OK". Otherwise null.
+{
+  "tpid": "<TPID>|null",
+  "tc": "<TC string>|null",
+  "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
+}
+```
 
-```tc``` - The TC string stored for this user for this publisher (TCF 2.0). Only with status "OK". Otherwise null. |
+**JSON Properties**
 
-| status | description | tc | tpid |
+| |Description|
+|---|---|
+| tpid | Users identifier (`tpid`). If consent "identification" is given, the `tpid` does exist and status "OK". Otherwise null. |
+| tc | The TC string stored for this `tpid` for this publisher (TCF 2.0). Only with status "OK". Otherwise null. |
+
+| status | meaning | tc | pid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Status successfully retrieved | x | x |
+| OK | Call successful | x | x |
 | NO_TPID | There was no tpid_sec cookie available. | - | - |
-| TOKEN_ERROR | Token (JWT) in the cookie has expired or is invalid. | - | - |
-| CONSENT_REQUIRED | Consent for passing on the TPID missing ("Identification"). | x | - |
+| TOKEN_ERROR | Token (JWT) in the tpid_sec cookie is expired or invalid. | - | - |
+| CONSENT_REQUIRED | Consent for passing on the TPID missing ("identification"). | x | - |
+
+**Response behaviour**
+
+| status code | meaning |
+| ----------- | ----------- |
+| 200 OK | - TPID of the netID user is delivered, if consent of "identification" is given <br> - TC String is delivered | 
+| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie <br> - token (JWT) in the tpid_sec cookie is expired or invalid | 
+| 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
+| 404 NOT FOUND | - TPID in tpid_sec cookie does not exist <br> - consent of "identification" is not granted and TC String is not available <br> - TC String is not available |
+| 410 GONE | TPID in tpid_sec cookie isn't active |
 
 ## Write API
 
-### Privacy status
+### Write consent status (privacy status)
 
-=== "Query"
+``` shell
+POST https://einwilligen.netid.de/permissions/iab-permissions?tapp_id=<TAPP_ID>
+Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
 
-    ``` shell
-    https://WRITESERVICE.netid.de/permissions/iab-permissions?
-        tapp_id=<TAPP_ID>
-        Cookie: tpid_sec=<JWT_TOKEN>
-        Origin: <ORIGIN>
-    {
-      "identification": "true|false",
-      "tc": "<TC string>"
-    }
-    ```
+{
+  "identification": "true|false",
+  "tc": "<TC string>"
+}
+```
 
-=== "Response"
+``` shell
+201 CREATED
+Location: https://einwilligen.netid.de/permissions/iab-permissions?tapp_id=<TAPP_ID>
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-    ``` shell
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
-    {
-      "tpid": "<TPID>|null",
-      "status": "OK|NO_TPID|TOKEN_ERROR"
-    }
-    ```
+{
+  "tpid": "<TPID>|null",
+  "status": "OK|NO_TPID|TOKEN_ERROR"
+}
+```
 
-Remarks:
+Notes:
 
-- If permission "identification" has been given by the user, this must be signaled by passing ```identification: true```. For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
-- If only the TC string is to be updated and the permission "Identification" already exists, only the ```tc``` attribute can be passed. Both can also be written at the same time.
-- In case of revocation of permission "Identification", one would pass only ```identification: false```.
+- If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
+- If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
+- In case of revocation the consent for "identification", only "identification: false" is passed.
 
-#### Request Parameters
+**JSON Properties**
 
-| parameter|description|
+**request**
+
+| |Description|
 |---|---|
-| identification | Boolean flag, indicating the status of the permission "Identification". <br>*Yes* = consent given <br> *No* = consent not given / revoked |
-| tc | The TC String to be stored for this this user in relation to the netID Partner (TCF 2.0) |
+| identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
+| tc | TC String which should be stored for this user in relation to the netID Partner (TCF 2.0) |
 
-#### Response Parameters
+**response**
 
-```tpid``` -  Users identifier. Only present if consent "Identification" is given, the `tpid` is known and status is "OK". Otherwise null.
+| |Description|
+|---|---|
+| tpid | Users netID identifier (`tpid`). Only passed if consent "identification" is given, the `tpid` does exist and status "OK". Otherwise null.|
 
-| status | description |
+| status | meaning |
 | ----------- | ----------- |
-| OK | Successfully stored |
-| NO_TPID | There was no `tpid_sec` cookie available |
-| TOKEN_ERROR | Token (JWT) in the cookie has expired or is invalid|
+| OK | TC String/consent for "identifcation" was stored. |
+| NO_TPID | There was no `tpid_sec` cookie available. |
+| TOKEN_ERROR | Token (JWT) in the cookie has expired or is invalid. |
+
+**Response behaviour**
+
+| status code | meaning |
+| ----------- | ----------- |
+| 201 CREATED | - Call sucessfull | 
+| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie <br> - token (JWT) in the tpid_sec cookie is expired or invalid | 
+| 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
+| 410 GONE | TPID in tpid_sec cookie isn't active |
