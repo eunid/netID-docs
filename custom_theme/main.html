@@ -1,7 +1,14 @@
 {% extends "base.html" %}
 
-<!-- Use Local Webfonts --> 
-{% block fonts %} 
+{% block styles %}
+  {{ super() }}
+  {% for href in page.meta.extra_css %}
+    <link rel="stylesheet" href="{{ href | url }}" >
+  {% endfor %}
+{% endblock %}
+
+<!-- Use Local Webfonts -->
+{% block fonts %}
   {% if font != false %}
     <style> 
     /* IBM Plex*/
@@ -41,7 +48,7 @@
       } 
     </style> 
   {% endif %}
-{% endblock %} 
+{% endblock %}
 
 {% block footer %}
 
@@ -92,4 +99,11 @@
     </div>
   </div>
 </footer>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  {% for href in page.meta.extra_js %}
+    <script src="{{ href | url }}"></script>
+  {% endfor %}
 {% endblock %}
