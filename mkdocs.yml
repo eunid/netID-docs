@@ -38,6 +38,11 @@ nav:
         - Technical Details: sso/index.md
         - Styleguide: sso/styleguide.md
         - Plugins: sso/plugins.md
+    - CMP Integration:
+        - General information: cmp/index.md
+        - Browser-based API: cmp/browser-based.md
+        - Server-based API: cmp/server-based.md
+        - Export API: cmp/export.md
     - FAQ: faq.md
 
 # Extensions
