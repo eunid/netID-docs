@@ -122,7 +122,7 @@ Origin: <ORIGIN>
 
 ``` shell
 201 CREATED
-Location: https://einwilligen.netid.de/permissions/iab-permissions?tapp_id=<TAPP_ID>
+Location: https://einwilligungsspeicher.netid.de/permissions/iab-permissions?tapp_id=<TAPP_ID>
 Access-Control-Allow-Origin: <ORIGIN>
 Access-Control-Allow-Credentials: true
 

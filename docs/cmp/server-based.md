@@ -39,7 +39,7 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 
 | status | meaning | tpid |
 | ----------- | ----------- | ----------- |
-| OK | Call successful | x |
+| OK | call successful | x |
 | NO_TOKEN | No authentication token was passed. | - |
 | TOKEN_ERROR | Authentication token is expired or invalid. | - |
 | CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | - |
@@ -90,7 +90,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 
 | status code | meaning |
 | ----------- | ----------- |
-| 201 CREATED | - Call successful | 
+| 201 CREATED | - call successful | 
 | 400 BAD REQUEST | - missing authentication token <br> - authentication token is expired or invalid | 
 | 403 FORBIDDEN | - requesting TAPP isn't active  |
 | 404 NOT FOUND | - TPID in authentication token is not active <br> - TC String is not available |
@@ -111,7 +111,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
 
 ``` shell
 201 CREATED
-Location: https://einwilligen.netid.de/permissions/iab-permissions?token=<TOKEN>
+Location: https://einwilligungsspeicher.netid.de/permissions/iab-permissions?token=<TOKEN>
 
 {
   "tpid": "<TPID>|null",

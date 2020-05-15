@@ -24,7 +24,7 @@ participant  "CMP JS" as cmp
 participant  "Browser" as br
 participant  "Permission Layer" as pl
 participant  "Read Service" as rs
-participant  "IdentWrite Service" as ws
+participant  "Write Service" as ws
 
 cmp -> br : Check local/cached status at netID Partner
 activate br
