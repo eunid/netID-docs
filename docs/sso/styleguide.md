@@ -109,7 +109,7 @@ You are also welcome to link to the netID website. On this page users will find 
 ```
 ## netID Button Configurator
 
-<div class="generator" x-data="{ text: 'Login mit netID', customText: 'Login mit netID', size: '', fontSize: '', buttonWidth: '', buttonHeight: '', code: 'embedded', expert: false, style: '' }">
+<div class="generator" x-data="{ text: 'Login mit netID', customText: 'Login mit netID', size: '', fontSize: '', buttonWidth: '', buttonHeight: '', buttonRadius: '', code: 'embedded', full: false, expert: false, style: '' }">
 <svg display="none">
   <symbol id="netid-logo" viewBox="0 0 40 40">
     <path fill="#fff" d="M30.3 4.1a14.5 14.5 0 00-6-2.7C20.7 1 17 2 13.6 5.3L7 12.1l-6.9 7 19.8 19.8 8.8-8.9 5-4.9c3-3.1 4.2-6.7 3.8-10a12.9 12.9 0 00-1-3.8l-2 2a10 10 0 01.6 2c.3 2.7-.5 5.4-3.2 8l-4.9 5-16.3-16.4L15.5 7c3-3 5.7-3.6 8.3-3.1 1.6.2 3.2 1 4.7 2z" />
@@ -161,7 +161,7 @@ You are also welcome to link to the netID website. On this page users will find 
           <i class="radio__border">
             <span class="radio__checker"></span>
           </i>
-          <span class="radio__label">Custom</span>
+          <span class="radio__label">Custom text</span>
         </label>
       </p>
     </div>
@@ -200,7 +200,16 @@ You are also welcome to link to the netID website. On this page users will find 
           <i class="radio__border">
             <span class="radio__checker"></span>
           </i>
-          <span class="radio__label">Custom</span>
+          <span class="radio__label">Custom size</span>
+        </label>
+      </p>
+      <p>
+        <label class="checkbox" @click="$nextTick(() => { if (full) buttonWidth = ''; } )">
+          <input class="checkbox__input" type="checkbox" x-model="full" value="true">
+          <i class="checkbox__border">
+            <i class="checkbox__checker"></i>
+          </i>
+          <span class="checkbox__label">Full width</span>
         </label>
       </p>
     </div>
@@ -215,17 +224,21 @@ You are also welcome to link to the netID website. On this page users will find 
     <template x-if="size == 'custom'">
       <div class="grid__cell grid__cell--12">
         <div class="grid">
-          <div class="grid__cell grid__cell--s4 grid__cell--4">
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
             <label for="generator-font-size" class="label">Font size (px, pt, rem, re)</label>
-            <input placeholder="12" id="generator-font-size" type="text" class="input" x-model="fontSize">
+            <input placeholder="20" id="generator-font-size" type="text" class="input" x-model="fontSize">
           </div>
-          <div class="grid__cell grid__cell--s4 grid__cell--4">
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
             <label for="generator-button-width" class="label">Width (px, %)</label>
-            <input placeholder="120" id="generator-button-width" type="text" class="input" x-model="buttonWidth">
+            <input placeholder="320" id="generator-button-width" type="text" class="input" x-model="buttonWidth" @keyup="if (buttonWidth) full = false">
           </div>
-          <div class="grid__cell grid__cell--s4 grid__cell--4">
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
             <label for="generator-button-height" class="label">Height (px)</label>
             <input placeholder="40" id="generator-button-height" type="text" class="input" x-model="buttonHeight">
+          </div>
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
+            <label for="generator-button-radius" class="label">Border radius (px)</label>
+            <input placeholder="4" id="generator-button-radius" type="text" class="input" x-model="buttonRadius">
           </div>
         </div>
       </div>
@@ -233,7 +246,7 @@ You are also welcome to link to the netID website. On this page users will find 
     <div class="grid__cell grid__cell--12">
       <h4>Preview</h4>
       <div class="card-panel">
-        <button class="netid-button" x-bind:class="{'-large': size == '-large', '-small': size == '-small'}" x-bind:style="netidButton.style({size: size, fontSize: fontSize, buttonWidth: buttonWidth, buttonHeight: buttonHeight})">
+        <button class="netid-button" x-bind:class="{'-large': size == '-large', '-small': size == '-small', '-full': full && !buttonWidth}" x-bind:style="netidButton.style({size, fontSize, buttonWidth, buttonHeight, buttonRadius})">
           <svg><use xlink:href="#netid-logo" /></svg>
           <span x-html="netidButton.escape(customText)"></span>
         </button>
@@ -248,7 +261,7 @@ You are also welcome to link to the netID website. On this page users will find 
         </i>
         <span class="checkbox__label">Expert mode with external CSS and SVG assets</span>
       </label>
-      <pre class="source"><code x-text="netidButton.code({text: customText, size: size, code: code, fontSize: fontSize, buttonWidth: buttonWidth, buttonHeight: buttonHeight})"></code></pre>
+      <pre class="source"><code x-text="netidButton.code({text: customText, size, full, code, fontSize, buttonWidth, buttonHeight, buttonRadius})"></code></pre>
       <div x-show="code == 'expert'">
         <div class="admonition info">
           <p>In expert mode, the specified CSS and SVG symbol definition must be implemented into your project accordingly.</p>
