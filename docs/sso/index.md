@@ -62,7 +62,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
 
 === "URL encoding"
     ```bash
-    https://broker.netid.de/authorize?response_type=code&amp;client_id=[clientID]&amp;redirect_uri=[redirect_uri]&amp;scope=openid
+    https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid
     ```
 
 #### Profile scope expressed in essential claims
@@ -88,7 +88,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
 === "URL encoding"
 
     ```bash
-    https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims={"userinfo":{"birthdate":{"essential":true},"gender":{"essential":true},"given_name":{"essential":true},"family_name":{"essential":true}}}
+    https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims=%7B%22userinfo%22%3A%7B%22birthdate%22%3A%7B%22essential%22%3Atrue%7D%2C%22gender%22%3A%7B%22essential%22%3Atrue%7D%2C%22given_name%22%3A%7B%22essential%22%3Atrue%7D%2C%22family_name%22%3A%7B%22essential%22%3Atrue%7D%7D%7D
     ```
 
 ### Token
