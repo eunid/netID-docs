@@ -91,9 +91,9 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
     https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid&claims=%7B%22userinfo%22%3A%7B%22birthdate%22%3A%7B%22essential%22%3Atrue%7D%2C%22gender%22%3A%7B%22essential%22%3Atrue%7D%2C%22given_name%22%3A%7B%22essential%22%3Atrue%7D%2C%22family_name%22%3A%7B%22essential%22%3Atrue%7D%7D%7D
     ```
 
-### Token
+### Token Endpoint
 
-Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.
+Token requests are carried out after the callback to the client in order to exchange the code provided for an *access token* for the UserInfo Endpoint as well as the *id token*. It is absolutely necessary that the code used remains unmodified.
 
 The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credentials need to be provided via basic authentication
 
@@ -110,9 +110,9 @@ Example request per curl:
 curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
 ```
 
-### Userinfo
+### UserInfo Endpoint
 
-The access token is used to retrieve userinfo and *id_token* from the userinfo endpoint.
+The *access token* (sent as a bearer token) is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
@@ -167,7 +167,7 @@ With token requests, it's particularly important to ensure that the code provide
 ### Lifetimes
 
 - Authorization codes are only valid for 30 seconds and may only be used once
-- Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times
+- Access token are valid for 15 minutes for use with the UserInfo Endpoint and may be used multiple times
 
 ## netID Button
 
