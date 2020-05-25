@@ -484,15 +484,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
-    Token
+  <a href="#token-endpoint" class="md-nav__link">
+    Token Endpoint
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo" class="md-nav__link">
-    Userinfo
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    UserInfo Endpoint
   </a>
   
 </li>
@@ -713,15 +713,15 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#token" class="md-nav__link">
-    Token
+  <a href="#token-endpoint" class="md-nav__link">
+    Token Endpoint
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#userinfo" class="md-nav__link">
-    Userinfo
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    UserInfo Endpoint
   </a>
   
 </li>
@@ -915,8 +915,8 @@
 
 </div>
 </div>
-<h3 id="token">Token<a class="headerlink" href="#token" title="Permanent link">&para;</a></h3>
-<p>Token requests are carried out after the callback to the client in order to exchange the code provided for an access token for the userinfo endpoint. It is absolutely necessary that the code used remains unmodified.</p>
+<h3 id="token-endpoint">Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permanent link">&para;</a></h3>
+<p>Token requests are carried out after the callback to the client in order to exchange the code provided for an <em>access token</em> for the UserInfo Endpoint as well as the <em>id token</em>. It is absolutely necessary that the code used remains unmodified.</p>
 <p>The netID Broker endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Credentials need to be provided via basic authentication</p>
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/token?
     <span class="nv">code</span><span class="o">=[</span>code<span class="o">]</span><span class="p">&amp;</span>
@@ -928,8 +928,8 @@
 <div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
 </code></pre></div>
 
-<h3 id="userinfo">Userinfo<a class="headerlink" href="#userinfo" title="Permanent link">&para;</a></h3>
-<p>The access token is used to retrieve userinfo and <em>id_token</em> from the userinfo endpoint.</p>
+<h3 id="userinfo-endpoint">UserInfo Endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
+<p>The <em>access token</em> (sent as a bearer token) is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.</p>
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
 <h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
@@ -993,7 +993,7 @@
 <h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
 <ul>
 <li>Authorization codes are only valid for 30 seconds and may only be used once</li>
-<li>Access token are valid for 15 minutes for use with the userinfo endpoint and may be used multiple times</li>
+<li>Access token are valid for 15 minutes for use with the UserInfo Endpoint and may be used multiple times</li>
 </ul>
 <h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
 <p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
