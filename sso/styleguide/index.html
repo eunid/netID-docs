@@ -17,7 +17,7 @@
         <meta name="author" content="European netID Foundation">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
     
     
       
@@ -25,9 +25,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.89dc9fe3.min.css">
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.ecd4686e.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -35,8 +36,14 @@
         <meta name="theme-color" content="">
       
     
+  
+    <link rel="stylesheet" href="../../stylesheets/netid-button.css" >
+  
+    <link rel="stylesheet" href="../../stylesheets/button-generator.css" >
+  
+
     
-     
+    
   
     <style> 
     /* IBM Plex*/
@@ -90,7 +97,8 @@
   
     
     
-    <body dir="ltr" data-md-color-primary="#76b82a" data-md-color-accent="#545454">
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="#76b82a" data-md-color-accent="#545454">
   
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
@@ -115,7 +123,7 @@
 
     </a>
     <label class="md-header-nav__button md-icon" for="__drawer">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" /></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
     </label>
     <div class="md-header-nav__title" data-md-component="header-title">
       
@@ -133,7 +141,7 @@
     </div>
     
       <label class="md-header-nav__button md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
       </label>
       
 <div class="md-search" data-md-component="search" role="dialog">
@@ -142,18 +150,18 @@
     <form class="md-search__form" name="search">
       <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
       <label class="md-search__icon md-icon" for="__search">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" /></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </label>
       <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
       </button>
     </form>
     <div class="md-search__output">
       <div class="md-search__scrollwrap" data-md-scrollfix>
         <div class="md-search-result" data-md-component="search-result">
           <div class="md-search-result__meta">
-            Type to start searching
+            Initializing search
           </div>
           <ol class="md-search-result__list"></ol>
         </div>
@@ -266,13 +274,13 @@
     <label class="md-nav__link" for="nav-2">
       Developer Portal
       <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Developer Portal" data-md-level="1">
       <label class="md-nav__title" for="nav-2">
         <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
         Developer Portal
       </label>
@@ -303,13 +311,13 @@
     <label class="md-nav__link" for="nav-2-2">
       Tutorials
       <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Tutorials" data-md-level="2">
       <label class="md-nav__title" for="nav-2-2">
         <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
         Tutorials
       </label>
@@ -388,13 +396,13 @@
     <label class="md-nav__link" for="nav-3">
       Single Sign-on Integration
       <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M8.59 16.58L13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.42z"/></svg>
       </span>
     </label>
     <nav class="md-nav" aria-label="Single Sign-on Integration" data-md-level="1">
       <label class="md-nav__title" for="nav-3">
         <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
         </span>
         Single Sign-on Integration
       </label>
@@ -430,7 +438,7 @@
       <label class="md-nav__link md-nav__link--active" for="__toc">
         Styleguide
         <span class="md-nav__icon md-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3,9H17V7H3V9M3,13H17V11H3V13M3,17H17V15H3V17M19,17H21V15H19V17M19,7V9H21V7H19M19,13H21V11H19V13Z" /></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
@@ -447,7 +455,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
       Table of contents
     </label>
@@ -498,6 +506,13 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netid-button-configurator" class="md-nav__link">
+    netID Button Configurator
+  </a>
   
 </li>
       
@@ -556,7 +571,7 @@
   
     <label class="md-nav__title" for="__toc">
       <span class="md-nav__icon md-icon">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
       </span>
       Table of contents
     </label>
@@ -610,6 +625,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#netid-button-configurator" class="md-nav__link">
+    netID Button Configurator
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -627,11 +649,11 @@
                 
                 
                 <h1 id="styleguide">Styleguide<a class="headerlink" href="#styleguide" title="Permanent link">&para;</a></h1>
-<p>On the partners' side (technical term Relying Party) netID provides a smooth login experience for the user - besides the usual login or registration. This is realized via the netID button.</p>
+<p>On the partners' side (technical term Relying Party) netID provides a smooth login experience for the user - besides the usual login or registration. This is done using the netID button.</p>
 <p>The netID button is - like all other SSO services - clearly separated from the usual login / registration mask. Amplified by the brand specific netID green the netID Button should be clearly perceived as an alternative login possibility.</p>
 <h2 id="integration-of-the-login-button">Integration of the login button<a class="headerlink" href="#integration-of-the-login-button" title="Permanent link">&para;</a></h2>
-<p>Different buttons are available for integration in the frontend. netID currently offers four "Call to Action" buttons. These are available in three different sizes (small / medium / large). The integration is done via the code snippets provided.</p>
-<p>If you have additional requirements for a netID "Call to Action" button for your app or website, please do not hesitate to contact us. Please indicate the size and the button text you would like to use. We will check your requirements against our specifications and provide you with the corresponding code snippet immediately. Please send your special requirements to: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#101;&#110;&#105;&#100;&#46;&#101;&#117;">&#105;&#110;&#102;&#111;&#64;&#101;&#110;&#105;&#100;&#46;&#101;&#117;</a></p>
+<p>Different buttons are available for integration in the frontend. netID currently offers four "Call to Action" buttons. These are available in three different sizes (small / medium / large). The integration is done via the code snippets provided <a href="#netid-login-buttons">below</a>.  </p>
+<p>If you have additional requirements for a netID "Call to Action" button for your app or website, please do not hesitate to contact us. Please indicate the size and the button text you would like to use, to evaluate alternatives feel free to use the <a href="#netid-button-configurator">Button Configurator</a>. We will check your requirements against our specifications and you can use the code snippet provided by the configurator. Please send your special requirements to: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#105;&#110;&#102;&#111;&#64;&#101;&#110;&#105;&#100;&#46;&#101;&#117;">&#105;&#110;&#102;&#111;&#64;&#101;&#110;&#105;&#100;&#46;&#101;&#117;</a></p>
 <p>You want to inform your users - beyond the netID button - with further short information about netID? For this purpose we have created a short description which you can use - please do not change it. Shortened versions of the text are possible.</p>
 <p>Alternatives are indicated with brackets <code>&lt; &gt;</code>.</p>
 <div class="admonition info">
@@ -681,6 +703,175 @@
 <input name="__tabbed_4" type="radio" id="__tabbed_4_3" /><label for="__tabbed_4_3">#12 Large</label><div class="tabbed-content"><div class="highlight"><pre><span></span><code><span class="o">&lt;</span><span class="nt">button</span> <span class="nt">data-button-size</span><span class="o">=</span><span class="s2">&quot;large&quot;</span><span class="o">&gt;&lt;</span><span class="nt">svg</span> <span class="nt">xmlns</span><span class="o">=</span><span class="s2">&quot;http://www.w3.org/2000/svg&quot;</span> <span class="nt">width</span><span class="o">=</span><span class="s2">&quot;40&quot;</span> <span class="nt">height</span><span class="o">=</span><span class="s2">&quot;40&quot;</span> <span class="nt">viewBox</span><span class="o">=</span><span class="s2">&quot;0 0 40 40&quot;</span><span class="o">&gt;&lt;</span><span class="nt">polygon</span> <span class="nt">fill</span><span class="o">=</span><span class="s2">&quot;#fff&quot;</span> <span class="nt">points</span><span class="o">=</span><span class="s2">&quot;19.14 11.43 21.63 8.99 26.33 13.69 39.59 .5 42.01 2.85 26.25 18.61&quot;</span><span class="o">&gt;&lt;/</span><span class="nt">polygon</span><span class="o">&gt;&lt;</span><span class="nt">path</span> <span class="nt">fill</span><span class="o">=</span><span class="s2">&quot;#fff&quot;</span> <span class="nt">d</span><span class="o">=</span><span class="s2">&quot;M38.22,11.17 L36.22,13.17 C37.35,17 37.09,20 33.1,24 L28.45,28.64 L11.55,11.73 L16.23,7.05 C21.23,2.05 25.33,2.45 30.12,5.4 L32,3.53 C26.07,-0.47 20.47,-0.76 14.4,5.31 L0.67,19 L21.15,39.5 L34.87,25.79 C39.93,20.72 40.32,16.3 38.22,11.17 Z&quot;</span><span class="o">&gt;&lt;/</span><span class="nt">path</span><span class="o">&gt;&lt;/</span><span class="nt">svg</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="nt">span</span> <span class="nt">data-button-text</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span><span class="nt">netID</span><span class="o">&lt;/</span><span class="nt">span</span><span class="o">&gt;&lt;</span><span class="nt">style</span><span class="o">&gt;</span><span class="p">@</span><span class="k">font-face</span><span class="p">{</span><span class="nt">font-family</span><span class="o">:</span><span class="s1">&#39;IBM Plex Sans&#39;</span><span class="o">;</span><span class="nt">font-style</span><span class="p">:</span><span class="nd">normal</span><span class="o">;</span><span class="nt">font-weight</span><span class="p">:</span><span class="nd">600</span><span class="o">;</span><span class="nt">src</span><span class="p">:</span><span class="nd">local</span><span class="o">(</span><span class="s1">&#39;IBM Plex Sans SemiBold&#39;</span><span class="o">),</span><span class="nt">local</span><span class="o">(</span><span class="s1">&#39;IBMPlexSans-SemiBold&#39;</span><span class="o">),</span><span class="nt">url</span><span class="o">(</span><span class="nt">https</span><span class="o">://</span><span class="nt">image</span><span class="p">.</span><span class="nc">netid</span><span class="p">.</span><span class="nc">de</span><span class="o">/</span><span class="nt">ci</span><span class="o">/</span><span class="nt">netid</span><span class="o">/</span><span class="nt">global</span><span class="o">/</span><span class="nt">fonts</span><span class="o">/</span><span class="nt">ibmplex</span><span class="o">/</span><span class="nt">IBMPlexSans-SemiBold-webfont</span><span class="p">.</span><span class="nc">woff</span><span class="o">)</span> <span class="nt">format</span><span class="o">(</span><span class="s1">&#39;woff&#39;</span><span class="o">);</span><span class="nt">unicode-range</span><span class="p">:</span><span class="nd">U</span><span class="o">+</span><span class="nt">0000-00FF</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">0131</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">0152-0153</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">02BB-02BC</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">02C6</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">02DA</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">02DC</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2000-206F</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2074</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">20AC</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2122</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2191</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2193</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2212</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">2215</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">FEFF</span><span class="o">,</span><span class="nt">U</span><span class="o">+</span><span class="nt">FFFD</span><span class="p">}</span><span class="nt">button</span><span class="p">{</span><span class="k">display</span><span class="p">:</span><span class="kc">flex</span><span class="p">;</span><span class="k">flex-wrap</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span><span class="k">justify-content</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span><span class="k">align-items</span><span class="p">:</span><span class="kc">center</span><span class="p">;</span><span class="k">width</span><span class="p">:</span><span class="mi">100</span><span class="kt">%</span><span class="p">;</span><span class="k">max-width</span><span class="p">:</span><span class="mi">400</span><span class="kt">px</span><span class="p">;</span><span class="k">margin</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="k">padding</span><span class="p">:</span><span class="mi">0</span> <span class="mi">1</span><span class="kt">em</span> <span class="mi">0</span> <span class="mf">.875</span><span class="kt">em</span><span class="p">;</span><span class="k">border</span><span class="p">:</span><span class="mi">0</span> <span class="kc">solid</span> <span class="kc">transparent</span><span class="p">;</span><span class="k">border-radius</span><span class="p">:</span><span class="mi">3</span><span class="kt">px</span><span class="p">;</span><span class="k">background-color</span><span class="p">:</span><span class="mh">#76b82a</span><span class="p">;</span><span class="k">cursor</span><span class="p">:</span><span class="kc">pointer</span><span class="p">;</span><span class="k">font-family</span><span class="p">:</span><span class="s1">&#39;IBM Plex Sans&#39;</span><span class="p">,</span><span class="n">Courier</span><span class="p">;</span><span class="k">color</span><span class="p">:</span><span class="mh">#fff</span><span class="p">;</span><span class="k">text-decoration</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="k">text-transform</span><span class="p">:</span><span class="kc">none</span><span class="p">;</span><span class="k">white-space</span><span class="p">:</span><span class="kc">nowrap</span><span class="p">;</span><span class="k">outline</span><span class="p">:</span><span class="mi">0</span><span class="p">}@</span><span class="k">media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="p">:</span><span class="nd">768px</span><span class="o">)</span><span class="p">{</span><span class="nt">button</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="kc">auto</span><span class="p">;</span><span class="k">margin</span><span class="p">:</span><span class="mi">0</span><span class="p">}}</span><span class="nt">button</span> <span class="nt">svg</span><span class="p">{</span><span class="k">width</span><span class="p">:</span><span class="mf">1.25</span><span class="kt">em</span><span class="p">;</span><span class="k">height</span><span class="p">:</span><span class="mf">1.25</span><span class="kt">em</span><span class="p">;</span><span class="k">margin-right</span><span class="p">:</span><span class="mf">.438</span><span class="kt">em</span><span class="p">}</span><span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;&lt;</span><span class="nt">style</span> <span class="nt">size-style</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="o">&gt;</span><span class="nt">button</span><span class="o">[</span><span class="nt">data-button-size</span><span class="o">=</span><span class="nt">large</span><span class="o">]</span><span class="p">{</span><span class="k">font-size</span><span class="p">:</span><span class="mi">16</span><span class="kt">px</span><span class="p">;</span><span class="k">line-height</span><span class="p">:</span><span class="mi">40</span><span class="kt">px</span><span class="p">}</span><span class="o">&lt;/</span><span class="nt">style</span><span class="o">&gt;&lt;/</span><span class="nt">button</span><span class="o">&gt;</span>
 </code></pre></div></div>
 </div>
+<h2 id="netid-button-configurator">netID Button Configurator<a class="headerlink" href="#netid-button-configurator" title="Permanent link">&para;</a></h2>
+<div class="generator" x-data="{ text: 'Login mit netID', customText: 'Login mit netID', size: '', fontSize: '', buttonWidth: '', buttonHeight: '', buttonRadius: '', code: 'embedded', full: false, expert: false, style: '' }">
+<svg display="none">
+  <symbol id="netid-logo" viewBox="0 0 40 40">
+    <path fill="#fff" d="M30.3 4.1a14.5 14.5 0 00-6-2.7C20.7 1 17 2 13.6 5.3L7 12.1l-6.9 7 19.8 19.8 8.8-8.9 5-4.9c3-3.1 4.2-6.7 3.8-10a12.9 12.9 0 00-1-3.8l-2 2a10 10 0 01.6 2c.3 2.7-.5 5.4-3.2 8l-4.9 5-16.3-16.4L15.5 7c3-3 5.7-3.6 8.3-3.1 1.6.2 3.2 1 4.7 2z" />
+    <path fill="#fff" d="M37.7 1.1l-12.9 13-4.6-4.7-2.3 2.3 6.9 7L40 3.5z"/>
+  </symbol>
+</svg>
+  <div class="grid">
+    <div class="grid__cell grid__cell--6">
+      <p>CTA button text</p>
+      <p>
+        <label class="radio" @click="$nextTick(() => { customText = text })">
+          <input class="radio__input" type="radio" x-model="text" value="Login mit netID"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Login mit netID</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio" @click="$nextTick(() => { customText = text })">
+          <input class="radio__input" type="radio" x-model="text" value="netID Login"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">netID Login</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio" @click="$nextTick(() => { customText = text })">
+          <input class="radio__input" type="radio" x-model="text" value="Mit netID anmelden"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Mit netID anmelden</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio" @click="$nextTick(() => { customText = text })">
+          <input class="radio__input" type="radio" x-model="text" value="netID"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">netID</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio">
+          <input class="radio__input" type="radio" x-model="text" value="custom"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Custom text</span>
+        </label>
+      </p>
+    </div>
+    <div class="grid__cell grid__cell--6">
+      <p>Button size</p>
+      <p>
+        <label class="radio">
+          <input class="radio__input" type="radio" x-model="size" value="-small"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Small</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio">
+          <input class="radio__input" type="radio" x-model="size" value=""/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Normal</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio">
+          <input class="radio__input" type="radio" x-model="size" value="-large"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Large</span>
+        </label>
+      </p>
+      <p>
+        <label class="radio">
+          <input class="radio__input" type="radio" x-model="size" value="custom"/>
+          <i class="radio__border">
+            <span class="radio__checker"></span>
+          </i>
+          <span class="radio__label">Custom size</span>
+        </label>
+      </p>
+      <p>
+        <label class="checkbox" @click="$nextTick(() => { if (full) buttonWidth = ''; } )">
+          <input class="checkbox__input" type="checkbox" x-model="full" value="true">
+          <i class="checkbox__border">
+            <i class="checkbox__checker"></i>
+          </i>
+          <span class="checkbox__label">Full width</span>
+        </label>
+      </p>
+    </div>
+  </div>
+  <div class="grid">
+    <template x-if="text == 'custom'">
+      <div class="grid__cell grid__cell--12">
+        <label for="generator-logo-text" class="label">Custom button text</label>
+        <input placeholder="Text für netID Logo" id="generator-logo-text" type="text" class="input" x-model="customText">
+      </div>
+    </template>
+    <template x-if="size == 'custom'">
+      <div class="grid__cell grid__cell--12">
+        <div class="grid">
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
+            <label for="generator-font-size" class="label">Font size (px, pt, rem, re)</label>
+            <input placeholder="20" id="generator-font-size" type="text" class="input" x-model="fontSize">
+          </div>
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
+            <label for="generator-button-width" class="label">Width (px, %)</label>
+            <input placeholder="320" id="generator-button-width" type="text" class="input" x-model="buttonWidth" @keyup="if (buttonWidth) full = false">
+          </div>
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
+            <label for="generator-button-height" class="label">Height (px)</label>
+            <input placeholder="40" id="generator-button-height" type="text" class="input" x-model="buttonHeight">
+          </div>
+          <div class="grid__cell grid__cell--s6 grid__cell--3">
+            <label for="generator-button-radius" class="label">Border radius (px)</label>
+            <input placeholder="4" id="generator-button-radius" type="text" class="input" x-model="buttonRadius">
+          </div>
+        </div>
+      </div>
+    </template>
+    <div class="grid__cell grid__cell--12">
+      <h4>Preview</h4>
+      <div class="card-panel">
+        <button class="netid-button" x-bind:class="{'-large': size == '-large', '-small': size == '-small', '-full': full && !buttonWidth}" x-bind:style="netidButton.style({size, fontSize, buttonWidth, buttonHeight, buttonRadius})">
+          <svg><use xlink:href="#netid-logo" /></svg>
+          <span x-html="netidButton.escape(customText)"></span>
+        </button>
+      </div>
+    </div>
+    <div class="grid__cell grid__cell--12">
+      <h4>HTML code generation</h4>
+      <label class="checkbox" @click="$nextTick(() => { code = expert ? 'expert' : 'embedded'; })">
+        <input class="checkbox__input" type="checkbox" x-model="expert" value="true">
+        <i class="checkbox__border">
+          <i class="checkbox__checker"></i>
+        </i>
+        <span class="checkbox__label">Expert mode with external CSS and SVG assets</span>
+      </label>
+      <pre class="source"><code x-text="netidButton.code({text: customText, size, full, code, fontSize, buttonWidth, buttonHeight, buttonRadius})"></code></pre>
+      <div x-show="code == 'expert'">
+        <div class="admonition info">
+          <p>In expert mode, the specified CSS and SVG symbol definition must be implemented into your project accordingly.</p>
+          <p>This mode is useful if you are a web developer and multiple netID buttons need to be implemented.</p>
+        </div>
+        <p>CSS stylesheet</p>
+        <pre class="source"><code x-text="netidButton.css()"></code></pre>
+        <p>SVG icon as symbol</p>
+        <pre class="source"><code x-text="netidButton.svg()"></code></pre>
+      </div>
+    </div>
+  </div>
+</div>
+                
+                  
                 
               
               
@@ -702,7 +893,7 @@
         
           <a href="../" title="Technical Details" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
@@ -725,7 +916,7 @@
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z" /></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
             </div>
           </a>
         
@@ -744,19 +935,26 @@
 
     </div>
     
-      <script src="../../assets/javascripts/vendor.36cbf620.min.js"></script>
-      <script src="../../assets/javascripts/bundle.00c583dd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+  
+      <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
+      <script src="../../assets/javascripts/bundle.5f27aba8.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: ["tabs"],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.7f7c8775.min.js"
+            worker: "../../assets/javascripts/worker/search.27c6a5e6.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
       
     
+  
+    <script src="../../javascripts/alpine.js"></script>
+  
+    <script src="../../javascripts/button-generator.js"></script>
+  
+
   </body>
 </html>
