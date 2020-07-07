@@ -21,35 +21,23 @@ skinparam sequence {
 
 autonumber "<b>[00]"
 participant  "CMP JS" as cmp
-participant  "Browser" as br
 participant  "Permission Layer" as pl
 participant  "Read Service" as rs
-participant  "IdentWrite Service" as ws
+participant  "Write Service" as ws
 
-cmp -> br : Check local/cached status at netID Partner
-activate br
-br -> cmp : response: unknown user, no privacy status present
-deactivate br
-group Check Status (privacy settings, user authentication)
+cmp -> cmp :  Check local/cached status \n Unknown user, no privacy status known
+ group Check Status (privacy settings, user authentication)
     cmp -> rs : try to retrieve privacy status for authenticated user
     activate rs
     rs -> cmp : response - OK, CONSENT_REQUIRED, no privacy status present
     deactivate rs
     end
-group Display CMP User Interface - establish privacy status 
-    cmp -> br : Display CMP UI - establish privacy status
-    activate br
-    br -> cmp : response: User choices for privacy status
-    deactivate br
-    end
+cmp -> cmp : Display CMP UI \n establish privacy status
 Group Permantenly store privacy status with user account
-cmp -> ws : store no privacy status via the WRITE SERVICE
+cmp -> ws : store privacy status (TC String, netID Permission) via the WRITE SERVICE
 activate ws
-ws -> cmp : response: OK, TPID, privacy status 
+ws -> cmp : response: OK, TPID 
 deactivate ws
 end
-cmp -> br : cache local status in netID Partner domain
-activate br
-br -> cmp : response
-deactivate br
+cmp -> cmp : cache local status in netID Partner domain
 @enduml
