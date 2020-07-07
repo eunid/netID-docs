@@ -61,7 +61,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | 404 NOT FOUND | - TPID in tpid_sec cookie does not exist |
 | 410 GONE | - TPID in tpid_sec cookie isn't active |
 
-### Read consent status
+### Read privacy status
 
 === "Query"
 
@@ -114,7 +114,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 ## Write API
 
-### Write consent status
+### Write privacy status
 
 === "Query"
 

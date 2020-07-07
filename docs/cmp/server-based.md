@@ -55,7 +55,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 | 404 NOT FOUND | TPID in access token does not exist |
 | 410 GONE | TPID in access token isn't active |
 
-### Read consent status
+### Read privacy status
 
 === "Query"
 
@@ -96,7 +96,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | status code | meaning |
 | ----------- | ----------- |
-| 201 CREATED | Call successful |
+| 201 OK | Call successful |
 | 400 BAD REQUEST | missing access token, or access token is expired / invalid |
 | 403 FORBIDDEN | requesting TAPP isn't active  |
 | 404 NOT FOUND | TPID in access token is not active or TC String is not available |
@@ -104,7 +104,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 ## Write APIs
 
-### Write consent status
+### Write privacy status
 
 === "Query"
 
@@ -156,7 +156,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | status code | meaning |
 | ----------- | ----------- |
-| 200 OK | - TPID of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned |
+| 201 CREATED | - TPID of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned |
 | 400 BAD REQUEST | missing access token, or access token expired / invalid |
 | 403 FORBIDDEN | requesting TAPP isn't active  |
 | 410 GONE | TPID in access token isn't active |
