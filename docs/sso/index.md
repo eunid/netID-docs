@@ -32,7 +32,8 @@ The following claims are supported by netID:
 - **birthdate** - the end user's date of birth
 - **email** - the end user's email address
 - **email_verified** - the verification status of the end user's email address
-- **address** - physical mailing address, containing informations on postal code (ZIP), city or town, street address and country where the end user's address is located
+- **address** - physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located
+ **shipping_address** - shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country
 
 The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.
 
