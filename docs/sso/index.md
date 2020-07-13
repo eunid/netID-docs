@@ -117,6 +117,48 @@ The *access token* (sent as a bearer token) is used to retrieve the requested cl
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
+Example response:
+
+```json
+{
+    "sub": "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M",
+    "birthdate": "1980-01-01",
+    "email_verified": true,
+    "address": {
+        "street_address": "Hauptstr. 10",
+        "country": "DE",
+        "formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",
+        "locality": "Berlin",
+        "postal_code": "10117"
+    },
+    "gender": "female",
+    "shipping_address": {
+        "street_address": "Teststr. 12\nAppartement 47/11",
+        "country": "DE",
+        "formatted": "John Doe\nTeststr. 12\nAppartement 47/11\n10117 Berlin\nDeutschland",
+        "locality": "Berlin",
+        "recipient": "John Doe",
+        "postal_code": "10117"
+    },
+    "given_name": "Jane",
+    "family_name": "Doe",
+    "email": "jane.doe@example.org"
+}
+```
+
+| Claim | Description |
+|---|---|
+| sub | "subject id" |
+| address | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
+| birthdate | "yyyy-mm-dd" |
+| email | "jane.doe@example.org" |
+| email_verified | "true" \| "false" |
+| gender | "female" \| "male" \| "inter"|
+| given_name | "Jane" |
+| family_name | "Doe" |
+| shipping_address | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
+
+
 ## Implementation Details
 
 ### Optional Parameters
