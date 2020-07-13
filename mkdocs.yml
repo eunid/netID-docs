@@ -8,9 +8,6 @@ site_url: 'https://eunid.github.io/netID-docs/'
 theme:
   name: 'material'
   language: 'en'
-  palette:
-    primary: '#76B82A'
-    accent: '#545454'
   font: 
     text: 'IBM Plex Sans'
     code: 'Roboto Mono'
@@ -87,7 +84,15 @@ plugins:
       output_folder: "out"
       input_folder: "src"
 
-    # Override CSS      
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/netIDFoundation
+    - icon: fontawesome/brands/linkedin
+      link: https://linkedin.com/company/enid
+
+
+# Override CSS      
 extra_css:
   - 'stylesheets/extra.css'
 
