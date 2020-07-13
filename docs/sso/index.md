@@ -117,6 +117,18 @@ The *access token* (sent as a bearer token) is used to retrieve the requested cl
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
+| Claim | Type | Description | Example |
+|---|---|---|---|
+| sub |String| Description | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
+| address | JSON Object| Contains a,b,c,d,e | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
+| birthdate | String | Description | "yyyy-mm-dd" |
+| email | String | Description | "jane.doe@example.org" |
+| email_verified | Boolean | Description | true \| false |
+| gender | String | Description | "female" \| "male" \| "inter"|
+| given_name | String | Description | "Jane" |
+| family_name | String | Description | "Doe" |
+| shipping_address | JSON Object | Description | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
+
 Example response:
 
 ```json
@@ -145,19 +157,6 @@ Example response:
     "email": "jane.doe@example.org"
 }
 ```
-
-| Claim | Description |
-|---|---|
-| sub | "subject id" |
-| address | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
-| birthdate | "yyyy-mm-dd" |
-| email | "jane.doe@example.org" |
-| email_verified | "true" \| "false" |
-| gender | "female" \| "male" \| "inter"|
-| given_name | "Jane" |
-| family_name | "Doe" |
-| shipping_address | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
-
 
 ## Implementation Details
 
