@@ -90,7 +90,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 #### Response Properties
 
-| |Description|
+| item |description|
 |---|---|
 | tpid | Users identifier (`tpid`). If consent "identification" is given, the `tpid` does exist and status "OK". Otherwise null. |
 | tc | The TC string stored for this `tpid` for this publisher (TCF 2.0). Only with status "OK". Otherwise null. |
@@ -153,7 +153,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 #### Request properties
 
-| |Description|
+|item|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
 | tc | TC String which should be stored for this user in relation to the netID Partner (TCF 2.0) |

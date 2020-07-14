@@ -80,12 +80,12 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
   
 #### Response properties
 
-| |Description|
+| item |description|
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only if consent "identification" is given and status "OK". Otherwise null. |
 | tc | The TC String which should be stored for  this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null. |
 
-| status | significance | tc | tpid |
+| status | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
 | OK | Call successfull - tc information (if present) and TPID returned | x | x |
 | NO_TPID | No access token was passed. | - | - |
@@ -137,7 +137,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 #### Request properties
 
-| |Description|
+|item|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the permission "Identification". <br>*true* = consent is given <br> *false* = consent is not given or revoked |
 | tc | TC String which should be stored for this user in relation to the netID Partner (TCF 2.0) |
