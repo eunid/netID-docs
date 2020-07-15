@@ -26,14 +26,17 @@ Once the user authorizes the transfer of that master data, this authorization is
 
 The following claims are supported by netID:
 
-- **gender** - the end user's gender
-- **given_name** - the end user's first name (or names)
-- **family_name** - the end user's last name
-- **birthdate** - the end user's date of birth
-- **email** - the end user's email address
-- **email_verified** - the verification status of the end user's email address
-- **address** - physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located
- **shipping_address** - shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country
+| Claim | Type | Description | Example |
+|---|---|---|---|
+| sub |String| Description | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
+| address | JSON Object| Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
+| birthdate | String | The end user's date of birth "yyyy-mm-dd" | "1980-01-01" |
+| email | String | The end user's email address | "jane.doe@example.org" |
+| email_verified | Boolean | The verification status of the end user's email address | true \| false |
+| gender | String | The end user's gender | "female" \| "male" \| "inter"|
+| given_name | String | The end user's first name (or names) | "Jane" |
+| family_name | String | The end user's last name | "Doe" |
+| shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
 
 The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.
 
@@ -117,46 +120,45 @@ The *access token* (sent as a bearer token) is used to retrieve the requested cl
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
-| Claim | Type | Description | Example |
-|---|---|---|---|
-| sub |String| Description | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
-| address | JSON Object| Contains a,b,c,d,e | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
-| birthdate | String | Description | "yyyy-mm-dd" |
-| email | String | Description | "jane.doe@example.org" |
-| email_verified | Boolean | Description | true \| false |
-| gender | String | Description | "female" \| "male" \| "inter"|
-| given_name | String | Description | "Jane" |
-| family_name | String | Description | "Doe" |
-| shipping_address | JSON Object | Description | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
 
-Example response:
 
-```json
-{
-    "sub": "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M",
-    "birthdate": "1980-01-01",
-    "email_verified": true,
-    "address": {
-        "street_address": "Hauptstr. 10",
-        "country": "DE",
-        "formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",
-        "locality": "Berlin",
-        "postal_code": "10117"
-    },
-    "gender": "female",
-    "shipping_address": {
-        "street_address": "Teststr. 12\nAppartement 47/11",
-        "country": "DE",
-        "formatted": "John Doe\nTeststr. 12\nAppartement 47/11\n10117 Berlin\nDeutschland",
-        "locality": "Berlin",
-        "recipient": "John Doe",
-        "postal_code": "10117"
-    },
-    "given_name": "Jane",
-    "family_name": "Doe",
-    "email": "jane.doe@example.org"
-}
-```
+=== "User Info Query"
+
+    ```json
+
+
+    ```
+
+=== "User Info Response"
+
+    ```json
+    {
+        "sub": "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M",
+        "birthdate": "1980-01-01",
+        "email_verified": true,
+        "address": {
+            "street_address": "Hauptstr. 10",
+            "country": "DE",
+            "formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",
+            "locality": "Berlin",
+            "postal_code": "10117"
+        },
+        "gender": "female",
+        "shipping_address": {
+            "street_address": "Teststr. 12\nAppartement 47/11",
+            "country": "DE",
+            "formatted": "John Doe\nTeststr. 12\nAppartement 47/11\n10117 Berlin\nDeutschland",
+            "locality": "Berlin",
+            "recipient": "John Doe",
+            "postal_code": "10117"
+        },
+        "given_name": "Jane",
+        "family_name": "Doe",
+        "email": "jane.doe@example.org"
+    }
+    ```
+
+
 
 ## Implementation Details
 
