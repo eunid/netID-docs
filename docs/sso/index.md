@@ -29,14 +29,14 @@ The following claims are supported by netID:
 | Claim | Type | Description | Example |
 |---|---|---|---|
 | sub |String| Subject - Identifier for the end user at the issuer (netID Account Provider) | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
-| address | JSON Object| Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
+| address | JSON Object| Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located | If available: <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
 | birthdate | String | The end user's date of birth "yyyy-mm-dd" | "1980-01-01" |
 | email | String | The end user's email address | "jane.doe@example.org" |
 | email_verified | Boolean | The verification status of the end user's email address | true \| false |
 | gender | String | The end user's gender | "female" \| "male" \| "inter"|
 | given_name | String | The end user's first name (or names) | "Jane" |
 | family_name | String | The end user's last name | "Doe" |
-| shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
+| shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
 
 The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.
 
