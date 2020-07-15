@@ -28,7 +28,7 @@ The following claims are supported by netID:
 
 | Claim | Type | Description | Example |
 |---|---|---|---|
-| sub |String| Description | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
+| sub |String| Subject - Identifier for the end user at the issuer (netID Account Provider) | "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M" |
 | address | JSON Object| Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located | <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul>|
 | birthdate | String | The end user's date of birth "yyyy-mm-dd" | "1980-01-01" |
 | email | String | The end user's email address | "jane.doe@example.org" |
@@ -122,16 +122,20 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
 
 
 
-=== "User Info Query"
+=== "Example UserInfo Request"
 
-    ```json
-
+    ```
+    GET /userinfo HTTP/1.1
+    Host: broker.netid.de
+    Authorization: Bearer SlAV32hkKG
 
     ```
 
-=== "User Info Response"
+=== "Example UserInfo Response"
 
     ```json
+    HTTP/1.1 200 OK
+    Content-Type: application/json
     {
         "sub": "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M",
         "birthdate": "1980-01-01",
@@ -157,8 +161,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
         "email": "jane.doe@example.org"
     }
     ```
-
-
+Additional information about UserInfo: [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html#UserInfo)
 
 ## Implementation Details
 
