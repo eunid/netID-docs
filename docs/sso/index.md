@@ -99,7 +99,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
 
 Token requests are carried out after the callback to the client in order to exchange the code provided for an *access token* for the UserInfo Endpoint as well as the *id token*. It is absolutely necessary that the code used remains unmodified.
 
-The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credentials need to be provided via basic authentication
+The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credentials can be provided via basic authentication
 
 ```bash
 https://broker.netid.de/token?
@@ -114,17 +114,39 @@ Example request per curl:
 curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
 ```
 
+As an alternative to basic auth at the token endpoint, a Form POST for client authentication is also supported using the following parameters:
+ 
+```
+client_id
+        REQUIRED.  The client identifier issued to the client during
+        the registration process in the netID Developer Portal.
+
+client_secret
+        REQUIRED.  The client secret issued to the client during
+        the registration process in the netID Developer Portal.
+```
+
+For example, a request using the body parameters:
+
+```http
+POST /token HTTP/1.1
+Host: broker.netid.de
+Content-Type: application/x-www-form-urlencoded
+
+code=[code]&redirect_uri=[redirect_uri]&
+grant_type=authorization_code&
+client_id=s6BhdRkqt3&client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
+```
+
 ### UserInfo Endpoint
 
 The *access token* (sent as a bearer token) is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
-
-
 === "Example UserInfo Request"
 
-    ```
+    ```http
     GET /userinfo HTTP/1.1
     Host: broker.netid.de
     Authorization: Bearer SlAV32hkKG
@@ -175,6 +197,7 @@ The following request parameters are supported for initiating the SSO process an
 |max_age|in cases where time of authentication may not be too far in the past - elapsed time in seconds since the last time the End-User was actively authenticated|
 |login_hint| to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider|
 |state| The value of this parameter is passed through the entire flow transparently and included when calling back to the *redirect_uri*. It may be used to recognize how authorize request and asynchronous response are associated in the client|
+|nonce| If a nonce value was sent in the Authentication Request, a nonce Claim MUST be present and its value checked to verify that it is the same value as the one that was sent in the Authentication Request. The Client SHOULD check the nonce value for replay attacks. The precise method for detecting replay attacks is Client specific.|
 
 ### Detailed Call Sequence
 
