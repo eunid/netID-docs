@@ -753,11 +753,15 @@
 <p>Please note that netID uses <a href="/sso/#general-overview">pairwise subject identifiers</a>, which are derived respective to the <strong>clients callback url</strong> (more specifically the <strong>hostname</strong> portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion to avoid receiving different <code>sub</code> values for the same user.</p>
 </div>
 <p>Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely <strong>Client ID</strong> and <strong>Client Secret</strong>.</p>
-<p>A client has two sets of credentials (<strong>Client ID</strong> is the same):</p>
-<ol>
-<li><strong>Client secret - sandbox</strong>: which is to be used in case the service is still in sandboxed mode</li>
-<li><strong>Client secret - live</strong>: which becomes available for use in a production environment once the service has been approved for production use. For details see <a href="../services/#approval-for-production-use">Approval for production use</a></li>
-</ol>
+<p>Depending on the status of the clients service w.r.t.<a href="../services/#approval-for-production-use">approval for production use</a> the <strong>Client Secret</strong> will be shown as</p>
+<ul>
+<li><strong>Client secret - sandbox</strong>: which indicates that the service is still in sandboxed mode</li>
+<li><strong>Client secret - live</strong>: which indicates that the service has been approved to be used in a production environment</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Client secret after service approval</p>
+<p>Please note that the <strong>Client Secret</strong> does not change when the service is approved for production use, that means you do not need to change the configuration of your client / take action after the approval.</p>
+</div>
 <h3 id="edit-a-client">Edit a Client<a class="headerlink" href="#edit-a-client" title="Permanent link">&para;</a></h3>
 <p>To edit a client select <strong>Edit</strong> in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client. Client details can be edited in the provided form.</p>
 <p>Make the desired changes and updates and save the information by confirmation using <strong>Update Client</strong>.</p>
