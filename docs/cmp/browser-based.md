@@ -97,7 +97,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 | status | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`)  | x (-)| x |
+| OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`)  | x (-)| x (-) |
 | NO_TPID | There was no tpid_sec cookie available. | - | - |
 | TOKEN_ERROR | Token (JWT) in the tpid_sec cookie is expired or invalid. | - | - |
 | CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |

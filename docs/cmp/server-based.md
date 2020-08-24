@@ -87,7 +87,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | status | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Call successful - tc information (if present) is returned. In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`| x| x (-) |
+| OK | Call successful - tc information (if present) is returned. In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`| x (-) | x (-) |
 | NO_TPID | No access token was passed. | - | - |
 | TOKEN_ERROR | Access token is expired or invalid. | - | - |
 | CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
