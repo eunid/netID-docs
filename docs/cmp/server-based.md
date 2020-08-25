@@ -36,24 +36,24 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 #### Response properties
 
-`tpid` - Users netID Identifier. Only present if consent "Identification" is given, the `tpid` is known and status is "OK". Otherwise null.
+`tpid` - Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
 | status | meaning | tpid |
 | ----------- | ----------- | ----------- |
-| OK | Call successful | x |
+| OK | Call successful - In case the consent for passing the TPID is missing ("identification") `null` is returned, otherwise the `tpid` | x (-)|
 | NO_TOKEN | No access token was passed. | - |
 | TOKEN_ERROR | Access token is expired or invalid. | - |
-| CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | - |
+| CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | - |
 
 #### Response behavior
 
 | status code | meaning |
 | ----------- | ----------- |
-| 200 OK | `TPID` of the netID user returned |
+| 200 OK | `tpid` of the netID user returned |
 | 400 BAD REQUEST | missing access token, or access token expired / invalid |
 | 403 FORBIDDEN | requesting TAPP isn't active or consent for 'identification' isn't granted |
-| 404 NOT FOUND | TPID in access token does not exist |
-| 410 GONE | TPID in access token isn't active |
+| 404 NOT FOUND | `tpid` in access token does not exist |
+| 410 GONE | `tpid` in access token isn't active |
 
 ### Read privacy status
 
@@ -82,15 +82,15 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | item |description|
 |---|---|
-| tpid | Users netID identifier (`tpid`). Only if consent "identification" is given and status "OK". Otherwise null. |
-| tc | The TC String which should be stored for  this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null. |
+| tpid | Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null|
+| tc | The TC string stored for this `tpid` for this respective netID Partner (TAPP). Only with status "OK". Otherwise null |
 
 | status | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Call successfull - tc information (if present) and TPID returned | x | x |
+| OK | Call successful - tc information (if present) is returned. In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`| x (-) | x (-) |
 | NO_TPID | No access token was passed. | - | - |
 | TOKEN_ERROR | Access token is expired or invalid. | - | - |
-| CONSENT_REQUIRED | Consent for passing on the TPID is missing ("identification"). | x | - |
+| CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
 
 #### Response behavior
 
@@ -99,8 +99,8 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 | 201 OK | Call successful |
 | 400 BAD REQUEST | missing access token, or access token is expired / invalid |
 | 403 FORBIDDEN | requesting TAPP isn't active  |
-| 404 NOT FOUND | TPID in access token is not active or TC String is not available |
-| 410 GONE | TPID in access token isn't active |
+| 404 NOT FOUND | `tpid` in access token is not active or TC String is not available |
+| 410 GONE | `tpid` in access token isn't active |
 
 ## Write APIs
 
@@ -156,7 +156,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | status code | meaning |
 | ----------- | ----------- |
-| 201 CREATED | - TPID of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned |
+| 201 CREATED | - `tpid` of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned |
 | 400 BAD REQUEST | missing access token, or access token expired / invalid |
 | 403 FORBIDDEN | requesting TAPP isn't active  |
-| 410 GONE | TPID in access token isn't active |
+| 410 GONE | `tpid` in access token isn't active |
