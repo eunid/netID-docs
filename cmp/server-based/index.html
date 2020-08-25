@@ -741,7 +741,7 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 </div>
 </div>
 <h4>Response properties</h4>
-<p><code>tpid</code> - Users netID Identifier. Only present if consent "Identification" is given, the <code>tpid</code> is known and status is "OK". Otherwise null.</p>
+<p><code>tpid</code> - Users netID Identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</p>
 <table>
 <thead>
 <tr>
@@ -753,8 +753,8 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successful</td>
-<td>x</td>
+<td>Call successful - In case the consent for passing the TPID is missing ("identification") <code>null</code> is returned, otherwise the <code>tpid</code></td>
+<td>x (-)</td>
 </tr>
 <tr>
 <td>NO_TOKEN</td>
@@ -768,7 +768,7 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 </tr>
 <tr>
 <td>CONSENT_REQUIRED</td>
-<td>Consent for passing on the TPID is missing ("identification").</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
 <td>-</td>
 </tr>
 </tbody>
@@ -784,7 +784,7 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 <tbody>
 <tr>
 <td>200 OK</td>
-<td><code>TPID</code> of the netID user returned</td>
+<td><code>tpid</code> of the netID user returned</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
@@ -796,11 +796,11 @@ Content-Type: application/vnd.netid.identification.tpid-read-v1+json
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>TPID in access token does not exist</td>
+<td><code>tpid</code> in access token does not exist</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>TPID in access token isn't active</td>
+<td><code>tpid</code> in access token isn't active</td>
 </tr>
 </tbody>
 </table>
@@ -836,11 +836,11 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 <tbody>
 <tr>
 <td>tpid</td>
-<td>Users netID identifier (<code>tpid</code>). Only if consent "identification" is given and status "OK". Otherwise null.</td>
+<td>Users netID Identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null</td>
 </tr>
 <tr>
 <td>tc</td>
-<td>The TC String which should be stored for  this user in relation to the netID Partner (TCF 2.0) Only with status "OK". Otherwise null.</td>
+<td>The TC string stored for this <code>tpid</code> for this respective netID Partner (TAPP). Only with status "OK". Otherwise null</td>
 </tr>
 </tbody>
 </table>
@@ -856,9 +856,9 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successfull - tc information (if present) and TPID returned</td>
-<td>x</td>
-<td>x</td>
+<td>Call successful - tc information (if present) is returned. In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned, otherwise the <code>tpid</code></td>
+<td>x (-)</td>
+<td>x (-)</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
@@ -874,7 +874,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 </tr>
 <tr>
 <td>CONSENT_REQUIRED</td>
-<td>Consent for passing on the TPID is missing ("identification").</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
 <td>x</td>
 <td>-</td>
 </tr>
@@ -903,11 +903,11 @@ Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>TPID in access token is not active or TC String is not available</td>
+<td><code>tpid</code> in access token is not active or TC String is not available</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>TPID in access token isn't active</td>
+<td><code>tpid</code> in access token isn't active</td>
 </tr>
 </tbody>
 </table>
@@ -998,7 +998,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
 <tbody>
 <tr>
 <td>201 CREATED</td>
-<td>- TPID of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned</td>
+<td>- <code>tpid</code> of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
@@ -1010,7 +1010,7 @@ Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>TPID in access token isn't active</td>
+<td><code>tpid</code> in access token isn't active</td>
 </tr>
 </tbody>
 </table>

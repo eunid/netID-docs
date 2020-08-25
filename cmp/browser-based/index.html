@@ -752,14 +752,14 @@
                 
                 
                 <h1 id="browser-based-api-client-side-integration">Browser-based API (Client-Side Integration)<a class="headerlink" href="#browser-based-api-client-side-integration" title="Permanent link">&para;</a></h1>
-<p>Description of the browser-based integration by the CMP </p>
+<p>Description of the browser-based integration by the CMP.</p>
 <h2 id="api-flow-examples">API flow examples<a class="headerlink" href="#api-flow-examples" title="Permanent link">&para;</a></h2>
 <h3 id="obtaining-a-privacy-status">Obtaining a privacy status<a class="headerlink" href="#obtaining-a-privacy-status" title="Permanent link">&para;</a></h3>
-<p>The following sequence illustrates the API calls initiated by a netID Partners CMP to establish a privacy status for an already authenticated user. </p>
+<p>The following sequence illustrates the API calls initiated by a netID Partners CMP to establish a privacy status for an already authenticated user.</p>
 <p><img alt="Browser based API" src="../../diagrams/out/seq_cmp_webapi.svg" /></p>
 <h2 id="read-apis">Read APIs<a class="headerlink" href="#read-apis" title="Permanent link">&para;</a></h2>
 <h3 id="netid-identifier">netID Identifier<a class="headerlink" href="#netid-identifier" title="Permanent link">&para;</a></h3>
-<p>If the <code>origin</code> is eligible, a publisher (TAPP) can access the user’s identifier (TPID) via the following interface:</p>
+<p>If the <code>origin</code> is eligible, a publisher (TAPP) can access the user’s identifier (<code>tpid</code>) via the following interface:</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>GET https://einwilligungsspeicher.netid.de/identification/tpid
     ?tapp_id<span class="o">=</span>&lt;TAPP_ID&gt;
@@ -784,7 +784,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </div>
 </div>
 <h4>Response properties</h4>
-<p><code>tpid</code> - Users netID identifier. Only if consent "identification" is given, the <code>TPID</code> is known and status "OK". Otherwise null.</p>
+<p><code>tpid</code> - Users netID Identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</p>
 <table>
 <thead>
 <tr>
@@ -796,8 +796,8 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successful</td>
-<td>x</td>
+<td>Call successful - In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned</td>
+<td>x (-)</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
@@ -811,7 +811,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>CONSENT_REQUIRED</td>
-<td>Consent for passing on the TPID is missing ("identification").</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
 <td>-</td>
 </tr>
 </tbody>
@@ -827,7 +827,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>- <code>TPID</code> of the netID user returned</td>
+<td>- <code>tpid</code> of the netID user returned</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
@@ -839,11 +839,11 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>- TPID in tpid_sec cookie does not exist</td>
+<td>- <code>tpid</code> in tpid_sec cookie does not exist</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>- TPID in tpid_sec cookie isn't active</td>
+<td>- <code>tpid</code> in tpid_sec cookie isn't active</td>
 </tr>
 </tbody>
 </table>
@@ -883,11 +883,11 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>tpid</td>
-<td>Users identifier (<code>tpid</code>). If consent "identification" is given, the <code>tpid</code> does exist and status "OK". Otherwise null.</td>
+<td>Users identifier (<code>tpid</code>). Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null</td>
 </tr>
 <tr>
 <td>tc</td>
-<td>The TC string stored for this <code>tpid</code> for this publisher (TCF 2.0). Only with status "OK". Otherwise null.</td>
+<td>TC string stored for this <code>tpid</code> for this respective netID Partner (TAPP). Only with status "OK". Otherwise null</td>
 </tr>
 </tbody>
 </table>
@@ -903,9 +903,9 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successful</td>
-<td>x</td>
-<td>x</td>
+<td>Call successful - In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned, otherwise the <code>tpid</code>. Stored TC String is returned (might be <code>null</code>)</td>
+<td>x (-)</td>
+<td>x (-)</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
@@ -921,7 +921,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>CONSENT_REQUIRED</td>
-<td>Consent for passing on the TPID missing ("identification").</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
 <td>x</td>
 <td>-</td>
 </tr>
@@ -938,7 +938,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>- TPID of the netID user is returned, if consent of "identification" is given <br> - TC String is returned if present</td>
+<td>- <code>tpid</code> of the netID user is returned, if consent of "identification" is given <br> - TC String is returned if present</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
@@ -950,11 +950,11 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>- TPID in tpid_sec cookie does not exist <br> - consent for "identification" is not granted and TC String is not available <br> - TC String is not available</td>
+<td>- <code>tpid</code> in tpid_sec cookie does not exist <br> - consent for "identification" is not granted and TC String is not available <br> - TC String is not available</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>TPID in tpid_sec cookie isn't active</td>
+<td><code>tpid</code> in tpid_sec cookie isn't active</td>
 </tr>
 </tbody>
 </table>
@@ -1063,7 +1063,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>TPID in tpid_sec cookie isn't active</td>
+<td><code>tpid</code> in tpid_sec cookie isn't active</td>
 </tr>
 </tbody>
 </table>
