@@ -22,7 +22,7 @@ The public netID endpoint for the system health is: https://status.netid.de
     }
     ```
 
-| status | traffic light color | meaning |
+| status | color | meaning |
 | ----------- | ----------- | ----------- |
 | OK | green | No reported issues and request are completed normally. |
 | DEGRADED | yellow | Some noncritical issues with the subsystem/usecase. |
