@@ -14,7 +14,7 @@ All the clients' communication takes place via EnID's central SSO broker. The SS
 
 Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an *id_token* and a *userinfo* object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (*sub*).
 
-netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the *redirect_uri* (Callback URL) and used to store data transfer authorization grants in the backend. That means clients of a specific service must use the same callback urls (in terms of host portion) during their authentication calls to avoid duplicated data transfer authorization / different subject identifiers between clients.
+netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the *redirect_uri* (Callback URL), to ensure that the `sub` value is the same for all clients of a service make sure that the *redirect_uri* points to the same host across all clients of a service.
 
 ### Claims and Scopes
 
@@ -33,7 +33,7 @@ The following claims are supported by netID:
 | birthdate | String | The end user's date of birth "yyyy-mm-dd" | "1980-01-01" |
 | email | String | The end user's email address | "jane.doe@example.org" |
 | email_verified | Boolean | The verification status of the end user's email address | true \| false |
-| gender | String | The end user's gender | "female" \| "male" \| "inter"|
+| gender | String | The end user's gender | "female" \| "male" \| ("inter"  possible in the future)|
 | given_name | String | The end user's first name (or names) | "Jane" |
 | family_name | String | The end user's last name | "Doe" |
 | shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
@@ -97,9 +97,11 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
 
 ### Token Endpoint
 
-Token requests are carried out after the callback to the client in order to exchange the code provided for an *access token* for the UserInfo Endpoint as well as the *id token*. It is absolutely necessary that the code used remains unmodified.
+Token requests are carried out after the callback to the client in order to exchange the code (only valid for 30 seconds and to be used only once) provided for an *access token* (valid for 15 minutes) for the UserInfo Endpoint as well as the *id token*. It is absolutely necessary that the code used remains unmodified.
 
-The netID Broker endpoint for token requests is <https://broker.netid.de/token>. Credentials can be provided via basic authentication
+With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri.
+
+The netID Broker endpoint for token requests is <https://broker.netid.de/token> and supports GET and POST. For GET credentials have to be provided via basic authentication.
 
 ```bash
 https://broker.netid.de/token?
@@ -133,9 +135,7 @@ POST /token HTTP/1.1
 Host: broker.netid.de
 Content-Type: application/x-www-form-urlencoded
 
-code=[code]&redirect_uri=[redirect_uri]&
-grant_type=authorization_code&
-client_id=s6BhdRkqt3&client_secret=7Fjfp0ZBr1KtDRbnfVdmIw
+code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code&client_id=CLIENT_ID_GOES_HERE&client_secret=CLIENT_SECRET_GOES_HERE
 ```
 
 ### UserInfo Endpoint
@@ -228,16 +228,10 @@ The sequence of the calls is summarized as follows:
     20. The SSO broker grants the userinfo object to the client.
     21. The client has now received the userinfo object.
 
-## Timing and Error Messages
+## Error Messages
 
 If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
-
-With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.
-
-### Lifetimes
-
-- Authorization codes are only valid for 30 seconds and may only be used once
-- Access token are valid for 15 minutes for use with the UserInfo Endpoint and may be used multiple times
+For details please refer to the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html).
 
 ## netID Button
 
