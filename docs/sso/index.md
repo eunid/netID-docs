@@ -117,7 +117,7 @@ Example request per curl:
 curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
 ```
 
-As an alternative to basic auth at the token endpoint, a Form POST for client authentication is also supported using the following parameters:
+As an alternative clients may use _client_secret_post_ based authentication providing _client_id_ and _client_secret_ using a POST request as shown below:
  
 ```
 client_id
