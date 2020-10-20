@@ -101,7 +101,8 @@ Token requests are carried out after the callback to the client in order to exch
 
 With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri.
 
-The netID Broker endpoint for token requests is <https://broker.netid.de/token> and supports GET and POST. For GET credentials have to be provided via basic authentication.
+The netID endpoint for token requests is <https://broker.netid.de/token>. The endpoint supports two methods for (client authentication)[https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication], namely _ client_secret_basic_ (basic authentication) and _ client_secret_post_ (credentials in the request body).
+When using basic authentication the endpoint supports both GET and POST based requests, below is an example of a POST request using basic auth.
 
 ```bash
 https://broker.netid.de/token?
