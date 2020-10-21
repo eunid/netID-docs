@@ -227,6 +227,8 @@
       
         
       
+        
+      
     </ul>
   </div>
 </nav>
@@ -539,22 +541,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#timing-and-error-messages" class="md-nav__link">
-    Timing and Error Messages
+  <a href="#error-messages" class="md-nav__link">
+    Error Messages
   </a>
-  
-    <nav class="md-nav" aria-label="Timing and Error Messages">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lifetimes" class="md-nav__link">
-    Lifetimes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -732,6 +721,18 @@
   </li>
 
     
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../status/" title="System Status" class="md-nav__link">
+      System Status
+    </a>
+  </li>
+
+    
   </ul>
 </nav>
                   </div>
@@ -846,22 +847,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#timing-and-error-messages" class="md-nav__link">
-    Timing and Error Messages
+  <a href="#error-messages" class="md-nav__link">
+    Error Messages
   </a>
-  
-    <nav class="md-nav" aria-label="Timing and Error Messages">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#lifetimes" class="md-nav__link">
-    Lifetimes
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -937,22 +925,78 @@
 <p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <strong>services</strong> and associated <strong>clients</strong> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
 <p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.</p>
 <p>Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an <em>id_token</em> and a <em>userinfo</em> object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<code>sub</code>).</p>
-<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the <em>redirect_uri</em> (Callback URL), to ensure that the <code>sub</code> value is the same for all clients of a service make sure that the <em>redirect_uri</em> points to the same host across all clients.</p>
+<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the <em>redirect_uri</em> (Callback URL), to ensure that the <code>sub</code> value is the same for all clients of a service make sure that the <em>redirect_uri</em> points to the same host across all clients of a service.</p>
 <h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
 <p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.</p>
 <p>Once the user authorizes the transfer of that master data, this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
 <p>The following claims are supported by netID:</p>
-<ul>
-<li><strong>gender</strong> - the end user's gender</li>
-<li><strong>given_name</strong> - the end user's first name (or names)</li>
-<li><strong>family_name</strong> - the end user's last name</li>
-<li><strong>birthdate</strong> - the end user's date of birth</li>
-<li><strong>email</strong> - the end user's email address</li>
-<li><strong>email_verified</strong> - the verification status of the end user's email address</li>
-<li><strong>address</strong> - physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located
- <strong>shipping_address</strong> - shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country</li>
-</ul>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sub</td>
+<td>String</td>
+<td>Subject - Identifier for the end user at the issuer (netID Account Provider)</td>
+<td>"tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M"</td>
+</tr>
+<tr>
+<td>address</td>
+<td>JSON Object</td>
+<td>Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located</td>
+<td>If available: <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul></td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>String</td>
+<td>The end user's date of birth "yyyy-mm-dd"</td>
+<td>"1980-01-01"</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>The end user's email address</td>
+<td>"<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#97;&#110;&#101;&#46;&#100;&#111;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;">&#106;&#97;&#110;&#101;&#46;&#100;&#111;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;</a>"</td>
+</tr>
+<tr>
+<td>email_verified</td>
+<td>Boolean</td>
+<td>The verification status of the end user's email address</td>
+<td>true | false</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>String</td>
+<td>The end user's gender</td>
+<td>"female" | "male" | ("inter"  possible in the future)</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td>String</td>
+<td>The end user's first name (or names)</td>
+<td>"Jane"</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>String</td>
+<td>The end user's last name</td>
+<td>"Doe"</td>
+</tr>
+<tr>
+<td>shipping_address</td>
+<td>JSON Object</td>
+<td>Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country</td>
+<td>If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul></td>
+</tr>
+</tbody>
+</table>
 <p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.</p>
 <div class="admonition danger">
 <p class="admonition-title">Important: please note!</p>
@@ -969,7 +1013,7 @@
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
-    <span class="nv">scope</span><span class="o">=</span>openid
+    <span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span>
 </code></pre></div>
 
 </div>
@@ -1004,21 +1048,100 @@
 </div>
 </div>
 <h3 id="token-endpoint">Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permanent link">&para;</a></h3>
-<p>Token requests are carried out after the callback to the client in order to exchange the code provided for an <em>access token</em> for the UserInfo Endpoint as well as the <em>id token</em>. It is absolutely necessary that the code used remains unmodified.</p>
-<p>The netID Broker endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Credentials need to be provided via basic authentication</p>
-<div class="highlight"><pre><span></span><code>https://broker.netid.de/token?
-    <span class="nv">code</span><span class="o">=[</span>code<span class="o">]</span><span class="p">&amp;</span>
-    <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
-    <span class="nv">grant_type</span><span class="o">=</span>authorization_code
+<p>Token requests are carried out after the callback to the client in order to exchange the code (only valid for 30 seconds and to be used only once) provided for an <em>access token</em> (valid for 15 minutes) for the UserInfo Endpoint as well as the <em>id token</em>. It is absolutely necessary that the code used remains unmodified.</p>
+<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri.</p>
+<p>The netID endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Clients are <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication">authenticated</a> using</p>
+<div class="highlight"><pre><span></span><code>client_id
+        REQUIRED.  The client identifier issued to the client during
+        the registration process in the netID Developer Portal.
+
+client_secret
+        REQUIRED.  The client secret issued to the client during
+        the registration process in the netID Developer Portal.
 </code></pre></div>
 
-<p>Example request per curl:</p>
+<p>The endpoint supports two authentication methods, namely <em>client_secret_basic</em> (basic authentication) and <em>client_secret_post</em> (credentials in the request body). When using basic authentication the endpoint supports both GET and POST based requests.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">https://broker.netid.de/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic *base64(client_id:client_secret)*</span>
+
+code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
+</code></pre></div>
+
+<p>Example request using curl:</p>
+<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Example Request</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
 </code></pre></div>
 
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Response</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;f3EcGc1l8mjw3gZ3....&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">899</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+<p>As an alternative clients may use <em>client_secret_post</em> based authentication providing <em>client_id</em> and <em>client_secret</em> using a POST request as shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+
+code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&amp;client_id=CLIENT_ID_GOES_HERE&amp;client_secret=CLIENT_SECRET_GOES_HERE
+</code></pre></div>
+
 <h3 id="userinfo-endpoint">UserInfo Endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
-<p>The <em>access token</em> (sent as a bearer token) is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.</p>
+<p>The <em>access token</em> is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.</p>
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
+<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Example GET Request</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer SlAV32hkKG</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Example POST Request</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="err">access_token=mF_9.B5f-4.1JqM</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Example Response</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
+<span class="err">Content-Type:</span> <span class="err">application/json</span>
+<span class="p">{</span>
+    <span class="nt">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;birthdate&quot;</span><span class="p">:</span> <span class="s2">&quot;1980-01-01&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email_verified&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;street_address&quot;</span><span class="p">:</span> <span class="s2">&quot;Hauptstr. 10&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;DE&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;formatted&quot;</span><span class="p">:</span> <span class="s2">&quot;Hauptstr. 10\n10117 Berlin\nDeutschland&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;locality&quot;</span><span class="p">:</span> <span class="s2">&quot;Berlin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;postal_code&quot;</span><span class="p">:</span> <span class="s2">&quot;10117&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;gender&quot;</span><span class="p">:</span> <span class="s2">&quot;female&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;shipping_address&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="nt">&quot;street_address&quot;</span><span class="p">:</span> <span class="s2">&quot;Teststr. 12\nAppartement 47/11&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;country&quot;</span><span class="p">:</span> <span class="s2">&quot;DE&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;formatted&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe\nTeststr. 12\nAppartement 47/11\n10117 Berlin\nDeutschland&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;locality&quot;</span><span class="p">:</span> <span class="s2">&quot;Berlin&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;recipient&quot;</span><span class="p">:</span> <span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+        <span class="nt">&quot;postal_code&quot;</span><span class="p">:</span> <span class="s2">&quot;10117&quot;</span>
+    <span class="p">},</span>
+    <span class="nt">&quot;given_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Jane&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;family_name&quot;</span><span class="p">:</span> <span class="s2">&quot;Doe&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;email&quot;</span><span class="p">:</span> <span class="s2">&quot;jane.doe@example.org&quot;</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+</div>
+<p>Additional information about UserInfo: <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">OIDC specification</a></p>
 <h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
 <h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
 <p>The following request parameters are supported for initiating the SSO process and may be passed to the <em>authorize</em> <a href="#authorize">endpoint</a>. For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC specification</a>.</p>
@@ -1045,6 +1168,10 @@
 <tr>
 <td>state</td>
 <td>The value of this parameter is passed through the entire flow transparently and included when calling back to the <em>redirect_uri</em>. It may be used to recognize how authorize request and asynchronous response are associated in the client</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>If a nonce value was sent in the Authentication Request, a nonce Claim MUST be present and its value checked to verify that it is the same value as the one that was sent in the Authentication Request. The Client SHOULD check the nonce value for replay attacks. The precise method for detecting replay attacks is Client specific.</td>
 </tr>
 </tbody>
 </table>
@@ -1075,14 +1202,9 @@
 <li>The client has now received the userinfo object.</li>
 </ol>
 </details>
-<h2 id="timing-and-error-messages">Timing and Error Messages<a class="headerlink" href="#timing-and-error-messages" title="Permanent link">&para;</a></h2>
-<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.</p>
-<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri, and that the credentials provided via basic authentication are correct.</p>
-<h3 id="lifetimes">Lifetimes<a class="headerlink" href="#lifetimes" title="Permanent link">&para;</a></h3>
-<ul>
-<li>Authorization codes are only valid for 30 seconds and may only be used once</li>
-<li>Access token are valid for 15 minutes for use with the UserInfo Endpoint and may be used multiple times</li>
-</ul>
+<h2 id="error-messages">Error Messages<a class="headerlink" href="#error-messages" title="Permanent link">&para;</a></h2>
+<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
+For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html">OIDC specification</a>.</p>
 <h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
 <p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
