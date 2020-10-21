@@ -12,7 +12,7 @@ Partners manage their details as well as service/clients settings in the netID D
 
 All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.
 
-Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an *id_token* and a *userinfo* object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (*sub*).
+Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an *id_token* and a *userinfo* object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (`sub`).
 
 netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the *redirect_uri* (Callback URL), to ensure that the `sub` value is the same for all clients of a service make sure that the *redirect_uri* points to the same host across all clients of a service.
 

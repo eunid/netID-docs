@@ -24,14 +24,17 @@ To create a client for a service, select **Add client** in the [details view](se
 Fill out the necessary details, most importantly in case this client is meant for production use make sure that the **Callback URL** points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.
 
 !!! info ""
-    Please note that netID uses [pairwise subject identifiers](/sso/#general-overview), which are derived respective to the **clients callback url** (more specifically the **hostname** portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion.
+    Please note that netID uses [pairwise subject identifiers](/sso/#general-overview), which are derived respective to the **clients callback url** (more specifically the **hostname** portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion to avoid receiving different `sub` values for the same user.
 
 Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely **Client ID** and **Client Secret**.
 
-A client has two sets of credentials (**Client ID** is the same):
+Depending on the status of the clients service w.r.t.[approval for production use](services.md#approval-for-production-use) the **Client Secret** will be shown as
 
-1. **Client secret - sandbox**: which is to be used in case the service is still in sandboxed mode
-2. **Client secret - live**: which becomes available for use in a production environment once the service has been approved for production use. For details see [Approval for production use](services.md#approval-for-production-use)
+* **Client secret - sandbox**: which indicates that the service is still in sandboxed mode
+* **Client secret - live**: which indicates that the service has been approved to be used in a production environment
+
+!!! warning "Client secret after service approval"
+    Please note that the **Client Secret** does not change when the service is approved for production use, that means you do not need to change the configuration of your client / take action after the approval.
 
 ### Edit a Client
 
