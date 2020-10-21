@@ -120,9 +120,7 @@ POST https://broker.netid.de/token HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 Authorization: Basic *base64(client_id:client_secret)*
 
-code=[code]&
-redirect_uri=[redirect_uri]&
-grant_type=authorization_code
+code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code
 ```
 
 Example request using curl:
@@ -151,25 +149,31 @@ POST /token HTTP/1.1
 Host: broker.netid.de
 Content-Type: application/x-www-form-urlencoded
 
-code=[code]&
-redirect_uri=[redirect_uri]&
-grant_type=authorization_code&
-client_id=CLIENT_ID_GOES_HERE&
-client_secret=CLIENT_SECRET_GOES_HERE
+code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code&client_id=CLIENT_ID_GOES_HERE&client_secret=CLIENT_SECRET_GOES_HERE
 ```
 
 ### UserInfo Endpoint
 
-The *access token* (sent as a bearer token) is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.
+The *access token* is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
-=== "Example Request"
+=== "Example GET Request"
 
     ```http
     GET /userinfo HTTP/1.1
     Host: broker.netid.de
     Authorization: Bearer SlAV32hkKG
+
+    ```
+
+=== "Example POST Request"
+
+    ```http
+    POST /userinfo HTTP/1.1
+    Host: broker.netid.de
+    Content-Type: application/x-www-form-urlencoded
+    access_token=mF_9.B5f-4.1JqM
 
     ```
 
