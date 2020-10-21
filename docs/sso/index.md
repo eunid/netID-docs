@@ -61,7 +61,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
         response_type=code&
         client_id=[clientID]&
         redirect_uri=[redirect_uri]&
-        scope=openid
+        scope=openid&
     ```
 
 === "URL encoding"
@@ -101,24 +101,8 @@ Token requests are carried out after the callback to the client in order to exch
 
 With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri.
 
-The netID endpoint for token requests is <https://broker.netid.de/token>. The endpoint supports two methods for (client authentication)[https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication], namely _ client_secret_basic_ (basic authentication) and _ client_secret_post_ (credentials in the request body).
-When using basic authentication the endpoint supports both GET and POST based requests, below is an example of a POST request using basic auth.
+The netID endpoint for token requests is <https://broker.netid.de/token>. Clients are [authenticated](<https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication>) using
 
-```bash
-https://broker.netid.de/token?
-    code=[code]&
-    redirect_uri=[redirect_uri]&
-    grant_type=authorization_code
-```
-
-Example request per curl:
-
-```bash
-curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
-```
-
-As an alternative clients may use _client_secret_post_ based authentication providing _client_id_ and _client_secret_ using a POST request as shown below:
- 
 ```
 client_id
         REQUIRED.  The client identifier issued to the client during
@@ -129,14 +113,49 @@ client_secret
         the registration process in the netID Developer Portal.
 ```
 
-For example, a request using the body parameters:
+The endpoint supports two authentication methods, namely _client_secret_basic_ (basic authentication) and _client_secret_post_ (credentials in the request body). When using basic authentication the endpoint supports both GET and POST based requests.
+
+```http
+POST https://broker.netid.de/token HTTP/1.1
+Content-Type: application/x-www-form-urlencoded
+Authorization: Basic *base64(client_id:client_secret)*
+
+code=[code]&
+redirect_uri=[redirect_uri]&
+grant_type=authorization_code
+```
+
+Example request using curl:
+
+=== "Example Request"
+
+    ```bash
+    curl -v -u [user:pass] -X POST https://broker.netid.de/token -H 'content-type: application/x-www-form-urlencoded; charset=UTF-8' -d 'code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code'
+
+    ```
+
+=== "Example Response"
+
+    ```json
+    {
+        "access_token":"f3EcGc1l8mjw3gZ3....",
+        "token_type":"Bearer",
+        "expires_in":899
+    }
+    ```
+
+As an alternative clients may use _client_secret_post_ based authentication providing _client_id_ and _client_secret_ using a POST request as shown below:
 
 ```http
 POST /token HTTP/1.1
 Host: broker.netid.de
 Content-Type: application/x-www-form-urlencoded
 
-code=[code]&redirect_uri=[redirect_uri]&grant_type=authorization_code&client_id=CLIENT_ID_GOES_HERE&client_secret=CLIENT_SECRET_GOES_HERE
+code=[code]&
+redirect_uri=[redirect_uri]&
+grant_type=authorization_code&
+client_id=CLIENT_ID_GOES_HERE&
+client_secret=CLIENT_SECRET_GOES_HERE
 ```
 
 ### UserInfo Endpoint
@@ -145,7 +164,7 @@ The *access token* (sent as a bearer token) is used to retrieve the requested cl
 
 The netID Broker endpoint for userinfo requests is <https://broker.netid.de/userinfo>.
 
-=== "Example UserInfo Request"
+=== "Example Request"
 
     ```http
     GET /userinfo HTTP/1.1
@@ -154,7 +173,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
 
     ```
 
-=== "Example UserInfo Response"
+=== "Example Response"
 
     ```json
     HTTP/1.1 200 OK
