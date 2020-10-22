@@ -1,4 +1,4 @@
-# Acquiring Access Tokens
+# Requesting Access Tokens
 
 In order to access the [server-based API](server-based.md) netID Partners can request an access token using the netID Broker in order to allow their Consent Management Platform to access the API on the users behalf.
 

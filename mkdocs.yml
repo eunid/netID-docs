@@ -39,7 +39,7 @@ nav:
         - Plugins: sso/plugins.md
     - CMP Integration:
         - General information: cmp/index.md
-        - Acquiring Access Tokens: cmp/access-token.md
+        - Requesting Access Tokens: cmp/access-token.md
         - Browser-based API: cmp/browser-based.md
         - Server-based API: cmp/server-based.md
         - Export API: cmp/export.md
