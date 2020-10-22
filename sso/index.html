@@ -674,6 +674,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../cmp/access-token/" title="Acquiring Access Tokens" class="md-nav__link">
+      Acquiring Access Tokens
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../cmp/browser-based/" title="Browser-based API" class="md-nav__link">
       Browser-based API
     </a>
@@ -928,8 +940,28 @@
 <p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the <em>redirect_uri</em> (Callback URL), to ensure that the <code>sub</code> value is the same for all clients of a service make sure that the <em>redirect_uri</em> points to the same host across all clients of a service.</p>
 <h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
-<p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.</p>
-<p>Once the user authorizes the transfer of that master data, this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
+<p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID. </p>
+<p>In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the <a href="../cmp/#netid-permission-center">netID Permission Center</a> backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found <a href="/cmp/">here</a>.  </p>
+<p>Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
+<p>The following scopes are supported by netID:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>openid</td>
+<td>mandatory scope to initiate a Single Sign-on using the <a href="#authorize">authorize endpoint</a></td>
+</tr>
+<tr>
+<td>permission_management</td>
+<td>optional scope to request an access token to access the <a href="../cmp/#netid-permission-center">netID Permission Center</a></td>
+</tr>
+</tbody>
+</table>
 <p>The following claims are supported by netID:</p>
 <table>
 <thead>
@@ -1013,7 +1045,7 @@
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
-    <span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span>
+    <span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div>
 
 </div>
