@@ -20,9 +20,20 @@ netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connec
 
 Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines *scope* and *claim* mechanisms.
 
-Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.
+Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID. 
 
-Once the user authorizes the transfer of that master data, this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.
+In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the [netID Permission Center](../cmp/#netid-permission-center) backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found [here](/cmp/).  
+
+Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.
+
+The following scopes are supported by netID:
+
+| Scope | Description |
+|---|---|
+| openid | mandatory scope to initiate a Single Sign-on using the [authorize endpoint](#authorize) |
+| permission_management | optional scope to request an access token to access the [netID Permission Center](../cmp/#netid-permission-center) |
+
+
 
 The following claims are supported by netID:
 
@@ -61,7 +72,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
         response_type=code&
         client_id=[clientID]&
         redirect_uri=[redirect_uri]&
-        scope=openid&
+        scope=openid
     ```
 
 === "URL encoding"

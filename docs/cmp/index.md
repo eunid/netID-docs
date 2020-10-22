@@ -25,10 +25,10 @@ The following services are provided by the netID Permission Center to allow a CM
 
 ## Read/Write Services
 
-The READ and WRITE services are based on previous user authentication and are provided in two variants, with similar functions for the netID Partner's Consent Management Platform.
+The READ and WRITE services are based on prior user authentication and are provided in two variants, with similar functions for the netID Partner's Consent Management Platform.
 
 1. **Browser-based** API: Usage based on an already established user authentication stored within the respective browser (ex-ante)
-2. **Server-based** API: Usage based on an access token acquired via a Single Sign-on
+2. **Server-based** API: Usage based on an access token acquired via the netID Broker as describe [here](access-token.md)
 
 The distinction between browser- and server-based mainly relates to how an active user is authenticated before using the API/from where the APIs are being called.
 
