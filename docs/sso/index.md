@@ -148,8 +148,22 @@ Example request using curl:
     ```json
     {
         "access_token":"f3EcGc1l8mjw3gZ3....",
+        "id_token":"eyJhbGciOiJub25lIn0....",
         "token_type":"Bearer",
         "expires_in":899
+    }
+    ```
+
+=== "Decoded ID Token"
+
+    ```json
+    {
+        "aud": "f6316771-.....",
+        "sub": "geuGIhNTX.....",
+        "auth_time": 1603726351,
+        "iss": "https://broker.netid.de/",
+        "exp": 1603727273,
+        "iat": 1603726373
     }
     ```
 
@@ -194,7 +208,7 @@ The netID Broker endpoint for userinfo requests is <https://broker.netid.de/user
     HTTP/1.1 200 OK
     Content-Type: application/json
     {
-        "sub": "tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M",
+        "sub": "tLTGOmOHb5ix7i9.....",
         "birthdate": "1980-01-01",
         "email_verified": true,
         "address": {
