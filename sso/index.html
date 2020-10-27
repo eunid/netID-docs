@@ -1101,7 +1101,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
 </code></pre></div>
 
 <p>Example request using curl:</p>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Example Request</label><div class="tabbed-content">
+<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Example Request</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
 </code></pre></div>
 
@@ -1109,8 +1109,21 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
 <input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Response</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
     <span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;f3EcGc1l8mjw3gZ3....&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;id_token&quot;</span><span class="p">:</span><span class="s2">&quot;eyJhbGciOiJub25lIn0....&quot;</span><span class="p">,</span>
     <span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span>
     <span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">899</span>
+<span class="p">}</span>
+</code></pre></div>
+
+</div>
+<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Decoded ID Token</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+    <span class="nt">&quot;aud&quot;</span><span class="p">:</span> <span class="s2">&quot;f6316771-.....&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;geuGIhNTX.....&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;auth_time&quot;</span><span class="p">:</span> <span class="mi">1603726351</span><span class="p">,</span>
+    <span class="nt">&quot;iss&quot;</span><span class="p">:</span> <span class="s2">&quot;https://broker.netid.de/&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;exp&quot;</span><span class="p">:</span> <span class="mi">1603727273</span><span class="p">,</span>
+    <span class="nt">&quot;iat&quot;</span><span class="p">:</span> <span class="mi">1603726373</span>
 <span class="p">}</span>
 </code></pre></div>
 
@@ -1146,7 +1159,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&am
 <div class="highlight"><pre><span></span><code><span class="err">HTTP/</span><span class="mf">1.1</span> <span class="mi">200</span> <span class="err">OK</span>
 <span class="err">Content-Type:</span> <span class="err">application/json</span>
 <span class="p">{</span>
-    <span class="nt">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M&quot;</span><span class="p">,</span>
+    <span class="nt">&quot;sub&quot;</span><span class="p">:</span> <span class="s2">&quot;tLTGOmOHb5ix7i9.....&quot;</span><span class="p">,</span>
     <span class="nt">&quot;birthdate&quot;</span><span class="p">:</span> <span class="s2">&quot;1980-01-01&quot;</span><span class="p">,</span>
     <span class="nt">&quot;email_verified&quot;</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="nt">&quot;address&quot;</span><span class="p">:</span> <span class="p">{</span>
