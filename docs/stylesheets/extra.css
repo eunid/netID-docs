@@ -3,8 +3,9 @@
 :root > * {
   
   --md-accent-fg-color:    #76b82a;
-  --md-text-link-color:    #598A1F;    
+  --md-typeset-a-color:    #598A1F;    
   --md-primary-fg-color:   #323232;
+
 }
 
 /* Admonition */
