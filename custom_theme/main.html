@@ -2,9 +2,11 @@
 
 {% block styles %}
   {{ super() }}
+  {% if page.meta %}
   {% for href in page.meta.extra_css %}
     <link rel="stylesheet" href="{{ href | url }}" >
   {% endfor %}
+  {% endif %}
 {% endblock %}
 
 <!-- Use Local Webfonts -->
@@ -103,7 +105,9 @@
 
 {% block scripts %}
   {{ super() }}
+  {% if page.meta %}
   {% for href in page.meta.extra_js %}
     <script src="{{ href | url }}"></script>
   {% endfor %}
+  {% endif %}
 {% endblock %}
