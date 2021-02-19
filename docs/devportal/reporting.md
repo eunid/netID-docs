@@ -13,23 +13,22 @@ The netID Developer Portal provides KPIs in individual reports as .cvs files for
 
 ### Reports in the netID Developer Portal
 
-| Report |Description|
-|---|---|
-| Authentication Dialog | This report shows how many netID users wanted to register with netID and successfully entered their e-mail address for identification on the login page. |
-| Authentication Process | The report provides information on how many netID users have completed the authentication process by entering a password. The report shows both successful and unsuccessful authentications. |
-| Authentication Process Core Data | The report provides information about which master data was transferred in the authorization process. For each master data, it shows how often "required and optional" (as a total) or only optional master data was transferred in the authorization process. **Note:** This report only contains **daily aggregates**. |
-| Authorization Dialog | The report provides information on the frequency of the master data dialog. The dialogue is played out if -  the netID user logs on to the Relying Party for the first time - the Relying Party requires new / different netID User master data - the Relying Party wants to play the master data dialog again.  **Note:** Unique users are also shown.  |
-| Authorization Process | The report evaluates how often required and optional (as a total) or only optional master data was transferred after the dialog was confirmed. **Note:** Unique users are also shown. |
-| Broker Dialog | The report evaluates how often the netID login flow was started, triggered by a click on the netID login button on the Relying Party page |
-| Broker "new netID User" Dialog | The report evaluates the number of entered e-mail addresses that are not yet netID-enabled. These addresses were entered in the Broker dialog by the netID user. |
-| Broker Process | The report evaluates the number of events that should continue the netID login flow by entering an email address. It distinguishes between successful and unsuccessful attempts. Successful if the entered e-mail address is known in the netID login context and unsuccessful if the e-mail address is incorrect or could not be assigned.** Note:** Only events that were played out via the Broker dialog are counted.|
-| Broker master data transfer | The report provides information about the number of master data transferred, which were forwarded by the OpenID provider. It displays required and optional master data as a total and optional master data separately. |
-| Registration Neutral Instance Dialog | The report provides information on how often a registration attempt was initiated for the netID partner. |
-| Registration Neutral Instance Process | The report provides information on the number of successful and unsuccessful registrations. |
-| SSO active user | The report provides information about the number of active users for the period under consideration, separated by partner and its relying party. A user activity is defined by a successful login. |
-| SSO user | The report provides information on the development of the SSO user inventory. |
-| SSO user first use | The report evaluates the number of first use of netID separately by partner (total) and its reeling party. |
-
+| Report|Description|Screen / process reference|
+|---|---|---|
+| Broker Dialog ([Date]\_BrokerDialog\_*.csv)| The report shows how often the netID login flow was started, triggered by a click on the netID login button on the Relying Party page | netID UI Flow Step1: "Enter email address".|
+| Broker "new netID User" Dialog ([Date]\_BrokerNeuerNutzerDialog\_*.csv) | The report shows the number of entered e-mail addresses that are not yet netID-enabled. These addresses were entered in the Broker dialog by the netID user. | netID UI Flow Step1_redirect: "unknown user" page.|
+| Broker Process ([Date]\_BrokerProcess\_*.csv)| The report shows the number of e-mail addresses entered in the first screen of the netID flow. A distinction is made between successful and unsuccessful attempts. The attempt is successful if the entered email address is known in the netID login context and unsuccessful if the email address is incorrect or could not be assigned. **Note:** Only events triggered via the broker screen are counted.| - |
+| Broker master data transfer ([Date]\_BrokerStammdatenuebertragung\_*.csv) | The report provides information on the number of master data transmitted by the netID account provider to the Relying Party. It shows required and optional master data as a total. | - |
+| Authentication Dialog ([Date]\_AuthentifizierungDialog\_*.csv)| This report shows how many netID users wanted to sign-in with netID and successfully entered their e-mail address on the broker page. On this screen, the user is prompted to enter the password.| netID UI Flow Step2: Account Provider "sign-in page"|
+| Authentication Process ([Date]\_AuthentifizierungProzess\_*.csv)| The report provides information on how many netID users have completed the authentication process by entering a password. The report shows both successful and unsuccessful authentications. | - |
+| Authorization Dialog ([Date]\_AutorisierungsDialog\_*.csv)| The report informs how often the consent page was displayed. The page is displayed when the netID user logs in to the Relying Party for the first time, the Relying Party requires new/different master data of the netID user or the Relying Party explicitly requests the consent page.  **Note:** Unique users are also shown.| netID UI Flow Step3: Account Provider "Consent Page"|
+| Authorization Process ([Date]\_AutorisierungsProzess\_*.csv)| The report shows how often mandatory and voluntary (as a total) or only voluntary master data were transferred after confirmation on the Consent page. **Note:** Unique users are also shown. | - |
+| Authorization Process Core Data ([Date]\_AutorisierungProzessCoreData\_*.csv)| The report provides information on which master data (claim) was authorised via the consent page. For each master data item, the total number of approvals is reported. Mandatory and voluntary consents are shown as a total. **Note:** This report only contains **daily aggregates**. | - |
+| Registration Neutral Instance Dialog ([Date]\_RegistrierungNeutraleInstanzDialog\_*.csv) | The report shows how many netID account registration attempts were initiated by the user.| netID UI Flow Step1_b: Account Provider "registration page" for unknown users.|
+| Registration Neutral Instance Process ([Date]\_RegistrierungNeutraleInstanzProzess\_*.csv)| The report shows the number of successful and unsuccessful registrations. | - |
+| SSO active user ([Date]\_SSOAktiveUser\_*.csv)| The report provides information on the number of active users for the specified period, separated by partner and its Relying Party. A user activity is defined by a successful login. | - |
+| SSO user ([Date]\_SSOUser\_*.csv)| The report provides information on the changes in the number of SSO users. | - |
+| SSO user first use ([Date]\_SSOUserErstnutzung\_*.csv)| The report evaluates the number of first use of netID separately by partner (total) and its reeling party. | - |
 
 ## Download Reports
 
