@@ -29,7 +29,7 @@ cmp -> cmp :  Check local/cached status \n Unknown user, no privacy status known
  group Check Status (privacy settings, user authentication)
     cmp -> rs : try to retrieve privacy status for authenticated user
     activate rs
-    rs -> cmp : response - OK, CONSENT_REQUIRED, no privacy status present
+    rs -> cmp : response - OK, no privacy status present (tpid=null, tc=null)
     deactivate rs
     end
 cmp -> cmp : Display CMP UI \n establish privacy status
