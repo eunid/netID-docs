@@ -25,7 +25,10 @@ theme:
 
 # Site Navigation
 nav:
-    - About netID: index.md
+    - About:  
+      - About netID: index.md
+      - FAQ: faq.md
+      - System Status: status.md
     - Developer Portal:
         - Getting started: devportal/index.md
         - Tutorials:
@@ -43,8 +46,7 @@ nav:
         - Browser-based API: cmp/browser-based.md
         - Server-based API: cmp/server-based.md
         - Export API: cmp/export.md
-    - FAQ: faq.md
-    - System Status: status.md
+
 
 # Extensions
 markdown_extensions:
