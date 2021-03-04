@@ -19,9 +19,8 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 === "Query"
 
     ``` shell
-    GET https://einwilligungsspeicher.netid.de/identification/tpid
-        ?tapp_id=<TAPP_ID>
-    Accept: application/vnd.netid.identification.tpid-read-v1+json
+    GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers?q.tapp_id.eq=<TAPP_ID>
+    Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
     Cookie: tpid_sec=<JWT_TOKEN>
     Origin: <ORIGIN>
     ```
@@ -30,13 +29,13 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
     ``` shell
     200 OK
-    Content-Type: application/vnd.netid.identification.tpid-read-v1+json
+    Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
     Access-Control-Allow-Origin: <ORIGIN>
     Access-Control-Allow-Credentials: true
 
     {
-      "tpid": "<TPID>|null"
-      "status": "OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED"
+      "tpid": "<TPID>"
+      "status_code": "OK"
     }
     ```
 
@@ -44,22 +43,23 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 `tpid` - Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
-| status | meaning | tpid |
+| status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
-| OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned | x (-) |
+| OK | Call successful | x |
 | NO_TPID | There was no tpid_sec cookie available. | - |
-| TOKEN_ERROR | Token (JWT) in the cookie is expired or  invalid. | - |
-| CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | - |
+| TPID_NOT_FOUND | No Permissions found for `tpid`. | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
 | 200 OK | - `tpid` of the netID user returned |
-| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid |
-| 403 FORBIDDEN | - missing/invalid parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active \ - consent for 'identification' isn't granted |
-| 404 NOT FOUND | - `tpid` in tpid_sec cookie does not exist |
-| 410 GONE | - `tpid` in tpid_sec cookie isn't active |
+| 400 BAD REQUEST | - Parameters are missing. Parameter '<name>' is missing. |
+| 403 FORBIDDEN | - Business rule preconditions are violated. No IDConsent permission ("identification") given to return the `tpid` |
+| 404 NOT FOUND | - Permissions for `tpid` not found. |
+| 410 GONE | - `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
 ### Read privacy status
 
