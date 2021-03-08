@@ -46,8 +46,8 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. Parameter '<name>' is missing. | - |
-| NO_TAPP_ID | No `TAPP_ID` in request available. Parameter '<name>' is missing. | - |
+| NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
+| NO_TAPP_ID | No `TAPP_ID` in request available. Parameter 'name' is missing. | - |
 | PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
@@ -57,7 +57,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | HTTP status code | meaning |
 | ----------- | ----------- |
 | 200 OK | - `tpid` of the netID user returned, if consent is given. <TCSTRING> is transfered if available. Value of consent for "datashare" is transfered. |
-| 400 BAD REQUEST | - Parameters are missing. Parameter '<name>' is missing. |
+| 400 BAD REQUEST | - Parameters are missing. Parameter 'name' is missing. |
 | 404 NOT FOUND | - Permissions for `tpid` not found. |
 | 410 GONE | - `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
@@ -95,13 +95,13 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 |---|---|
 | tpid | Users identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null |
 | tc | TC string stored for this `tpid` for this respective netID Partner (TAPP). Only with status "OK". Otherwise null |
-| datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null |
+| datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
 
 | status_code | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
 | OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returend. | x (-)| x (-) |
-| NO_TPID | Parameters are missing. Parameter '<name>' is missing. | - | - |
-| NO_TAPP_ID | Parameters are missing. Parameter '<name>' is missing. | - | - |    
+| NO_TPID | Parameters are missing. Parameter 'name' is missing. | - | - |
+| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. | - | - |    
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
 
 #### Response behavior
@@ -171,8 +171,8 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | status_code | meaning |
 | ----------- | ----------- |
 | OK | TC String/consent for "identification" was stored. |
-| NO_TPID | There was no `tpid_sec` cookie available. Parameter '<name>' is missing. |
-| NO_TAPP_ID | Parameters are missing. Parameter '<name>' is missing. |
+| NO_TPID | There was no `tpid_sec` cookie available. Parameter 'name' is missing. |
+| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
 | TPID_EXISTENCE_ERROR | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
 
@@ -181,7 +181,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | status code | meaning |
 | ----------- | ----------- |
 | 201 CREATED | Call successful |
-| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter '<name>' is missing. |
+| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter 'name' is missing. |
 | 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
 | 404 NOT FOUND | - `tpid` in tpid_sec cookie does not exist <br> - consent for "identification" is not granted <br> - TC String is not available |
 | 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
