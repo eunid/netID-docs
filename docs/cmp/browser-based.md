@@ -123,7 +123,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | 200 OK | - `tpid` of the netID user is returned, if consent of "identification" is given <br> - TC String is returned if present|
 | 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid |
 | 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
-| 404 NOT FOUND | - `tpid` in tpid_sec cookie does not exist <br> - consent for "identification" is not granted and TC String is not available <br> - TC String is not available |
+| 404 NOT FOUND | - Permissions for 'tpid' not found. |
 | 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
 ## Write API
@@ -181,11 +181,15 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 `tpid` - Users netID Identifier. Only passed, if consent "identification" is given, the `tpid` is known and status is "OK". Otherwise null.
 
 | status_code | meaning |
-| ----------- | ----------- |
-| OK | TC String/consent for "identification" was stored. |
-| NO_TPID | There was no `tpid_sec` cookie available. Parameter 'name' is missing. |
+| ----------- | ----------- | ----------- | ----------- |
+| CREATED | Call successful 
+| NO_TPID | Parameters are missing. Parameter 'name' is missing. |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
-| TPID_EXISTENCE_ERROR | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
+| TOKEN_ERROR | Parameter 'name' did not validate |
+| TAPP_ERROR | Parameter 'name' did not validate |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. |
+| CORS_ERROR | Origin Header 'origin' did not valiate. |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
 
 #### Response behavior
