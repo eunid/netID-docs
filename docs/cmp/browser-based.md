@@ -39,7 +39,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
     }
     ```
 
-#### Response properties
+#### Response properties 
 
 `tpid` - Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
@@ -48,9 +48,14 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | OK | Call successful | x |
 | NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
 | NO_TAPP_ID | No `TAPP_ID` in request available. Parameter 'name' is missing. | - |
-| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
+| TOKEN_ERROR | Parameter 'name' did not validate | - |
+| TAPP_ERROR | Parameter 'name' did not validate | - |
+| TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
+| CORS_ERROR | Origin Header 'origin' did not valiate. | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
+
 
 #### Response behavior
 
@@ -58,6 +63,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | ----------- | ----------- |
 | 200 OK | - `tpid` of the netID user returned, if consent is given. <TCSTRING> is transfered if available. Value of consent for "datashare" is transfered. |
 | 400 BAD REQUEST | - Parameters are missing. Parameter 'name' is missing. |
+| 403 FORBIDDEN | - Consent for passing the `tpid` ("identification") was not given or was revoked by the user. |
 | 404 NOT FOUND | - Permissions for `tpid` not found. |
 | 410 GONE | - `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
@@ -89,7 +95,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
     }
     ```
 
-#### Response Properties
+#### Response Properties and behavior
 
 | item |description|
 |---|---|
@@ -101,7 +107,13 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | ----------- | ----------- | ----------- | ----------- |
 | OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returend. | x (-)| x (-) |
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. | - | - |
-| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. | - | - |    
+| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. | - | - |
+| TOKEN_ERROR | Parameter 'name' did not validate | - | - |
+| TAPP_ERROR | Parameter 'name' did not validate | - | - |
+| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - | - |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - | - |
+| CORS_ERROR | Origin Header 'origin' did not valiate. | - | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
 
 #### Response behavior
@@ -146,7 +158,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
     {
       "tpid": "<TPID>|null",
-      "status": "OK"|"ID_CONSENT_REQUIRED"
+      "status_code": "OK"|"ID_CONSENT_REQUIRED"
     }
     ```
 
@@ -183,5 +195,4 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | 201 CREATED | Call successful |
 | 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter 'name' is missing. |
 | 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
-| 404 NOT FOUND | - `tpid` in tpid_sec cookie does not exist <br> - consent for "identification" is not granted <br> - TC String is not available |
 | 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
