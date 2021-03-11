@@ -105,13 +105,11 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 | status_code | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Call successful - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returend. | x (-)| x (-) |
+| OK | Call successful <br> - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returend. | x (-)| x (-) |
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. | - | - |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. | - | - |
 | TOKEN_ERROR | Parameter 'name' did not validate | - | - |
 | TAPP_ERROR | Parameter 'name' did not validate | - | - |
-| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - | - |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - | - |
 | CORS_ERROR | Origin Header 'origin' did not valiate. | - | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
@@ -120,7 +118,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 | status code | meaning |
 | ----------- | ----------- |
-| 200 OK | - `tpid` of the netID user is returned, if consent of "identification" is given <br> - TC String is returned if present|
+| 200 OK | - `tpid` of the netID user is returned, if consent of "identification" is given <br> |
 | 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid |
 | 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
 | 404 NOT FOUND | - Permissions for 'tpid' not found. |
@@ -181,16 +179,17 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 `tpid` - Users netID Identifier. Only passed, if consent "identification" is given, the `tpid` is known and status is "OK". Otherwise null.
 
 | status_code | meaning |
-| ----------- | ----------- | ----------- | ----------- |
+| ----------- | ----------- |
 | CREATED | Call successful 
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
-| TOKEN_ERROR | Parameter 'name' did not validate |
-| TAPP_ERROR | Parameter 'name' did not validate |
 | INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. |
-| CORS_ERROR | Origin Header 'origin' did not valiate. |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
+| NO_REQUEST_BODY | Required request body is missing | 
+| JSON_PARSE_ERROR | Invalid JSON body, parse error | 
+| NO_PERMISSIONS | Parameters are missing. At least one permission must be set | 
+| PERMISSION_PARAMETERS_ERROR | Parameters 'name' did not validate | 
 
 #### Response behavior
 
