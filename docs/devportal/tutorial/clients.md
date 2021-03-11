@@ -19,9 +19,12 @@ Using clients you can manage the technical details for an integration into your 
 
 To create a client for a service, select **Add client** in the [details view](services.md#service-details-view) of the service. Client Details can be defined in the provided form.
 
-![netid](../../images/devportal/netid_dev_portal_add_client.png){: style="width:50%;display: block; margin: 0 auto;" }
+![netid](../../images/devportal/netid_dev_portal_add_client_2.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 Fill out the necessary details, most importantly in case this client is meant for production use make sure that the **Callback URL** points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.
+
+If you choose "token signing", you can select the preferred encryption algorithm (RS256, ES256 or none) in the dropdown.
+To learn more about token signing or validation, please visit https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation
 
 !!! info ""
     Please note that netID uses [pairwise subject identifiers](/sso/#general-overview), which are derived respective to the **clients callback url** (more specifically the **hostname** portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion to avoid receiving different `sub` values for the same user.
