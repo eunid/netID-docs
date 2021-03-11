@@ -17,20 +17,20 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 === "Query"
 
     ``` shell
-    GET https://einwilligungsspeicher.netid.de/identification/tpid?
-        token=<TOKEN>
-    Accept: application/vnd.netid.identification.tpid-read-v1+json
+    GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers
+    Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
+    Authorization: Bearer <Access Token>
     ```
 
 === "Response"
 
     ``` shell
     200 OK
-    Content-Type: application/vnd.netid.identification.tpid-read-v1+json
+    Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 
     {
-      "tpid": "<TPID>|null"
-      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+      "tpid": "<TPID>"
+      "status_code": "OK"
     }
     ```
 
@@ -38,12 +38,16 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 `tpid` - Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
-| status | meaning | tpid |
+| status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
-| OK | Call successful - In case the consent for passing the TPID is missing ("identification") `null` is returned, otherwise the `tpid` | x (-)|
-| NO_TOKEN | No access token was passed. | - |
-| TOKEN_ERROR | Access token is expired or invalid. | - |
-| CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | - |
+| OK | Call successful | x |
+| NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
+| TOKEN_ERROR | Parameter 'name' did not validate | - |
+| NO_TOKEN | Parameter 'name' did not validate | - |
+| TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
 
@@ -60,21 +64,22 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 === "Query"
 
     ``` shell
-    GET https://einwilligungsspeicher.netid.de/permissions/iab-permissions?
-        token=<TOKEN>
-    Accept: application/vnd.netid.permissions.iab-permission-read-v1+json
+    GET https://einwilligungsspeicher.netid.de/netid-permissions
+    Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
+    Authorization: Bearer <Access Token>
     ```
 
 === "Response"
 
     ``` shell
     200 OK
-    Content-Type: application/vnd.netid.permissions.iab-permission-read-v1+json
+    Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1+json
 
     {
-      "tpid": "<TPID>|null",
-      "tc": "<TC string>|null",
-      "status": "OK|NO_TOKEN|TOKEN_ERROR|CONSENT_REQUIRED"
+      "tpid": "<TPID>"|null,
+      "tc": "<TCSTRING>"|null,
+      "datashare": "VALID"|"INVALID"|null,
+      "status_code": "OK"|"ID_CONSENT_REQUIRED"
     }
     ```
   
@@ -82,25 +87,30 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | item |description|
 |---|---|
-| tpid | Users netID Identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null|
-| tc | The TC string stored for this `tpid` for this respective netID Partner (TAPP). Only with status "OK". Otherwise null |
+| tpid | Users identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null |
+| tc | TC string stored for this `tpid` for this respective netID Partner (TAPP). Only with status "OK". Otherwise null |
+| datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
 
-| status | meaning | tc | tpid |
-| ----------- | ----------- | ----------- | ----------- |
-| OK | Call successful - tc information (if present) is returned. In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`| x (-) | x (-) |
-| NO_TPID | No access token was passed. | - | - |
-| TOKEN_ERROR | Access token is expired or invalid. | - | - |
-| CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
+| status_code | meaning | tpid |
+| ----------- | ----------- | ----------- |
+| OK | Call successful | x |
+| NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
+| TOKEN_ERROR | Parameter 'name' did not validate | - |
+| NO_TOKEN | Parameter 'name' did not validate | - |
+| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
-| 201 OK | Call successful |
-| 400 BAD REQUEST | missing access token, or access token is expired / invalid |
-| 403 FORBIDDEN | requesting TAPP isn't active  |
-| 404 NOT FOUND | `tpid` in access token is not active or TC String is not available |
-| 410 GONE | `tpid` in access token isn't active |
+| 200 OK | Call successful |
+| 400 BAD REQUEST | missing parameter |
+| 403 FORBIDDEN | Requesting TAPP isn't active  |
+| 404 NOT FOUND | Permissions for `tpid` not found |
+| 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
 ## Write APIs
 
@@ -109,13 +119,14 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 === "Query"
 
     ``` shell
-    POST https://einwilligen.netid.de/permissions/iab-permissions?
-        token=<TOKEN>
-    Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
+    POST https://einwilligen.netid.de/netid-permissions
+    Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+    Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 
     {
       "identification": "true|false",
       "tc": "<TC string>"
+      "datashare": "VALID"|"INVALID"
     }
     ```
 
@@ -126,37 +137,46 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
     {
       "tpid": "<TPID>|null",
-      "status": "OK|NO_TOKEN|TOKEN_ERROR"
+      "status": "OK"
     }
     ```
 
 !!! info "Remarks"
-    - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
-    - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.
-    - In case of revocation the consent for "identification", only "identification: false" is passed.
+    - There must be at least one permission ("identification", "tc", "datashare"). Permissions are optional. If a permission should not be written, the JSON property is missing. 
+    - If consent for "identification"/"datashare" has been given by the user, this must be signaled by passing "identification: true"/"datashare: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
+    - If only the TC string is to be updated and the consent for "identification"/"datashare" already exists, only the "tc" attribute can be passed. All three can also be written at the same time.
+    - In case of revocation the consent for "identification"/"datashare", "identification: false"/"datashare: false" is passed.
 
 #### Request properties
 
 |item|description|
 |---|---|
-| identification | Boolean flag, indicating the status of the permission "Identification". <br>*true* = consent is given <br> *false* = consent is not given or revoked |
-| tc | TC String which should be stored for this user in relation to the netID Partner (TCF 2.0) |
+| identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
+| tc | TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0) |
+| datashare | Boolean flag, indicating the status of the consent "datashare". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
 
 #### Response properties
 
 `tpid` - Users netID Identifier. Only present if consent "Identification" is given, the `tpid` is known and status is "OK". Otherwise null.
 
-| status | meaning |
+| status_code | meaning |
 | ----------- | ----------- |
-| OK | TC String/consent for "identification" was stored. |
-| NO_TOKEN | No access token was transferred. |
-| TOKEN_ERROR | Access token is expired or invalid. |
+| CREATED | Call successful 
+| NO_TPID | Parameters are missing. Parameter 'name' is missing. |
+| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
+| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
+| NO_REQUEST_BODY | Required request body is missing | 
+| JSON_PARSE_ERROR | Invalid JSON body, parse error | 
+| NO_PERMISSIONS | Parameters are missing. At least one permission must be set | 
+| PERMISSION_PARAMETERS_ERROR | Parameters 'name' did not validate | 
 
 #### Response behavior
 
 | status code | meaning |
 | ----------- | ----------- |
-| 201 CREATED | - `tpid` of the netID user is returned, if consent for "identification" is granted <br> - TC String is returned |
-| 400 BAD REQUEST | missing access token, or access token expired / invalid |
-| 403 FORBIDDEN | requesting TAPP isn't active  |
-| 410 GONE | `tpid` in access token isn't active |
+| 201 CREATED | Call successful |
+| 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter 'name' is missing. |
+| 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
+| 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
