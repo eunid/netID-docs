@@ -16,28 +16,28 @@ The following sequence illustrates the API calls initiated by a netID Partners C
 
 If the `origin` is eligible, a publisher (TAPP) can access the user’s identifier (`tpid`) via the following interface:
 
-=== "Query"
+#### Request
 
-    ``` shell
-    GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers?q.tapp_id.eq=<TAPP_ID>
-    Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
-    Cookie: tpid_sec=<JWT_TOKEN>
-    Origin: <ORIGIN>
-    ```
+```http
+GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
+Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    200 OK
-    Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
+```http
+HTTP/1.1 200 OK
+Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-    {
-      "tpid": "<TPID>"
-      "status_code": "OK"
-    }
-    ```
+{
+  "tpid": "<TPID>"
+  "status_code": "OK"
+}
+```
 
 #### Response properties 
 
@@ -51,8 +51,7 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | TOKEN_ERROR | Parameter 'name' did not validate | - |
 | TAPP_ERROR | Parameter 'name' did not validate | - |
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
-| CORS_ERROR | Origin Header 'origin' did not valiate. | - |
+| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
@@ -62,40 +61,40 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 | HTTP status code | meaning |
 | ----------- | ----------- |
 | 200 OK | - `tpid` of the netID user returned, if consent is given. <TCSTRING> is transfered if available. Value of consent for "datashare" is transfered. |
-| 400 BAD REQUEST | - Parameters are missing. Parameter 'name' is missing. |
+| 400 BAD REQUEST | - Parameters are missing or invalid. |
 | 403 FORBIDDEN | - Consent for passing the `tpid` ("identification") was not given or was revoked by the user. |
 | 404 NOT FOUND | - Permissions for `tpid` not found. |
 | 410 GONE | - `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 
 ### Read privacy status
 
-=== "Query"
+#### Request
 
-    ``` shell
-    GET https://einwilligungsspeicher.netid.de/netid-permissions?
-        q.tapp_id.eq=<TAPP_ID>
-    Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
-    Cookie: tpid_sec=<JWT_TOKEN>
-    Origin: <ORIGIN>
-    ```
+```http
+GET https://einwilligungsspeicher.netid.de/netid-permissions? HTTP/1.1
+    q.tapp_id.eq=<TAPP_ID>
+Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    200 OK
-    Content-Type: application/vnd.netid.permissions.iab-permissions-read-v1+json
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
+```http
+HTTP/1.1200 OK
+Content-Type: application/vnd.netid.permissions.iab-permissions-read-v1+json
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-    {
-      "tpid": "<TPID>"|null,
-      "tc": "<TCSTRING>"|null,
-      "datashare": "VALID"|"INVALID"|null,
-      "status_code": "OK"|"ID_CONSENT_REQUIRED"
-    }
-    ```
+{
+  "tpid": "<TPID>"|null,
+  "tc": "<TCSTRING>"|null,
+  "datashare": "VALID"|"INVALID"|null,
+  "status_code": "OK"|"ID_CONSENT_REQUIRED"
+}
+```
 
-#### Response Properties and behavior
+#### Response Properties
 
 | item |description|
 |---|---|
@@ -105,12 +104,13 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 | status_code | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
-| OK | Call successful <br> - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returend. | x (-)| x (-) |
+| OK | Call successful <br> - In case the consent for passing the `tpid` is missing ("identification") `null` is returned, otherwise the `tpid`. Stored TC String is returned (might be `null`). In case the consent for "datashare" is missing, `null` is returned. | x (-)| x (-) |
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. | - | - |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. | - | - |
 | TOKEN_ERROR | Parameter 'name' did not validate | - | - |
 | TAPP_ERROR | Parameter 'name' did not validate | - | - |
-| CORS_ERROR | Origin Header 'origin' did not valiate. | - | - |
+| PERMISSIONS_NOT_FOUND | Permissions for 'tpid' not found | - | - |
+| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. | - | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user | x | - |
 
@@ -128,37 +128,35 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 ### Write privacy status
 
-=== "Query"
+#### Request
 
-    ``` shell
-    POST https://einwilligen.netid.de/netid-permissions?
-      q.tapp_id.eq=<TAPP_ID>
-    Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
-    Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
-    Cookie: tpid_sec=<JWT_TOKEN>
-    Origin: <ORIGIN>
+```http
+POST https://einwilligen.netid.de/netid-permissions?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
+Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
+Cookie: tpid_sec=<JWT_TOKEN>
+Origin: <ORIGIN>
 
-    {
-      "identification": "true|false",
-      "tc": "<TC string>"
-      "datashare": "VALID"|"INVALID" 
-    }
-    ```
+{
+  "identification": "true|false",
+  "tc": "<TC string>",
+  "datashare": "VALID"|"INVALID" 
+}
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    201 CREATED
-    Location: https://einwilligungsspeicher.netid.de/netid-permissions?
-      q.tapp_id.eq=<TAPP_ID>
-    Access-Control-Allow-Origin: <ORIGIN>
-    Access-Control-Allow-Credentials: true
+```http
+HTTP/1.1 201 Created
+Location: https://einwilligungsspeicher.netid.de/netid-permissions?q.tapp_id.eq=<TAPP_ID>
+Access-Control-Allow-Origin: <ORIGIN>
+Access-Control-Allow-Credentials: true
 
-    {
-      "tpid": "<TPID>|null",
-      "status_code": "OK"|"ID_CONSENT_REQUIRED"
-    }
-    ```
+{
+  "tpid": "<TPID>|null",
+  "status_code": "OK"|"ID_CONSENT_REQUIRED"
+}
+```
 
 !!! info "Remarks"
     - There must be at least one permission ("identification", "tc", "datashare"). Permissions are optional. If a permission should not be written, the JSON property is missing. 
@@ -180,10 +178,10 @@ If the `origin` is eligible, a publisher (TAPP) can access the user’s identifi
 
 | status_code | meaning |
 | ----------- | ----------- |
-| CREATED | Call successful 
+| OK | Call successful 
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. |
+| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
 | NO_REQUEST_BODY | Required request body is missing | 
