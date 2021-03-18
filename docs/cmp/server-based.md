@@ -14,25 +14,25 @@ A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can req
 
 A CMP/netID Partner can retrieve the user's netID Identifier via the following interface:
 
-=== "Query"
+#### Request
 
-    ``` shell
-    GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers
-    Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
-    Authorization: Bearer <Access Token>
-    ```
+```http
+GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers HTTP/1.1
+Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
+Authorization: Bearer <Access Token>
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    200 OK
-    Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 
-    {
-      "tpid": "<TPID>"
-      "status_code": "OK"
-    }
-    ```
+{
+  "tpid": "<TPID>"
+  "status_code": "OK"
+}
+```
 
 #### Response properties
 
@@ -45,13 +45,13 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 | TOKEN_ERROR | Parameter 'name' did not validate | - |
 | NO_TOKEN | Parameter 'name' did not validate | - |
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
+| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
 | 200 OK | `tpid` of the netID user returned |
 | 400 BAD REQUEST | missing access token, or access token expired / invalid |
@@ -61,27 +61,27 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 ### Read privacy status
 
-=== "Query"
+#### Request
 
-    ``` shell
-    GET https://einwilligungsspeicher.netid.de/netid-permissions
-    Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
-    Authorization: Bearer <Access Token>
-    ```
+```http
+GET https://einwilligungsspeicher.netid.de/netid-permissions HTTP/1.1
+Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
+Authorization: Bearer <Access Token>
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    200 OK
-    Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1+json
+```http
+HTTP/1.1 200 OK
+Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1+json
 
-    {
-      "tpid": "<TPID>"|null,
-      "tc": "<TCSTRING>"|null,
-      "datashare": "VALID"|"INVALID"|null,
-      "status_code": "OK"|"ID_CONSENT_REQUIRED"
-    }
-    ```
+{
+  "tpid": "<TPID>"|null,
+  "tc": "<TCSTRING>"|null,
+  "datashare": "VALID"|"INVALID"|null,
+  "status_code": "OK"|"ID_CONSENT_REQUIRED"
+}
+```
   
 #### Response properties
 
@@ -98,7 +98,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 | TOKEN_ERROR | Parameter 'name' did not validate | - |
 | NO_TOKEN | Parameter 'name' did not validate | - |
 | PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. | - |
+| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. | - |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
@@ -107,7 +107,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 | HTTP status code | meaning |
 | ----------- | ----------- |
 | 200 OK | Call successful |
-| 400 BAD REQUEST | missing parameter |
+| 400 BAD REQUEST | Missing parameter |
 | 403 FORBIDDEN | Requesting TAPP isn't active  |
 | 404 NOT FOUND | Permissions for `tpid` not found |
 | 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
@@ -116,30 +116,30 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 ### Write privacy status
 
-=== "Query"
+#### Request
 
-    ``` shell
-    POST https://einwilligen.netid.de/netid-permissions
-    Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
-    Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
+```http
+POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
+Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 
-    {
-      "identification": "true|false",
-      "tc": "<TC string>"
-      "datashare": "VALID"|"INVALID"
-    }
-    ```
+{
+  "identification": "true|false",
+  "tc": "<TC string>",
+  "datashare": "VALID"|"INVALID"
+}
+```
 
-=== "Response"
+#### Response
 
-    ``` shell
-    201 CREATED
+```http
+HTTP/1.1 201 Created
 
-    {
-      "tpid": "<TPID>|null",
-      "status": "OK"
-    }
-    ```
+{
+  "tpid": "<TPID>|null",
+  "status": "OK"
+}
+```
 
 !!! info "Remarks"
     - There must be at least one permission ("identification", "tc", "datashare"). Permissions are optional. If a permission should not be written, the JSON property is missing. 
@@ -161,10 +161,10 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 | status_code | meaning |
 | ----------- | ----------- |
-| CREATED | Call successful 
+| OK | Call successful 
 | NO_TPID | Parameters are missing. Parameter 'name' is missing. |
 | NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
-| INVALID_TAPP_STATUS | TAPP 'tapp_id' is not active. |
+| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
 | NO_REQUEST_BODY | Required request body is missing | 
@@ -174,7 +174,7 @@ A CMP/netID Partner can retrieve the user's netID Identifier via the following i
 
 #### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
 | 201 CREATED | Call successful |
 | 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter 'name' is missing. |
