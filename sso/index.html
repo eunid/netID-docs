@@ -1344,22 +1344,13 @@ Using the Client Credentials from the developer portal, the local host entry, an
 to top</li>
 </ol>
 <h3 id="examples">Examples<a class="headerlink" href="#examples" title="Permanent link">&para;</a></h3>
-<p><strong>PHP</strong>
-In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP">https://github.com/jumbojett/OpenID-Connect-PHP</a>. However, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.</p>
-<p>Installation according to instructions is no problem. The package derives the <em>redirect_uri</em> from its own URL; here, the position of the script in the path of the web server can either be used as <em>redirect_uri</em> when creating the client or configured accordingly in the web server using rewrite rules.</p>
-<p>The following minimal diff makes OpenIDConnectClient.php netID-compatible:</p>
-<div class="highlight"><pre><span></span><code>844a845,848
-&gt;         $signature = base64url_decode(array_pop($parts));
-&gt;         if (false === $signature || &#39;&#39; === $signature) {
-&gt;             throw new OpenIDConnectClientException(&#39;Error decoding signature from token&#39;);
-&gt;         }
-874,877d877
-&lt; // netID has &#39;none&#39;
-&lt;       case &#39;none&#39; :
-&lt;           $verified=true;
-&lt;           break;
-</code></pre></div>
-
+<h4>PHP</h4>
+<p>In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP">https://github.com/jumbojett/OpenID-Connect-PHP</a>.</p>
+<p>According to the instructions, the installation works out of the box. The package derives the <em>redirect_uri</em> from its own URL; here, the position of the script in the path of the web server can either be used as <em>redirect_uri</em> when creating the client or configured accordingly in the web server using rewrite rules.</p>
+<div class="admonition info">
+<p class="admonition-title">Please ensure that Token Signing is enabled</p>
+<p>Otherwise this library will not work without additional patches.</p>
+</div>
 <p>A simple sample client may then look like this:</p>
 <div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
 
@@ -1426,18 +1417,18 @@ In PHP it's possible to use the package <a href="https://github.com/jumbojett/Op
 <span class="x">&lt;/html&gt;</span>
 </code></pre></div>
 
-<p><strong>Javascript</strong>
-One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <a href="https://www.npmjs.com/package/openid-client">https://www.npmjs.com/package/openid-client</a></p>
-<p><strong>Java</strong>
-Spring Security examples for Java:</p>
+<h4>Javascript</h4>
+<p>One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <a href="https://www.npmjs.com/package/openid-client">https://www.npmjs.com/package/openid-client</a></p>
+<h4>Java</h4>
+<p>Spring Security examples for Java:</p>
 <ul>
 <li>GitHub:mitreid-connect/simple-web-app</li>
 <li>GitHub:eugenp/tutorials/tree/master/spring-security-openid</li>
 </ul>
-<p><strong>Rust</strong>
-A good OpenID Connect relying party client for Rust can be found here: <a href="https://docs.rs/crate/oidc/0.2.0">https://docs.rs/crate/oidc/0.2.0</a>.</p>
-<p><strong>Go</strong>
-For go the package GitHub:coreos/go-oidc makes a netID login possible. The package may be installed here:</p>
+<h4>Rust</h4>
+<p>A good OpenID Connect relying party client for Rust can be found here: <a href="https://docs.rs/crate/oidc/0.2.0">https://docs.rs/crate/oidc/0.2.0</a>.</p>
+<h4>Go</h4>
+<p>For go the package GitHub:coreos/go-oidc makes a netID login possible. The package may be installed here:</p>
 <div class="highlight"><pre><span></span><code><span class="k">go</span> <span class="nx">get</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">coreos</span><span class="o">/</span><span class="k">go</span><span class="o">-</span><span class="nx">oidc</span>
 </code></pre></div>
 

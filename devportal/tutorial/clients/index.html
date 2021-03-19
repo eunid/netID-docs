@@ -833,6 +833,11 @@
 <div class="admonition info">
 <p>Please note that netID uses <a href="/sso/#general-overview">pairwise subject identifiers</a>, which are derived respective to the <strong>clients callback url</strong> (more specifically the <strong>hostname</strong> portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion to avoid receiving different <code>sub</code> values for the same user.</p>
 </div>
+<p>Token signing is not strictly necessary, but recommended. To enable token signing choose your preferred signing mechanism (RS256 or ES256).
+To learn more about token signing or validation, please visit <a href="https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation">https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation</a></p>
+<div class="admonition warning">
+<p>Please note that some standard libraries may not work if token signing is set to <code>none</code>.</p>
+</div>
 <p>Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely <strong>Client ID</strong> and <strong>Client Secret</strong>.</p>
 <p>Depending on the status of the clients service w.r.t.<a href="../services/#approval-for-production-use">approval for production use</a> the <strong>Client Secret</strong> will be shown as</p>
 <ul>
