@@ -333,9 +333,12 @@ to top
 
 #### PHP
 
-In PHP it's possible to use the package <https://github.com/jumbojett/OpenID-Connect-PHP>. However, some adjustments are necessary if the token signature algorithm is set to 'none' in the Authorization Code Flow.
+In PHP it's possible to use the package <https://github.com/jumbojett/OpenID-Connect-PHP>.
 
-Installation according to instructions is no problem. The package derives the *redirect_uri* from its own URL; here, the position of the script in the path of the web server can either be used as *redirect_uri* when creating the client or configured accordingly in the web server using rewrite rules.
+According to the instructions, the installation works out of the box. The package derives the *redirect_uri* from its own URL; here, the position of the script in the path of the web server can either be used as *redirect_uri* when creating the client or configured accordingly in the web server using rewrite rules.
+
+!!! Info "Please ensure that Token Signing is enabled"
+    Otherwise this library will not work without additional patches.
 
 A simple sample client may then look like this:
 
@@ -405,19 +408,7 @@ $sub = $oidc->getVerifiedClaims('sub');
 </html>
 ```
 
-The following minimal diff makes OpenIDConnectClient.php netID-compatible if the token signature algorithm is set to 'none'.
-```diff
-844a845,848
->         $signature = base64url_decode(array_pop($parts));
->         if (false === $signature || '' === $signature) {
->             throw new OpenIDConnectClientException('Error decoding signature from token');
->         }
-874,877d877
-< // netID has 'none'
-<       case 'none' :
-<           $verified=true;
-<           break;
-```
+
 
 #### Javascript
 
