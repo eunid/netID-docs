@@ -26,6 +26,12 @@ Fill out the necessary details, most importantly in case this client is meant fo
 !!! info ""
     Please note that netID uses [pairwise subject identifiers](/sso/#general-overview), which are derived respective to the **clients callback url** (more specifically the **hostname** portion) set here. If you're using multiple clients for a service, you may want to use callback urls with identical host portion to avoid receiving different `sub` values for the same user.
 
+Token signing is not strictly necessary, but recommended. To enable token signing choose your preferred signing mechanism (RS256 or ES256).
+To learn more about token signing or validation, please visit https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation
+
+!!! warning ""
+    Please note that some standard libraries may not work if token signing is set to `none`.
+
 Once the client is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely **Client ID** and **Client Secret**.
 
 Depending on the status of the clients service w.r.t.[approval for production use](services.md#approval-for-production-use) the **Client Secret** will be shown as

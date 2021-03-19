@@ -331,25 +331,14 @@ to top
 
 ### Examples
 
-**PHP**
-In PHP it's possible to use the package <https://github.com/jumbojett/OpenID-Connect-PHP>. However, some adjustments are necessary, since netID always uses none for the token signature algorithm in the Authorization Code Flow.
+#### PHP
 
-Installation according to instructions is no problem. The package derives the *redirect_uri* from its own URL; here, the position of the script in the path of the web server can either be used as *redirect_uri* when creating the client or configured accordingly in the web server using rewrite rules.
+In PHP it's possible to use the package <https://github.com/jumbojett/OpenID-Connect-PHP>.
 
-The following minimal diff makes OpenIDConnectClient.php netID-compatible:
+According to the instructions, the installation works out of the box. The package derives the *redirect_uri* from its own URL; here, the position of the script in the path of the web server can either be used as *redirect_uri* when creating the client or configured accordingly in the web server using rewrite rules.
 
-```diff
-844a845,848
->         $signature = base64url_decode(array_pop($parts));
->         if (false === $signature || '' === $signature) {
->             throw new OpenIDConnectClientException('Error decoding signature from token');
->         }
-874,877d877
-< // netID has 'none'
-<       case 'none' :
-<           $verified=true;
-<           break;
-```
+!!! Info "Please ensure that Token Signing is enabled"
+    Otherwise this library will not work without additional patches.
 
 A simple sample client may then look like this:
 
@@ -419,19 +408,25 @@ $sub = $oidc->getVerifiedClaims('sub');
 </html>
 ```
 
-**Javascript**
+
+
+#### Javascript
+
 One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <https://www.npmjs.com/package/openid-client>
 
-**Java**
+#### Java
+
 Spring Security examples for Java:
 
 - GitHub:mitreid-connect/simple-web-app
 - GitHub:eugenp/tutorials/tree/master/spring-security-openid
 
-**Rust**
+#### Rust
+
 A good OpenID Connect relying party client for Rust can be found here: <https://docs.rs/crate/oidc/0.2.0>.
 
-**Go**
+#### Go
+
 For go the package GitHub:coreos/go-oidc makes a netID login possible. The package may be installed here:
 
 ```go
