@@ -19,7 +19,7 @@ Using clients you can manage the technical details for an integration into your 
 
 To create a client for a service, select **Add client** in the [details view](services.md#service-details-view) of the service. Client Details can be defined in the provided form.
 
-![netid](../../images/devportal/netid_dev_portal_add_client_2.png){: style="width:50%;display: block; margin: 0 auto;" }
+![netid](../../images/devportal/netid_dev_portal_add_client.png){: style="width:50%;display: block; margin: 0 auto;" }
 
 Fill out the necessary details, most importantly in case this client is meant for production use make sure that the **Callback URL** points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.
 
