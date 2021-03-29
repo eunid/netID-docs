@@ -41,12 +41,12 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
-| TOKEN_ERROR | Parameter 'name' did not validate | - |
-| NO_TOKEN | Parameter 'name' did not validate | - |
+| NO_TPID | No `tpid` in request available. | - |
+| TOKEN_ERROR | Access token was expired or invalid. | - |
+| NO_TOKEN | No access token was passed. | - |
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
@@ -79,7 +79,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
   "tpid": "<TPID>"|null,
   "tc": "<TCSTRING>"|null,
   "datashare": "VALID"|"INVALID"|null,
-  "status_code": "OK"|"ID_CONSENT_REQUIRED"
+  "status_code": "OK"
 }
 ```
   
@@ -94,12 +94,12 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
 | OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. Parameter 'name' is missing. | - |
-| TOKEN_ERROR | Parameter 'name' did not validate | - |
-| NO_TOKEN | Parameter 'name' did not validate | - |
+| NO_TPID | No `tpid` in request available. | - |
+| TOKEN_ERROR | Access token was expired or invalid. | - |
+| NO_TOKEN | No access token was passed. | - |
 | PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
-| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' | - |
+| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
+| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 #### Response behavior
@@ -110,7 +110,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | 400 BAD REQUEST | Missing parameter |
 | 403 FORBIDDEN | Requesting TAPP isn't active  |
 | 404 NOT FOUND | Permissions for `tpid` not found |
-| 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
+| 410 GONE | `tpid` (account) does not exist any more. |
 
 ## Write APIs
 
@@ -162,15 +162,15 @@ HTTP/1.1 201 Created
 | status_code | meaning |
 | ----------- | ----------- |
 | OK | Call successful 
-| NO_TPID | Parameters are missing. Parameter 'name' is missing. |
-| NO_TAPP_ID | Parameters are missing. Parameter 'name' is missing. |
-| TAPP_NOT_ALLOWED | TAPP 'tapp_id' is not allowed. |
+| NO_TPID | No `tpid` in request available. |
+| NO_TAPP_ID | Mandatory parameter `tapp_id` is missing. |
+| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. |
 | TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user |
 | NO_REQUEST_BODY | Required request body is missing | 
 | JSON_PARSE_ERROR | Invalid JSON body, parse error | 
 | NO_PERMISSIONS | Parameters are missing. At least one permission must be set | 
-| PERMISSION_PARAMETERS_ERROR | Parameters 'name' did not validate | 
+| PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission. Name ("identification", "tc", "datashare") or value unknown.  | 
 
 #### Response behavior
 
@@ -179,4 +179,4 @@ HTTP/1.1 201 Created
 | 201 CREATED | Call successful |
 | 400 BAD REQUEST | - missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid. Parameter 'name' is missing. |
 | 403 FORBIDDEN | - missing parameters (`tapp_id`, `origin`) <br> - requesting TAPP isn't active |
-| 410 GONE | `tpid` does not exist any more: 'NO_DETAILS', 'DELETED', 'MIGRATED' |
+| 410 GONE | `tpid` (account) does not exist any more. |
