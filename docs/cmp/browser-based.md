@@ -53,26 +53,24 @@ Access-Control-Allow-Credentials: true
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - |
-<br>
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - 
 
 #### Response behavior
 
 | HTTP status code | meaning |
 | ----------- | ----------- |
-| 200 OK | - `tpid` of the netID user returned, if consent is given. |
-| 400 BAD REQUEST | - Parameters are missing or invalid. |
-| 403 FORBIDDEN | - Consent for passing the `tpid` ("identification") was not given or was revoked by the user. |
-| 404 NOT FOUND | - Permissions for `tpid` not found. |
-| 410 GONE | - Account does not exist anymore. |
-<br>
+| 200 OK | `tpid` of the netID user returned, if consent is given. |
+| 400 BAD REQUEST | Parameters are missing or invalid. |
+| 403 FORBIDDEN | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. |
+| 404 NOT FOUND |  Permissions for `tpid` not found. |
+| 410 GONE |  Account does not exist anymore. |
+
 ### Read privacy status
 
 #### Request
 
 ```http
-GET https://einwilligungsspeicher.netid.de/netid-permissions? HTTP/1.1
-    q.tapp_id.eq=<TAPP_ID>
+GET https://einwilligungsspeicher.netid.de/netid-permissions?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
 Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
 Cookie: tpid_sec=<JWT_TOKEN>
 Origin: <ORIGIN>
@@ -94,14 +92,13 @@ Access-Control-Allow-Credentials: true
 }
 ```
 
-#### Response Properties 
+#### Response Properties
 
 | item | description |
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null. |
 | tc | TC string stored for this `tpid` for this respective netID Partner (TAPP). Only with status "OK". Otherwise null. |
 | datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
-<br>
 
 | status_code | meaning | tc | tpid |
 | ----------- | ----------- | ----------- | ----------- |
@@ -114,17 +111,17 @@ Access-Control-Allow-Credentials: true
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. | x | - |
-<br>
+
 #### Response behavior
 
 | HTTP status code | meaning |
 | ----------- | ----------- |
-| 200 OK | - `tpid` of the netID user is returned, if consent of "identification" is given. In case the consent for passing the `tpid` is missing ("identification") `null` is returned. <br> - Stored TC String is returned (might be `null`). <br> - In case the consent for "datashare" is missing, `null` is returned. |
-| 400 BAD REQUEST | - Missing authentication/no tpid_sec cookie available. <br> - Provided token (JWT) in the tpid_sec cookie is expired or invalid. |
-| 403 FORBIDDEN | - Missing parameters (`tapp_id`, `origin`). <br> - requesting TAPP isn't active. |
-| 404 NOT FOUND | - Permissions for `tpid` not found. |
+| 200 OK | `tpid` of the netID user is returned, if consent of "identification" is given. In case the consent for passing the `tpid` is missing ("identification") `null` is returned. <br>  Stored TC String is returned (might be `null`). <br> In case the consent for "datashare" is missing, `null` is returned. |
+| 400 BAD REQUEST |  Missing authentication/no tpid_sec cookie available. <br>  Provided token (JWT) in the tpid_sec cookie is expired or invalid. |
+| 403 FORBIDDEN |  Missing parameters (`tapp_id`, `origin`). <br> requesting TAPP isn't active. |
+| 404 NOT FOUND | Permissions for `tpid` not found. |
 | 410 GONE | Account does not exist anymore. |
-<br>
+
 ## Write API
 
 ### Write privacy status
@@ -163,14 +160,13 @@ Access-Control-Allow-Credentials: true
     - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
     - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.
     - In case of revocation the consent for "identification", "identification: false" is passed.
-<br>
+
 #### Request properties
 
 |item|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
 | tc | TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0) |
-<br>
 
 #### Response properties
 
@@ -187,8 +183,8 @@ Access-Control-Allow-Credentials: true
 | NO_REQUEST_BODY | Required request body is missing. | 
 | JSON_PARSE_ERROR | Invalid JSON body, parse error. | 
 | NO_PERMISSIONS | Parameters are missing. At least one permission must be set. | 
-| PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission. Name ("identification", "tc") or value unknown.  | 
-<br>
+| PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission. Name ("identification", "tc") or value unknown.  |
+
 #### Response behavior
 
 | HTTP status code | meaning |

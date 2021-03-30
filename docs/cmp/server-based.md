@@ -47,8 +47,8 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - |
-<br>
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | -
+
 #### Response behavior
 
 | HTTP status code | meaning |
@@ -58,7 +58,7 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | 403 FORBIDDEN | Requesting TAPP isn't active or consent for "identification" isn't granted. |
 | 404 NOT FOUND | `tpid` in access token does not exist. |
 | 410 GONE | Account does not exist anymore. |
-<br>
+
 ### Read privacy status
 
 #### Request
@@ -102,7 +102,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
-<br>
+
 #### Response behavior
 
 | HTTP status code | meaning |
@@ -112,7 +112,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | 403 FORBIDDEN | Requesting TAPP isn't active.  |
 | 404 NOT FOUND | Permissions for `tpid` not found. |
 | 410 GONE | Account does not exist anymore. |
-<br>
+
 ## Write APIs
 
 ### Write privacy status
@@ -123,7 +123,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
 Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
 Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
-
+Authorization: Bearer <Access Token>
 {
   "identification": "true|false",
   "tc": "<TC string>"
