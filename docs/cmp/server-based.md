@@ -46,7 +46,7 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | NO_TOKEN | No access token was passed. | - |
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - |
 <br>
 #### Response behavior
@@ -57,7 +57,7 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | 400 BAD REQUEST | Missing access token, or access token expired / invalid. |
 | 403 FORBIDDEN | Requesting TAPP isn't active or consent for "identification" isn't granted. |
 | 404 NOT FOUND | `tpid` in access token does not exist. |
-| 410 GONE | `tpid` in access token isn't active. |
+| 410 GONE | Account does not exist anymore. |
 <br>
 ### Read privacy status
 
@@ -100,7 +100,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | NO_TOKEN | No access token was passed. | - |
 | PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 <br>
 #### Response behavior
@@ -111,7 +111,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | 400 BAD REQUEST | Missing parameter. |
 | 403 FORBIDDEN | Requesting TAPP isn't active.  |
 | 404 NOT FOUND | Permissions for `tpid` not found. |
-| 410 GONE | `tpid` (account) does not exist any more. |
+| 410 GONE | Account does not exist anymore. |
 <br>
 ## Write APIs
 
@@ -165,7 +165,7 @@ HTTP/1.1 201 Created
 | NO_TPID | No `tpid` in request available. |
 | NO_TAPP_ID | Mandatory parameter `tapp_id` is missing. |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. |
 | NO_REQUEST_BODY | Required request body is missing. | 
 | JSON_PARSE_ERROR | Invalid JSON body, parse error. | 
@@ -179,4 +179,4 @@ HTTP/1.1 201 Created
 | 201 CREATED | Call successful |
 | 400 BAD REQUEST | - Missing authentication.  <br> - Provided token access cookie is expired or invalid. No access token passed. |
 | 403 FORBIDDEN | - Missing parameters (`tapp_id`, `origin`) <br> - Requesting TAPP isn't active. |
-| 410 GONE | `tpid` (account) does not exist any more. |
+| 410 GONE | Account does not exist anymore. |

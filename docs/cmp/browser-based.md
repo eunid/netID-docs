@@ -52,7 +52,7 @@ Access-Control-Allow-Credentials: true
 | TAPP_ERROR | TAPP `tapp_id` is invalid. | - |
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - |
 <br>
 
@@ -64,7 +64,7 @@ Access-Control-Allow-Credentials: true
 | 400 BAD REQUEST | - Parameters are missing or invalid. |
 | 403 FORBIDDEN | - Consent for passing the `tpid` ("identification") was not given or was revoked by the user. |
 | 404 NOT FOUND | - Permissions for `tpid` not found. |
-| 410 GONE | - `tpid` (account) does not exist any more. |
+| 410 GONE | - Account does not exist anymore. |
 <br>
 ### Read privacy status
 
@@ -112,7 +112,7 @@ Access-Control-Allow-Credentials: true
 | TAPP_ERROR | `tapp_id` is invalid. | - | - |
 | PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - | - |
-| TPID_EXISTENCE_ERROR | `tpid` ("identification") does not exist any more. | - | - |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. | x | - |
 <br>
 #### Response behavior
@@ -123,7 +123,7 @@ Access-Control-Allow-Credentials: true
 | 400 BAD REQUEST | - Missing authentication/no tpid_sec cookie available. <br> - Provided token (JWT) in the tpid_sec cookie is expired or invalid. |
 | 403 FORBIDDEN | - Missing parameters (`tapp_id`, `origin`). <br> - requesting TAPP isn't active. |
 | 404 NOT FOUND | - Permissions for `tpid` not found. |
-| 410 GONE | `tpid` (account) does not exist any more. |
+| 410 GONE | Account does not exist anymore. |
 <br>
 ## Write API
 
