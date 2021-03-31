@@ -29,6 +29,7 @@ nav:
       - About netID: index.md
       - FAQ: faq.md
       - System Status: status.md
+      - Changelog: changelog.md
     - Developer Portal:
         - Getting started: devportal/index.md
         - Tutorials:
