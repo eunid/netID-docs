@@ -841,35 +841,31 @@
 <h2 id="read-apis">Read APIs<a class="headerlink" href="#read-apis" title="Permanent link">&para;</a></h2>
 <h3 id="netid-identifier">netID Identifier<a class="headerlink" href="#netid-identifier" title="Permanent link">&para;</a></h3>
 <p>If the <code>origin</code> is eligible, a publisher (TAPP) can access the user’s identifier (<code>tpid</code>) via the following interface:</p>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>GET https://einwilligungsspeicher.netid.de/identification/tpid
-    ?tapp_id<span class="o">=</span>&lt;TAPP_ID&gt;
-Accept: application/vnd.netid.identification.tpid-read-v1+json
-Cookie: <span class="nv">tpid_sec</span><span class="o">=</span>&lt;JWT_TOKEN&gt;
-Origin: &lt;ORIGIN&gt;
+<h4>Request</h4>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">https://einwilligungsspeicher.netid.de/netid-subject-identifiers?q.tapp_id.eq=&lt;TAPP_ID&gt;</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-v1+json</span>
+<span class="na">Cookie</span><span class="o">:</span> <span class="l">tpid_sec=&lt;JWT_TOKEN&gt;</span>
+<span class="na">Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
 </code></pre></div>
 
-</div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Response</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="m">200</span> OK
-Content-Type: application/vnd.netid.identification.tpid-read-v1+json
-Access-Control-Allow-Origin: &lt;ORIGIN&gt;
-Access-Control-Allow-Credentials: <span class="nb">true</span>
+<h4>Response</h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-v1+json</span>
+<span class="na">Access-Control-Allow-Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
+<span class="na">Access-Control-Allow-Credentials</span><span class="o">:</span> <span class="l">true</span>
 
-<span class="o">{</span>
-  <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;TPID&gt;|null&quot;</span>
-  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED&quot;</span>
-<span class="o">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;tpid&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;TPID&gt;&quot;</span>
+  <span class="s2">&quot;status_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
 
-</div>
-</div>
 <h4>Response properties</h4>
-<p><code>tpid</code> - Users netID Identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</p>
+<p><code>tpid</code> - users netID identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</p>
 <table>
 <thead>
 <tr>
-<th>status</th>
+<th>status_code</th>
 <th>meaning</th>
 <th>tpid</th>
 </tr>
@@ -877,22 +873,47 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successful - In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned</td>
-<td>x (-)</td>
+<td>Call successful</td>
+<td>x</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
-<td>There was no tpid_sec cookie available.</td>
+<td>No tpid_sec cookie in request available.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>NO_TAPP_ID</td>
+<td>Mandatory parameter <code>tapp_id</code> is missing.</td>
 <td>-</td>
 </tr>
 <tr>
 <td>TOKEN_ERROR</td>
-<td>Token (JWT) in the cookie is expired or  invalid.</td>
+<td>Token (JWT) in the cookie is expired or invalid.</td>
 <td>-</td>
 </tr>
 <tr>
-<td>CONSENT_REQUIRED</td>
-<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
+<td>TAPP_ERROR</td>
+<td>TAPP <code>tapp_id</code> is invalid.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_NOT_FOUND</td>
+<td>Permissions for <code>tpid</code> not found.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td>Account does not exist anymore.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was not given or was revoked by the user.</td>
 <td>-</td>
 </tr>
 </tbody>
@@ -901,58 +922,55 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <table>
 <thead>
 <tr>
-<th>status code</th>
+<th>HTTP status code</th>
 <th>meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>- <code>tpid</code> of the netID user returned</td>
+<td><code>tpid</code> of the netID user returned, if consent is given.</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
-<td>- missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid</td>
+<td>Parameters are missing or invalid.</td>
 </tr>
 <tr>
 <td>403 FORBIDDEN</td>
-<td>- missing/invalid parameters (<code>tapp_id</code>, <code>origin</code>) <br> - requesting TAPP isn't active  - consent for 'identification' isn't granted</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was not given or was revoked by the user.</td>
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>- <code>tpid</code> in tpid_sec cookie does not exist</td>
+<td>Permissions for <code>tpid</code> not found.</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td>- <code>tpid</code> in tpid_sec cookie isn't active</td>
+<td>Account does not exist anymore.</td>
 </tr>
 </tbody>
 </table>
 <h3 id="read-privacy-status">Read privacy status<a class="headerlink" href="#read-privacy-status" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>GET https://einwilligungsspeicher.netid.de/permissions/iab-permissions?
-    <span class="nv">tapp_id</span><span class="o">=</span>&lt;TAPP_ID&gt;
-Accept: application/vnd.netid.permissions.iab-permissions-read-v1+json
-Cookie: <span class="nv">tpid_sec</span><span class="o">=</span>&lt;JWT_TOKEN&gt;
-Origin: &lt;ORIGIN&gt;
+<h4>Request</h4>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">https://einwilligungsspeicher.netid.de/netid-permissions?q.tapp_id.eq=&lt;TAPP_ID&gt;</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-permission-status-v1+json</span>
+<span class="na">Cookie</span><span class="o">:</span> <span class="l">tpid_sec=&lt;JWT_TOKEN&gt;</span>
+<span class="na">Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
 </code></pre></div>
 
-</div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Response</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="m">200</span> OK
-Content-Type: application/vnd.netid.permissions.iab-permissions-read-v1+json
-Access-Control-Allow-Origin: &lt;ORIGIN&gt;
-Access-Control-Allow-Credentials: <span class="nb">true</span>
+<h4>Response</h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permissions.iab-permissions-read-v1+json</span>
+<span class="na">Access-Control-Allow-Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
+<span class="na">Access-Control-Allow-Credentials</span><span class="o">:</span> <span class="l">true</span>
 
-<span class="o">{</span>
-  <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;TPID&gt;|null&quot;</span>,
-  <span class="s2">&quot;tc&quot;</span>: <span class="s2">&quot;&lt;TC string&gt;|null&quot;</span>,
-  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;OK|NO_TPID|TOKEN_ERROR|CONSENT_REQUIRED&quot;</span>
-<span class="o">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;tpid&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;TPID&gt;&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;tc&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;TCSTRING&gt;&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;datashare&quot;</span><span class="p">:</span> <span class="s2">&quot;VALID&quot;</span><span class="err">|</span><span class="s2">&quot;INVALID&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span>
+  <span class="nt">&quot;status_code&quot;</span><span class="p">:</span> <span class="s2">&quot;OK&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
 
-</div>
-</div>
 <h4>Response Properties</h4>
 <table>
 <thead>
@@ -964,18 +982,22 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>tpid</td>
-<td>Users identifier (<code>tpid</code>). Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null</td>
+<td>Users netID identifier (<code>tpid</code>). Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</td>
 </tr>
 <tr>
 <td>tc</td>
-<td>TC string stored for this <code>tpid</code> for this respective netID Partner (TAPP). Only with status "OK". Otherwise null</td>
+<td>TC string stored for this <code>tpid</code> for this respective netID Partner (TAPP). Only with status "OK". Otherwise null.</td>
+</tr>
+<tr>
+<td>datashare</td>
+<td>If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null.</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th>status</th>
+<th>status_code</th>
 <th>meaning</th>
 <th>tc</th>
 <th>tpid</th>
@@ -984,25 +1006,55 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <tbody>
 <tr>
 <td>OK</td>
-<td>Call successful - In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned, otherwise the <code>tpid</code>. Stored TC String is returned (might be <code>null</code>)</td>
+<td>Call successful <br> - In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned, otherwise the <code>tpid</code>. Stored TC String is returned (might be <code>null</code>). In case the consent for "datashare" is missing, <code>null</code> is returned.</td>
 <td>x (-)</td>
 <td>x (-)</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
-<td>There was no tpid_sec cookie available.</td>
+<td>No tpid_sec cookie in request available.</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>NO_TAPP_ID</td>
+<td>Mandatory parameter <code>tapp_id</code> is missing.</td>
 <td>-</td>
 <td>-</td>
 </tr>
 <tr>
 <td>TOKEN_ERROR</td>
-<td>Token (JWT) in the tpid_sec cookie is expired or invalid.</td>
+<td>Token (JWT) in the cookie is expired or invalid.</td>
 <td>-</td>
 <td>-</td>
 </tr>
 <tr>
-<td>CONSENT_REQUIRED</td>
-<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user</td>
+<td>TAPP_ERROR</td>
+<td><code>tapp_id</code> is invalid.</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PERMISSIONS_NOT_FOUND</td>
+<td>Permissions for <code>tpid</code> not found.</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td>Account does not exist anymore.</td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user.</td>
 <td>x</td>
 <td>-</td>
 </tr>
@@ -1012,70 +1064,67 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <table>
 <thead>
 <tr>
-<th>status code</th>
+<th>HTTP status code</th>
 <th>meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>- <code>tpid</code> of the netID user is returned, if consent of "identification" is given <br> - TC String is returned if present</td>
+<td><code>tpid</code> of the netID user is returned, if consent of "identification" is given. In case the consent for passing the <code>tpid</code> is missing ("identification") <code>null</code> is returned. <br>  Stored TC String is returned (might be <code>null</code>). <br> In case the consent for "datashare" is missing, <code>null</code> is returned.</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
-<td>- missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid</td>
+<td>Missing authentication/no tpid_sec cookie available. <br>  Provided token (JWT) in the tpid_sec cookie is expired or invalid.</td>
 </tr>
 <tr>
 <td>403 FORBIDDEN</td>
-<td>- missing parameters (<code>tapp_id</code>, <code>origin</code>) <br> - requesting TAPP isn't active</td>
+<td>Missing parameters (<code>tapp_id</code>, <code>origin</code>). <br> requesting TAPP isn't active.</td>
 </tr>
 <tr>
 <td>404 NOT FOUND</td>
-<td>- <code>tpid</code> in tpid_sec cookie does not exist <br> - consent for "identification" is not granted and TC String is not available <br> - TC String is not available</td>
+<td>Permissions for <code>tpid</code> not found.</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td><code>tpid</code> in tpid_sec cookie isn't active</td>
+<td>Account does not exist anymore.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="write-api">Write API<a class="headerlink" href="#write-api" title="Permanent link">&para;</a></h2>
 <h3 id="write-privacy-status">Write privacy status<a class="headerlink" href="#write-privacy-status" title="Permanent link">&para;</a></h3>
-<div class="tabbed-set" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>POST https://einwilligen.netid.de/permissions/iab-permissions?
-  <span class="nv">tapp_id</span><span class="o">=</span>&lt;TAPP_ID&gt;
-Content-Type: application/vnd.netid.permissions.iab-permission-write-v1+json
-Cookie: <span class="nv">tpid_sec</span><span class="o">=</span>&lt;JWT_TOKEN&gt;
-Origin: &lt;ORIGIN&gt;
+<h4>Request</h4>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">https://einwilligen.netid.de/netid-permissions?q.tapp_id.eq=&lt;TAPP_ID&gt;</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-permissions-v1+json</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json</span>
+<span class="na">Cookie</span><span class="o">:</span> <span class="l">tpid_sec=&lt;JWT_TOKEN&gt;</span>
+<span class="na">Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
 
-<span class="o">{</span>
-  <span class="s2">&quot;identification&quot;</span>: <span class="s2">&quot;true|false&quot;</span>,
-  <span class="s2">&quot;tc&quot;</span>: <span class="s2">&quot;&lt;TC string&gt;&quot;</span>
-<span class="o">}</span>
+<span class="p">{</span>
+  <span class="nt">&quot;identification&quot;</span><span class="p">:</span> <span class="s2">&quot;true|false&quot;</span><span class="p">,</span>
+  <span class="nt">&quot;tc&quot;</span><span class="p">:</span> <span class="s2">&quot;&lt;TC string&gt;&quot;</span>
+<span class="p">}</span>
 </code></pre></div>
 
-</div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Response</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code><span class="m">201</span> CREATED
-Location: https://einwilligungsspeicher.netid.de/permissions/iab-permissions?
-  <span class="nv">tapp_id</span><span class="o">=</span>&lt;TAPP_ID&gt;
-Access-Control-Allow-Origin: &lt;ORIGIN&gt;
-Access-Control-Allow-Credentials: <span class="nb">true</span>
+<h4>Response</h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+<span class="na">Location</span><span class="o">:</span> <span class="l">https://einwilligungsspeicher.netid.de/netid-permissions?q.tapp_id.eq=&lt;TAPP_ID&gt;</span>
+<span class="na">Access-Control-Allow-Origin</span><span class="o">:</span> <span class="l">&lt;ORIGIN&gt;</span>
+<span class="na">Access-Control-Allow-Credentials</span><span class="o">:</span> <span class="l">true</span>
 
-<span class="o">{</span>
-  <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;TPID&gt;|null&quot;</span>,
-  <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;OK|NO_TPID|TOKEN_ERROR&quot;</span>
-<span class="o">}</span>
+{
+  &quot;tpid&quot;: &quot;&lt;TPID&gt;|null&quot;,
+  &quot;status_code&quot;: &quot;OK&quot;
+}
 </code></pre></div>
 
-</div>
-</div>
 <div class="admonition info">
 <p class="admonition-title">Remarks</p>
 <ul>
+<li>There must be at least one permission ("identification", "tc"). Permissions are optional. If a permission should not be written, the JSON property is missing. </li>
 <li>If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.</li>
-<li>If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. Both can also be written at the same time.</li>
-<li>In case of revocation the consent for "identification", only "identification: false" is passed.</li>
+<li>If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.</li>
+<li>In case of revocation the consent for "identification", "identification: false" is passed.</li>
 </ul>
 </div>
 <h4>Request properties</h4>
@@ -1093,31 +1142,59 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>tc</td>
-<td>TC String which should be stored for this user in relation to the netID Partner (TCF 2.0)</td>
+<td>TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0)</td>
 </tr>
 </tbody>
 </table>
 <h4>Response properties</h4>
-<p><code>tpid</code> - Users netID Identifier. Only present if consent "Identification" is given, the <code>tpid</code> is known and status is "OK". Otherwise null.</p>
+<p><code>tpid</code> - Users netID identifier. Only passed, if consent "identification" is given, the <code>tpid</code> is known and status is "OK". Otherwise null.</p>
 <table>
 <thead>
 <tr>
-<th>status</th>
+<th>status_code</th>
 <th>meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>OK</td>
-<td>TC String/consent for "identification" was stored.</td>
+<td>Call successful</td>
 </tr>
 <tr>
 <td>NO_TPID</td>
-<td>There was no <code>tpid_sec</code> cookie available.</td>
+<td>No tpid_sec cookie in request available.</td>
 </tr>
 <tr>
-<td>TOKEN_ERROR</td>
-<td>Token (JWT) in the cookie has expired or is invalid.</td>
+<td>NO_TAPP_ID</td>
+<td>Mandatory parameter <code>tapp_id</code> is missing.</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td><code>tpid</code> ("identification") does not exist any more.</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user.</td>
+</tr>
+<tr>
+<td>NO_REQUEST_BODY</td>
+<td>Required request body is missing.</td>
+</tr>
+<tr>
+<td>JSON_PARSE_ERROR</td>
+<td>Invalid JSON body, parse error.</td>
+</tr>
+<tr>
+<td>NO_PERMISSIONS</td>
+<td>Parameters are missing. At least one permission must be set.</td>
+</tr>
+<tr>
+<td>PERMISSION_PARAMETERS_ERROR</td>
+<td>Syntactic or semantic error in a permission. Name ("identification", "tc") or value unknown.</td>
 </tr>
 </tbody>
 </table>
@@ -1125,7 +1202,7 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 <table>
 <thead>
 <tr>
-<th>status code</th>
+<th>HTTP status code</th>
 <th>meaning</th>
 </tr>
 </thead>
@@ -1136,15 +1213,15 @@ Access-Control-Allow-Credentials: <span class="nb">true</span>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
-<td>- missing authentication/no tpid_sec cookie available <br> - provided token (JWT) in the tpid_sec cookie is expired or invalid</td>
+<td>- Missing authentication/no tpid_sec cookie available. <br> - Provided token (JWT) in the tpid_sec cookie is expired or invalid.</td>
 </tr>
 <tr>
 <td>403 FORBIDDEN</td>
-<td>- missing parameters (<code>tapp_id</code>, <code>origin</code>) <br> - requesting TAPP isn't active</td>
+<td>- Missing parameters (<code>tapp_id</code>, <code>origin</code>). <br> - Requesting TAPP isn't active.</td>
 </tr>
 <tr>
 <td>410 GONE</td>
-<td><code>tpid</code> in tpid_sec cookie isn't active</td>
+<td><code>tpid</code> (account) does not exist any more.</td>
 </tr>
 </tbody>
 </table>
