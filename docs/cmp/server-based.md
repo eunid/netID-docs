@@ -125,7 +125,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
 Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Authorization: Bearer <Access Token>
 {
-  "identification": "true|false",
+  "identification": true|false,
   "tc": "<TC string>"
 }
 ```
