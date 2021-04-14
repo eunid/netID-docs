@@ -139,7 +139,7 @@ Cookie: tpid_sec=<JWT_TOKEN>
 Origin: <ORIGIN>
 
 {
-  "identification": "true|false",
+  "identification": true|false,
   "tc": "<TC string>"
 }
 ```
