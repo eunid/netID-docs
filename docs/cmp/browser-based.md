@@ -39,7 +39,7 @@ Access-Control-Allow-Credentials: true
 }
 ```
 
-#### Response properties 
+#### Response properties
 
 `tpid` - users netID identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
@@ -80,7 +80,7 @@ Origin: <ORIGIN>
 
 ```http
 HTTP/1.1 200 OK
-Content-Type: application/vnd.netid.permissions.iab-permissions-read-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1+json
 Access-Control-Allow-Origin: <ORIGIN>
 Access-Control-Allow-Credentials: true
 
@@ -130,7 +130,7 @@ Access-Control-Allow-Credentials: true
 
 ```http
 POST https://einwilligen.netid.de/netid-permissions?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
-Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Cookie: tpid_sec=<JWT_TOKEN>
 Origin: <ORIGIN>

@@ -1,10 +1,12 @@
 # Data export
 
-Using this API netID Partners can request the consent status (privacy status) of the netID Permissions and TC strings of users unrelated to a specific context, via the specification of changed_since deltas can also be requested.
+Using this API netID Partners can retrieve the current status (privacy status) with respect to netID Permissions and TC strings of end users. This allows server based synchronization in case a netID partner maintains its users privacy status also persistently in his own backend infrastructure and not only locally on end users devices.
+
+By specifying a *changed_since* parameter deltas w.r.t. that point in time can be requested to allow for batched updates.
 
 ## netID Permissions
 
-Allows a netID Partner to retrieve the status with respect to netID Permissions (omitting TC information). This API can be called unrelated to the CMP.
+Allows a individual netID Partner to retrieve the status with respect to netID Permissions (omitting TC information).
 
 === "Query"
 
@@ -29,11 +31,6 @@ Allows a netID Partner to retrieve the status with respect to netID Permissions 
           "type": "IDCONSENT",
           "status": "VALID",
           "changed_at": "<timestamp>"
-        },
-        {
-          "tpid": "<tpid>",
-          "tc": "<tc-string>",
-          "changed_at": "<timestamp>"
         }
       ]
     }
@@ -43,14 +40,14 @@ Allows a netID Partner to retrieve the status with respect to netID Permissions 
 
 | status code | meaning |
 | ----------- | ----------- |
-| 200 OK | Call successful | 
-| 400 BAD REQUEST | Missing parameter `changed_since` | 
-| 401 UNAUTHORIZED | No (valid) authentication provided | 
+| 200 OK | Call successful |
+| 400 BAD REQUEST | Missing parameter `changed_since` |
+| 401 UNAUTHORIZED | No (valid) authentication provided |
 | 403 FORBIDDEN | Missing parameters (`tapp_id`) and/or requesting TAPP isn't active |
 
 ## Complete Privacy Status
 
-Allows a netID Partners CMP to retrieve the status with respect to netID Permissions (omitting TC information) as well as TC information.
+Allows netID Partners to retrieve the status with respect to netID Permissions as well as TC information. In case multiple statuses are managed via the same integration (*cmp_id*), the API allows to query for specific partner IDs or multiple.
 
 === "Query"
 
