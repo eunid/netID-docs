@@ -121,7 +121,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 
 ```http
 POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
-Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Authorization: Bearer <Access Token>
 {
