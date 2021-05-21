@@ -9,10 +9,8 @@ Allows a netID Partner to retrieve the status with respect to netID Permissions 
 === "Query"
 
     ``` shell
-    GET https://einwilligungsuebersicht.netid.de/permissions/iab-permissions?
-      &tapp_id=<TAPP_ID>
-      &changed_since=<DATE>
-    Accept: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+    GET https://einwilligungsuebersicht.netid.de/netid-permissions/?q.tapp_id.eq=<TAPP_ID>&q.date.ge=<DATE>
+    Accept: application/vnd.netid.permission-center.permission-export.list-v1+json
     Authorization: Basic <b64(USERNAME:PASSWORD)>
     ```
 
@@ -20,14 +18,21 @@ Allows a netID Partner to retrieve the status with respect to netID Permissions 
 
     ``` shell
     200 OK
-    Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+    Content-Type: application/vnd.netid.permission-center.permission-export.list-v1+json
 
     {
+      "content": 
       [
         {
           "tpid": "<tpid>",
           "type": "IDCONSENT",
           "status": "VALID",
+          "changed_at": "<timestamp>"
+        },
+        {
+          "tpid": "<tpid>",
+          "type": "DATASHARE",
+          "status": "INVALID",
           "changed_at": "<timestamp>"
         },
         {
@@ -41,12 +46,14 @@ Allows a netID Partner to retrieve the status with respect to netID Permissions 
 
 ### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
-| 200 OK | Call successful | 
-| 400 BAD REQUEST | Missing parameter `changed_since` | 
-| 401 UNAUTHORIZED | No (valid) authentication provided | 
-| 403 FORBIDDEN | Missing parameters (`tapp_id`) and/or requesting TAPP isn't active |
+| 200 OK | - Status of consent "identification" (IDCONSENT) and "datashare" is returned. <br> - Stored TC String is returned. | 
+| 400 BAD REQUEST | Missing or invalid parameter (`tapp_id`, `date`). | 
+| 401 UNAUTHORIZED | Failed authentication. No (valid) authentication provided. | 
+| 403 FORBIDDEN | Requesting TAPP isn't active or allowed. Requesting API User hasn't the right role. |
+<br>
+
 
 ## Complete Privacy Status
 
@@ -55,11 +62,11 @@ Allows a netID Partners CMP to retrieve the status with respect to netID Permiss
 === "Query"
 
     ``` shell
-    GET https://einwilligungsuebersicht.netid.de/permissions/iab-permissions?
-      &cmp_id=<CMP_ID>
-      &tapp_ids=<tapp_id_1,...,<tapp_id_n>
-      &changed_since=<DATE>
-    Accept: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+    GET https://einwilligungsuebersicht.netid.de/netid-permissions?
+      &q.cmp_id.eq=<CMP_ID>
+      &q.tapp_id.in=<tapp_id_1>,...,<tapp_id_n>
+      &q.date.ge=<DATE>
+    Accept: application/vnd.netid.permission-center.tapp-permissions-export.list-v1+json
     Authorization: Basic <b64(USERNAME:PASSWORD)>
     ```
 
@@ -67,19 +74,25 @@ Allows a netID Partners CMP to retrieve the status with respect to netID Permiss
 
     ``` shell
     200 OK
-    Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+    Content-Type: application/vnd.netid.permission-center.tapp-permissions-export.list-v1+json
 
     {
-      "tapp_permissons":
+      "content":
         [
           {
             "tapp_id":"<tapp_id_1>",
-            "permissions":
+            "content":
               [
                 {
                   "tpid":"<tpid>",
                   "type":"IDCONSENT",
                   "status":"VALID",
+                  "changed_at":"<timestamp>"
+                },
+                {
+                  "tpid":"<tpid>",
+                  "type":"DATASHARE",
+                  "status":"INVALID",
                   "changed_at":"<timestamp>"
                 },
                 {
@@ -91,7 +104,7 @@ Allows a netID Partners CMP to retrieve the status with respect to netID Permiss
           },
           {
             "tapp_id":"<tapp_id_2>",
-            "permissions":
+            "content":
               [
                 {
                   "tpid":"<tpid>",
@@ -112,9 +125,9 @@ Allows a netID Partners CMP to retrieve the status with respect to netID Permiss
 
 ### Response behavior
 
-| status code | meaning |
+| HTTP status code | meaning |
 | ----------- | ----------- |
-| 200 OK | Call successful |
-| 400 BAD REQUEST | Missing parameter `changed_since` |
-| 401 UNAUTHORIZED | No (valid )authentication provided |
-| 403 FORBIDDEN | Missing parameters (`cmp_id`), (`tapp_id`) <br> - requesting TAPP isn't active |
+| 200 OK | - status of consent "identification" (IDCONSENT) and "datashare" is returned. <br> - Stored TC String is returned. | 
+| 400 BAD REQUEST | Missing or invalid parameter (`tapp_id`, `date`) | 
+| 401 UNAUTHORIZED | Failed authentication. No (valid) authentication provided | 
+| 403 FORBIDDEN | Requesting TAPP isn't active or allowed. Requesting API User hasn't the right role. |
