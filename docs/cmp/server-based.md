@@ -102,17 +102,6 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
-| status_code | meaning | tpid |
-| ----------- | ----------- | ----------- |
-| OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. | - |
-| TOKEN_ERROR | Access token was expired or invalid. | - |
-| NO_TOKEN | No access token was passed. | - |
-| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
-| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
-<br>
 #### Response behavior
 
 | HTTP status code | meaning |
