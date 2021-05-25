@@ -47,8 +47,8 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | - |
-<br>
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | -
+
 #### Response behavior
 
 | HTTP status code | meaning |
@@ -58,7 +58,7 @@ Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
 | 403 FORBIDDEN | Requesting TAPP isn't active or consent for "identification" isn't granted. |
 | 404 NOT FOUND | `tpid` in access token does not exist. |
 | 410 GONE | Account does not exist anymore. |
-<br>
+
 ### Read privacy status
 
 #### Request
@@ -90,7 +90,17 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | tpid | Users identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null. |
 | tc | TC string stored for this `tpid` for this respective netID partner (TAPP). Only with status "OK". Otherwise null. |
 | datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
-<br>
+
+| status_code | meaning | tpid |
+| ----------- | ----------- | ----------- |
+| OK | Call successful | x |
+| NO_TPID | No `tpid` in request available. | - |
+| TOKEN_ERROR | Access token was expired or invalid. | - |
+| NO_TOKEN | No access token was passed. | - |
+| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
+| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
+| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
+| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
 
 | status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
@@ -112,7 +122,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | 403 FORBIDDEN | Requesting TAPP isn't active.  |
 | 404 NOT FOUND | Permissions for `tpid` not found. |
 | 410 GONE | Account does not exist anymore. |
-<br>
+
 ## Write APIs
 
 ### Write privacy status
@@ -121,9 +131,9 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 
 ```http
 POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
-Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
-
+Authorization: Bearer <Access Token>
 {
   "identification": true|false,
   "tc": "<TC string>"
@@ -146,14 +156,14 @@ HTTP/1.1 201 Created
     - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
     - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.
     - In case of revocation the consent for "identification", "identification: false" is passed.
-<br>
+
 #### Request properties
 
 |item|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
 | tc | TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0) |
-<br>
+
 
 #### Response properties
 
