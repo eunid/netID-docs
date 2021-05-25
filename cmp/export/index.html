@@ -796,24 +796,34 @@
 <h2 id="netid-permissions">netID Permissions<a class="headerlink" href="#netid-permissions" title="Permanent link">&para;</a></h2>
 <p>Allows a individual netID Partner to retrieve the status with respect to netID Permissions (omitting TC information).</p>
 <div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>GET https://einwilligungsuebersicht.netid.de/permissions/iab-permissions?
-  <span class="p">&amp;</span><span class="nv">tapp_id</span><span class="o">=</span>&lt;TAPP_ID&gt;
-  <span class="p">&amp;</span><span class="nv">changed_since</span><span class="o">=</span>&lt;DATE&gt;
-Accept: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+<div class="highlight"><pre><span></span><code>GET https://einwilligungsuebersicht.netid.de/netid-permissions/?q.tapp_id.eq<span class="o">=</span>&lt;TAPP_ID&gt;<span class="p">&amp;</span>q.date.ge<span class="o">=</span>&lt;DATE&gt;
+Accept: application/vnd.netid.permission-center.permission-export.list-v1+json
 Authorization: Basic &lt;b64<span class="o">(</span>USERNAME:PASSWORD<span class="o">)</span>&gt;
 </code></pre></div>
 
 </div>
 <input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Response</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="m">200</span> OK
-Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+Content-Type: application/vnd.netid.permission-center.permission-export.list-v1+json
 
 <span class="o">{</span>
+  <span class="s2">&quot;content&quot;</span>: 
   <span class="o">[</span>
     <span class="o">{</span>
       <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
       <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;IDCONSENT&quot;</span>,
       <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;VALID&quot;</span>,
+      <span class="s2">&quot;changed_at&quot;</span>: <span class="s2">&quot;&lt;timestamp&gt;&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
+      <span class="s2">&quot;type&quot;</span>: <span class="s2">&quot;DATASHARE&quot;</span>,
+      <span class="s2">&quot;status&quot;</span>: <span class="s2">&quot;INVALID&quot;</span>,
+      <span class="s2">&quot;changed_at&quot;</span>: <span class="s2">&quot;&lt;timestamp&gt;&quot;</span>
+    <span class="o">}</span>,
+    <span class="o">{</span>
+      <span class="s2">&quot;tpid&quot;</span>: <span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
+      <span class="s2">&quot;tc&quot;</span>: <span class="s2">&quot;&lt;tc-string&gt;&quot;</span>,
       <span class="s2">&quot;changed_at&quot;</span>: <span class="s2">&quot;&lt;timestamp&gt;&quot;</span>
     <span class="o">}</span>
   <span class="o">]</span>
@@ -826,56 +836,62 @@ Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-
 <table>
 <thead>
 <tr>
-<th>status code</th>
+<th>HTTP status code</th>
 <th>meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>Call successful</td>
+<td>- Status of consent "identification" (IDCONSENT) and "datashare" is returned. <br> - Stored TC String is returned.</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
-<td>Missing parameter <code>changed_since</code></td>
+<td>Missing or invalid parameter (<code>tapp_id</code>, <code>date</code>).</td>
 </tr>
 <tr>
 <td>401 UNAUTHORIZED</td>
-<td>No (valid) authentication provided</td>
+<td>Failed authentication. No (valid) authentication provided.</td>
 </tr>
 <tr>
 <td>403 FORBIDDEN</td>
-<td>Missing parameters (<code>tapp_id</code>) and/or requesting TAPP isn't active</td>
+<td>Requesting TAPP isn't active or allowed. Requesting API User hasn't the right role.</td>
 </tr>
 </tbody>
 </table>
 <h2 id="complete-privacy-status">Complete Privacy Status<a class="headerlink" href="#complete-privacy-status" title="Permanent link">&para;</a></h2>
 <p>Allows netID Partners to retrieve the status with respect to netID Permissions as well as TC information. In case multiple statuses are managed via the same integration (<em>cmp_id</em>), the API allows to query for specific partner IDs or multiple.</p>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
-<div class="highlight"><pre><span></span><code>GET https://einwilligungsuebersicht.netid.de/permissions/iab-permissions?
-  <span class="p">&amp;</span><span class="nv">cmp_id</span><span class="o">=</span>&lt;CMP_ID&gt;
-  <span class="p">&amp;</span><span class="nv">tapp_ids</span><span class="o">=</span>&lt;tapp_id_1,...,&lt;tapp_id_n&gt;
-  <span class="p">&amp;</span><span class="nv">changed_since</span><span class="o">=</span>&lt;DATE&gt;
-Accept: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+<div class="highlight"><pre><span></span><code>GET https://einwilligungsuebersicht.netid.de/netid-permissions?
+  <span class="p">&amp;</span>q.cmp_id.eq<span class="o">=</span>&lt;CMP_ID&gt;
+  <span class="p">&amp;</span>q.tapp_id.in<span class="o">=</span>&lt;tapp_id_1&gt;,...,&lt;tapp_id_n&gt;
+  <span class="p">&amp;</span>q.date.ge<span class="o">=</span>&lt;DATE&gt;
+Accept: application/vnd.netid.permission-center.tapp-permissions-export.list-v1+json
 Authorization: Basic &lt;b64<span class="o">(</span>USERNAME:PASSWORD<span class="o">)</span>&gt;
 </code></pre></div>
 
 </div>
 <input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Response</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code><span class="m">200</span> OK
-Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-v1+json
+Content-Type: application/vnd.netid.permission-center.tapp-permissions-export.list-v1+json
 
 <span class="o">{</span>
-  <span class="s2">&quot;tapp_permissons&quot;</span>:
+  <span class="s2">&quot;content&quot;</span>:
     <span class="o">[</span>
       <span class="o">{</span>
         <span class="s2">&quot;tapp_id&quot;</span>:<span class="s2">&quot;&lt;tapp_id_1&gt;&quot;</span>,
-        <span class="s2">&quot;permissions&quot;</span>:
+        <span class="s2">&quot;content&quot;</span>:
           <span class="o">[</span>
             <span class="o">{</span>
               <span class="s2">&quot;tpid&quot;</span>:<span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
               <span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;IDCONSENT&quot;</span>,
               <span class="s2">&quot;status&quot;</span>:<span class="s2">&quot;VALID&quot;</span>,
+              <span class="s2">&quot;changed_at&quot;</span>:<span class="s2">&quot;&lt;timestamp&gt;&quot;</span>
+            <span class="o">}</span>,
+            <span class="o">{</span>
+              <span class="s2">&quot;tpid&quot;</span>:<span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
+              <span class="s2">&quot;type&quot;</span>:<span class="s2">&quot;DATASHARE&quot;</span>,
+              <span class="s2">&quot;status&quot;</span>:<span class="s2">&quot;INVALID&quot;</span>,
               <span class="s2">&quot;changed_at&quot;</span>:<span class="s2">&quot;&lt;timestamp&gt;&quot;</span>
             <span class="o">}</span>,
             <span class="o">{</span>
@@ -887,7 +903,7 @@ Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-
       <span class="o">}</span>,
       <span class="o">{</span>
         <span class="s2">&quot;tapp_id&quot;</span>:<span class="s2">&quot;&lt;tapp_id_2&gt;&quot;</span>,
-        <span class="s2">&quot;permissions&quot;</span>:
+        <span class="s2">&quot;content&quot;</span>:
           <span class="o">[</span>
             <span class="o">{</span>
               <span class="s2">&quot;tpid&quot;</span>:<span class="s2">&quot;&lt;tpid&gt;&quot;</span>,
@@ -912,26 +928,26 @@ Content-Type: application/vnd.netid.permissions.tapp-iab-permission-export.list-
 <table>
 <thead>
 <tr>
-<th>status code</th>
+<th>HTTP status code</th>
 <th>meaning</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>200 OK</td>
-<td>Call successful</td>
+<td>- status of consent "identification" (IDCONSENT) and "datashare" is returned. <br> - Stored TC String is returned.</td>
 </tr>
 <tr>
 <td>400 BAD REQUEST</td>
-<td>Missing parameter <code>changed_since</code></td>
+<td>Missing or invalid parameter (<code>tapp_id</code>, <code>date</code>)</td>
 </tr>
 <tr>
 <td>401 UNAUTHORIZED</td>
-<td>No (valid )authentication provided</td>
+<td>Failed authentication. No (valid) authentication provided</td>
 </tr>
 <tr>
 <td>403 FORBIDDEN</td>
-<td>Missing parameters (<code>cmp_id</code>), (<code>tapp_id</code>) <br> - requesting TAPP isn't active</td>
+<td>Requesting TAPP isn't active or allowed. Requesting API User hasn't the right role.</td>
 </tr>
 </tbody>
 </table>
