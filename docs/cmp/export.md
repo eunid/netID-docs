@@ -1,6 +1,6 @@
 # Data export
 
-Using this API netID Partners can retrieve the current status (privacy status) with respect to netID Permissions and TC strings of end users. This allows server based synchronization in case a netID partner maintains its users privacy status also persistently in his own backend infrastructure and not only locally on end users devices.
+Using this API netID Partners can retrieve the status (privacy status) with respect to netID Permissions and TC strings of end users. This allows server based synchronization for netID Partners clean-up / update their server-side storage - e.g. purging data in case of withdrawal of consent.
 
 By specifying a *changed_since* parameter deltas w.r.t. that point in time can be requested to allow for batched updates.
 
