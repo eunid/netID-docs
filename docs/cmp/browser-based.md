@@ -39,7 +39,7 @@ Access-Control-Allow-Credentials: true
 }
 ```
 
-#### Response properties
+#### Response properties 
 
 `tpid` - users netID identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
 
@@ -92,7 +92,7 @@ Access-Control-Allow-Credentials: true
 }
 ```
 
-#### Response Properties
+#### Response Properties 
 
 | item | description |
 |---|---|
@@ -111,7 +111,6 @@ Access-Control-Allow-Credentials: true
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. | x | - |
-
 #### Response behavior
 
 | HTTP status code | meaning |
@@ -160,7 +159,6 @@ Access-Control-Allow-Credentials: true
     - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
     - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.
     - In case of revocation the consent for "identification", "identification: false" is passed.
-
 #### Request properties
 
 |item|description|

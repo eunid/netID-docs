@@ -90,7 +90,6 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1
 | tpid | Users identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null. |
 | tc | TC string stored for this `tpid` for this respective netID partner (TAPP). Only with status "OK". Otherwise null. |
 | datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
-<br>
 
 | status_code | meaning | tpid |
 | ----------- | ----------- | ----------- |
@@ -146,14 +145,14 @@ HTTP/1.1 201 Created
     - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
     - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.
     - In case of revocation the consent for "identification", "identification: false" is passed.
-<br>
+
 #### Request properties
 
 |item|description|
 |---|---|
 | identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
 | tc | TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0) |
-<br>
+
 
 #### Response properties
 
