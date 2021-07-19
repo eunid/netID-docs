@@ -20,7 +20,7 @@ netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connec
 
 Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines *scope* and *claim* mechanisms.
 
-Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID. 
+Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID.
 
 In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the [netID Permission Center](../cmp/#netid-permission-center) backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found [here](/cmp/).  
 
@@ -280,7 +280,20 @@ The sequence of the calls is summarized as follows:
 ## Error Messages
 
 If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
-For details please refer to the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html).
+For an overview of the error responses, please check the [OIDC specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthError).
+
+### netID UI specific error responses
+
+Aborts triggered by the user in the UI flow are also transmitted to the relying rarty with a corresponding error response.
+
+![High Level Authentication Code Flow](../images/sso/LoginFlow.png)
+
+|Use Case | Action | error | error_description |
+|---|---|---|---|
+| 1) Enter email address | cancelled by the user | account_selection_required | - |
+| 2) Enter password for an existing netID account | cancelled by the user | login_required | Login+aborted+by+user |
+| 3) Register a new netID account | cancelled by the user | login_required | Registration+aborted+by+user |
+| 4) Give consent for the transmission of master data to the relying party  | cancelled by the user | consent_required | Approval+aborted+by+user |
 
 ## netID Button
 
