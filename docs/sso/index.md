@@ -20,7 +20,7 @@ netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connec
 
 Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines *scope* and *claim* mechanisms.
 
-Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID. 
+Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. 
 
 In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the [netID Permission Center](../cmp/#netid-permission-center) backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found [here](/cmp/).  
 
@@ -32,8 +32,6 @@ The following scopes are supported by netID:
 |---|---|
 | openid | mandatory scope to initiate a Single Sign-on using the [authorize endpoint](#authorize) |
 | permission_management | optional scope to request an access token to access the [netID Permission Center](../cmp/#netid-permission-center) |
-
-
 
 The following claims are supported by netID:
 
@@ -49,10 +47,19 @@ The following claims are supported by netID:
 | family_name | String | The end user's last name | "Doe" |
 | shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
 
-The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.
+Claims can also be requested using following scopes.
+
+| Scope | Request type | Description |
+|---|---|---|
+| Profile | OPTIONAL | This scope value requests access to the following Claims: family_name, given_name, gender and birthdate.|
+| email | OPTIONAL | This scope value requests access to the email and email_verified Claims.|
+| address | OPTIONAL | This scope value requests access to the address Claim.|
+
 
 !!! danger "Important: please note!"
-    Claims that are **not** requested as essential are ignored. The same applies to OIDC scope based claims requests, which are by definition also voluntary.
+    The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
+    Scopes and *voluntary (optional)* claims can be deselected by the user. Please make sure that your system still works even if not all claims (e.g. email address) are approved. Otherwise, please request the claims as *essential*. 
+
 
 ## Example Endpoint Calls
 
@@ -80,7 +87,7 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
     https://broker.netid.de/authorize?response_type=code&client_id=[clientID]&redirect_uri=[redirect_uri]&scope=openid
     ```
 
-#### Profile scope expressed in essential claims
+#### Profile scope expressed in essential and optional claims
 
 === "Query"
 
@@ -92,10 +99,10 @@ Sample Calls are provided given both easy readable as well as in valid URL encod
         scope=openid&
         claims={
             "userinfo":{
-                "birthdate":{"essential":true},
-                "gender":{"essential":true},
                 "given_name":{"essential":true},
-                "family_name":{"essential":true}
+                "family_name":{"essential":true},
+                "birthdate": null,
+                "gender": null
             }
         }  
     ```
