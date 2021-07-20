@@ -58,7 +58,7 @@ Claims can also be requested using the following scopes.
 
 !!! danger "Important: please note!"
     The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
-    Scopes and *voluntary (optional)* claims can be deselected by the user. Please make sure that your system still works even if not all claims (e.g. email address) are approved. Otherwise, please request the claims as *essential*. 
+    Scopes and *voluntary (optional)* claims can be deselected by the user. When using optional claims, the system must be able to handle cases where not all claims are approved (e.g. email address). Otherwise, the claims should be requested as *essential*.
 
 
 ## Example Endpoint Calls
