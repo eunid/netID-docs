@@ -51,9 +51,9 @@ Claims can also be requested using the following scopes.
 
 | Scope | Request type | Description |
 |---|---|---|
-| profile | OPTIONAL | This scope value requests access to the following Claims: family_name, given_name, gender and birthdate.|
-| email | OPTIONAL | This scope value requests access to the email and email_verified Claims.|
-| address | OPTIONAL | This scope value requests access to the address Claim.|
+| profile | OPTIONAL | This scope value requests access to the following claims: family_name, given_name, gender and birthdate.|
+| email | OPTIONAL | This scope value requests access to the email and email_verified claims.|
+| address | OPTIONAL | This scope value requests access to the address claim.|
 
 
 !!! danger "Important: please note!"
