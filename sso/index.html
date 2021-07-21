@@ -1007,7 +1007,7 @@
 <p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the <em>redirect_uri</em> (Callback URL), to ensure that the <code>sub</code> value is the same for all clients of a service make sure that the <em>redirect_uri</em> points to the same host across all clients of a service.</p>
 <h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
-<p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of essential claims with netID. </p>
+<p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. </p>
 <p>In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the <a href="../cmp/#netid-permission-center">netID Permission Center</a> backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found <a href="/cmp/">here</a>.  </p>
 <p>Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
 <p>The following scopes are supported by netID:</p>
@@ -1096,10 +1096,37 @@
 </tr>
 </tbody>
 </table>
-<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly.</p>
+<p>Claims can also be requested using the following scopes.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Request type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>profile</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the following claims: family_name, given_name, gender and birthdate.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the email and email_verified claims.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the address claim.</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition danger">
 <p class="admonition-title">Important: please note!</p>
-<p>Claims that are <strong>not</strong> requested as essential are ignored. The same applies to OIDC scope based claims requests, which are by definition also voluntary.</p>
+<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
+Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. When using optional claims, the system must be able to handle cases where not all claims are approved (e.g. email address). Otherwise, the claims should be requested as <em>essential</em>.</p>
 </div>
 <h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
 <h3 id="authorize">Authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
@@ -1122,7 +1149,7 @@
 
 </div>
 </div>
-<h4>Profile scope expressed in essential claims</h4>
+<h4>Profile scope expressed in essential and optional claims</h4>
 <div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
@@ -1131,10 +1158,10 @@
     <span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span>
     <span class="nv">claims</span><span class="o">={</span>
         <span class="s2">&quot;userinfo&quot;</span>:<span class="o">{</span>
-            <span class="s2">&quot;birthdate&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;gender&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
             <span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
-            <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>
+            <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
+            <span class="s2">&quot;birthdate&quot;</span>: null,
+            <span class="s2">&quot;gender&quot;</span>: null
         <span class="o">}</span>
     <span class="o">}</span>  
 </code></pre></div>
