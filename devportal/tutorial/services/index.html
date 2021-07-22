@@ -857,7 +857,7 @@
 <p><strong>Services</strong> have a simple lifecycle, once they are created they immediately get into the <strong>active</strong> state and can be used. At any point in time you can choose to <a href="#delete-a-service">delete</a> a specific service, which puts <strong>the service and all of its clients</strong> into the state <strong>deleted</strong>.</p>
 <p><strong>Services</strong> remain in the state deleted for 14 days, once these are passed it will be permanently removed. Within the 14 days grace period services can be <a href="#reactivate-a-service">re-activated</a> and return to into the <strong>active</strong> state.</p>
 <h2 id="sandboxed-mode">Sandboxed Mode<a class="headerlink" href="#sandboxed-mode" title="Permanent link">&para;</a></h2>
-<p>Besides the general status as described above, <strong>services</strong> run by default (meaning after they are created) in a sandboxed mode which means they are not yet used/approved for production use. In sandboxed mode, a service and its respective <strong>clients</strong> are fully functional, but can only be used with explicitly whitelisted <a href="#manage-test-users">test users</a></p>
+<p>Besides the general status as described above, <strong>services</strong> run by default (meaning after they are created) in a sandboxed mode which means they are not yet used/approved for production use. In sandboxed mode, a service and its respective <strong>clients</strong> are fully functional, but can only be used with netID-Accounts on the configured allowlist <a href="#manage-test-users">test users</a></p>
 <h2 id="detailed-functionality">Detailed Functionality<a class="headerlink" href="#detailed-functionality" title="Permanent link">&para;</a></h2>
 <h3 id="create-a-service">Create a Service<a class="headerlink" href="#create-a-service" title="Permanent link">&para;</a></h3>
 <p>Select <strong>Services</strong> in the menu, click <strong>Add service</strong> and fill in the required details in the following screen.</p>
@@ -874,7 +874,7 @@
 <h4>Service Details View</h4>
 <p>To manage the details of services and their respective clients you need to navigate to the services details view by selecting <strong>Services</strong> in the navigation on the left, which will show you the list of all services, and by clicking on <strong>Details</strong> on the right hand of the service name.</p>
 <h3 id="manage-test-users">Manage Test Users<a class="headerlink" href="#manage-test-users" title="Permanent link">&para;</a></h3>
-<p>To manage users that can be used with sandboxed services (see <a href="#sandboxed-mode">Sandboxed Mode</a>), you can managed the whitelist of users for a specific service in the <a href="#service-details-view">details view</a> under <strong>Test user</strong></p>
+<p>To manage users that are allowed to use sandboxed services (see <a href="#sandboxed-mode">Sandboxed Mode</a>), you can manage the allowlist of users for a specific service in the <a href="#service-details-view">details view</a> under <strong>Test user</strong></p>
 <p><img alt="Test User Management" src="../../../images/devportal/netid_dev_portal_testusers.png" style="width:50%;display: block; margin: 0 auto;" /></p>
 <p>Simply add users with <strong>Add test user</strong> or remove them with <strong>Delete</strong></p>
 <h3 id="approval-for-production-use">Approval for production use<a class="headerlink" href="#approval-for-production-use" title="Permanent link">&para;</a></h3>
