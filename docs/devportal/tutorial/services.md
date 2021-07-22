@@ -12,7 +12,7 @@ At service level you manage mainly non-technical details (branding, data privacy
 
 ## Sandboxed Mode
 
-Besides the general status as described above, **services** run by default (meaning after they are created) in a sandboxed mode which means they are not yet used/approved for production use. In sandboxed mode, a service and its respective **clients** are fully functional, but can only be used with explicitly whitelisted [test users](#manage-test-users)
+Besides the general status as described above, **services** run by default (meaning after they are created) in a sandboxed mode which means they are not yet used/approved for production use. In sandboxed mode, a service and its respective **clients** are fully functional, but can only be used with netID-Accounts on the configured allowlist [test users](#manage-test-users)
 
 ## Detailed Functionality
 
@@ -40,7 +40,7 @@ To manage the details of services and their respective clients you need to navig
 
 ### Manage Test Users
 
-To manage users that can be used with sandboxed services (see [Sandboxed Mode](#sandboxed-mode)), you can managed the whitelist of users for a specific service in the [details view](#service-details-view) under **Test user**
+To manage users that are allowed to use sandboxed services (see [Sandboxed Mode](#sandboxed-mode)), you can manage the allowlist of users for a specific service in the [details view](#service-details-view) under **Test user**
 
 ![Test User Management](../../images/devportal/netid_dev_portal_testusers.png){: style="width:50%;display: block; margin: 0 auto;" }
 
