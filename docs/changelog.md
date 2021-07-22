@@ -2,6 +2,10 @@
 
 ## netID Documentation
 
+### 1.4.1 <small>_ July 22, 2021</small>
+
+- Support for optional claims, OpenID scopes
+
 ### 1.4 <small>_ March 31, 2021</small>
 
 - CMP Integration v2 API
