@@ -130,7 +130,7 @@ Access-Control-Allow-Credentials: true
 ```http
 POST https://einwilligen.netid.de/netid-permissions?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
 Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
-Accept: application/vnd.netid.permission-center.netid-permissions-v1+json
+Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
 Cookie: tpid_sec=<JWT_TOKEN>
 Origin: <ORIGIN>
 
