@@ -39,8 +39,8 @@ nav:
         - KPI Reports: devportal/reporting.md
     - Single Sign-on Integration: 
         - Technical Details: sso/index.md
+        - Integrations: sso/plugins.md
         - Styleguide: sso/styleguide.md
-        - Plugins: sso/plugins.md
     - CMP Integration:
         - General information: cmp/index.md
         - Requesting Access Tokens: cmp/access-token.md
