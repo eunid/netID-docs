@@ -92,7 +92,7 @@ Access-Control-Allow-Credentials: true
 }
 ```
 
-#### Response Properties 
+#### Response Properties
 
 | item | description |
 |---|---|
@@ -111,6 +111,7 @@ Access-Control-Allow-Credentials: true
 | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - | - |
 | TPID_EXISTENCE_ERROR | Account does not exist anymore. | - | - |
 | ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. | x | - |
+
 #### Response behavior
 
 | HTTP status code | meaning |
