@@ -2,6 +2,11 @@
 
 ## netID Documentation
 
+### 1.4.2 <small>_ Feb 23, 2023</small>
+
+- PKCE Support 
+- Client Type: native App, Single Page Application
+
 ### 1.4.1 <small>_ July 22, 2021</small>
 
 - Support for optional claims, OpenID scopes
