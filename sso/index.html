@@ -411,13 +411,13 @@
         <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2_2" type="checkbox" id="__nav_2_2" >
       
       <label class="md-nav__link" for="__nav_2_2">
-        Tutorials
+        Setup Guide
         <span class="md-nav__icon md-icon"></span>
       </label>
-      <nav class="md-nav" aria-label="Tutorials" data-md-level="2">
+      <nav class="md-nav" aria-label="Setup Guide" data-md-level="2">
         <label class="md-nav__title" for="__nav_2_2">
           <span class="md-nav__icon md-icon"></span>
-          Tutorials
+          Setup Guide
         </label>
         <ul class="md-nav__list" data-md-scrollfix>
           
@@ -562,6 +562,13 @@
           <li class="md-nav__item">
   <a href="#claims-and-scopes" class="md-nav__link">
     Claims and Scopes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-types" class="md-nav__link">
+    Client Types
   </a>
   
 </li>
@@ -862,6 +869,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#client-types" class="md-nav__link">
+    Client Types
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1001,10 +1015,10 @@
 <h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
 <p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
-<p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <strong>services</strong> and associated <strong>clients</strong> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
+<p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <a href="../devportal/tutorial/services/"><strong>services</strong> </a>and associated <a href="../devportal/tutorial/clients/"><strong>clients</strong> </a> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
 <p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.</p>
 <p>Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an <em>id_token</em> and a <em>userinfo</em> object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<code>sub</code>).</p>
-<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the <em>redirect_uri</em> (Callback URL), to ensure that the <code>sub</code> value is the same for all clients of a service make sure that the <em>redirect_uri</em> points to the same host across all clients of a service.</p>
+<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived from a unique technical parameter of the service, ensuring that the  <code>sub</code> value is the same for all clients of that service.</p>
 <h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
 <p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. </p>
@@ -1128,6 +1142,21 @@
 <p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
 Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. When using optional claims, the system must be able to handle cases where not all claims are approved (e.g. email address). Otherwise, the claims should be requested as <em>essential</em>.</p>
 </div>
+<h3 id="client-types">Client Types<a class="headerlink" href="#client-types" title="Permanent link">&para;</a></h3>
+<p>netID offers support for clients that authenticate users via service endpoints (web servers, IAM systems,...), as well as clients that implement all authentication logic in one place and run without an additional backend (e.g. native mobile apps, single page applications). </p>
+<p>It must be ensured that the correct 'application type' is selected for each client: </p>
+<ul>
+<li>
+<p>Application type 'Native / Mobile App (PKCE)':
+    Native mobile app clients or single page applications that fully authenticate the user within the app via authorization code flow. The use of PKCE is mandatory. The authorization callback to a redirect_uri is handled by the application itself, a client secret is not used.
+    Learn more about PKCE: <a href="https://oauth.net/2/pkce/">https://oauth.net/2/pkce/</a></p>
+</li>
+<li>
+<p>Application type 'Website':<br />
+    In the case of web clients or apps with an external "web authentication endpoint", the use of PKCE is optional but also recommended, as its ability to prevent the injection of authorization codes makes it useful for any type of OpenID Connect/OAuth2 client, even if the application is running on a web server and is using a client secret. The authorization callback to a redirect_uri is handled by the respective service endpoint.</p>
+</li>
+</ul>
+<p>The setup of the client incl. (custom) URI schemes is described in the <a href="../devportal/tutorial/clients/">client setup guide</a>.</p>
 <h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
 <h3 id="authorize">Authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
 <p>Requests to the authorize endpoint initiate the Single Sign-on process,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also <a href="#implementation-details">supported</a>.</p>
@@ -1357,7 +1386,8 @@ For details please refer to the <a href="https://openid.net/specs/openid-connect
 <h2 id="security-information">Security Information<a class="headerlink" href="#security-information" title="Permanent link">&para;</a></h2>
 <ul>
 <li>All communication with netID must be secured by TLS. This also applies to all URLs entered in the developer portal.</li>
-<li>netID exclusively supports the Authorization Code Flow, so that <em>id_token</em> is only transferred in TLS-secured back-end to back-end communication. Currently, the only token signature supported is none.</li>
+<li>netID supports PKCE as extension to the Authorization Code flow. The usage of PKCE for native mobile apps and single page applications is mandatory.</li>
+<li>netID exclusively supports the Authorization Code Flow, so that id_token is only transferred in TLS-secured back-end to back-end communication. </li>
 </ul>
 <h2 id="use-of-sdks">Use of SDKs<a class="headerlink" href="#use-of-sdks" title="Permanent link">&para;</a></h2>
 <p>There are a large number of OpenID Connect client libraries available in many different language environments. Below, several examples will be given, along with tips for using them.</p>
