@@ -2,7 +2,7 @@
 
 ## netID Documentation
 
-### 1.4.2 <small>_ Feb 23, 2023</small>
+### 1.4.2 <small>_ Feb 23, 2022</small>
 
 - PKCE Support 
 - Client Type: native App, Single Page Application
