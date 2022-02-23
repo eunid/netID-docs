@@ -8,13 +8,13 @@ This documentation describes the federated Single Sign-on "netID", which allows 
 
 The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.
 
-Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage **services** and associated **clients** for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  
+Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage [**services** ](../devportal/tutorial/services.md)and associated [**clients** ](../devportal/tutorial/clients.md) for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  
 
 All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.
 
 Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an *id_token* and a *userinfo* object as a JSON structure. *id_token* and *userinfo* objects also contain the end user's subject identifier (`sub`).
 
-netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived using the host portion of the *redirect_uri* (Callback URL), to ensure that the `sub` value is the same for all clients of a service make sure that the *redirect_uri* points to the same host across all clients of a service.
+netID uses [Pairwise Subject Identifiers](https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes) to derive client specific subject identifiers during authentication requests. The subject identifier is derived from a unique technical parameter of the service, ensuring that the  `sub` value is the same for all clients of that service.
 
 ### Claims and Scopes
 
@@ -60,6 +60,19 @@ Claims can also be requested using the following scopes.
     The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
     Scopes and *voluntary (optional)* claims can be deselected by the user. When using optional claims, the system must be able to handle cases where not all claims are approved (e.g. email address). Otherwise, the claims should be requested as *essential*.
 
+### Client Types
+netID offers support for clients that authenticate users via service endpoints (web servers, IAM systems,...), as well as clients that implement all authentication logic in one place and run without an additional backend (e.g. native mobile apps, single page applications). 
+
+It must be ensured that the correct 'application type' is selected for each client: 
+
+- Application type 'Native / Mobile App (PKCE)':
+    Native mobile app clients or single page applications that fully authenticate the user within the app via authorization code flow. The use of PKCE is mandatory. The authorization callback to a redirect_uri is handled by the application itself, a client secret is not used.
+    Learn more about PKCE: https://oauth.net/2/pkce/
+
+- Application type 'Website':  
+    In the case of web clients or apps with an external "web authentication endpoint", the use of PKCE is optional but also recommended, as its ability to prevent the injection of authorization codes makes it useful for any type of OpenID Connect/OAuth2 client, even if the application is running on a web server and is using a client secret. The authorization callback to a redirect_uri is handled by the respective service endpoint.
+
+The setup of the client incl. (custom) URI schemes is described in the [client setup guide](../devportal/tutorial/clients.md).
 
 ## Example Endpoint Calls
 
@@ -312,7 +325,8 @@ One thing to be aware of is the verification status of email addresses: if an em
 ## Security Information
 
 - All communication with netID must be secured by TLS. This also applies to all URLs entered in the developer portal.
-- netID exclusively supports the Authorization Code Flow, so that *id_token* is only transferred in TLS-secured back-end to back-end communication. Currently, the only token signature supported is none.
+- netID supports PKCE as extension to the Authorization Code flow. The usage of PKCE for native mobile apps and single page applications is mandatory.
+- netID exclusively supports the Authorization Code Flow, so that id_token is only transferred in TLS-secured back-end to back-end communication. 
 
 ## Use of SDKs
 
