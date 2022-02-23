@@ -32,7 +32,7 @@ nav:
       - Changelog: changelog.md
     - Developer Portal:
         - Getting started: devportal/index.md
-        - Tutorials:
+        - Setup Guide:
             - Services: devportal/tutorial/services.md
             - Clients: devportal/tutorial/clients.md
             - User Management: devportal/tutorial/users.md
