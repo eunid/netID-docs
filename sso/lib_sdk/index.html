@@ -13,14 +13,14 @@
         <meta name="author" content="European netID Foundation">
       
       
-        <link rel="canonical" href="https://eunid.github.io/netID-docs/sso/plugins/">
+        <link rel="canonical" href="https://eunid.github.io/netID-docs/sso/lib_sdk/">
       
       <link rel="shortcut icon" href="../../images/favicon.ico">
       <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.1">
     
     
       
-        <title>Integrations - netID Developer Zone</title>
+        <title>Libraries and SDKs - netID Developer Zone</title>
       
     
     
@@ -102,7 +102,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#integrations" class="md-skip">
+        <a href="#libraries-und-sdks" class="md-skip">
           Skip to content
         </a>
       
@@ -133,7 +133,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Integrations
+              Libraries and SDKs
             
           </span>
         </div>
@@ -524,6 +524,18 @@
             
   
   
+  
+    <li class="md-nav__item">
+      <a href="../plugins/" class="md-nav__link">
+        Integrations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
     
   
   
@@ -535,12 +547,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          Integrations
+          Libraries and SDKs
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        Integrations
+        Libraries and SDKs
       </a>
       
         
@@ -557,30 +569,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#auth0" class="md-nav__link">
-    Auth0
+  <a href="#use-of-sdks" class="md-nav__link">
+    Use of SDKs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#magento-plugin" class="md-nav__link">
-    Magento Plugin
+  <a href="#general" class="md-nav__link">
+    General
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#oxid-plugin" class="md-nav__link">
-    OXID Plugin
+  <a href="#native-apps" class="md-nav__link">
+    Native Apps
   </a>
+  
+    <nav class="md-nav" aria-label="Native Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    Android
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios" class="md-nav__link">
+    iOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shopware-plugin" class="md-nav__link">
-    Shopware Plugin
+  <a href="#web-based" class="md-nav__link">
+    Web-based
   </a>
+  
+    <nav class="md-nav" aria-label="Web-based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    PHP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#javascript" class="md-nav__link">
+    Javascript
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    Rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go" class="md-nav__link">
+    Go
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -588,18 +661,6 @@
   
 </nav>
       
-    </li>
-  
-
-          
-            
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../lib_sdk/" class="md-nav__link">
-        Libraries and SDKs
-      </a>
     </li>
   
 
@@ -738,30 +799,91 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#auth0" class="md-nav__link">
-    Auth0
+  <a href="#use-of-sdks" class="md-nav__link">
+    Use of SDKs
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#magento-plugin" class="md-nav__link">
-    Magento Plugin
+  <a href="#general" class="md-nav__link">
+    General
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#oxid-plugin" class="md-nav__link">
-    OXID Plugin
+  <a href="#native-apps" class="md-nav__link">
+    Native Apps
   </a>
+  
+    <nav class="md-nav" aria-label="Native Apps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#android" class="md-nav__link">
+    Android
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ios" class="md-nav__link">
+    iOS
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#shopware-plugin" class="md-nav__link">
-    Shopware Plugin
+  <a href="#web-based" class="md-nav__link">
+    Web-based
   </a>
+  
+    <nav class="md-nav" aria-label="Web-based">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#php" class="md-nav__link">
+    PHP
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#javascript" class="md-nav__link">
+    Javascript
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#java" class="md-nav__link">
+    Java
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rust" class="md-nav__link">
+    Rust
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#go" class="md-nav__link">
+    Go
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -778,16 +900,129 @@
               
                 
                 
-                <h1 id="integrations">Integrations<a class="headerlink" href="#integrations" title="Permanent link">&para;</a></h1>
-<p>netID Single Sign-on integrations are available on various e-commerce / identity platforms. Integrations enable netID Partners to offer netID Single Sign-on to their users by simply adding and configuring these integrations.</p>
-<h2 id="auth0">Auth0<a class="headerlink" href="#auth0" title="Permanent link">&para;</a></h2>
-<p><a href="https://marketplace.auth0.com/integrations/netid-single-sign-on">Auth0 Marketplace</a></p>
-<h2 id="magento-plugin">Magento Plugin<a class="headerlink" href="#magento-plugin" title="Permanent link">&para;</a></h2>
-<p><a href="https://marketplace.magento.com/enid-enid-connector-magento.html">Magento Marketplace</a></p>
-<h2 id="oxid-plugin">OXID Plugin<a class="headerlink" href="#oxid-plugin" title="Permanent link">&para;</a></h2>
-<p><a href="https://exchange.oxid-esales.com/de/en/Frontend-und-User-Experience/Usability/netID-Single-Sign-on-1-0-0-Release-Candidate-CE-6-1-x.html?listtype=search&amp;searchparam=netid">OXID Exhange</a></p>
-<h2 id="shopware-plugin">Shopware Plugin<a class="headerlink" href="#shopware-plugin" title="Permanent link">&para;</a></h2>
-<p><a href="https://store.shopware.com/detail/index/sArticle/517939">Shopware Store</a></p>
+                <h1 id="libraries-und-sdks">Libraries und SDKs<a class="headerlink" href="#libraries-und-sdks" title="Permanent link">&para;</a></h1>
+<h2 id="use-of-sdks">Use of SDKs<a class="headerlink" href="#use-of-sdks" title="Permanent link">&para;</a></h2>
+<p>There are a large number of OpenID Connect client libraries available in many different language / deployment environments. Below, several examples will be given, along with tips for using them.</p>
+<p>Many client libraries are listed at <a href="https://openid.net/developers/libraries/">https://openid.net/developers/libraries/</a></p>
+<h2 id="general">General<a class="headerlink" href="#general" title="Permanent link">&para;</a></h2>
+<p>Regardless of the choice of environment, it's possible to do the following preliminary experiments:</p>
+<ol>
+<li>In the developer portal for the partner, create a service, request approval for it, and then create a client for it</li>
+<li>
+<p>When choosing which URLs to use, it's possible to generate locally applicable test environments by making an entry in the hosts file of a developer workstation at the endpoints given for service and client and creating and using self-signed certificates.</p>
+<blockquote>
+<p><strong>Example</strong> "Entry in hosts" <br>
+   127.0.0.1  <a href="http://www.democlient.de">www.democlient.de</a> <br><br>
+<strong>Example</strong> "Creating a self-signed certificate" <br>
+   openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout key.pem -out cert.pem</p>
+</blockquote>
+</li>
+<li>
+<p>Here, for the Common Name give the host name of the environment you want; so, in this case: <a href="http://www.democlient.de">www.democlient.de</a>.
+Using the Client Credentials from the developer portal, the local host entry, and the certificate with the key, it's possible to run through the netID requests.</p>
+</li>
+<li>When testing with browsers, it's a good idea to use private windows; otherwise cookies left behind from previous run-throughs may cause confusion.
+to top</li>
+</ol>
+<h2 id="native-apps">Native Apps<a class="headerlink" href="#native-apps" title="Permanent link">&para;</a></h2>
+<p>Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID <a href="/devportal/tutorial/clients/#creating-a-client">clients</a> using custom schemes or claimed HTTPs URLs.</p>
+<h3 id="android">Android<a class="headerlink" href="#android" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/openid/AppAuth-Android#readme">AppAuth for Android</a> must be used with <a href="/sso/#client-types">Client Types</a> <strong>'Native / Mobile App (PKCE)'</strong>. AppAuth for Android supports requesting user claims both via scopes and the claims parameter - cf. to <a href="/sso/#claims-and-scopes">Claims and Scopes</a></p>
+<h3 id="ios">iOS<a class="headerlink" href="#ios" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/openid/AppAuth-iOS#readme">AppAuth for iOS</a> must also be used with <a href="/sso/#client-types">Client Types</a> <strong>'Native / Mobile App (PKCE)'</strong>. AppAuth for iOS supports requesting user claims via scopes only as of now.</p>
+<h2 id="web-based">Web-based<a class="headerlink" href="#web-based" title="Permanent link">&para;</a></h2>
+<h3 id="php">PHP<a class="headerlink" href="#php" title="Permanent link">&para;</a></h3>
+<p>In PHP it's possible to use the package <a href="https://github.com/jumbojett/OpenID-Connect-PHP">https://github.com/jumbojett/OpenID-Connect-PHP</a>.</p>
+<p>According to the instructions, the installation works out of the box. The package derives the <em>redirect_uri</em> from its own URL; here, the position of the script in the path of the web server can either be used as <em>redirect_uri</em> when creating the client or configured accordingly in the web server using rewrite rules.</p>
+<div class="admonition info">
+<p class="admonition-title">Please ensure that Token Signing is enabled</p>
+<p>Otherwise this library will not work without additional patches.</p>
+</div>
+<p>A simple sample client may then look like this:</p>
+<div class="highlight"><pre><span></span><code><span class="cp">&lt;?php</span>
+
+<span class="sd">/**</span>
+<span class="sd"> *</span>
+<span class="sd"> * Copyright MITRE 2012</span>
+<span class="sd"> *</span>
+<span class="sd"> * OpenIDConnectClient for PHP5</span>
+<span class="sd"> * Author: Michael Jett &lt;mjett@mitre.org&gt;</span>
+<span class="sd"> *</span>
+<span class="sd"> * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may</span>
+<span class="sd"> * not use this file except in compliance with the License. You may obtain</span>
+<span class="sd"> * a copy of the License at</span>
+<span class="sd"> *</span>
+<span class="sd"> *      http://www.apache.org/licenses/LICENSE-2.0</span>
+<span class="sd"> *</span>
+<span class="sd"> * Unless required by applicable law or agreed to in writing, software</span>
+<span class="sd"> * distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT</span>
+<span class="sd"> * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the</span>
+<span class="sd"> * License for the specific language governing permissions and limitations</span>
+<span class="sd"> * under the License.</span>
+<span class="sd"> *</span>
+<span class="sd"> */</span>
+
+<span class="k">require</span> <span class="no">__DIR__</span> <span class="o">.</span> <span class="s1">&#39;/vendor/autoload.php&#39;</span><span class="p">;</span>
+
+<span class="k">use</span> <span class="nx">Jumbojett\OpenIDConnectClient</span><span class="p">;</span>
+
+<span class="c1">// specify ClientID und secret!</span>
+<span class="nv">$oidc</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">OpenIDConnectClient</span><span class="p">(</span>
+    <span class="s1">&#39;https://broker.netid.de/&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;example-clientid&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;example-secret&#39;</span>
+<span class="p">);</span>
+
+<span class="c1">// if the default redirect_uri is not to be used, a custom value can be set here:</span>
+<span class="c1">// $oidc-&gt;setRedirectURL(&#39;https://clientexample.org/callback&#39;);</span>
+
+<span class="c1">// then however a URL-rewrite is necessary, as for example with mod_rewrite from apache:</span>
+<span class="c1">// RewriteEngine On</span>
+<span class="c1">// RewriteRule &quot;^callback(.*)&quot; &quot;/client_example.php$1&quot;</span>
+
+<span class="nv">$oidc</span><span class="o">-&gt;</span><span class="na">authenticate</span><span class="p">();</span>
+<span class="nv">$sub</span> <span class="o">=</span> <span class="nv">$oidc</span><span class="o">-&gt;</span><span class="na">getVerifiedClaims</span><span class="p">(</span><span class="s1">&#39;sub&#39;</span><span class="p">);</span>
+
+<span class="cp">?&gt;</span><span class="x"></span>
+
+<span class="x">&lt;html&gt;</span>
+<span class="x">&lt;head&gt;</span>
+<span class="x">    &lt;title&gt;Example OpenID Connect Client Use&lt;/title&gt;</span>
+<span class="x">    &lt;style&gt;</span>
+<span class="x">        body {</span>
+<span class="x">            font-family: &#39;Lucida Grande&#39;, Verdana, Arial, sans-serif;</span>
+<span class="x">        }</span>
+<span class="x">    &lt;/style&gt;</span>
+<span class="x">&lt;/head&gt;</span>
+<span class="x">&lt;body&gt;</span>
+
+<span class="x">    &lt;div&gt;</span>
+<span class="x">        netID login successful, the Subject Identifier is: </span><span class="cp">&lt;?php</span> <span class="k">echo</span> <span class="nv">$sub</span><span class="p">;</span> <span class="cp">?&gt;</span><span class="x"></span>
+<span class="x">    &lt;/div&gt;</span>
+
+<span class="x">&lt;/body&gt;</span>
+<span class="x">&lt;/html&gt;</span>
+</code></pre></div>
+
+<h3 id="javascript">Javascript<a class="headerlink" href="#javascript" title="Permanent link">&para;</a></h3>
+<p>One highly recommended JavaScript implementation (node.js) of an OpenID Connect relying party can be found here: <a href="https://www.npmjs.com/package/openid-client">https://www.npmjs.com/package/openid-client</a></p>
+<h3 id="java">Java<a class="headerlink" href="#java" title="Permanent link">&para;</a></h3>
+<p>Spring Security examples for Java:</p>
+<ul>
+<li>GitHub:mitreid-connect/simple-web-app</li>
+<li>GitHub:eugenp/tutorials/tree/master/spring-security-openid</li>
+</ul>
+<h3 id="rust">Rust<a class="headerlink" href="#rust" title="Permanent link">&para;</a></h3>
+<p>A good OpenID Connect relying party client for Rust can be found here: <a href="https://docs.rs/crate/oidc/0.2.0">https://docs.rs/crate/oidc/0.2.0</a>.</p>
+<h3 id="go">Go<a class="headerlink" href="#go" title="Permanent link">&para;</a></h3>
+<p>For go the package GitHub:coreos/go-oidc makes a netID login possible. The package may be installed here:</p>
+<div class="highlight"><pre><span></span><code><span class="k">go</span> <span class="nx">get</span> <span class="nx">github</span><span class="p">.</span><span class="nx">com</span><span class="o">/</span><span class="nx">coreos</span><span class="o">/</span><span class="k">go</span><span class="o">-</span><span class="nx">oidc</span>
+</code></pre></div>
+
+<p>There is no explicit support for entering claims, essential or otherwise.</p>
+<p>The simple example client netid.go first needs to be edited before Client Credentials, host name, and certificates may be entered, after which it can be run using:</p>
+<div class="highlight"><pre><span></span><code><span class="k">go</span> <span class="nx">run</span> <span class="nx">netid</span><span class="p">.</span><span class="k">go</span>
+</code></pre></div>
                 
               
               
@@ -806,7 +1041,7 @@
   
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
-        <a href="../" class="md-footer__link md-footer__link--prev" rel="prev">
+        <a href="../plugins/" class="md-footer__link md-footer__link--prev" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
           </div>
@@ -815,19 +1050,19 @@
               <span class="md-footer__direction">
                 Previous
               </span>
-              Technical Details
+              Integrations
             </div>
           </div>
         </a>
       
       
-        <a href="../lib_sdk/" class="md-footer__link md-footer__link--next" rel="next">
+        <a href="../styleguide/" class="md-footer__link md-footer__link--next" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              Libraries and SDKs
+              Styleguide
             </div>
           </div>
           <div class="md-footer__button md-icon">
