@@ -1,4 +1,4 @@
-# Libraries und SDKs
+# Libraries and SDKs
 
 ## Use of SDKs
 
