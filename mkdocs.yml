@@ -40,6 +40,7 @@ nav:
     - Single Sign-on Integration: 
         - Technical Details: sso/index.md
         - Integrations: sso/plugins.md
+        - Libraries and SDKs: sso/lib_sdk.md
         - Styleguide: sso/styleguide.md
     - CMP Integration:
         - General information: cmp/index.md
