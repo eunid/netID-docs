@@ -1,0 +1,46 @@
+name: build-validate-push
+
+# Build changes 
+on:
+  push:
+    branches: [main]
+
+jobs:
+  # Build and deploy documentation site
+  build:
+  #   if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+
+      # Checkout source form GitHub
+      - uses: actions/checkout@v2
+
+      # Install Python runtime and dependencies
+      - uses: actions/setup-python@v1
+        with:
+          python-version: 3.x
+
+      # Install theme and dependencies
+      - run: |
+          pip install -r requirements.txt
+          pip install mkdocs-minify-plugin>=0.2
+      # Set configuration for repository and deploy documentation
+      - env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GH_NAME: ${{ secrets.GH_NAME }}
+          GH_EMAIL: ${{ secrets.GH_EMAIL }}
+        run: |
+          REMOTE="https://${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}"
+          git config --global user.name "${GH_NAME}"
+          git config --global user.email "${GH_EMAIL}"
+          git remote set-url origin ${REMOTE}
+      # Build documentation
+      - run: |
+          mkdocs build
+          mkdocs --version
+      - name: Deploy Documentation
+        if: ${{ success()}}
+        uses: JamesIves/github-pages-deploy-action@4.1.3
+        with:
+          BRANCH: gh-pages
+          FOLDER: site
