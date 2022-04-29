@@ -1,0 +1,1434 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Developer Zone for netID, the european login standard of the European netID Foundation">
+      
+      
+      
+        <meta name="author" content="European netID Foundation">
+      
+      
+        <link rel="canonical" href="https://eunid.github.io/netID-docs/sso/">
+      
+      <link rel="shortcut icon" href="../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.0.0">
+    
+    
+      
+        <title>Technical Details - netID Developer Zone</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../assets/stylesheets/main.a3f8f96a.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+  
+
+    
+    
+  
+    <style> 
+    /* IBM Plex*/
+    @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/ibm-plex-sans-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('IBM Plex Sans'), local('IBMPlexSans'),
+        url('/fonts/ibm-plex-sans-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.svg#IBMPlexSans') format('svg'); /* Legacy iOS */
+    }
+    /* roboto-mono-regular - latin */
+    @font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/roboto-mono-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto Mono'), local('RobotoMono-Regular'),
+        url('/fonts/roboto-mono-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/roboto-mono-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/roboto-mono-v7-latin-regular.svg#RobotoMono') format('svg'); /* Legacy iOS */
+    }
+
+      body, input { 
+        font-family: "IBM Plex Sans", "Helvetica Neue", 
+          Helvetica, Arial, sans-serif; 
+      } 
+      pre, code, kbd { 
+        font-family: "Roboto Mono", "Courier New", 
+          Courier, monospace; 
+      } 
+    </style> 
+  
+
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#single-sign-on-documentation" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-header__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            netID Developer Zone
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Technical Details
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../devportal/" class="md-tabs__link">
+        Developer Portal
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="./" class="md-tabs__link md-tabs__link--active">
+        Single Sign-on Integration
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../cmp/" class="md-tabs__link">
+        CMP Integration
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-nav__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../images/logo.png" alt="logo">
+
+    </a>
+    netID Developer Zone
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        About netID
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../status/" class="md-nav__link">
+        System Status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
+        Developer Portal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developer Portal" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Portal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devportal/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" >
+      
+      <label class="md-nav__link" for="nav-2-2">
+        Setup Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setup Guide" data-md-level="2">
+        <label class="md-nav__title" for="nav-2-2">
+          <span class="md-nav__icon md-icon"></span>
+          Setup Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devportal/tutorial/services/" class="md-nav__link">
+        Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devportal/tutorial/clients/" class="md-nav__link">
+        Clients
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devportal/tutorial/users/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../devportal/reporting/" class="md-nav__link">
+        KPI Reports
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+      
+      <label class="md-nav__link" for="nav-3">
+        Single Sign-on Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Single Sign-on Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Single Sign-on Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Technical Details
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Technical Details
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#integration-guide" class="md-nav__link">
+    Integration Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-overview" class="md-nav__link">
+    General Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims-and-scopes" class="md-nav__link">
+    Claims and Scopes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-types" class="md-nav__link">
+    Client Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-endpoint-calls" class="md-nav__link">
+    Example Endpoint Calls
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Endpoint Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorize" class="md-nav__link">
+    Authorize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-endpoint" class="md-nav__link">
+    Token Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    UserInfo Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    Implementation Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    Optional Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-call-sequence" class="md-nav__link">
+    Detailed Call Sequence
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    Error Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netid-button" class="md-nav__link">
+    netID Button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    Best Practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-information" class="md-nav__link">
+    Security Information
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugins/" class="md-nav__link">
+        Integrations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="lib_sdk/" class="md-nav__link">
+        Libraries and SDKs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="styleguide/" class="md-nav__link">
+        Styleguide
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        CMP Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="CMP Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          CMP Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmp/" class="md-nav__link">
+        General information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmp/access-token/" class="md-nav__link">
+        Requesting Access Tokens
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmp/browser-based/" class="md-nav__link">
+        Browser-based API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmp/server-based/" class="md-nav__link">
+        Server-based API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cmp/export/" class="md-nav__link">
+        Export API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#integration-guide" class="md-nav__link">
+    Integration Guide
+  </a>
+  
+    <nav class="md-nav" aria-label="Integration Guide">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general-overview" class="md-nav__link">
+    General Overview
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims-and-scopes" class="md-nav__link">
+    Claims and Scopes
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-types" class="md-nav__link">
+    Client Types
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-endpoint-calls" class="md-nav__link">
+    Example Endpoint Calls
+  </a>
+  
+    <nav class="md-nav" aria-label="Example Endpoint Calls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorize" class="md-nav__link">
+    Authorize
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#token-endpoint" class="md-nav__link">
+    Token Endpoint
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#userinfo-endpoint" class="md-nav__link">
+    UserInfo Endpoint
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#implementation-details" class="md-nav__link">
+    Implementation Details
+  </a>
+  
+    <nav class="md-nav" aria-label="Implementation Details">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#optional-parameters" class="md-nav__link">
+    Optional Parameters
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detailed-call-sequence" class="md-nav__link">
+    Detailed Call Sequence
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-messages" class="md-nav__link">
+    Error Messages
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#netid-button" class="md-nav__link">
+    netID Button
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#best-practices" class="md-nav__link">
+    Best Practices
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#security-information" class="md-nav__link">
+    Security Information
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="single-sign-on-documentation">Single Sign-on Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
+<p>This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the <a href="/devportal/">Developer Portal Documentation</a></p>
+<h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
+<h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
+<p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
+<p>Partners manage their details as well as service/clients settings in the netID Developer Portal. They can register/manage <a href="../devportal/tutorial/services/"><strong>services</strong> </a>and associated <a href="../devportal/tutorial/clients/"><strong>clients</strong> </a> for these services (Website, App, Mobile, ...). Data transfer authorizations are managed service/client specific.  </p>
+<p>All the clients' communication takes place via EnID's central SSO broker. The SSO broker routes requests to the participating Account Providers, end users always authenticate to the Account Provider that manages their specific account, which is also where they authorize data transfer to a partners' service.</p>
+<p>Clients specify during authentication calls which master data they request to be authorized by a user for transfer; if the user agrees, the client receives an <em>id_token</em> and a <em>userinfo</em> object as a JSON structure. <em>id_token</em> and <em>userinfo</em> objects also contain the end user's subject identifier (<code>sub</code>).</p>
+<p>netID uses <a href="https://openid.net/specs/openid-connect-core-1_0.html#SubjectIDTypes">Pairwise Subject Identifiers</a> to derive client specific subject identifiers during authentication requests. The subject identifier is derived from a unique technical parameter of the service, ensuring that the  <code>sub</code> value is the same for all clients of that service.</p>
+<h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
+<p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
+<p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. </p>
+<p>In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the <a href="../cmp/#netid-permission-center">netID Permission Center</a> backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found <a href="/cmp/">here</a>.  </p>
+<p>Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
+<p>The following scopes are supported by netID:</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>openid</td>
+<td>mandatory scope to initiate a Single Sign-on using the <a href="#authorize">authorize endpoint</a></td>
+</tr>
+<tr>
+<td>permission_management</td>
+<td>optional scope to request an access token to access the <a href="../cmp/#netid-permission-center">netID Permission Center</a></td>
+</tr>
+</tbody>
+</table>
+<p>The following claims are supported by netID:</p>
+<table>
+<thead>
+<tr>
+<th>Claim</th>
+<th>Type</th>
+<th>Description</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>sub</td>
+<td>String</td>
+<td>Subject - Identifier for the end user at the issuer (netID Account Provider)</td>
+<td>"tLTGOmOHb5ix7i9d-hJ4CHXdh_hM2ZsCR2Iy7v7hs1M"</td>
+</tr>
+<tr>
+<td>address</td>
+<td>JSON Object</td>
+<td>Physical mailing address, containing information (if available) about postal code (ZIP), city or town, steet address and country where the end user's address is located</td>
+<td>If available: <ul><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul></td>
+</tr>
+<tr>
+<td>birthdate</td>
+<td>String</td>
+<td>The end user's date of birth "yyyy-mm-dd"</td>
+<td>"1980-01-01"</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>The end user's email address</td>
+<td>"<a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#97;&#110;&#101;&#46;&#100;&#111;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;">&#106;&#97;&#110;&#101;&#46;&#100;&#111;&#101;&#64;&#101;&#120;&#97;&#109;&#112;&#108;&#101;&#46;&#111;&#114;&#103;</a>"</td>
+</tr>
+<tr>
+<td>email_verified</td>
+<td>Boolean</td>
+<td>The verification status of the end user's email address</td>
+<td>true | false</td>
+</tr>
+<tr>
+<td>gender</td>
+<td>String</td>
+<td>The end user's gender</td>
+<td>"female" | "male" | ("inter"  possible in the future)</td>
+</tr>
+<tr>
+<td>given_name</td>
+<td>String</td>
+<td>The end user's first name (or names)</td>
+<td>"Jane"</td>
+</tr>
+<tr>
+<td>family_name</td>
+<td>String</td>
+<td>The end user's last name</td>
+<td>"Doe"</td>
+</tr>
+<tr>
+<td>shipping_address</td>
+<td>JSON Object</td>
+<td>Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country</td>
+<td>If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul></td>
+</tr>
+</tbody>
+</table>
+<p>Claims can also be requested using the following scopes.</p>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>Request type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>profile</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the following claims: family_name, given_name, gender and birthdate.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the email and email_verified claims.</td>
+</tr>
+<tr>
+<td>address</td>
+<td>OPTIONAL</td>
+<td>This scope value requests access to the address claim.</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition danger">
+<p class="admonition-title">Important: please note!</p>
+<p>The availability of these claims may, however, vary depending on the end user's account provider; in such cases un-supported claims are ignored and the client needs to handle this accordingly. 
+Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. When using optional claims, the system must be able to handle cases where not all claims are approved (e.g. email address). Otherwise, the claims should be requested as <em>essential</em>.</p>
+</div>
+<h3 id="client-types">Client Types<a class="headerlink" href="#client-types" title="Permanent link">&para;</a></h3>
+<p>netID offers support for clients that authenticate users via service endpoints (web servers, IAM systems,...), as well as clients that implement all authentication logic in one place and run without an additional backend (e.g. native mobile apps, single page applications). </p>
+<p>It must be ensured that the correct 'application type' is selected for each client: </p>
+<ul>
+<li>
+<p>Application type 'Native / Mobile App (PKCE)':
+    Native mobile app clients or single page applications that fully authenticate the user within the app via authorization code flow. The use of PKCE is mandatory. The authorization callback to a redirect_uri is handled by the application itself, a client secret is not used.
+    Learn more about PKCE: <a href="https://oauth.net/2/pkce/">https://oauth.net/2/pkce/</a></p>
+</li>
+<li>
+<p>Application type 'Website':<br />
+    In the case of web clients or apps with an external "web authentication endpoint", the use of PKCE is optional but also recommended, as its ability to prevent the injection of authorization codes makes it useful for any type of OpenID Connect/OAuth2 client, even if the application is running on a web server and is using a client secret. The authorization callback to a redirect_uri is handled by the respective service endpoint.</p>
+</li>
+</ul>
+<p>The setup of the client incl. (custom) URI schemes is described in the <a href="../devportal/tutorial/clients/">client setup guide</a>.</p>
+<h2 id="example-endpoint-calls">Example Endpoint Calls<a class="headerlink" href="#example-endpoint-calls" title="Permanent link">&para;</a></h2>
+<h3 id="authorize">Authorize<a class="headerlink" href="#authorize" title="Permanent link">&para;</a></h3>
+<p>Requests to the authorize endpoint initiate the Single Sign-on process,  clients identify themselves with their <em>client_id</em> and <em>redirect_uri</em> and specify which claims and scopes are to be requested. Some optional parameters are also <a href="#implementation-details">supported</a>.</p>
+<p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a></p>
+<p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the <em>redirect_uri</em> as well:</p>
+<h4 id="sso-without-requesting-any-additional-data">SSO without requesting any additional data<a class="headerlink" href="#sso-without-requesting-any-additional-data" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
+    <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
+    <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
+    <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
+    <span class="nv">scope</span><span class="o">=</span>openid
+</code></pre></div>
+</div>
+<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">URL encoding</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid
+</code></pre></div>
+</div>
+</div>
+<h4 id="profile-scope-expressed-in-essential-and-optional-claims">Profile scope expressed in essential and optional claims<a class="headerlink" href="#profile-scope-expressed-in-essential-and-optional-claims" title="Permanent link">&para;</a></h4>
+<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
+    <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
+    <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
+    <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
+    <span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span>
+    <span class="nv">claims</span><span class="o">={</span>
+        <span class="s2">&quot;userinfo&quot;</span>:<span class="o">{</span>
+            <span class="s2">&quot;given_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
+            <span class="s2">&quot;family_name&quot;</span>:<span class="o">{</span><span class="s2">&quot;essential&quot;</span>:true<span class="o">}</span>,
+            <span class="s2">&quot;birthdate&quot;</span>: null,
+            <span class="s2">&quot;gender&quot;</span>: null
+        <span class="o">}</span>
+    <span class="o">}</span>  
+</code></pre></div>
+</div>
+<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">URL encoding</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span><span class="nv">claims</span><span class="o">=</span>%7B%22userinfo%22%3A%7B%22birthdate%22%3A%7B%22essential%22%3Atrue%7D%2C%22gender%22%3A%7B%22essential%22%3Atrue%7D%2C%22given_name%22%3A%7B%22essential%22%3Atrue%7D%2C%22family_name%22%3A%7B%22essential%22%3Atrue%7D%7D%7D
+</code></pre></div>
+</div>
+</div>
+<h3 id="token-endpoint">Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permanent link">&para;</a></h3>
+<p>Token requests are carried out after the callback to the client in order to exchange the code (only valid for 30 seconds and to be used only once) provided for an <em>access token</em> (valid for 15 minutes) for the UserInfo Endpoint as well as the <em>id token</em>. It is absolutely necessary that the code used remains unmodified.</p>
+<p>With token requests, it's particularly important to ensure that the code provided is identical bit-by-bit to the one received in the callback to the redirect_uri.</p>
+<p>The netID endpoint for token requests is <a href="https://broker.netid.de/token">https://broker.netid.de/token</a>. Clients are <a href="https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication">authenticated</a> using</p>
+<div class="highlight"><pre><span></span><code>client_id
+        REQUIRED.  The client identifier issued to the client during
+        the registration process in the netID Developer Portal.
+
+client_secret
+        REQUIRED.  The client secret issued to the client during
+        the registration process in the netID Developer Portal.
+</code></pre></div>
+<p>The endpoint supports two authentication methods, namely <em>client_secret_basic</em> (basic authentication) and <em>client_secret_post</em> (credentials in the request body). When using basic authentication the endpoint supports both GET and POST based requests.</p>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">https://broker.netid.de/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Basic *base64(client_id:client_secret)*</span>
+
+code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
+</code></pre></div>
+<p>Example request using curl:</p>
+<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Example Request</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Response</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;f3EcGc1l8mjw3gZ3....&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;id_token&quot;</span><span class="p">:</span><span class="s2">&quot;eyJhbGciOiJub25lIn0....&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;token_type&quot;</span><span class="p">:</span><span class="s2">&quot;Bearer&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;expires_in&quot;</span><span class="p">:</span><span class="mi">899</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</div>
+<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Decoded ID Token</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f6316771-.....&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geuGIhNTX.....&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;auth_time&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1603726351</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;iss&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;https://broker.netid.de/&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;exp&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1603727273</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1603726373</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+<p>As an alternative clients may use <em>client_secret_post</em> based authentication providing <em>client_id</em> and <em>client_secret</em> using a POST request as shown below:</p>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/token</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+
+code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&amp;client_id=CLIENT_ID_GOES_HERE&amp;client_secret=CLIENT_SECRET_GOES_HERE
+</code></pre></div>
+<h3 id="userinfo-endpoint">UserInfo Endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
+<p>The <em>access token</em> is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.</p>
+<p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
+<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Example GET Request</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer SlAV32hkKG</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Example POST Request</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
+<span class="err">access_token=mF_9.B5f-4.1JqM</span>
+</code></pre></div>
+</div>
+<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Example Response</label><div class="tabbed-content">
+<div class="highlight"><pre><span></span><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w"></span>
+<span class="err">Co</span><span class="kc">ntent</span><span class="mi">-</span><span class="err">Type</span><span class="p">:</span><span class="w"> </span><span class="err">applica</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">/jso</span><span class="kc">n</span><span class="w"></span>
+<span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;tLTGOmOHb5ix7i9.....&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;birthdate&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;1980-01-01&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;email_verified&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;street_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hauptstr. 10&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DE&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Hauptstr. 10\n10117 Berlin\nDeutschland&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;locality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Berlin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;postal_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10117&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;gender&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;female&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;shipping_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;street_address&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Teststr. 12\nAppartement 47/11&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;DE&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;formatted&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe\nTeststr. 12\nAppartement 47/11\n10117 Berlin\nDeutschland&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;locality&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Berlin&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;recipient&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nt">&quot;postal_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;10117&quot;</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;given_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Jane&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;family_name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Doe&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.org&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+</div>
+</div>
+<p>Additional information about UserInfo: <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">OIDC specification</a></p>
+<h2 id="implementation-details">Implementation Details<a class="headerlink" href="#implementation-details" title="Permanent link">&para;</a></h2>
+<h3 id="optional-parameters">Optional Parameters<a class="headerlink" href="#optional-parameters" title="Permanent link">&para;</a></h3>
+<p>The following request parameters are supported for initiating the SSO process and may be passed to the <em>authorize</em> <a href="#authorize">endpoint</a>. For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest">OIDC specification</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>prompt</td>
+<td><strong>login</strong> for requiring re-authentication of a user during the login process <br> <strong>consent</strong> for requiring consent to be given again</td>
+</tr>
+<tr>
+<td>max_age</td>
+<td>in cases where time of authentication may not be too far in the past - elapsed time in seconds since the last time the End-User was actively authenticated</td>
+</tr>
+<tr>
+<td>login_hint</td>
+<td>to provide and email address in order to prevent the broker's user interface from being visible to the user and thus directly redirect to the relevant account provider</td>
+</tr>
+<tr>
+<td>state</td>
+<td>The value of this parameter is passed through the entire flow transparently and included when calling back to the <em>redirect_uri</em>. It may be used to recognize how authorize request and asynchronous response are associated in the client</td>
+</tr>
+<tr>
+<td>nonce</td>
+<td>If a nonce value was sent in the Authentication Request, a nonce Claim MUST be present and its value checked to verify that it is the same value as the one that was sent in the Authentication Request. The Client SHOULD check the nonce value for replay attacks. The precise method for detecting replay attacks is Client specific.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="detailed-call-sequence">Detailed Call Sequence<a class="headerlink" href="#detailed-call-sequence" title="Permanent link">&para;</a></h3>
+<p>The sequence of the calls is summarized as follows:</p>
+<p><img alt="High Level Authentication Code Flow" src="../diagrams/out/seq_sso_overview.svg" /></p>
+<details class="info">
+<summary>Detailed description of the sequence diagram</summary>
+<ol>
+<li>The end user initiates a process on the client's site that involves the use of netID.</li>
+<li>At this point, the client generates a netID button for an authorize request and redirects the end user to the SSO broker.</li>
+<li>The SSO broker validates the client's authorize request.</li>
+<li>The SSO broker generates a new authorize request and redirects the user to the OpenID provider. For their part, the broker appears to the OpenID provider as a relying party client.</li>
+<li>The OpenID provider validates the SSO broker's authorize request and displays the login screen to the end user; the user logs in with the account provider.</li>
+<li>The OpenID provider shows an approval page to the end user on which all the data he or she is asked to allow transfer of is displayed.</li>
+<li>The end user agrees to provide the requested data.</li>
+<li>The OpenID provider generates an AuthN Response and redirects to the SSO broker.</li>
+<li>The SSO broker receives the AuthN Response from the OpenID provider.</li>
+<li>The SSO broker generates a new AuthN Response and redirects to the client's <em>redirect_uri</em>.</li>
+<li>The client receives the SSO broker's AuthN Response.</li>
+<li>The actual data query is initiated.</li>
+<li>The client requests the access token with the SSO broker using the Auth Code (from the AuthN Response) and the Client Credentials.</li>
+<li>The SSO broker requests the access token from the OP using the Auth Code (from the AuthN Response) and the Client Credentials taken from the client.</li>
+<li>The OpenID provider issues an access token, giving it to the SSO broker.</li>
+<li>The SSO broker uses the access token to generate a new access token, giving this one to the client.</li>
+<li>The client uses the access token with the SSO broker to request the userinfo object.</li>
+<li>The SSO broker uses the access token to request the userinfo object from the OpenID provider.</li>
+<li>The OpenID provider grants the userinfo object to the SSO broker.</li>
+<li>The SSO broker grants the userinfo object to the client.</li>
+<li>The client has now received the userinfo object.</li>
+</ol>
+</details>
+<h2 id="error-messages">Error Messages<a class="headerlink" href="#error-messages" title="Permanent link">&para;</a></h2>
+<p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
+For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html">OIDC specification</a>.</p>
+<h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
+<p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
+<h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
+<p>It is largely up to the relying parties to decide where netID is to be incorporated in clients.</p>
+<p>Typical cases involve the use of netID as a login or data enrichment mechanism.</p>
+<p>As a login mechanism, for example, netID may be used like other SSO mechanisms (as well as alongside them) as an authentication alternative, or even used as the sole login method. Whether or not a local account is to be held in addition to the netID account is entirely up to the relying party. netID does not provide a classic session, but the SSO process is available via the authorize process at all times. An email address provided to the broker via a browser will be stored as a 1<sup>st</sup>-party cookie; the end user may decide whether to remain logged in with the account provider. The end user's approval for the transfer of master data will be sought only upon the first request for such data, unless the user revokes his or her approval; ideally, this allows SSO flows to be able to run even with interaction from the user.</p>
+<p>If a relying party would like to also be able to handle authentication of end users independently of netID, it is advisable to ensure that mechanisms for merging or separating accounts are provided for. If local account representations with local credentials exist alongside netID, there should also be support processes for handling them; netID support processes only come into effect in connection with netID accounts themselves.</p>
+<p>In terms of data enrichment, examples may include using netID during registration processes to make it easier for users to enter information, or as a source for addresses when customers are checking out with their shopping carts online. Whether the data provided is to be used only temporarily or whether it should persist is again left up to the relying parties to freely decide. Each time netID is triggered, the data obtained is up to date in relation to the information currently available to the account provider. With regard to local copies, it may be reasonable to repeatedly request updates and synchronize them. The relying party is to take the principles of data protection into account as they pertain to local data retention.</p>
+<p>Ideally, data enrichment processes should be initiated in those places where the data is actually needed. This helps to optimize conversion rates while achieving a high degree of data minimization.</p>
+<p>One thing to be aware of is the verification status of email addresses: if an email address has already been verified with netID, a new request from the relying party to verify the email address is, generally speaking, unnecessary and may cause confusion on the part of the end user. Those netID accounts associated with account providers that are, for their part, email providers, are verified from the outset. If such an email account is deleted, not only does the end user lose the ability to use netID, but all support processes based on that email address will come to nothing.</p>
+<h2 id="security-information">Security Information<a class="headerlink" href="#security-information" title="Permanent link">&para;</a></h2>
+<ul>
+<li>All communication with netID must be secured by TLS. This also applies to all URLs entered in the developer portal.</li>
+<li>netID supports PKCE as extension to the Authorization Code flow. The usage of PKCE for native mobile apps and single page applications is mandatory.</li>
+<li>netID exclusively supports the Authorization Code Flow, so that id_token is only transferred in TLS-secured back-end to back-end communication.</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../devportal/reporting/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              KPI Reports
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="plugins/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Integrations
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        <a href="https://enid.eu" target="_blank" rel="noopener">European netID Foundation</a> | <a href="https://datenschutz.netid.de/netiddev/" target="_blank" rel="noopener">Datenschutzhinweise</a> | <a href="https://enid.eu/partner" target="_blank" rel="noopener">Partner werden</a> | <a href="https://developer.netid.de" target="_blank" rel="noopener">netID Developer Portal</a> 
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/netIDFoundation" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://linkedin.com/company/enid" target="_blank" rel="noopener" title="linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.217ffd95.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script>
+    
+    
+  
+      <script src="../assets/javascripts/bundle.926459b3.min.js"></script>
+      
+    
+  
+
+  </body>
+</html>
