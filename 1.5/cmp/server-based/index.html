@@ -1,0 +1,1271 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Developer Zone for netID, the european login standard of the European netID Foundation">
+      
+      
+      
+        <meta name="author" content="European netID Foundation">
+      
+      
+        <link rel="canonical" href="https://eunid.github.io/netID-docs/cmp/server-based/">
+      
+      <link rel="shortcut icon" href="../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.0.0">
+    
+    
+      
+        <title>Server-based API - netID Developer Zone</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a3f8f96a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+  
+
+    
+    
+  
+    <style> 
+    /* IBM Plex*/
+    @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/ibm-plex-sans-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('IBM Plex Sans'), local('IBMPlexSans'),
+        url('/fonts/ibm-plex-sans-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.svg#IBMPlexSans') format('svg'); /* Legacy iOS */
+    }
+    /* roboto-mono-regular - latin */
+    @font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/roboto-mono-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto Mono'), local('RobotoMono-Regular'),
+        url('/fonts/roboto-mono-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/roboto-mono-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/roboto-mono-v7-latin-regular.svg#RobotoMono') format('svg'); /* Legacy iOS */
+    }
+
+      body, input { 
+        font-family: "IBM Plex Sans", "Helvetica Neue", 
+          Helvetica, Arial, sans-serif; 
+      } 
+      pre, code, kbd { 
+        font-family: "Roboto Mono", "Courier New", 
+          Courier, monospace; 
+      } 
+    </style> 
+  
+
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#server-based-api-backend-integration" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-header__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            netID Developer Zone
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Server-based API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../devportal/" class="md-tabs__link">
+        Developer Portal
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../sso/" class="md-tabs__link">
+        Single Sign-on Integration
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        CMP Integration
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-nav__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../../images/logo.png" alt="logo">
+
+    </a>
+    netID Developer Zone
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        About netID
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../status/" class="md-nav__link">
+        System Status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+      
+      <label class="md-nav__link" for="nav-2">
+        Developer Portal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developer Portal" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Portal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devportal/" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" >
+      
+      <label class="md-nav__link" for="nav-2-2">
+        Setup Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setup Guide" data-md-level="2">
+        <label class="md-nav__title" for="nav-2-2">
+          <span class="md-nav__icon md-icon"></span>
+          Setup Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devportal/tutorial/services/" class="md-nav__link">
+        Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devportal/tutorial/clients/" class="md-nav__link">
+        Clients
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devportal/tutorial/users/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devportal/reporting/" class="md-nav__link">
+        KPI Reports
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Single Sign-on Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Single Sign-on Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Single Sign-on Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso/" class="md-nav__link">
+        Technical Details
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso/plugins/" class="md-nav__link">
+        Integrations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso/lib_sdk/" class="md-nav__link">
+        Libraries and SDKs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sso/styleguide/" class="md-nav__link">
+        Styleguide
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+      
+      <label class="md-nav__link" for="nav-4">
+        CMP Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="CMP Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          CMP Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        General information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../access-token/" class="md-nav__link">
+        Requesting Access Tokens
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../browser-based/" class="md-nav__link">
+        Browser-based API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Server-based API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Server-based API
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-apis" class="md-nav__link">
+    Read APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="Read APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netid-identifier" class="md-nav__link">
+    netID Identifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-privacy-status" class="md-nav__link">
+    Read privacy status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-apis" class="md-nav__link">
+    Write APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="Write APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-privacy-status" class="md-nav__link">
+    Write privacy status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../export/" class="md-nav__link">
+        Export API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#read-apis" class="md-nav__link">
+    Read APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="Read APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#netid-identifier" class="md-nav__link">
+    netID Identifier
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-privacy-status" class="md-nav__link">
+    Read privacy status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#write-apis" class="md-nav__link">
+    Write APIs
+  </a>
+  
+    <nav class="md-nav" aria-label="Write APIs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#write-privacy-status" class="md-nav__link">
+    Write privacy status
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="server-based-api-backend-integration">Server-based API (backend integration)<a class="headerlink" href="#server-based-api-backend-integration" title="Permanent link">&para;</a></h1>
+<p>Description of the backend integration of the netID Permission Center by the CMP (integration from the server side / backend of the CMP if available).</p>
+<p>A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can requests an access token (<code>token</code>) provided after the successful login, based on which a user can be authenticated at the netID Permission Center to enable read/write access for that specific users privacy status.</p>
+<div class="admonition info">
+<p>The server-based requests are secured via the access token.
+Calls of this type are blocked from the browser environments for security reasons (no Origin header is allowed!)</p>
+</div>
+<h2 id="read-apis">Read APIs<a class="headerlink" href="#read-apis" title="Permanent link">&para;</a></h2>
+<h3 id="netid-identifier">netID Identifier<a class="headerlink" href="#netid-identifier" title="Permanent link">&para;</a></h3>
+<p>A CMP/netID Partner can retrieve the user's netID Identifier via the following interface:</p>
+<h4 id="request">Request<a class="headerlink" href="#request" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">https://einwilligungsspeicher.netid.de/netid-subject-identifiers</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-v1+json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;Access Token&gt;</span>
+</code></pre></div>
+<h4 id="response">Response<a class="headerlink" href="#response" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-v1+json</span>
+
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;tpid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;TPID&gt;&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="response-properties">Response properties<a class="headerlink" href="#response-properties" title="Permanent link">&para;</a></h4>
+<p><code>tpid</code> - Users netID identifier. Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</p>
+<table>
+<thead>
+<tr>
+<th>status_code</th>
+<th>meaning</th>
+<th>tpid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OK</td>
+<td>Call successful</td>
+<td>x</td>
+</tr>
+<tr>
+<td>NO_TPID</td>
+<td>No <code>tpid</code> in request available.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TOKEN_ERROR</td>
+<td>Access token was expired or invalid.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>NO_TOKEN</td>
+<td>No access token was passed.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_NOT_FOUND</td>
+<td>Permissions for <code>tpid</code> not found.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td>Account does not exist anymore.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was not given or was revoked by the user.</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-behavior">Response behavior<a class="headerlink" href="#response-behavior" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>HTTP status code</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td><code>tpid</code> of the netID user returned.</td>
+</tr>
+<tr>
+<td>400 BAD REQUEST</td>
+<td>Missing access token, or access token expired / invalid.</td>
+</tr>
+<tr>
+<td>403 FORBIDDEN</td>
+<td>Requesting TAPP isn't active or consent for "identification" isn't granted.</td>
+</tr>
+<tr>
+<td>404 NOT FOUND</td>
+<td><code>tpid</code> in access token does not exist.</td>
+</tr>
+<tr>
+<td>410 GONE</td>
+<td>Account does not exist anymore.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="read-privacy-status">Read privacy status<a class="headerlink" href="#read-privacy-status" title="Permanent link">&para;</a></h3>
+<h4 id="request_1">Request<a class="headerlink" href="#request_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">https://einwilligungsspeicher.netid.de/netid-permissions</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-permission-status-v1+json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;Access Token&gt;</span>
+</code></pre></div>
+<h4 id="response_1">Response<a class="headerlink" href="#response_1" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">200</span> <span class="ne">OK</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-permission-status-v1+json</span>
+
+<span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;tpid&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;TPID&gt;&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;tc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;TCSTRING&gt;&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;datashare&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;VALID&quot;</span><span class="err">|</span><span class="s2">&quot;INVALID&quot;</span><span class="err">|</span><span class="kc">null</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;status_code&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;OK&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="response-properties_1">Response properties<a class="headerlink" href="#response-properties_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>tpid</td>
+<td>Users identifier (<code>tpid</code>). Only returned if consent "identification" is given, the <code>tpid</code> is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.</td>
+</tr>
+<tr>
+<td>tc</td>
+<td>TC string stored for this <code>tpid</code> for this respective netID partner (TAPP). Only with status "OK". Otherwise null.</td>
+</tr>
+<tr>
+<td>datashare</td>
+<td>If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>status_code</th>
+<th>meaning</th>
+<th>tpid</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OK</td>
+<td>Call successful</td>
+<td>x</td>
+</tr>
+<tr>
+<td>NO_TPID</td>
+<td>No <code>tpid</code> in request available.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TOKEN_ERROR</td>
+<td>Access token was expired or invalid.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>NO_TOKEN</td>
+<td>No access token was passed.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>PERMISSIONS_NOT_FOUND</td>
+<td>Permissions for <code>tpid</code> not found.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td>Account does not exist anymore.</td>
+<td>-</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was not given or was revoked by the user</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-behavior_1">Response behavior<a class="headerlink" href="#response-behavior_1" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>HTTP status code</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200 OK</td>
+<td>Call successful</td>
+</tr>
+<tr>
+<td>400 BAD REQUEST</td>
+<td>Missing parameter.</td>
+</tr>
+<tr>
+<td>403 FORBIDDEN</td>
+<td>Requesting TAPP isn't active.</td>
+</tr>
+<tr>
+<td>404 NOT FOUND</td>
+<td>Permissions for <code>tpid</code> not found.</td>
+</tr>
+<tr>
+<td>410 GONE</td>
+<td>Account does not exist anymore.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="write-apis">Write APIs<a class="headerlink" href="#write-apis" title="Permanent link">&para;</a></h2>
+<h3 id="write-privacy-status">Write privacy status<a class="headerlink" href="#write-privacy-status" title="Permanent link">&para;</a></h3>
+<h4 id="request_2">Request<a class="headerlink" href="#request_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">https://einwilligen.netid.de/netid-permissions</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
+<span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-permissions-v1+json</span>
+<span class="na">Accept</span><span class="o">:</span> <span class="l">application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json</span>
+<span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer &lt;Access Token&gt;</span>
+<span class="err">{</span>
+<span class="w">  </span><span class="nt">&quot;identification&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="err">|</span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nt">&quot;tc&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;&lt;TC string&gt;&quot;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<h4 id="response_2">Response<a class="headerlink" href="#response_2" title="Permanent link">&para;</a></h4>
+<div class="highlight"><pre><span></span><code><span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span> <span class="m">201</span> <span class="ne">Created</span>
+
+{
+  &quot;tpid&quot;: &quot;&lt;TPID&gt;|null&quot;,
+  &quot;status&quot;: &quot;OK&quot;
+}
+</code></pre></div>
+<div class="admonition info">
+<p class="admonition-title">Remarks</p>
+<ul>
+<li>There must be at least one permission ("identification", "tc"). Permissions are optional. If a permission should not be written, the JSON property is missing. </li>
+<li>If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.</li>
+<li>If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.</li>
+<li>In case of revocation the consent for "identification", "identification: false" is passed.</li>
+</ul>
+</div>
+<h4 id="request-properties">Request properties<a class="headerlink" href="#request-properties" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>item</th>
+<th>description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>identification</td>
+<td>Boolean flag, indicating the status of the consent "identification". <br> <em>true</em> = Consent is given <br> <em>false</em> = consent is not given or revoked</td>
+</tr>
+<tr>
+<td>tc</td>
+<td>TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0)</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-properties_2">Response properties<a class="headerlink" href="#response-properties_2" title="Permanent link">&para;</a></h4>
+<p><code>tpid</code> - Users netID Identifier. Only present if consent "identification" is given, the <code>tpid</code> is known and status is "OK". Otherwise null.</p>
+<table>
+<thead>
+<tr>
+<th>status_code</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>OK</td>
+<td>Call successful</td>
+</tr>
+<tr>
+<td>NO_TPID</td>
+<td>No <code>tpid</code> in request available.</td>
+</tr>
+<tr>
+<td>NO_TAPP_ID</td>
+<td>Mandatory parameter <code>tapp_id</code> is missing.</td>
+</tr>
+<tr>
+<td>TAPP_NOT_ALLOWED</td>
+<td>TAPP <code>tapp_id</code> is not allowed.</td>
+</tr>
+<tr>
+<td>TPID_EXISTENCE_ERROR</td>
+<td>Account does not exist anymore.</td>
+</tr>
+<tr>
+<td>ID_CONSENT_REQUIRED</td>
+<td>Consent for passing the <code>tpid</code> ("identification") was revoked or declined by the user.</td>
+</tr>
+<tr>
+<td>NO_REQUEST_BODY</td>
+<td>Required request body is missing.</td>
+</tr>
+<tr>
+<td>JSON_PARSE_ERROR</td>
+<td>Invalid JSON body, parse error.</td>
+</tr>
+<tr>
+<td>NO_PERMISSIONS</td>
+<td>Parameters are missing. At least one permission must be set.</td>
+</tr>
+<tr>
+<td>PERMISSION_PARAMETERS_ERROR</td>
+<td>Syntactic or semantic error in a permission. Name ("identification", "tc") or value unknown.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="response-behavior_2">Response behavior<a class="headerlink" href="#response-behavior_2" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th>HTTP status code</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>201 CREATED</td>
+<td>Call successful</td>
+</tr>
+<tr>
+<td>400 BAD REQUEST</td>
+<td>- Missing authentication.  <br> - Provided token access cookie is expired or invalid. No access token passed.</td>
+</tr>
+<tr>
+<td>403 FORBIDDEN</td>
+<td>- Missing parameters (<code>tapp_id</code>, <code>origin</code>) <br> - Requesting TAPP isn't active.</td>
+</tr>
+<tr>
+<td>410 GONE</td>
+<td>Account does not exist anymore.</td>
+</tr>
+</tbody>
+</table>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../browser-based/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Browser-based API
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../export/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Export API
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        <a href="https://enid.eu" target="_blank" rel="noopener">European netID Foundation</a> | <a href="https://datenschutz.netid.de/netiddev/" target="_blank" rel="noopener">Datenschutzhinweise</a> | <a href="https://enid.eu/partner" target="_blank" rel="noopener">Partner werden</a> | <a href="https://developer.netid.de" target="_blank" rel="noopener">netID Developer Portal</a> 
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/netIDFoundation" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://linkedin.com/company/enid" target="_blank" rel="noopener" title="linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.217ffd95.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": {"provider": "mike"}}</script>
+    
+    
+  
+      <script src="../../assets/javascripts/bundle.926459b3.min.js"></script>
+      
+    
+  
+
+  </body>
+</html>
