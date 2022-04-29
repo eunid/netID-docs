@@ -1,0 +1,1008 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Developer Zone for netID, the european login standard of the European netID Foundation">
+      
+      
+      
+        <meta name="author" content="European netID Foundation">
+      
+      
+        <link rel="canonical" href="https://eunid.github.io/netID-docs/devportal/tutorial/clients/">
+      
+      <link rel="shortcut icon" href="../../../images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.3.0, mkdocs-material-7.0.0">
+    
+    
+      
+        <title>Clients - netID Developer Zone</title>
+      
+    
+    
+  
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.a3f8f96a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+  
+
+    
+    
+  
+    <style> 
+    /* IBM Plex*/
+    @font-face {
+    font-family: 'IBM Plex Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/ibm-plex-sans-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('IBM Plex Sans'), local('IBMPlexSans'),
+        url('/fonts/ibm-plex-sans-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/ibm-plex-sans-v7-latin-regular.svg#IBMPlexSans') format('svg'); /* Legacy iOS */
+    }
+    /* roboto-mono-regular - latin */
+    @font-face {
+    font-family: 'Roboto Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/roboto-mono-v7-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto Mono'), local('RobotoMono-Regular'),
+        url('/fonts/roboto-mono-v7-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+        url('/fonts/roboto-mono-v7-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.woff') format('woff'), /* Modern Browsers */
+        url('/fonts/roboto-mono-v7-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+        url('/fonts/roboto-mono-v7-latin-regular.svg#RobotoMono') format('svg'); /* Legacy iOS */
+    }
+
+      body, input { 
+        font-family: "IBM Plex Sans", "Helvetica Neue", 
+          Helvetica, Arial, sans-serif; 
+      } 
+      pre, code, kbd { 
+        font-family: "Roboto Mono", "Courier New", 
+          Courier, monospace; 
+      } 
+    </style> 
+  
+
+    
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#clients" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-header__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            netID Developer Zone
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Clients
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        About
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../" class="md-tabs__link md-tabs__link--active">
+        Developer Portal
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../sso/" class="md-tabs__link">
+        Single Sign-on Integration
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../cmp/" class="md-tabs__link">
+        CMP Integration
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://eunid.github.io/netID-docs/" title="netID Developer Zone" class="md-nav__button md-logo" aria-label="netID Developer Zone">
+      
+  <img src="../../../images/logo.png" alt="logo">
+
+    </a>
+    netID Developer Zone
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1" >
+      
+      <label class="md-nav__link" for="nav-1">
+        About
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="About" data-md-level="1">
+        <label class="md-nav__title" for="nav-1">
+          <span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        About netID
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../faq/" class="md-nav__link">
+        FAQ
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../status/" class="md-nav__link">
+        System Status
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../changelog/" class="md-nav__link">
+        Changelog
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" checked>
+      
+      <label class="md-nav__link" for="nav-2">
+        Developer Portal
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Developer Portal" data-md-level="1">
+        <label class="md-nav__title" for="nav-2">
+          <span class="md-nav__icon md-icon"></span>
+          Developer Portal
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Getting started
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2-2" type="checkbox" id="nav-2-2" checked>
+      
+      <label class="md-nav__link" for="nav-2-2">
+        Setup Guide
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Setup Guide" data-md-level="2">
+        <label class="md-nav__title" for="nav-2-2">
+          <span class="md-nav__icon md-icon"></span>
+          Setup Guide
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../services/" class="md-nav__link">
+        Services
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Clients
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Clients
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-functionality" class="md-nav__link">
+    Detailed Functionality
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Functionality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-client" class="md-nav__link">
+    Creating a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-a-client" class="md-nav__link">
+    Edit a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate-a-client" class="md-nav__link">
+    Deactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactivate-a-client" class="md-nav__link">
+    Reactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-client" class="md-nav__link">
+    Delete a Client
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../users/" class="md-nav__link">
+        User Management
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reporting/" class="md-nav__link">
+        KPI Reports
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+      
+      <label class="md-nav__link" for="nav-3">
+        Single Sign-on Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Single Sign-on Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-3">
+          <span class="md-nav__icon md-icon"></span>
+          Single Sign-on Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sso/" class="md-nav__link">
+        Technical Details
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sso/plugins/" class="md-nav__link">
+        Integrations
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sso/lib_sdk/" class="md-nav__link">
+        Libraries and SDKs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sso/styleguide/" class="md-nav__link">
+        Styleguide
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+      
+      <label class="md-nav__link" for="nav-4">
+        CMP Integration
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="CMP Integration" data-md-level="1">
+        <label class="md-nav__title" for="nav-4">
+          <span class="md-nav__icon md-icon"></span>
+          CMP Integration
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cmp/" class="md-nav__link">
+        General information
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cmp/access-token/" class="md-nav__link">
+        Requesting Access Tokens
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cmp/browser-based/" class="md-nav__link">
+        Browser-based API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cmp/server-based/" class="md-nav__link">
+        Server-based API
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cmp/export/" class="md-nav__link">
+        Export API
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lifecycle" class="md-nav__link">
+    Lifecycle
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-functionality" class="md-nav__link">
+    Detailed Functionality
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Functionality">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-a-client" class="md-nav__link">
+    Creating a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#edit-a-client" class="md-nav__link">
+    Edit a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deactivate-a-client" class="md-nav__link">
+    Deactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactivate-a-client" class="md-nav__link">
+    Reactivate a Client
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#delete-a-client" class="md-nav__link">
+    Delete a Client
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="clients">Clients<a class="headerlink" href="#clients" title="Permanent link">&para;</a></h1>
+<p>Using clients you can manage the technical details for an integration into your services. <strong>Services</strong> may have multiple clients to cater for different types of integration (mobile, website, ...).</p>
+<h2 id="lifecycle">Lifecycle<a class="headerlink" href="#lifecycle" title="Permanent link">&para;</a></h2>
+<p><strong>Clients</strong> have a simple lifecycle, once they are created they immediately get into the <strong>active</strong> state and can be used. At any point in time you can choose to</p>
+<ol>
+<li>
+<p><a href="#delete-a-client">Delete</a> a specific client, which puts it into the state <strong>deleted</strong>. Clients remain in the state deleted for 14 days, once these are passed it will be permanently removed. Within the 14 days grace period clients can be <a href="#reactivate-a-client">re-activated</a> and return to into the <strong>active</strong> state.</p>
+</li>
+<li>
+<p><a href="#deactivate-a-client">De-active</a> a specific client which puts into <strong>inactive</strong> status (disabling its usage). It can be <a href="#reactivate-a-client">re-activated</a> and returns to into the <strong>active</strong> state.</p>
+</li>
+</ol>
+<div class="admonition info">
+<p>Status changes on the overall <a href="../services/">service</a> this client belongs to will also have immediate effect on all of its clients.</p>
+</div>
+<h2 id="detailed-functionality">Detailed Functionality<a class="headerlink" href="#detailed-functionality" title="Permanent link">&para;</a></h2>
+<h3 id="creating-a-client">Creating a Client<a class="headerlink" href="#creating-a-client" title="Permanent link">&para;</a></h3>
+<p>To create a client for a service, select <strong>Add client</strong> in the <a href="../services/#service-details-view">details view</a> of the service. Client Details can be defined in the provided form.</p>
+<p><img alt="netid" src="../../../images/devportal/netid_dev_portal_add_client_pkce.png" style="width:50%;display: block; margin: 0 auto;" /></p>
+<p>Select the appropriate application type of your client. In case you are integrating netID into a native mobile app or single page app, select 'Native / Mobile App (PKCE)'. If you're planning to integrate netID into a web client please select 'Website'.</p>
+<div class="admonition info">
+<p>Once a application type is selected and the client configuration saved, the application type cannot be changed afterwards.</p>
+</div>
+<p>Fill out the necessary details, most importantly in case this client is meant for production use make sure that the <strong>Callback URL</strong> points to the same backend that operates this specific service. While this is not technically enforced, the callback URL must be operated by your company.
+Examples of accepted url schemes for the application type “Native / Mobile App (PKCE)” are shown below. Their validation follows the recommendation of the <a href="https://datatracker.ietf.org/doc/html/rfc8252#section-7">RFC 8252 Section 7</a>.</p>
+<p>Custom url schemes:</p>
+<ul>
+<li>example.app:/oauth2redirect/example-provider</li>
+<li>myphotoapp:albumname?name="albumname"</li>
+<li>myapp://?foo=1&amp;bar=2</li>
+<li>myapp://  <strong>is not supported by netID</strong> </li>
+</ul>
+<p>Claimed “https” schemes:</p>
+<ul>
+<li><a href="https://app.example.com/oauth2redirect/example-provider">https://app.example.com/oauth2redirect/example-provider</a></li>
+</ul>
+<p>Loopback Interface:</p>
+<ul>
+<li>http://[::1]:61023/oauth2redirect/example-provider</li>
+<li><a href="https://127.0.0.1:51004/oauth2redirect/example-provider">https://127.0.0.1:51004/oauth2redirect/example-provider</a></li>
+<li>https://[::1]:61023/oauth2redirect/example-provider</li>
+</ul>
+<div class="admonition info">
+<p>Please note that netID uses <a href="/sso/#general-overview">pairwise subject identifiers</a>. With the support of native mobile apps as well as web apps the pairwise subject identifiers are now derived from a parameter bound to the parent service. You may now specifiy different callback urls with different host portions per client without receiving different <code>sub</code> values for the same user.</p>
+</div>
+<div class="admonition warning">
+<p>We took care that existing service and client configurations will not brake by this feature update. Our migration plan respects the entries for given Callback urls and your users will not have to give their consent again.</p>
+<p>You may want to revisit your client configuration in order to check your settings. If you experience any problems please contact our support team..</p>
+</div>
+<p>Token signing is not strictly necessary, but recommended. To enable token signing choose your preferred signing mechanism (RS256 or ES256). To learn more about token signing or validation, please visit <a href="https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation">https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation</a></p>
+<div class="admonition warning">
+<p>Please note that some standard libraries may not work if token signing is set to <code>none</code>.</p>
+</div>
+<p>Once the client of an application type "Website" is created you can retrieve the necessary credentials to integrate into your environment by expanding the client details, namely <strong>Client ID</strong> and <strong>Client Secret</strong>.
+Depending on the status of the clients service w.r.t. <a href="../services/#approval-for-production-use">approval for production use</a> the <strong>Client Secret</strong> will be shown as</p>
+<ul>
+<li><strong>Client secret - sandbox:</strong> which indicates that the service is still in sandboxed mode</li>
+<li><strong>Client secret - live:</strong> which indicates that the service has been approved to be used in a production environment</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Client secret after service approval</p>
+<p>Please note that the <strong>Client Secret</strong> does not change when the service is approved for production use, that means you do not need to change the configuration of your client / take action after the approval.</p>
+</div>
+<p>If you created a client of an application type "Native / Mobile App (PKCE)" client security is managed via PKCE.</p>
+<h3 id="edit-a-client">Edit a Client<a class="headerlink" href="#edit-a-client" title="Permanent link">&para;</a></h3>
+<p>To edit a client select <strong>Edit</strong> in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client. Client details can be edited in the provided form.</p>
+<p>Make the desired changes and updates and save the information by confirmation using <strong>Update Client</strong>.</p>
+<h3 id="deactivate-a-client">Deactivate a Client<a class="headerlink" href="#deactivate-a-client" title="Permanent link">&para;</a></h3>
+<p>To temporarily deactivate a client select <strong>Edit</strong> in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>In the client details form select the <strong>Inactive</strong> in the drop down menu under <strong>Status</strong>.</p>
+<h3 id="reactivate-a-client">Reactivate a Client<a class="headerlink" href="#reactivate-a-client" title="Permanent link">&para;</a></h3>
+<p>To reactivate a client select <strong>Edit</strong> in the <strong>Clients</strong> listing in the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>In the client details form select the <strong>Active</strong> in the drop down menu under <strong>Status</strong>.</p>
+<h3 id="delete-a-client">Delete a Client<a class="headerlink" href="#delete-a-client" title="Permanent link">&para;</a></h3>
+<p>To delete a client permanently expand the client details in the <strong>Clients</strong> listing of the <a href="../services/#service-details-view">details view</a> of the respective service for this client.</p>
+<p>Click on <strong>Delete client</strong> at the bottom of the expanded details and confirm the deletion. See notes on <a href="#lifecycle">lifecycle</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+
+
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../services/" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Services
+            </div>
+          </div>
+        </a>
+      
+      
+        <a href="../users/" class="md-footer__link md-footer__link--next" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              User Management
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        <a href="https://enid.eu" target="_blank" rel="noopener">European netID Foundation</a> | <a href="https://datenschutz.netid.de/netiddev/" target="_blank" rel="noopener">Datenschutzhinweise</a> | <a href="https://enid.eu/partner" target="_blank" rel="noopener">Partner werden</a> | <a href="https://developer.netid.de" target="_blank" rel="noopener">netID Developer Portal</a> 
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://twitter.com/netIDFoundation" target="_blank" rel="noopener" title="twitter.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+      </a>
+    
+      
+      
+        
+        
+      
+      <a href="https://linkedin.com/company/enid" target="_blank" rel="noopener" title="linkedin.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3zM135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tabs"], "search": "../../../assets/javascripts/workers/search.217ffd95.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing"}, "version": null}</script>
+    
+    
+  
+      <script src="../../../assets/javascripts/bundle.926459b3.min.js"></script>
+      
+    
+  
+
+  </body>
+</html>
