@@ -1,0 +1,39 @@
+@startuml
+
+skinparam sequence {
+	ArrowColor #76b82a
+	ActorBorderColor #76b82a
+    ActorBackgroundColor #FFF
+	ActorFontColor #000
+    ActorFontName Arial
+	ActorFontSize 17
+
+	LifeLineBorderColor #76b82a
+	LifeLineBackgroundColor #76b82a
+	
+	ParticipantBorderColor #76b82a
+	ParticipantBackgroundColor #76b82a
+	ParticipantFontName Arial
+	ParticipantFontSize 17
+	ParticipantFontColor #FFF
+
+}
+
+participant  "CMP" as cmp
+participant  "Read Service" as rs
+participant  "IdentWrite Service" as ws
+participant  "Data Export Service" as des
+
+cmp -> rs : GET foo @Andrea/Achim
+activate rs
+rs -> cmp : response
+deactivate rs
+cmp -> ws : POST foo @Andrea/Achim
+activate ws
+ws -> cmp : response
+deactivate ws
+cmp -> des : GET foo @Andrea/Achim
+activate des
+des -> cmp : response
+deactivate des
+@enduml
