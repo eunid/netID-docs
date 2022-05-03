@@ -1,92 +1,92 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://eunid.github.io/netID-docs/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/changelog/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/changelog/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/faq/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/faq/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/status/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/status/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/cmp/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/cmp/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/cmp/access-token/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/cmp/access-token/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/cmp/browser-based/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/cmp/browser-based/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/cmp/export/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/cmp/export/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/cmp/server-based/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/cmp/server-based/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/devportal/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/devportal/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/devportal/reporting/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/devportal/reporting/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/devportal/tutorial/clients/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/devportal/tutorial/clients/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/devportal/tutorial/services/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/devportal/tutorial/services/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/devportal/tutorial/users/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/devportal/tutorial/users/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/sso/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/sso/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/sso/lib_sdk/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/sso/lib_sdk/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/sso/plugins/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/sso/plugins/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://eunid.github.io/netID-docs/sso/styleguide/</loc>
+         <loc>https://eunid.github.io/netID-docs/1.4/sso/styleguide/</loc>
          <lastmod>2022-05-03</lastmod>
          <changefreq>daily</changefreq>
     </url>
