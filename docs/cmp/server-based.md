@@ -10,172 +10,134 @@ A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can req
 
 ## Read APIs
 
-### netID Identifier
-
-A CMP/netID Partner can retrieve the user's netID Identifier via the following interface:
-
-#### Request
-
-```http
-GET https://einwilligungsspeicher.netid.de/netid-subject-identifiers HTTP/1.1
-Accept: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
-Authorization: Bearer <Access Token>
-```
-
-#### Response
-
-```http
-HTTP/1.1 200 OK
-Content-Type: application/vnd.netid.permission-center.netid-tpid-subject-v1+json
-
-{
-  "tpid": "<TPID>",
-  "status_code": "OK"
-}
-```
-
-#### Response properties
-
-`tpid` - Users netID identifier. Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null.
-
-| status_code | meaning | tpid |
-| ----------- | ----------- | ----------- |
-| OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. | - |
-| TOKEN_ERROR | Access token was expired or invalid. | - |
-| NO_TOKEN | No access token was passed. | - |
-| TPID_NOT_FOUND | Permissions for `tpid` not found. | - |
-| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user. | -
-
-#### Response behavior
-
-| HTTP status code | meaning |
-| ----------- | ----------- |
-| 200 OK | `tpid` of the netID user returned. |
-| 400 BAD REQUEST | Missing access token, or access token expired / invalid. |
-| 403 FORBIDDEN | Requesting TAPP isn't active or consent for "identification" isn't granted. |
-| 404 NOT FOUND | `tpid` in access token does not exist. |
-| 410 GONE | Account does not exist anymore. |
-
 ### Read privacy status
 
-#### Request
+#### Request with Sync-ID in response
 
 ```http
-GET https://einwilligungsspeicher.netid.de/netid-permissions HTTP/1.1
-Accept: application/vnd.netid.permission-center.netid-permission-status-v1+json
+GET https://einwilligungsspeicher.netid.de/netid-user-status HTTP/1.1
+Accept: application/vnd.netid.permission-center.netid-user-status-audit-v1+json
 Authorization: Bearer <Access Token>
 ```
 
-#### Response
+#### Response with Sync-ID
 
 ```http
 HTTP/1.1 200 OK
-Content-Type: application/vnd.netid.permission-center.netid-permission-status-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-user-status-audit-v1+json
 
 {
-  "tpid": "<TPID>"|null,
-  "tc": "<TCSTRING>"|null,
-  "datashare": "VALID"|"INVALID"|null,
-  "status_code": "OK"
+  "status_code": "PERMISSIONS_FOUND",
+  "subject_identifiers": {
+    "tpid": "<TPID>"|null,
+    "sync_id": "<SYNC_ID>"
+  },
+  "netid_privacy_settings": [
+    {
+      "type": "IDCONSENT",
+      "status": "VALID"|"INVALID",
+      "changed_at": "<TIMESTAMP>"
+    },
+    {
+      "type": "DATASHARE",
+      "status": "VALID"|"INVALID",
+      "changed_at": "<TIMESTAMP>" 
+    },
+    {
+      "type": "IAB_TC_STRING",
+      "value": "<TCSTRING>",
+      "changed_at": "<TIMESTAMP>"
+    }
+  ]
 }
 ```
-  
-#### Response properties
 
-| item |description|
+> **Note**: If the Sync-ID is not needed, please use accept header with the following media type: <br>
+    ```
+    Application/vnd.netid.permission-center.netid-user-status-v1+json
+    ```
+
+#### Response Properties
+
+| item | description |
 |---|---|
-| tpid | Users identifier (`tpid`). Only returned if consent "identification" is given, the `tpid` is known (i.e. user is already authenticated on the device) and status "OK". Otherwise null. |
-| tc | TC string stored for this `tpid` for this respective netID partner (TAPP). Only with status "OK". Otherwise null. |
-| datashare | If consent "datashare" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
-
-| status_code | meaning | tpid |
-| ----------- | ----------- | ----------- |
-| OK | Call successful | x |
-| NO_TPID | No `tpid` in request available. | - |
-| TOKEN_ERROR | Access token was expired or invalid. | - |
-| NO_TOKEN | No access token was passed. | - |
-| PERMISSIONS_NOT_FOUND | Permissions for `tpid` not found. | - |
-| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. | - |
-| TPID_EXISTENCE_ERROR | Account does not exist anymore. | - |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was not given or was revoked by the user | - |
+| tpid | Users netID identifier (`tpid`). Only returned if consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
+| sync_id | Parnter specific sync-id of the netID user. Only returned if any "netid_privacy_settings" are available. |
+| IDCONSENT | If consent "IDCONSENT" is given, value is 'VALID' and users netID identifier (`tpid`) is returned. If consent "IDCONSENT" is revoked, value is 'INVALID'. Otherwise null. |
+| DATASHARE | If consent "DATASHARE" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
+| IAB_TC_STRING | TC string stored for this `tpid` for this respective netID Partner (TAPP). |
 
 #### Response behavior
 
-| HTTP status code | meaning |
-| ----------- | ----------- |
-| 200 OK | Call successful |
-| 400 BAD REQUEST | Missing parameter. |
-| 403 FORBIDDEN | Requesting TAPP isn't active.  |
-| 404 NOT FOUND | Permissions for `tpid` not found. |
-| 410 GONE | Account does not exist anymore. |
+| HTTP status_code | status_code | meaning |
+| ----------- | ----------- | ----------- |
+| 200 OK | PERMISSIONS_FOUND | Call successful. Permissions of the netID user are returned. |
+| 200 OK | PERMISSIONS_NOT_FOUND | Call sucessful. netID user is identified. User has no permissions. No subject_identifier is returned.  |
+| 400 BAD REQUEST | NO_TOKEN | No bearer token in request available. User could not be identified as netID user. |
+| 400 BAD REQUEST | TOKEN_ERROR | Token in bearer token is expired or invalid. |
+| 403 FORBIDDEN | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. |
+| 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
 
 ## Write APIs
 
 ### Write privacy status
 
-#### Request
+#### Request with Sync-ID in response
 
 ```http
 POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
-Content-Type: application/vnd.netid.permission-center.netid-permissions-v1+json
-Accept: application/vnd.netid.permission-center.netid-tpid-subject-status-v1+json
+Content-Type: application/vnd.netid.permission-center.netid-permissions-v2+json
+Accept: application/vnd.netid.permission-center.netid-subject-status-audit-v1+json 
 Authorization: Bearer <Access Token>
 {
-  "identification": true|false,
-  "tc": "<TC string>"
+  "idconsent": "VALID",
+  "iab_tc_string": "CO3P7LWO3P7LWCnAAAENAwCgAAAAAAAAAAAAAAAAAAAA.YAAAAAAAAAA"
 }
 ```
 
-#### Response
+#### Response with Sync-ID
 
 ```http
 HTTP/1.1 201 Created
+Location: https://einwilligungsspeicher.netid.de/netid-permissions
 
 {
-  "tpid": "<TPID>|null",
-  "status": "OK"
+  "subject_identifiers": {
+     "tpid": "6dG7h0ziSu_tCjL75i5tHURKnYNgazllX1JBOpYLu4U",
+     "sync_id": "examplesyncid"
+  }
 }
 ```
 
-!!! info "Remarks"
-    - There must be at least one permission ("identification", "tc"). Permissions are optional. If a permission should not be written, the JSON property is missing. 
-    - If consent for "identification" has been given by the user, this must be signaled by passing "identification: true". For the avoidance of doubt, this of course requires the prior collection of this consent by the CMP.
-    - If only the TC string is to be updated and the consent for "identification" already exists, only the "tc" attribute can be passed. All two can also be written at the same time.
-    - In case of revocation the consent for "identification", "identification: false" is passed.
+> **Note**: If the Sync-ID is not needed, please use accept header with the following media type: <br>
+    ```
+    Application/vnd.netid.permission-center.netid-user-status-v1+json
+    ```
 
 #### Request properties
 
 |item|description|
 |---|---|
-| identification | Boolean flag, indicating the status of the consent "identification". <br> *true* = Consent is given <br> *false* = consent is not given or revoked |
-| tc | TC String which should be stored/updated for this user in relation to the netID Partner (TCF 2.0) |
-
+| IDCONSENT | Is indicating the status of the consent "IDCONSENT". VALID = Consent is given. INVALID = Consent is revoked. |
+| IAB_TC_STRING | TC String which should be stored/updated for this netID user for this respective netID partner (TAPP). |
 
 #### Response properties
 
-`tpid` - Users netID Identifier. Only present if consent "identification" is given, the `tpid` is known and status is "OK". Otherwise null.
-
-| status_code | meaning |
-| ----------- | ----------- |
-| OK | Call successful 
-| NO_TPID | No `tpid` in request available. |
-| NO_TAPP_ID | Mandatory parameter `tapp_id` is missing. |
-| TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. |
-| TPID_EXISTENCE_ERROR | Account does not exist anymore. |
-| ID_CONSENT_REQUIRED | Consent for passing the `tpid` ("identification") was revoked or declined by the user. |
-| NO_REQUEST_BODY | Required request body is missing. | 
-| JSON_PARSE_ERROR | Invalid JSON body, parse error. | 
-| NO_PERMISSIONS | Parameters are missing. At least one permission must be set. | 
-| PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission. Name ("identification", "tc") or value unknown.  | 
+| item | description |
+|---|---|
+| tpid | Users netID identifier (`tpid`). Only returned if consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
+| sync_id | Parnter specific sync-id of the netID user. Only returned if any "netid_privacy_settings" are available. |
 
 #### Response behavior
 
-| HTTP status code | meaning |
-| ----------- | ----------- |
-| 201 CREATED | Call successful |
-| 400 BAD REQUEST | - Missing authentication.  <br> - Provided token access cookie is expired or invalid. No access token passed. |
-| 403 FORBIDDEN | - Missing parameters (`tapp_id`, `origin`) <br> - Requesting TAPP isn't active. |
-| 410 GONE | Account does not exist anymore. |
+| HTTP status code | status_code | meaning |
+| ----------- | ----------- | ----------- |
+| 201 CREATED |  | Call successful |
+| 400 BAD REQUEST | NO_TOKEN | No bearer token in request available. |
+| 400 BAD REQUEST | TOKEN_ERROR | Token in bearer token is expired or invalid. |
+| 400 BAD REQUEST | NO_PERMISSIONS | Parameters are missing. At least one permission must be set. |
+| 400 BAD REQUEST | JSON_PARSE_ERROR | Invalid JSON body, parse error. |
+| 400 BAD REQUEST | NO_REQUEST_BODY | Required request body is missing. |
+| 403 FORBIDDEN | | Missing parameters in request/Requesting TAPP isn't active. |
+| 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
+
