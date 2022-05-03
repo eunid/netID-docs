@@ -54,7 +54,7 @@ https://broker.netid.de/authorize?
     scope=permission_management
 ```
 
-As a result the [token endpoint](../sso/#token-endpoint) returns only an access token scoped for access to the netID Permission Center.
+As a result the [token endpoint](../../sso/#token-endpoint) returns only an access token scoped for access to the netID Permission Center.
 
 **Example Token response:**
 

@@ -24,7 +24,7 @@ to top
 
 ## Native Apps
 
-Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](../devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
+Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](../../devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
 
 ### Android
 
