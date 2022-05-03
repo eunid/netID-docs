@@ -846,7 +846,7 @@
         <span class="o">}</span>
     <span class="o">}</span>
 </code></pre></div>
-<p>Details on the netID Broker APIs can be found <a href="/sso/">here</a>, the access token will be provided within the users ID Token from the <a href="/sso/#token-endpoint">token endpoint</a> as an additional claim <code>permission_management</code>.</p>
+<p>Details on the netID Broker APIs can be found <a href="../../sso/">here</a>, the access token will be provided within the users ID Token from the <a href="../../sso/#token-endpoint">token endpoint</a> as an additional claim <code>permission_management</code>.</p>
 <p><strong>Example ID Token response with included access token:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;caab84a6-861....&quot;</span><span class="p">,</span><span class="w"> </span><span class="c1">// client_id of the netID Partner</span><span class="w"></span>
@@ -869,7 +869,7 @@
     <span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span>
     <span class="nv">scope</span><span class="o">=</span>permission_management
 </code></pre></div>
-<p>As a result the <a href="/sso/#token-endpoint">token endpoint</a> returns only an access token scoped for access to the netID Permission Center.</p>
+<p>As a result the <a href="../sso/#token-endpoint">token endpoint</a> returns only an access token scoped for access to the netID Permission Center.</p>
 <p><strong>Example Token response:</strong></p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;eyJhbGciOiJkaXIiLCJl..&quot;</span><span class="p">,</span><span class="w"></span>

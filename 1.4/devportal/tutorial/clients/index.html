@@ -956,7 +956,7 @@ Examples of accepted url schemes for the application type “Native / Mobile App
 <li>https://[::1]:61023/oauth2redirect/example-provider</li>
 </ul>
 <div class="admonition info">
-<p>Please note that netID uses <a href="/sso/#general-overview">pairwise subject identifiers</a>. With the support of native mobile apps as well as web apps the pairwise subject identifiers are now derived from a parameter bound to the parent service. You may now specifiy different callback urls with different host portions per client without receiving different <code>sub</code> values for the same user.</p>
+<p>Please note that netID uses <a href="../../../sso/#general-overview">pairwise subject identifiers</a>. With the support of native mobile apps as well as web apps the pairwise subject identifiers are now derived from a parameter bound to the parent service. You may now specifiy different callback urls with different host portions per client without receiving different <code>sub</code> values for the same user.</p>
 </div>
 <div class="admonition warning">
 <p>We took care that existing service and client configurations will not brake by this feature update. Our migration plan respects the entries for given Callback urls and your users will not have to give their consent again.</p>

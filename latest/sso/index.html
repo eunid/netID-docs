@@ -1048,7 +1048,7 @@
 
 
 <h1 id="single-sign-on-documentation">Single Sign-on Documentation<a class="headerlink" href="#single-sign-on-documentation" title="Permanent link">&para;</a></h1>
-<p>This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the <a href="/devportal/">Developer Portal Documentation</a></p>
+<p>This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the <a href="../devportal/">Developer Portal Documentation</a></p>
 <h2 id="integration-guide">Integration Guide<a class="headerlink" href="#integration-guide" title="Permanent link">&para;</a></h2>
 <h3 id="general-overview">General Overview<a class="headerlink" href="#general-overview" title="Permanent link">&para;</a></h3>
 <p>The netID Single Sign-on implements the OpenID Connect standard as per the OpenID Connect Core 1.0 specification using the Authorization Code Flow.</p>
@@ -1059,7 +1059,7 @@
 <h3 id="claims-and-scopes">Claims and Scopes<a class="headerlink" href="#claims-and-scopes" title="Permanent link">&para;</a></h3>
 <p>Each time a partner initiates a login flow by calling the authorization endpoint he can define which master data the user should authorize to be transferred. For that purpose, the OpenID Connect/OAuth2 standard defines <em>scope</em> and <em>claim</em> mechanisms.</p>
 <p>Every OpenID Connect request must always request the <em>openid</em> scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. </p>
-<p>In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the <a href="../cmp/#netid-permission-center">netID Permission Center</a> backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found <a href="/cmp/">here</a>.  </p>
+<p>In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the <a href="../cmp/#netid-permission-center">netID Permission Center</a> backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found <a href="../cmp/">here</a>.  </p>
 <p>Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.</p>
 <p>The following scopes are supported by netID:</p>
 <table>
@@ -1400,7 +1400,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&am
 <p>If the authorize request fails, the respective error is provided with the callback to the redirect_uri.
 For details please refer to the <a href="https://openid.net/specs/openid-connect-core-1_0.html">OIDC specification</a>.</p>
 <h2 id="netid-button">netID Button<a class="headerlink" href="#netid-button" title="Permanent link">&para;</a></h2>
-<p>The depiction of the netID button is explained in the <a href="/sso/styleguide/">styleguide</a>.</p>
+<p>The depiction of the netID button is explained in the <a href="styleguide/">styleguide</a>.</p>
 <h2 id="best-practices">Best Practices<a class="headerlink" href="#best-practices" title="Permanent link">&para;</a></h2>
 <p>It is largely up to the relying parties to decide where netID is to be incorporated in clients.</p>
 <p>Typical cases involve the use of netID as a login or data enrichment mechanism.</p>
