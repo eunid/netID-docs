@@ -47,7 +47,7 @@ Loopback Interface:
 - https://[::1]:61023/oauth2redirect/example-provider
 
 !!! info ""
-    Please note that netID uses [pairwise subject identifiers](/sso/#general-overview). With the support of native mobile apps as well as web apps the pairwise subject identifiers are now derived from a parameter bound to the parent service. You may now specifiy different callback urls with different host portions per client without receiving different `sub` values for the same user.
+    Please note that netID uses [pairwise subject identifiers](../../../sso/#general-overview). With the support of native mobile apps as well as web apps the pairwise subject identifiers are now derived from a parameter bound to the parent service. You may now specifiy different callback urls with different host portions per client without receiving different `sub` values for the same user.
 
 !!! warning ""
     We took care that existing service and client configurations will not brake by this feature update. Our migration plan respects the entries for given Callback urls and your users will not have to give their consent again.

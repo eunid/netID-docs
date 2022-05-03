@@ -1,6 +1,6 @@
 # Single Sign-on Documentation
 
-This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](/devportal/)
+This documentation describes the federated Single Sign-on "netID", which allows digital services (netID Partners) to register and login netID Users based on their account at so called netID Account Providers. In order to acquire the necessary credentials to leverage this service please refer to the [Developer Portal Documentation](../devportal/)
 
 ## Integration Guide
 
@@ -22,7 +22,7 @@ Each time a partner initiates a login flow by calling the authorization endpoint
 
 Every OpenID Connect request must always request the *openid* scope. Moreover, the master data required/asked for by the partner can be expressed in the form of scopes or claims (voluntary or essential) with netID. 
 
-In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the [netID Permission Center](../cmp/#netid-permission-center) backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found [here](/cmp/).  
+In addition to Single Sign-on netID allows users to manage their overall privacy settings in terms of commercial data use, which are managed via the [netID Permission Center](../cmp/#netid-permission-center) backend. The netID Broker may be used by eligible netID Partners to acquire an access token that allows access to the Permission Center on behalf of a user, details on this integration can be found [here](../cmp/).  
 
 Once the user authorizes the transfer of that master data (requested using claims), this authorization is stored and not being asked for again unless the users revokes the authorization using the netID Privacy Center.
 
@@ -304,7 +304,7 @@ For details please refer to the [OIDC specification](https://openid.net/specs/op
 
 ## netID Button
 
-The depiction of the netID button is explained in the [styleguide](/sso/styleguide/).
+The depiction of the netID button is explained in the [styleguide](styleguide.md).
 
 ## Best Practices
 

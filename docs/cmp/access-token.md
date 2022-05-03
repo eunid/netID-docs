@@ -23,7 +23,7 @@ https://broker.netid.de/authorize?
     }
 ```
 
-Details on the netID Broker APIs can be found [here](/sso/), the access token will be provided within the users ID Token from the [token endpoint](/sso/#token-endpoint) as an additional claim `permission_management`.
+Details on the netID Broker APIs can be found [here](../../sso/), the access token will be provided within the users ID Token from the [token endpoint](../../sso/#token-endpoint) as an additional claim `permission_management`.
 
 **Example ID Token response with included access token:**
 
@@ -54,7 +54,7 @@ https://broker.netid.de/authorize?
     scope=permission_management
 ```
 
-As a result the [token endpoint](/sso/#token-endpoint) returns only an access token scoped for access to the netID Permission Center.
+As a result the [token endpoint](../sso/#token-endpoint) returns only an access token scoped for access to the netID Permission Center.
 
 **Example Token response:**
 
