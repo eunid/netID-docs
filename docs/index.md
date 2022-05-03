@@ -10,7 +10,7 @@ The netID Developer Portal is the main resource for developers/digital services 
 
 In the future, individual reports, information about planned further developments of the netID and much more will be available in the Developer Portal.
 
-For details see [Developer Portal](devportal/)
+For details see [Developer Portal](./devportal/)
 
 ## netID Login Standard
 
@@ -22,7 +22,7 @@ netID Account Providers are in charge for authentication, authorization and tran
 
  Based on the above, visitors and customers can discover and use your digital services and websites leveraging netID in a particularly secure, simple and convenient way. The netID Single Sign-on is provided free of charge and is open for anyone after registration and setup using the afore mentioned netID Developer Portal.
 
-For details see [Single Sign-On Documentation](sso/)
+For details see [Single Sign-On Documentation](./sso/)
 
 ## netID Privacy Management
 
