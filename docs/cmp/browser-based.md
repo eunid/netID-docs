@@ -14,7 +14,7 @@ The following sequence illustrates the API calls initiated by a netID Partners C
 
 ### Read privacy status
 
-#### Request with Sync-ID
+#### Request with Sync-ID in response
 
 ```http
 GET https://einwilligungsspeicher.netid.de/netid-user-status?q.tapp_id.eq=<TAPP_ID> HTTP/1.1
