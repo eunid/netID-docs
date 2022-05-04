@@ -100,7 +100,7 @@ Authorization: Bearer <tpid_sec Token>
 
 {
   "idconsent": "VALID"|"INVALID",
-  "iab_tc_string": "CO3P7LWO3P7LWCnAAAENAwCgAAAAAAAAAAAAAAAAAAAA.YAAAAAAAAAA"
+  "iab_tc_string": "<TCSTRING>"
 }
 ```
 
