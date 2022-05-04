@@ -90,8 +90,8 @@ Content-Type: application/vnd.netid.permission-center.netid-permissions-v2+json
 Accept: application/vnd.netid.permission-center.netid-subject-status-audit-v1+json 
 Authorization: Bearer <Access Token>
 {
-  "idconsent": "VALID",
-  "iab_tc_string": "CO3P7LWO3P7LWCnAAAENAwCgAAAAAAAAAAAAAAAAAAAA.YAAAAAAAAAA"
+  "idconsent": "VALID"|"INVALID",
+  "iab_tc_string": "<TCSTRING>"
 }
 ```
 
@@ -103,8 +103,8 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
 
 {
   "subject_identifiers": {
-     "tpid": "6dG7h0ziSu_tCjL75i5tHURKnYNgazllX1JBOpYLu4U",
-     "sync_id": "examplesyncid"
+     "tpid": "<TPID>"|null,
+     "sync_id": "<SYNC_ID>"
   }
 }
 ```
