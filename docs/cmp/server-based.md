@@ -111,7 +111,7 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
 
 > **Note**: If the Sync-ID is not needed, please use accept header with the following media type: <br>
     ```
-    Application/vnd.netid.permission-center.netid-user-status-v1+json
+    Application/vnd.netid.permission-center.netid-subject-status-v1+json
     ```
 
 #### Request properties
