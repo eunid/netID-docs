@@ -6,3 +6,4 @@ pymdown-extensions>=7.0
 mkdocs-material<7.1.0
 mkdocs-material-extensions>=1.0b1
 mkdocs-build-plantuml-plugin>=1.4.0
+mike>=1.1.1
