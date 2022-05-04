@@ -137,7 +137,7 @@ Access-Control-Allow-Credentials: true
 | item | description |
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only returned if consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
-| sync_id | Parnter specific sync-id of the netID user. Only returned if any "netid_privacy_settings" are available. |
+| sync_id | Parnter specific sync-id of the netID user. |
 
 #### Response behavior
 
