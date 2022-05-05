@@ -71,7 +71,7 @@ Live Documentation is deployed using version managment based on [mike](https://g
 1. Clean up gh-pages branch
 
 ``` shell
-# mike delete --push --all
+mike delete --push --all
 ```
 
 2. Create CNAME on gh-pages Branch
@@ -85,13 +85,13 @@ Create fonts folder and add the necessary locally hosted fonts
 4. Create intial version
 
 ``` shell
-# mike deploy --push --update-aliases --no-redirect [VERSION] latest
+mike deploy --push --update-aliases --no-redirect [VERSION] latest
 ```
 
 5. Set default version
 
 ``` shell
-# mike set-default --push latest
+mike set-default --push latest
 ```
 ### Deploy a new version
 
@@ -110,7 +110,7 @@ mike deploy --push --update-aliases --no-redirect [VERSION] latest
 
 ### Update existing version (minor patches)
 
-Existing version can simply be overwritten by-redeploying with the same version number
+Existing versions can simply be overwritten by-redeploying with the same version number. Make sure to update latest (i.e include latest alias when re-deploying) in case this version is the most current one (as we are not using re-direct for latest).
 
 ## Content Creation
 
