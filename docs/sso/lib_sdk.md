@@ -24,15 +24,15 @@ to top
 
 ## Native Apps
 
-Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](/devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
+Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](../../devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
 
 ### Android
 
-[AppAuth for Android](https://github.com/openid/AppAuth-Android#readme) must be used with [Client Types](/sso/#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for Android supports requesting user claims both via scopes and the claims parameter - cf. to [Claims and Scopes](/sso/#claims-and-scopes)
+[AppAuth for Android](https://github.com/openid/AppAuth-Android#readme) must be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for Android supports requesting user claims both via scopes and the claims parameter - cf. to [Claims and Scopes](index.md#claims-and-scopes)
 
 ### iOS
 
-[AppAuth for iOS](https://github.com/openid/AppAuth-iOS#readme) must also be used with [Client Types](/sso/#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for iOS supports requesting user claims via scopes only as of now.
+[AppAuth for iOS](https://github.com/openid/AppAuth-iOS#readme) must also be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for iOS supports requesting user claims via scopes only as of now.
 
 ## Web-based
 

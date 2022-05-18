@@ -1,8 +1,8 @@
-# EnID Documentation Proof of Concept
+# EnID Documentation
 
 - Static Site Generator: MkDocs
     - https://www.mkdocs.org
-- Material Design Theme for MkDocs (V5.1)
+- Material Design Theme for MkDocs
     - https://squidfunk.github.io/mkdocs-material/
 
 ## Access Documentation
@@ -13,7 +13,6 @@
 ## Project Structure
 
 - Github Repo: https://github.com/eunid/netID-docs/
-- Deployment Repo: https://github.com/eunid/eunid.github.io
 - master branch:
     - docs folder
     - *.md documentation pages (markdown)
@@ -29,7 +28,27 @@
         - .vscode/settings.json
     - docs/CNAME file for custom domain settings
 - gh-pages branch
-    - deployment to production site
+    - deployment 
+
+## Build documentation locally (single version)
+
+1. Install necessary packages
+
+``` shell
+pip install -r requirements.txt
+```
+
+2. Build 
+
+``` shell
+mkdocs build
+```
+
+3. Serve locally
+
+``` shell
+mkdocs serve
+```
 
 ## Deployment
 
@@ -42,21 +61,62 @@ netID-docs/
     mkdocs.yml
     docs/
 ```
-Push documentation to gh-pages branch
-```
-# mkdocs gh-deploy
+
+### Production deployment / Versioning
+
+Live Documentation is deployed using version managment based on [mike](https://github.com/jimporter/mike). Local builds can still be deployed as described above. Mike creates self-contained deployed documentation versions on the gh-pages branch, once a version is build it can stay deployed unrelated to further changes and updates of dependencies.
+
+### Setup a clean versioned deployment (remote)
+
+1. Clean up gh-pages branch
+
+``` shell
+mike delete --push --all
 ```
 
+2. Create CNAME on gh-pages Branch
+
+Create CNAME file in the gh-pages branch root with content developerzone.netid.dev
+
+3. Add fonts (root dir of gh-pages branch)
+	
+Create fonts folder and add the necessary locally hosted fonts
+
+4. Create intial version
+
+``` shell
+mike deploy --push --update-aliases --no-redirect [VERSION] latest
+```
+
+5. Set default version
+
+``` shell
+mike set-default --push latest
+```
+### Deploy a new version
+
+1. Create a release tag with version name and push to origing
+
+``` shell
+git tag -a [VERSION]
+git push origin [VERSION]
+```
+
+2. Deploy new version and set as new latest
+
+``` shell
+mike deploy --push --update-aliases --no-redirect [VERSION] latest
+```
+
+### Update existing version (minor patches)
+
+Existing versions can simply be overwritten by-redeploying with the same version number. Make sure to update latest (i.e include latest alias when re-deploying) in case this version is the most current one (as we are not using re-direct for latest).
 
 ## Content Creation
 
-- Write new docs with Markdown: https://www.mkdocs.org/user-guide/writing-your-docs/
-- Convert existing Word Document -> Markdown with pandoc:
-    - command line: 'pandoc -f docx -t markdown foo.docx -o foo.markdown'
-    - to save the images, add the option --extract-media=./ to the command above. It will create a folder 'media' with all the images and they will be correctly shown in the markdown file.
-    - Make sure that the result of the automatic conversion is proper. 
+Write new docs with Markdown: https://www.mkdocs.org/user-guide/writing-your-docs/
 
-## PlantUML -> Diagrams
+### PlantUML -> Diagrams
 
 - Install Java `brew cask install adoptopenjdk`
 - Install "PlantUML" -> `brew install plantuml`
@@ -66,7 +126,7 @@ Push documentation to gh-pages branch
 - Integrate Output File in ".md" -> `![file](diagrams/out/filename.svg)`
 - Styling: https://plantuml.com/de/skinparam
 
-## Mermaid -> Diagrams (currently not implemented)
+### Mermaid -> Diagrams (currently not implemented)
 
 The trick is:
 
