@@ -1,22 +1,38 @@
 # Data export
 
-Using this API netID Partners can retrieve the status (privacy status) with respect to netID Permissions and TC strings of end users. This allows server based synchronization for netID Partners clean-up / update their server-side storage - e.g. purging data in case of withdrawal of consent.
+Using this API netID Partners can retrieve the privacy status with respect to netID Permissions and the TC string of end users. This allows server based synchronization for netID Partners clean-up / update their server-side storage - e.g. purging data in case of withdrawal of consent.
 
-By specifying a *changed_since* parameter deltas w.r.t. that point in time can be requested to allow for batched updates.
+!!! info  "Synch-ID"
+    In case the [Synch-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
 
-## netID Permissions
+     Without Synch-ID: `application/vnd.netid.permission-center.netid-user-status-v1+json` <br>
+     With Synch-ID: `application/vnd.netid.permission-center.netid-user-status-audit-v1+json`
 
-Allows a individual netID Partner to retrieve the status with respect to netID Permissions (omitting TC information).
+## Privacy status
 
-=== "Query with Sync-ID in response"
+Allows an individual netID Partner to retrieve the privacy statuses from the permission center.
+
+**Parameters**
+
+| name  | function  | description |
+| -----------  | ----------- | ----------- |
+| q.tapp_id.eq | Parameter - authentication | Client for which status should be retrieved, provided during setup |
+| Authorization | Header - authentication | basic auth credentials,  provided during setup |
+| q.date.ge | Parameter - timeframe | if provided, only statuses which have been changed since this date are returned (for delta updates)|
+| Accept  | Header - content type | determines the expected response, two options are available to define an expected response with Sync-ID or alternatively with netID Identifier |
+
+=== "Query (incl. Sync-ID)"
 
     ``` shell
-    GET https://einwilligungsuebersicht.netid.de/netid-permissions/?q.tapp_id.eq=<TAPP_ID>&q.date.ge=<DATE> HTTP/1.1
+    HTTP/1.1
+    GET https://einwilligungsuebersicht.netid.de/netid-permissions/?
+      q.tapp_id.eq=<TAPP_ID>
+      &q.date.ge=<DATE>
     Accept: application/vnd.netid.permission-center.netid-permission-export-audit.list-v1+json
     Authorization: Basic <base64(username:password)>
     ```
 
-=== "Response with Sync-ID"
+=== "Response (incl. Sync-ID)"
 
     ``` shell
     200 OK
@@ -44,11 +60,6 @@ Allows a individual netID Partner to retrieve the status with respect to netID P
       }]}
 
     ```
-    
-> **Note**: If the Sync-ID is not needed, please use accept header with the following media type. Response contains `TPID` instead. <br>
-    ```
-    Application/vnd.netid.permission-center.netid-permission-export.list-v1+json
-    ```
 
 ### Response behavior
 
@@ -61,9 +72,19 @@ Allows a individual netID Partner to retrieve the status with respect to netID P
 
 ## Complete Privacy Status
 
-Allows netID Partners to retrieve the status with respect to netID Permissions as well as TC information. In case multiple statuses are managed via the same integration (*cmp_id*), the API allows to query for specific partner IDs or multiple.
+Allows netID Partners to retrieve the privacy statuses from the permission center for multiple clients `tapp_id`. In case multiple statuses are managed via the same integration (*cmp_id*), the API allows to query for specific partner IDs or multiple.
 
-=== "Query with Sync-ID in response"
+**Parameters**
+
+| name  | function  | description |
+| -----------  | ----------- | ----------- |
+| q.cmp_id.eq | Parameter - authentication | cmp-id associated for named `tapp_id`s |
+| q.tapp_id.eq | Parameter - authentication | List of tapp_ids to return a status for - provided during setup |
+| Authorization | Header - authentication | basic auth credential,  provided during setup |
+| q.date.ge | Parameter - timeframe | if provided, only statuses which have been changed since are returned (for delta updates)|
+| Accept  | Header - content type | determines the expected response, two options are available to define an expected response with Sync-ID or alternatively with netID Identifier |
+
+=== "Query (incl. Sync-ID)"
 
     ``` shell
     GET https://einwilligungsuebersicht.netid.de/netid-permissions?
@@ -74,7 +95,7 @@ Allows netID Partners to retrieve the status with respect to netID Permissions a
     Authorization: Basic <b64(USERNAME:PASSWORD)>
     ```
 
-=== "Response with Sync-ID"
+=== "Response (incl. Sync-ID)"
 
     ``` shell
     200 OK
@@ -116,10 +137,6 @@ Allows netID Partners to retrieve the status with respect to netID Permissions a
         }
       ]}]}
 
-    ```
-> **Note**: If the Sync-ID is not needed, please use accept header with the following media type. Response contains `TPID` instead. <br>
-    ```
-    Application/vnd.netid.permission-center.tapp-netid-permissions-export.list-v1+json
     ```
 
 ### Response behavior

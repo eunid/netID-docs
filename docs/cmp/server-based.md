@@ -1,6 +1,6 @@
-# Server-based API (backend integration)
+# Token-based API 
 
-Description of the backend integration of the netID Permission Center by the CMP (integration from the server side / backend of the CMP if available).
+Description of the token based integration of the netID Permission Center by the CMP.
 
 A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can requests an access token (`token`) provided after the successful login, based on which a user can be authenticated at the netID Permission Center to enable read/write access for that specific users privacy status.
 
@@ -10,9 +10,15 @@ A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can req
 
 ## Read APIs
 
+!!! info  "Sync-ID"
+    In case the [Sync-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
+
+     Without Sync-ID: `application/vnd.netid.permission-center.netid-user-status-v1+json` <br>
+     With Sync-ID: `application/vnd.netid.permission-center.netid-user-status-audit-v1+json`
+
 ### Read privacy status
 
-#### Request with Sync-ID in response
+#### Request (incl. Sync-ID)
 
 ```http
 GET https://einwilligungsspeicher.netid.de/netid-user-status HTTP/1.1
@@ -20,7 +26,7 @@ Accept: application/vnd.netid.permission-center.netid-user-status-audit-v1+json
 Authorization: Bearer <Access Token>
 ```
 
-#### Response with Sync-ID
+#### Response (incl. Sync-ID)
 
 ```http
 HTTP/1.1 200 OK
@@ -52,19 +58,13 @@ Content-Type: application/vnd.netid.permission-center.netid-user-status-audit-v1
 }
 ```
 
-> **Note**: If the Sync-ID is not needed, please use accept header with the following media type: <br>
-    ```
-    Application/vnd.netid.permission-center.netid-user-status-v1+json
-    ```
-
 #### Response Properties
 
 | item | description |
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only returned if consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
-| sync_id | Parnter specific sync-id of the netID user. Only returned if any "netid_privacy_settings" are available. |
+| sync_id | Partner specific sync-id of the netID user. Only returned if any "netid_privacy_settings" are present in the permission center at the time of the API call|
 | IDCONSENT | If consent "IDCONSENT" is given, value is 'VALID' and users netID identifier (`tpid`) is returned. If consent "IDCONSENT" is revoked, value is 'INVALID'. Otherwise null. |
-| DATASHARE | If consent "DATASHARE" is given, value is 'VALID'. If consent "datashare" is revoked, value is 'INVALID'. Otherwise null. |
 | IAB_TC_STRING | TC string stored for this `tpid` for this respective netID Partner (TAPP). |
 
 #### Response behavior
@@ -72,7 +72,7 @@ Content-Type: application/vnd.netid.permission-center.netid-user-status-audit-v1
 | HTTP status_code | status_code | meaning |
 | ----------- | ----------- | ----------- |
 | 200 OK | PERMISSIONS_FOUND | Call successful. Permissions of the netID user are returned. |
-| 200 OK | PERMISSIONS_NOT_FOUND | Call sucessful. netID user is identified. User has no permissions. No subject_identifier is returned.  |
+| 200 OK | PERMISSIONS_NOT_FOUND | Call successful. netID user is authenticated. No permission (privacy status) found to the given `tapp_id`. No subject_identifiers returned.  |
 | 400 BAD REQUEST | NO_TOKEN | No bearer token in request available. User could not be identified as netID user. |
 | 400 BAD REQUEST | TOKEN_ERROR | Token in bearer token is expired or invalid. |
 | 403 FORBIDDEN | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed. |
@@ -80,9 +80,15 @@ Content-Type: application/vnd.netid.permission-center.netid-user-status-audit-v1
 
 ## Write APIs
 
+!!! info  "Sync-ID"
+    In case the [Sync-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
+
+     Without Sync-ID: `application/vnd.netid.permission-center.netid-user-status-v1+json` <br>
+     With Sync-ID: `application/vnd.netid.permission-center.netid-user-status-audit-v1+json`
+
 ### Write privacy status
 
-#### Request with Sync-ID in response
+#### Request (incl. Sync-ID)
 
 ```http
 POST https://einwilligen.netid.de/netid-permissions HTTP/1.1
@@ -95,7 +101,7 @@ Authorization: Bearer <Access Token>
 }
 ```
 
-#### Response with Sync-ID
+#### Response (incl. Sync-ID)
 
 ```http
 HTTP/1.1 201 Created
@@ -109,11 +115,6 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
 }
 ```
 
-> **Note**: If the Sync-ID is not needed, please use accept header with the following media type: <br>
-    ```
-    Application/vnd.netid.permission-center.netid-subject-status-v1+json
-    ```
-
 #### Request properties
 
 |item|description|
@@ -126,7 +127,7 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
 | item | description |
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only returned if consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
-| sync_id | Parnter specific sync-id of the netID user. |
+| sync_id | Partner specific sync-id of the netID user. |
 
 #### Response behavior
 
@@ -138,6 +139,6 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
 | 400 BAD REQUEST | NO_PERMISSIONS | Parameters are missing. At least one permission must be set. |
 | 400 BAD REQUEST | JSON_PARSE_ERROR | Invalid JSON body, parse error. |
 | 400 BAD REQUEST | NO_REQUEST_BODY | Required request body is missing. |
-| 403 FORBIDDEN | | Missing parameters in request/Requesting TAPP isn't active. |
+| 403 FORBIDDEN | TAPP_NOT_ALLOWED | Missing parameters in request/Requesting TAPP isn't active. |
 | 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
 
