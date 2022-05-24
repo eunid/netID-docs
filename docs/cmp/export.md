@@ -18,7 +18,7 @@ Allows an individual netID Partner to retrieve the privacy statuses from the per
 | -----------  | ----------- | ----------- |
 | q.tapp_id.eq | Parameter - authentication | Client for which status should be retrieved, provided during setup |
 | Authorization | Header - authentication | basic auth credentials,  provided during setup |
-| q.date.ge | Parameter - timeframe | if provided, only statuses which have been changed since this date are returned (for delta updates)|
+| q.date.ge | Parameter - timeframe | only statuses which have been changed since this date are returned (for delta updates)|
 | Accept  | Header - content type | determines the expected response, two options are available to define an expected response with Sync-ID or alternatively with netID Identifier |
 
 === "Query (incl. Sync-ID)"
