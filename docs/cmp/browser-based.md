@@ -81,7 +81,6 @@ Access-Control-Allow-Credentials: true
 | 200 OK | PERMISSIONS_NOT_FOUND | Call successful. netID user is authenticated. No permission (privacy status) found for the given `tapp_id`. No subject_identifiers returned.  |
 | 400 BAD REQUEST | NO_TPID | No tpid_sec cookie in request available. No authenticated netID user. |
 | 400 BAD REQUEST | TOKEN_ERROR | Token in cookie is expired or invalid. |
-| 400 BAD REQUEST | NO_TAPP_ID | Mandatory parameter `tapp_id` is missing. |
 | 403 FORBIDDEN | TAPP_NOT_ALLOWED | TAPP `tapp_id` is not allowed, e.g. origin not eligible. |
 | 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
 
