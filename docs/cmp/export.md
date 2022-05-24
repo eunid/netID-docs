@@ -81,7 +81,7 @@ Allows netID Partners to retrieve the privacy statuses from the permission cente
 | q.cmp_id.eq | Parameter - authentication | cmp-id associated for named `tapp_id`s |
 | q.tapp_id.eq | Parameter - authentication | List of tapp_ids to return a status for - provided during setup |
 | Authorization | Header - authentication | basic auth credential,  provided during setup |
-| q.date.ge | Parameter - timeframe | if provided, only statuses which have been changed since are returned (for delta updates)|
+| q.date.ge | Parameter - timeframe | only statuses which have been changed since are returned (for delta updates)|
 | Accept  | Header - content type | determines the expected response, two options are available to define an expected response with Sync-ID or alternatively with netID Identifier |
 
 === "Query (incl. Sync-ID)"
