@@ -2,6 +2,11 @@
 
 ## netID Documentation
 
+### 1.5 <small>_ May 24, 2022</small>
+
+- New major release CMP Integration APIs
+- Documentation versioning added
+
 ### 1.4.2 <small>_ Feb 23, 2022</small>
 
 - PKCE Support 
