@@ -8,9 +8,7 @@ site_url: 'https://eunid.github.io/netID-docs/'
 theme:
   name: 'material'
   language: 'en'
-  font: 
-    text: 'IBM Plex Sans'
-    code: 'Roboto Mono'
+  font: false
   logo: 'images/logo.png'
   favicon: 'images/favicon.ico'
   custom_dir: custom_theme/
