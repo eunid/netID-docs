@@ -89,8 +89,8 @@ Access-Control-Allow-Credentials: true
 !!! info  "Synch-ID"
     In case the [Synch-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
 
-     Without Synch-ID: ``application/vnd.netid.permission-center.netid-user-status-v1+json`` <br>
-     With Synch-ID: ``application/vnd.netid.permission-center.netid-user-status-audit-v1+json``
+     Without Synch-ID: ``application/vnd.netid.permission-center.netid-subject-status-v1+json`` <br>
+     With Synch-ID: ``application/vnd.netid.permission-center.netid-subject-status-audit-v1+json``
 
 ### Write privacy status
 
