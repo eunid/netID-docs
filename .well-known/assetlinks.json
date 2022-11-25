@@ -1,0 +1,15 @@
+[
+    {
+      "relation": [
+        "delegate_permission/common.handle_all_urls"
+      ],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "de.netid.mobile.sdk.example",
+        "sha256_cert_fingerprints": [
+          "67:40:6B:9B:FE:C6:A5:28:4C:02:8B:44:AD:65:D7:BE:47:41:32:18:0E:64:DC:ED:3F:E5:41:CB:08:E4:0E:AE",
+          "76:7C:D9:89:45:85:AC:48:F7:C6:D5:E2:F0:C1:47:CF:B5:4B:F8:41:BA:CB:67:F3:02:4F:50:6F:DF:14:71:2B"
+        ]
+      }
+    }
+  ]
