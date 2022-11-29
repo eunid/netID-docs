@@ -1,0 +1,27 @@
+{
+  "applinks": {
+      "details": [
+           {
+             "appIDs": [ "8G463Z6GPS.de.netid.mobile.sdk.NetIdMobileSdk-App" ],
+             "components": [
+               {
+                  "#": "no_universal_links",
+                  "exclude": true,
+                  "comment": "Matches any URL with a fragment that equals no_universal_links and instructs the system not to open it as a universal link."
+               },
+               {
+                  "/": "/redirect",
+                  "comment": "Matches any URL with a path that starts with /redirect."
+               },
+               {
+                "/": "/redirectApp",
+                "comment": "Matches any URL with a path that starts with /redirect."
+               }
+             ]
+           }
+       ]
+   },
+   "webcredentials": {
+      "apps": [ "8G463Z6GPS.de.netid.mobile.sdk.NetIdMobileSdk-App" ]
+   }
+}
