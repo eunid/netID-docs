@@ -150,5 +150,6 @@ Access-Control-Allow-Credentials: true
 | 400 BAD REQUEST | NO_PERMISSIONS | Parameters are missing. At least one permission must be set. |
 | 400 BAD REQUEST | JSON_PARSE_ERROR | Invalid JSON body, parse error. |
 | 400 BAD REQUEST | NO_REQUEST_BODY | Required request body is missing. |
+| 400 BAD REQUEST | PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission (e.g. invalid TC String)  |
 | 403 FORBIDDEN | TAPP_NOT_ALLOWED | Missing parameters in request/Requesting TAPP isn't active/Origin not eligible |
 | 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
