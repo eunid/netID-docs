@@ -933,6 +933,10 @@
 <li><strong>Token-based</strong> API: Usage based on an access token requested via the netID Broker as described <a href="access-token/">here</a></li>
 </ol>
 <p>The distinction between browser- and token-based mainly relates to how an active user is authenticated before using the API/from where the APIs are being called.</p>
+<div class="admonition info">
+<p class="admonition-title">Browser-based API usability</p>
+<p>The browser-based API usage is based on a pre-existing authentication stored in a browser cookie (credentialed API call). In browser environments that block or partition third-party cookies by default the API will thus always return an error. netID Partners can rely on the token based <a href="server-based/">API</a> for integrations in these environments </p>
+</div>
 <p><strong>Call information: parameters / header / cookies</strong></p>
 <table>
 <thead>
