@@ -46,6 +46,9 @@ The READ and WRITE services are based on prior user authentication and are provi
 
 The distinction between browser- and token-based mainly relates to how an active user is authenticated before using the API/from where the APIs are being called.
 
+!!! info  "Browser-based API usability"
+    The browser-based API usage is based on a pre-existing authentication stored in a browser cookie (credentialed API call). In browser environments that block or partition third-party cookies by default the API will thus always return an error. netID Partners can rely on the token based [API](server-based.md) for integrations in these environments 
+
 **Call information: parameters / header / cookies**
 
 | name | type | function  | description |
