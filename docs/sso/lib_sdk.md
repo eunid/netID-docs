@@ -6,7 +6,34 @@ There are a large number of OpenID Connect client libraries available in many di
 
 Many client libraries are listed at <https://openid.net/developers/libraries/>
 
-## General
+## Native Apps
+
+Native mobile apps or single page applications that authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](../../devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
+
+In addition netID also provides a dedicated SDK that allows for more convenient user flows as well as a convenience wrapper for the token-based [CMP integration](../../cmp/server-based/).
+
+### App2App netID SDKs
+
+In order to streamline the integration both for Single Sign-on as well as the token based [CMP integration](../../cmp/server-based/) into native mobile apps, netID is providing a standardized SDK both for iOS and Android. The SDK is provided as an open source component and is based on the AppAuth libraries for the respective platform. 
+
+netID users who already have a mobile app of their netID account provider installed on their mobile device, especially the email apps of GMX and WEB.de, can log into the apps of netID partners using these apps by using the netID SDK. This dramatically simplifies the login process - 1 click to login, 2 clicks to register for the first time in the app of a netID partner. 
+
+Details can be found directly on GitHub 
+
+* [netID SDK for Android](https://github.com/eunid/netid-sdk-android)
+* [netID SDK for iOS](https://github.com/eunid/netid-sdk-ios)
+
+### Android
+
+[AppAuth for Android](https://github.com/openid/AppAuth-Android#readme) must be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for Android supports requesting user claims both via scopes and the claims parameter - cf. to [Claims and Scopes](index.md#claims-and-scopes)
+
+### iOS
+
+[AppAuth for iOS](https://github.com/openid/AppAuth-iOS#readme) must also be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for iOS supports requesting user claims via scopes only as of now.
+
+## Web-based
+
+### General
 
 Regardless of the choice of environment, it's possible to do the following preliminary experiments:
 
@@ -20,21 +47,6 @@ Regardless of the choice of environment, it's possible to do the following preli
 3. Here, for the Common Name give the host name of the environment you want; so, in this case: www.democlient.de.
 Using the Client Credentials from the developer portal, the local host entry, and the certificate with the key, it's possible to run through the netID requests.
 4. When testing with browsers, it's a good idea to use private windows; otherwise cookies left behind from previous run-throughs may cause confusion.
-to top
-
-## Native Apps
-
-Native mobile Apps or single page applications that fully authenticate the user within the app via authorization code flow can leverage the OpenID Foundation AppAuth libraries with netID.  Both can be used with netID [clients](../../devportal/tutorial/clients/#creating-a-client) using custom schemes or claimed HTTPs URLs.
-
-### Android
-
-[AppAuth for Android](https://github.com/openid/AppAuth-Android#readme) must be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for Android supports requesting user claims both via scopes and the claims parameter - cf. to [Claims and Scopes](index.md#claims-and-scopes)
-
-### iOS
-
-[AppAuth for iOS](https://github.com/openid/AppAuth-iOS#readme) must also be used with [Client Types](index.md#client-types) **'Native / Mobile App (PKCE)'**. AppAuth for iOS supports requesting user claims via scopes only as of now.
-
-## Web-based
 
 ### PHP
 
