@@ -2,7 +2,7 @@
 
 ## netID Documentation
 
-### 1.5 <small>_ March 17, 2023</small>
+### 1.5.4 <small>_ March 17, 2023</small>
 
 - Added netID SDK references
   
