@@ -2,6 +2,10 @@
 
 ## netID Documentation
 
+### 1.5 <small>_ March 17, 2023</small>
+
+- Added netID SDK references
+  
 ### 1.5 <small>_ May 24, 2022</small>
 
 - New major release CMP Integration APIs
