@@ -12,8 +12,8 @@ netID Single Sign-on integrations are available on various e-commerce / identity
 
 ## OXID Plugin
 
-[OXID Exhange](https://exchange.oxid-esales.com/de/en/Frontend-und-User-Experience/Usability/netID-Single-Sign-on-1-0-0-Release-Candidate-CE-6-1-x.html?listtype=search&searchparam=netid)
+[OXID Solution Hub](https://solutionhub.oxid-esales.com/netid-single-sign-on/)
 
 ## Shopware Plugin
 
-[Shopware Store](https://store.shopware.com/detail/index/sArticle/517939)
+[Shopware Store](https://store.shopware.com/enid622855550617f/netid-single-sign-on.html)
