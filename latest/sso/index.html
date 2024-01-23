@@ -1163,7 +1163,9 @@ Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. W
 <p>The netID Broker endpoint for authorize requests is <a href="https://broker.netid.de/authorize">https://broker.netid.de/authorize</a>. All endpoints and supported OpenID Connect features are also available here: <a href="https://broker.netid.de/.well-known/openid-configuration">https://broker.netid.de/.well-known/openid-configuration</a></p>
 <p>Sample Calls are provided given both easy readable as well as in valid URL encoding. The encoding needs to be used for the <em>redirect_uri</em> as well:</p>
 <h4 id="sso-without-requesting-any-additional-data">SSO without requesting any additional data<a class="headerlink" href="#sso-without-requesting-any-additional-data" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Query</label><label for="__tabbed_1_2">URL encoding</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
@@ -1171,13 +1173,16 @@ Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. W
     <span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">URL encoding</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid
 </code></pre></div>
 </div>
 </div>
+</div>
 <h4 id="profile-scope-expressed-in-essential-and-optional-claims">Profile scope expressed in essential and optional claims<a class="headerlink" href="#profile-scope-expressed-in-essential-and-optional-claims" title="Permanent link">&para;</a></h4>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Query</label><label for="__tabbed_2_2">URL encoding</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?
     <span class="nv">response_type</span><span class="o">=</span>code<span class="p">&amp;</span>
     <span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span>
@@ -1193,9 +1198,10 @@ Scopes and <em>voluntary (optional)</em> claims can be deselected by the user. W
     <span class="o">}</span>  
 </code></pre></div>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">URL encoding</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>https://broker.netid.de/authorize?response_type<span class="o">=</span>code<span class="p">&amp;</span><span class="nv">client_id</span><span class="o">=[</span>clientID<span class="o">]</span><span class="p">&amp;</span><span class="nv">redirect_uri</span><span class="o">=[</span>redirect_uri<span class="o">]</span><span class="p">&amp;</span><span class="nv">scope</span><span class="o">=</span>openid<span class="p">&amp;</span><span class="nv">claims</span><span class="o">=</span>%7B%22userinfo%22%3A%7B%22birthdate%22%3A%7B%22essential%22%3Atrue%7D%2C%22gender%22%3A%7B%22essential%22%3Atrue%7D%2C%22given_name%22%3A%7B%22essential%22%3Atrue%7D%2C%22family_name%22%3A%7B%22essential%22%3Atrue%7D%7D%7D
 </code></pre></div>
+</div>
 </div>
 </div>
 <h3 id="token-endpoint">Token Endpoint<a class="headerlink" href="#token-endpoint" title="Permanent link">&para;</a></h3>
@@ -1218,11 +1224,13 @@ client_secret
 code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
 </code></pre></div>
 <p>Example request using curl:</p>
-<div class="tabbed-set" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><label for="__tabbed_3_1">Example Request</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Example Request</label><label for="__tabbed_3_2">Example Response</label><label for="__tabbed_3_3">Decoded ID Token</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>curl -v -u <span class="o">[</span>user:pass<span class="o">]</span> -X POST https://broker.netid.de/token -H <span class="s1">&#39;content-type: application/x-www-form-urlencoded; charset=UTF-8&#39;</span> -d <span class="s1">&#39;code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&#39;</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><label for="__tabbed_3_2">Example Response</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;access_token&quot;</span><span class="p">:</span><span class="s2">&quot;f3EcGc1l8mjw3gZ3....&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;id_token&quot;</span><span class="p">:</span><span class="s2">&quot;eyJhbGciOiJub25lIn0....&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1231,7 +1239,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
 </div>
-<input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><label for="__tabbed_3_3">Decoded ID Token</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;aud&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;f6316771-.....&quot;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nt">&quot;sub&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;geuGIhNTX.....&quot;</span><span class="p">,</span><span class="w"></span>
@@ -1241,6 +1249,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code
 <span class="w">    </span><span class="nt">&quot;iat&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1603726373</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+</div>
 </div>
 </div>
 <p>As an alternative clients may use <em>client_secret_post</em> based authentication providing <em>client_id</em> and <em>client_secret</em> using a POST request as shown below:</p>
@@ -1253,20 +1262,22 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&am
 <h3 id="userinfo-endpoint">UserInfo Endpoint<a class="headerlink" href="#userinfo-endpoint" title="Permanent link">&para;</a></h3>
 <p>The <em>access token</em> is used to retrieve the requested claims from the UserInfo Endpoint. Claims are returned as a JSON object.</p>
 <p>The netID Broker endpoint for userinfo requests is <a href="https://broker.netid.de/userinfo">https://broker.netid.de/userinfo</a>.</p>
-<div class="tabbed-set" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><label for="__tabbed_4_1">Example GET Request</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Example GET Request</label><label for="__tabbed_4_2">Example POST Request</label><label for="__tabbed_4_3">Example Response</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nf">GET</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
 <span class="na">Authorization</span><span class="o">:</span> <span class="l">Bearer SlAV32hkKG</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><label for="__tabbed_4_2">Example POST Request</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="nf">POST</span> <span class="nn">/userinfo</span> <span class="kr">HTTP</span><span class="o">/</span><span class="m">1.1</span>
 <span class="na">Host</span><span class="o">:</span> <span class="l">broker.netid.de</span>
 <span class="na">Content-Type</span><span class="o">:</span> <span class="l">application/x-www-form-urlencoded</span>
 <span class="err">access_token=mF_9.B5f-4.1JqM</span>
 </code></pre></div>
 </div>
-<input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><label for="__tabbed_4_3">Example Response</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="err">HTTP/</span><span class="mf">1.1</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w"></span>
 <span class="err">Co</span><span class="kc">ntent</span><span class="mi">-</span><span class="err">Type</span><span class="p">:</span><span class="w"> </span><span class="err">applica</span><span class="kc">t</span><span class="err">io</span><span class="kc">n</span><span class="err">/jso</span><span class="kc">n</span><span class="w"></span>
 <span class="p">{</span><span class="w"></span>
@@ -1294,6 +1305,7 @@ code=[code]&amp;redirect_uri=[redirect_uri]&amp;grant_type=authorization_code&am
 <span class="w">    </span><span class="nt">&quot;email&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;jane.doe@example.org&quot;</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+</div>
 </div>
 </div>
 <p>Additional information about UserInfo: <a href="https://openid.net/specs/openid-connect-core-1_0.html#UserInfo">OIDC specification</a></p>

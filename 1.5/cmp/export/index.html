@@ -886,7 +886,9 @@
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><label for="__tabbed_1_1">Query (incl. Sync-ID)</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Query (incl. Sync-ID)</label><label for="__tabbed_1_2">Response (incl. Sync-ID)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>HTTP/1.1
 GET https://einwilligungsuebersicht.netid.de/netid-permissions/?
   q.tapp_id.eq<span class="o">=</span>&lt;TAPP_ID&gt;
@@ -895,7 +897,7 @@ Accept: application/vnd.netid.permission-center.netid-permission-export-audit.li
 Authorization: Basic &lt;base64<span class="o">(</span>username:password<span class="o">)</span>&gt;
 </code></pre></div>
 </div>
-<input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><label for="__tabbed_1_2">Response (incl. Sync-ID)</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="m">200</span> OK
 Content-Type: application/vnd.netid.permission-center.netid-permission-export-audit.list-v1+json 
 
@@ -920,6 +922,7 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-export-au
     <span class="s2">&quot;changed_at&quot;</span>:<span class="s2">&quot;&lt;TIMESTAMP&gt;&quot;</span>
   <span class="o">}]}</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 <h3 id="response-behavior">Response behavior<a class="headerlink" href="#response-behavior" title="Permanent link">&para;</a></h3>
@@ -988,7 +991,9 @@ Content-Type: application/vnd.netid.permission-center.netid-permission-export-au
 </tr>
 </tbody>
 </table>
-<div class="tabbed-set" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><label for="__tabbed_2_1">Query (incl. Sync-ID)</label><div class="tabbed-content">
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Query (incl. Sync-ID)</label><label for="__tabbed_2_2">Response (incl. Sync-ID)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code>GET https://einwilligungsuebersicht.netid.de/netid-permissions?
   <span class="p">&amp;</span>q.cmp_id.eq<span class="o">=</span>&lt;CMP_ID&gt;
   <span class="p">&amp;</span>q.tapp_id.in<span class="o">=</span>&lt;tapp_id_1&gt;,...,&lt;tapp_id_n&gt;
@@ -997,7 +1002,7 @@ Accept: application/vnd.netid.permission-center.tapp-netid-permissions-export-au
 Authorization: Basic &lt;b64<span class="o">(</span>USERNAME:PASSWORD<span class="o">)</span>&gt;
 </code></pre></div>
 </div>
-<input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><label for="__tabbed_2_2">Response (incl. Sync-ID)</label><div class="tabbed-content">
+<div class="tabbed-block">
 <div class="highlight"><pre><span></span><code><span class="m">200</span> OK
 Content-Type: application/vnd.netid.permission-center.tapp-netid-permissions-export-audit.list-v1+json
 
@@ -1037,6 +1042,7 @@ Content-Type: application/vnd.netid.permission-center.tapp-netid-permissions-exp
     <span class="o">}</span>
   <span class="o">]}]}</span>
 </code></pre></div>
+</div>
 </div>
 </div>
 <h3 id="response-behavior_1">Response behavior<a class="headerlink" href="#response-behavior_1" title="Permanent link">&para;</a></h3>
