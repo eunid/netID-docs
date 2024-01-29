@@ -42,7 +42,7 @@ The following claims are supported by netID:
 | birthdate | String | The end user's date of birth "yyyy-mm-dd" | "1980-01-01" |
 | email | String | The end user's email address | "jane.doe@example.org" |
 | email_verified | Boolean | The verification status of the end user's email address | true \| false |
-| gender | String | The end user's salutation | "female" \| "male" \| "divers" \| "other"|
+| gender | String | The end user's salutation | "female" \| "male" \| "diverse" \| "other"|
 | given_name | String | The end user's first name (or names) | "Jane" |
 | family_name | String | The end user's last name | "Doe" |
 | shipping_address | JSON Object | Shipping address, containing information (if available) about recipient name, steet address, postal code (ZIP), city or town and country | If available: <ul><li>"recipient": "Jane Doe",</li><li>"street_address": "Hauptstr. 10",</li><li>"country": "ISO 3166 - ALPHA2",</li><li>"formatted": "Hauptstr. 10\n10117 Berlin\nDeutschland",</li><li>"locality": "Berlin",</li><li>"postal_code": "10117"</li></ul> |
