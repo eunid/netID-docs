@@ -55,7 +55,6 @@ Access-Control-Allow-Credentials: true
     }
   }
 }
-
 ```
 
 #### Response Properties
@@ -65,7 +64,7 @@ Access-Control-Allow-Credentials: true
 | tpid | Users netID identifier (`tpid`). Only returned if requested (q.identifier.in=TPID), consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
 | sync_id | Partner specific Sync-ID of the netID user. Only returned if requested (q.identifier.in=SYNC_ID), any "netid_privacy_settings" are present in the permission center at the time of the API call. Might be null in case of a server error. |
 | etpid | Users encrypted identifier (encrypted `tpid`, netID adtechpass). Only returned if requested (q.identifier.in=ETPID), consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
-| idconsent | If consent "idconsent" is given, value is 'VALID' and users netID identifier (`tpid`) is returned. If consent "IDCONSENT" is revoked, value is 'INVALID'. Otherwise property won't be returned. |
+| idconsent | If consent "idconsent" is given, value is 'VALID' and users netID identifier (`tpid`) is returned. If consent "idconsent" is revoked, value is 'INVALID'. Otherwise property won't be returned. |
 | iab_tcstring | TC string stored for this `tpid` for this respective netID Partner (TAPP). |
 
 #### Response behavior
@@ -120,7 +119,6 @@ Access-Control-Allow-Credentials: true
      "etpid": "<ETPID>|null
   }
 }
-
 ```
 
 #### Request properties
@@ -136,7 +134,7 @@ _minProperties: 1_
 | item | description |
 |---|---|
 | tpid | Users netID identifier (`tpid`). Only returned if requested (q.identifier.in=TPID), consent "idconsent" is VALID, the `tpid` is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null. |
-| sync_id | Partner specific sync-id of the netID user. Only returned if requested, any "netid privacy settings" are present in the permission center at the time of the API call. |
+| sync_id | Partner specific sync-id of the netID user. Only returned if requested, any "netid privacy settings" are present in the permission center at the time of the API call. Might be null in case of a server error. |
 | etpid | Users encrypted identifier (encrypted `tpid`, netID adtechpass). Only returned if requested, consent "idconsent" is VALID, the `tpid`is known (i.e. user is already authenticated on the device) and status "PERMISSIONS_FOUND". Otherwise null.  |
 
 #### Response behavior
