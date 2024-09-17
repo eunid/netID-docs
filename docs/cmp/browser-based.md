@@ -127,6 +127,7 @@ Access-Control-Allow-Credentials: true
 |---|---|
 | idconsent | Consent "idconsent" to store for this `tpid` for this respective netID Partner. VALID = Consent is given. INVALID = Consent is revoked. Optional. |
 | iab_tc_string | TC String which should be stored/updated for this netID user for this respective netID partner (TAPP). Optional. |
+
 _minProperties: 1_
 
 #### Response properties
@@ -150,6 +151,7 @@ _minProperties: 1_
 | 400 BAD REQUEST | PERMISSION_PARAMETERS_ERROR | Syntactic or semantic error in a permission (e.g. invalid TC String)  |
 | 403 FORBIDDEN | TAPP_NOT_ALLOWED | Missing parameters in request/Requesting TAPP isn't active/Origin not eligible |
 | 410 GONE | TPID_EXISTENCE_ERROR | Account does not exist anymore. |
+
 _On a CORS error 403 is returned._
 
 ## Encrypted tpid (`etpid`)
