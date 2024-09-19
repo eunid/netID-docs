@@ -116,7 +116,7 @@ Access-Control-Allow-Credentials: true
   "subject_identifiers": {
      "tpid": "<TPID>"|null,
      "sync_id": "<SYNC_ID>"|null,
-     "etpid": "<ETPID>|null
+     "etpid": "<ETPID>"|null
   }
 }
 ```

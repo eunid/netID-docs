@@ -106,7 +106,7 @@ Location: https://einwilligungsspeicher.netid.de/netid-permissions
   "subject_identifiers": {
      "tpid": "<TPID>"|null,
      "sync_id": "<SYNC_ID>"|null,
-     "etpid": "<ETPID>|null
+     "etpid": "<ETPID>"|null
   }
 }
 ```
