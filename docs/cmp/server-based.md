@@ -11,6 +11,7 @@ A netID Partner (TAPP) that sends a user through the Single Sign-On Flow can req
 ## Read APIs
 
 The list of identifiers returned is controlled via the query parameter q.identifier:
+
 - Only identifiers requested with parameter q.identifier will be returned
 - `sync_id` is only returned, if permissions for the user are found
 - `tpid` and `etpid` are only returned if the user has a valid IDConsent permission. Otherwise they are null
@@ -76,6 +77,7 @@ Content-Type: application/vnd.netid.permission-center.netid-user-status-v2+json
 ## Write APIs
 
 The list of identifiers returned is controlled via the query parameter q.identifier:
+
 - Only identifiers requested with parameter q.identifier will be returned
 - `sync_id` is only returned, if permissions for the user are found
 - `tpid` and `etpid` are only returned if the user has a valid IDConsent permission. Otherwise they are null
@@ -143,8 +145,8 @@ _minProperties: 1_
 
 ## Encrypted tpid (`etpid`)
 The netID identifier (`tpid`) is used as the base for he encrypted tpid (`etpid`), which is valid for a maximum of 24 hours (nonce). netID partners who work with the `etpid` must therefore request a new `etpid` at least every 24 hours. By introducing encryption, netID partners have the ability to transmit a volatile and encrypted ID in the bidstream for marketing purposes to prevent data leakage. In the first step, the `etpid` can only be used sensibly in combination with Utiq, as the cooperation between Utiq and netID can ensure that the `etpid` is passed into the bidstream in a standardized way via the Utiq PreBid Adapter. Adtech players can only decrypt the `etpid` and use it as a stable online identifier if they have implemented Utiq's decryption API. In order to be able to use the `etpid` via Utiq PreBid Adapter for programmatic marketing, the following requirements must be met:
+
 - Utiq PreBid Adapter must be implemented 
-- `etpid` must be stored in the following way in the local storage: 
-  - “localStorage.setItem(”netid_utiq_adtechpass”, ID-VALUE);”
+- `etpid` must be stored in the following way in the local storage: “localStorage.setItem(”netid_utiq_adtechpass”, ID-VALUE);”
 
 
