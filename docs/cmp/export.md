@@ -5,8 +5,8 @@ Using this API netID Partners can retrieve the privacy status with respect to ne
 !!! info  "Sync-ID"
     In case the [Sync-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
 
-     Without Synch-ID: `application/vnd.netid.permission-center.netid-user-status-v1+json` <br>
-     With Synch-ID: `application/vnd.netid.permission-center.netid-user-status-audit-v1+json`
+     Without Sync-ID: `application/vnd.netid.permission-center.netid-permission-export.list-v1+json` <br>
+     With Sync-ID: `application/vnd.netid.permission-center.netid-permission-export-audit.list-v1+json`
 
 ## Privacy status
 
