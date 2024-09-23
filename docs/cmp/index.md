@@ -19,7 +19,7 @@ The following services are provided by the netID Permission Center to allow a CM
 
 | service | meaning | endpoint (QA environment) | endpoint (LIVE environment) |
 | ----------- | ----------- | ----------- | ----------- |
-| READ SERVICE | Read the netID identifier (TPID), privacy status Synch-ID, netID Permissions and TC Strings for an individual user | einwilligungsspeicher.qa.netid.de | einwilligungsspeicher.netid.de |
+| READ SERVICE | Read the netID identifier (TPID), privacy status Sync-ID, netID Permissions and TC Strings for an individual user | einwilligungsspeicher.qa.netid.de | einwilligungsspeicher.netid.de |
 | WRITE SERVICE | Write netID Permissions and TC Strings for an individual user | einwilligen.qa.netid.de | einwilligen.netid.de |
 | DATA EXPORT SERVICE | Export the netID permissions and TC Strings for the respective netID Partner | einwilligungsuebersicht.qa.netid.de | einwilligungsuebersicht.netid.de |
 
@@ -27,7 +27,7 @@ The following services are provided by the netID Permission Center to allow a CM
 
 Besides netID Permissions and TCF based privacy settings, digital services typically have bespoke/custom data processing purposes/scopes with respective custom settings. To enable netID users and partners to manage both the standardized settings as well as bespoke ones, netID Partners can choose to persist those custom settings outside the Permission Center in their own infrastructure. Partners may also choose to use the Sync-ID to maintain a full set of settings in their own infrastructure to allow for server-side synchronization of a users privacy status.
 
-In order to store/manage these settings and assign them to returning users, partners can request access to a so called Synch-ID for an authenticated netID user. The Sync-ID is a subject identifier which is **different** for each client (`tapp_id`).  
+In order to store/manage these settings and assign them to returning users, partners can request access to a so called Sync-ID for an authenticated netID user. The Sync-ID is a subject identifier which is **different** for each client (`tapp_id`).  
 
 It is only available in API responses if:
 

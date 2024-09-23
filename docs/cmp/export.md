@@ -2,8 +2,8 @@
 
 Using this API netID Partners can retrieve the privacy status with respect to netID Permissions and the TC string of end users. This allows server based synchronization for netID Partners clean-up / update their server-side storage - e.g. purging data in case of withdrawal of consent.
 
-!!! info  "Synch-ID"
-    In case the [Synch-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
+!!! info  "Sync-ID"
+    In case the [Sync-ID](../#custom-privacy-settings) should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.
 
      Without Synch-ID: `application/vnd.netid.permission-center.netid-user-status-v1+json` <br>
      With Synch-ID: `application/vnd.netid.permission-center.netid-user-status-audit-v1+json`

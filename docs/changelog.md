@@ -2,6 +2,10 @@
 
 ## netID Documentation
 
+### 1.6 <small>_ September 20, 2024</small>
+- New major release CMP Integration APIs (etpid)
+- Deleted reporting.md in devportal and mkdocs.yml
+
 ### 1.5.4 <small>_ March 17, 2023</small>
 
 - Added netID SDK references
