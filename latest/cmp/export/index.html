@@ -476,20 +476,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../devportal/reporting.md" class="md-nav__link">
-        KPI Reports
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -850,10 +836,10 @@
 <h1 id="data-export">Data export<a class="headerlink" href="#data-export" title="Permanent link">&para;</a></h1>
 <p>Using this API netID Partners can retrieve the privacy status with respect to netID Permissions and the TC string of end users. This allows server based synchronization for netID Partners clean-up / update their server-side storage - e.g. purging data in case of withdrawal of consent.</p>
 <div class="admonition info">
-<p class="admonition-title">Synch-ID</p>
-<p>In case the <a href="../#custom-privacy-settings">Synch-ID</a> should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.</p>
-<p>Without Synch-ID: <code>application/vnd.netid.permission-center.netid-user-status-v1+json</code> <br>
- With Synch-ID: <code>application/vnd.netid.permission-center.netid-user-status-audit-v1+json</code></p>
+<p class="admonition-title">Sync-ID</p>
+<p>In case the <a href="../#custom-privacy-settings">Sync-ID</a> should be included in the API responses (if preconditions are met), the APIs must be called with the respective accept header.</p>
+<p>Without Sync-ID: <code>application/vnd.netid.permission-center.netid-permission-export.list-v1+json</code> <br>
+ With Sync-ID: <code>application/vnd.netid.permission-center.netid-permission-export-audit.list-v1+json</code></p>
 </div>
 <h2 id="privacy-status">Privacy status<a class="headerlink" href="#privacy-status" title="Permanent link">&para;</a></h2>
 <p>Allows an individual netID Partner to retrieve the privacy statuses from the permission center.</p>

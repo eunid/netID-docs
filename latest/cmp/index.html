@@ -476,20 +476,6 @@
 
             
           
-            
-              
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../devportal/reporting.md" class="md-nav__link">
-        KPI Reports
-      </a>
-    </li>
-  
-
-            
-          
         </ul>
       </nav>
     </li>
@@ -900,7 +886,7 @@
 <tbody>
 <tr>
 <td>READ SERVICE</td>
-<td>Read the netID identifier (TPID), privacy status Synch-ID, netID Permissions and TC Strings for an individual user</td>
+<td>Read the netID identifier (TPID), privacy status Sync-ID, netID Permissions and TC Strings for an individual user</td>
 <td>einwilligungsspeicher.qa.netid.de</td>
 <td>einwilligungsspeicher.netid.de</td>
 </tr>
@@ -920,7 +906,7 @@
 </table>
 <h3 id="custom-privacy-settings">Custom privacy settings<a class="headerlink" href="#custom-privacy-settings" title="Permanent link">&para;</a></h3>
 <p>Besides netID Permissions and TCF based privacy settings, digital services typically have bespoke/custom data processing purposes/scopes with respective custom settings. To enable netID users and partners to manage both the standardized settings as well as bespoke ones, netID Partners can choose to persist those custom settings outside the Permission Center in their own infrastructure. Partners may also choose to use the Sync-ID to maintain a full set of settings in their own infrastructure to allow for server-side synchronization of a users privacy status.</p>
-<p>In order to store/manage these settings and assign them to returning users, partners can request access to a so called Synch-ID for an authenticated netID user. The Sync-ID is a subject identifier which is <strong>different</strong> for each client (<code>tapp_id</code>).  </p>
+<p>In order to store/manage these settings and assign them to returning users, partners can request access to a so called Sync-ID for an authenticated netID user. The Sync-ID is a subject identifier which is <strong>different</strong> for each client (<code>tapp_id</code>).  </p>
 <p>It is only available in API responses if:</p>
 <ol>
 <li>The user has chosen to use netID based privacy management with a specific partner in a prior interaction  - technically that means its only available in case the Permission Center does have an existing privacy status stored for that partner/user combination.</li>
