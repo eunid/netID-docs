@@ -33,3 +33,15 @@ Below are examples of different buttons.
 ## Download Logos & HTML Assets
 
 You can download the official brand logos here. Additionally, we have provided example HTML files for two of our buttons to assist with your integration.
+
+| Asset | Description | Download |
+| :--- | :--- | :--- |
+| **HTML Example 1** | Button integration example | [Download (.html)](../downloads/Multi_branded_Button_weiß.html) |
+| **HTML Example 2** | Additional integration example | [Download (.html)](../downloads/Button_Mit_WEB.DEGMX_anmeldung.html) |
+
+&nbsp;
+
+| Asset | Description | Download |
+| :--- | :--- | :--- |
+| **GMX Logos** | Official GMX brand assets | [Download (.zip)](../downloads/GMX_Logos.zip) |
+| **WEB.DE Logos** | Official WEB.DE brand assets | [Download (.zip)](../downloads/WEB.DE_Logos.zip) |
