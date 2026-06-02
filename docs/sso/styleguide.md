@@ -29,3 +29,7 @@ You are also welcome to link to the netID website. On this page users will find 
 Below are examples of different buttons. 
 
 <img src="../images/button_overview.png" alt="Button Übersicht" width="500"/>
+
+## Download Logos & HTML Assets
+
+You can download the official brand logos here. Additionally, we have provided example HTML files for two of our buttons to assist with your integration.
