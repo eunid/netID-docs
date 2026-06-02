@@ -37,7 +37,7 @@ You can download the official brand logos here. Additionally, we have provided e
 | Asset | Description | Download |
 | :--- | :--- | :--- |
 | <img src="../images/button-preview-1.png" width="200"/> | Multi-branded Button | [Download (.html)](../downloads/Multi_branded_Button_weiß.html) |
-| <img src="../images/button-preview-2.png" width="200"/> | "Mit WEB.DE/GMX anmelden"-Button | [Download (.html)](../downloads/Button_Mit_WEB.DEGMX_anmeldung.html) |
+| <img src="../images/button-preview-2.png" width="200"/> | "Mit WEB.DE/GMX anmelden"-Button | [Download (.html)](../downloads/Button_Mit_WEB.DEGMX_anmelden.html) |
 
 &nbsp;
 
