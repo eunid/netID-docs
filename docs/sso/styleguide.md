@@ -28,4 +28,4 @@ You are also welcome to link to the netID website. On this page users will find 
 
 Below are examples of different buttons. 
 
-<img src="../images/Button_Overview.png" alt="Button Übersicht" width="300"/>
+<img src="../images/Button_Overview.png" alt="Button Übersicht" width="400"/>
