@@ -34,10 +34,10 @@ Below are examples of different buttons.
 
 You can download the official brand logos here. Additionally, we have provided example HTML files for two of our buttons to assist with your integration.
 
-| Asset | Description | Download |
-| :--- | :--- | :--- |
-| **HTML Example 1** | Multi-Branded-Button, white | [Download (.html)](../downloads/Multi_branded_Button_weiß.html) |
-| **HTML Example 2** | Button "Mit WEB.DE / GMX anmelden", white | [Download (.html)](../downloads/Button_Mit_WEB.DEGMX_anmeldung.html) |
+| Preview | Asset | Description | Download |
+| :--- | :--- | :--- | :--- |
+| <img src="../images/button-preview-1.png" width="100"/> | **HTML Example 1** | Button integration example | [Download (.html)](../downloads/Multi_branded_Button_weiß.html) |
+| <img src="../images/button-preview-2.png" width="100"/> | **HTML Example 2** | Additional integration example | [Download (.html)](../downloads/Button_Mit_WEB.DEGMX_anmeldung.html) |
 
 &nbsp;
 
