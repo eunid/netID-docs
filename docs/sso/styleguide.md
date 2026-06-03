@@ -43,6 +43,7 @@ You can download the official brand logos here. Additionally, we have provided e
 
 | Asset | Description | Download |
 | :--- | :--- | :--- |
-| **GMX Logos** | GMX brand assets | [Download (.zip)](../downloads/GMX_Logos.zip) |
-| **WEB.DE Logos** | WEB.DE brand assets | [Download (.zip)](../downloads/WEB.DE_Logos.zip) |
-| **netID Logos** | netID brand assets | [Download (.zip)](../downloads/netID_Logos.zip) |
+| <img src="../images/GMX_Logo.png" width="150"/> | GMX brand assets | [Download (.zip)](../downloads/GMX_Logos.zip) |
+| <img src="../images/WEBDE_Logo.png" width="150"/> | WEB.DE brand assets | [Download (.zip)](../downloads/WEB.DE_Logos.zip) |
+| <img src="../images/7Pass_Logo" width="150"/> | 7Pass brand assets | [Download (.zip)](../downloads/7Pass_Logos.zip) |
+| <img src="../images/netID_Logo" width="150"/> | netID brand assets | [Download (.zip)](../downloads/netID_Logos.zip) |
