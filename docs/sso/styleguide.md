@@ -45,5 +45,5 @@ You can download the official brand logos here. Additionally, we have provided e
 | :--- | :--- | :--- |
 | <img src="../images/GMX_Logo.png" width="30"/> | GMX brand assets | [Download (.zip)](../downloads/GMX_Logos.zip) |
 | <img src="../images/WEBDE_Logo.png" width="30"/> | WEB.DE brand assets | [Download (.zip)](../downloads/WEB.DE_Logos.zip) |
-| <img src="../images/7Pass_Logo.png" width="30"/> | 7Pass brand assets | [Download (.zip)](../downloads/7Pass_Logos.zip) |
+| <img src="../images/7Pass_Logo.png" width="50"/> | 7Pass brand assets | [Download (.zip)](../downloads/7Pass_Logos.zip) |
 | <img src="../images/netID_Logo.png" width="30"/> | netID brand assets | [Download (.zip)](../downloads/netID_Logos.zip) |
