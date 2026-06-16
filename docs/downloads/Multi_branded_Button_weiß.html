@@ -1,18 +1,62 @@
-<a href="https://deine-ziel-url.de" class="wmg-button" style="display: inline-block; cursor: pointer; text-decoration: none; border: none; padding: 0; background: none; width: 100%; max-width: 290px;">
-  <svg width="100%" height="40" viewBox="0 0 290 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMin meet" style="display: block;">
+<button class="wmg-action-button" onclick="alert('Button geklickt!')">
+  <style>
+    .wmg-action-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #ffffff;
+      border: 1px solid #878786;
+      border-radius: 8px;
+      padding: 10px 20px;
+      height: 42px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      width: 280px;
+      max-width: 100%;
+    }
+
+    .wmg-action-button:hover {
+      background-color: #f9f9f9;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    /* SVG-Styling innerhalb des Buttons */
+    .wmg-action-button svg {
+      height: 100%      
+      width: 100%;
+      object-fit: contain;
+      pointer-events: none; /* Verhindert Klick-Probleme auf dem Icon */    }
+
+    /* Responsivität für verschiedene Bildschirmgrößen */
+    @media (min-width: 768px) {
+      .wmg-action-button {
+        padding: 12px 25px;
+      }
+    }
+  </style>
+
+  <svg viewBox="20 0 250 40" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <defs>
       <style>
-        :root { --wmg-bg-color: white; --wmg-border-color: #878786; --wmg-icon-yellow: #FFD800; --wmg-icon-dark: #333333; --wmg-text-color: black; --wmg-logo-red: #f0001e; --wmg-gradient-start: #41413f; --wmg-gradient-end: #6c6b6b; }
+        :root, svg {
+          --wmg-bg-color: transparent; /* Transparent, da der Button-Container die Farbe setzt */
+          --wmg-border-color: #878786;
+          --wmg-icon-yellow: #FFD800;
+          --wmg-icon-dark: #333333;
+          --wmg-text-color: black;
+          --wmg-logo-red: #f0001e;
+          --wmg-gradient-start: #41413f;
+          --wmg-gradient-end: #6c6b6b;
+        }
         .pass-g { fill: url(#pass-f); } .pass-h { fill: url(#pass-d); } .pass-i { fill: url(#pass-e); } .pass-j { fill: url(#pass-c); } .pass-k { fill: url(#pass-b); } .pass-l { fill: var(--wmg-logo-red); } .pass-m { fill: var(--wmg-gradient-start); }
       </style>
       <linearGradient id="pass-b" x1="1" y1="1" x2="0" y2="0" gradientUnits="objectBoundingBox">
-        <stop offset="0" stop-color="var(--wmg-gradient-start)"/>
-        <stop offset="1" stop-color="var(--wmg-gradient-end)"/>
+        <stop offset="0" stop-color="var(--wmg-gradient-start)"/><stop offset="1" stop-color="var(--wmg-gradient-end)"/>
       </linearGradient>
-      <linearGradient id="pass-c" xlink:href="#pass-b"/> <linearGradient id="pass-d" xlink:href="#pass-b"/> <linearGradient id="pass-e" xlink:href="#pass-b"/> <linearGradient id="pass-f" xlink:href="#pass-b"/>
+      <linearGradient id="pass-c" xlink:href="#pass-b"/><linearGradient id="pass-d" xlink:href="#pass-b"/><linearGradient id="pass-e" xlink:href="#pass-b"/><linearGradient id="pass-f" xlink:href="#pass-b"/>
       <clipPath id="clip0_button_graphic"><rect width="24" height="24" fill="white" transform="translate(38.166 8)"/></clipPath>
     </defs>
-    <rect x="0.5" y="0.5" width="289" height="39" rx="3.5" fill="var(--wmg-bg-color)" stroke="var(--wmg-border-color)"/>
     <g clip-path="url(#clip0_button_graphic)">
       <g transform="translate(-11.731 0)">
         <path d="M70.897 32H52.897C51.237 32 49.897 30.65 49.897 29V11C49.897 9.34 51.247 8 52.897 8H70.897C72.557 8 73.897 9.35 73.897 11V29C73.897 30.65 72.547 32 70.897 32Z" fill="var(--wmg-icon-yellow)"/>
@@ -35,4 +79,4 @@
       </g>
     </g>
   </svg>
-</a>
+</button>
