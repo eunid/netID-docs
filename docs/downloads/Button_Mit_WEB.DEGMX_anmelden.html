@@ -1,16 +1,9 @@
-<a href="https://deine-ziel-url.de" class="svg-button-wrapper" style="display: inline-block; cursor: pointer; border: none; padding: 0; background: none;">
-  <svg viewBox="0 0 290 40" class="custom-btn-svg" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: auto; max-width: 290px; display: block;">
+<button class="custom-auth-button" onclick="alert('Button wurde geklickt!');">
+  <svg viewBox="0 0 290 40" class="custom-btn-svg" xmlns="http://www.w3.org/2000/svg">
     <defs>
-      <style>
-        :root { --btn-bg-color: #ffffff; --btn-border-color: #878786; --btn-accent-color: #FFD800; --btn-text-color: #333333; --btn-logo-color: #000000; --btn-font: 'Arial', 'Helvetica', sans-serif; }
-        .btn-bg { fill: var(--btn-bg-color); stroke: var(--btn-border-color); transition: all 0.3s ease; }
-        .btn-accent { fill: var(--btn-accent-color); }
-        .btn-dark-details { fill: var(--btn-text-color); }
-        .btn-logo-letters { fill: var(--btn-logo-color); }
-        .btn-text { font-family: var(--btn-font); font-size: 14px; font-weight: bold; fill: var(--btn-text-color); }
-        .custom-btn-svg:hover .btn-bg { fill: #f5f5f5; stroke: #333333; }
-      </style>
-      <clipPath id="clip0_button_graphic"><rect width="24" height="24" fill="white" transform="translate(12 8)"/></clipPath>
+      <clipPath id="clip0_button_graphic">
+        <rect width="24" height="24" fill="white" transform="translate(12 8)"/>
+      </clipPath>
     </defs>
     <rect class="btn-bg" x="0.5" y="0.5" width="289" height="39" rx="3.5" />
     <g clip-path="url(#clip0_button_graphic)">
@@ -24,4 +17,55 @@
     </g>
     <text class="btn-text" x="92" y="20" dominant-baseline="central">Mit WEB.DE/GMX anmelden</text>
   </svg>
-</a>
+
+  <style>
+    .custom-auth-button {
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 290px;
+    }
+
+    .custom-btn-svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* CSS Variablen */
+    .custom-btn-svg {
+      --btn-bg-color: #ffffff;
+      --btn-border-color: #878786;
+      --btn-accent-color: #FFD800;
+      --btn-text-color: #333333;
+      --btn-logo-color: #000000;
+    }
+
+    .btn-bg { fill: var(--btn-bg-color); stroke: var(--btn-border-color); transition: all 0.3s ease; }
+    .btn-accent { fill: var(--btn-accent-color); }
+    .btn-dark-details { fill: var(--btn-text-color); }
+    .btn-logo-letters { fill: var(--btn-logo-color); }
+    .btn-text { font-family: sans-serif; font-size: 14px; font-weight: bold; fill: var(--btn-text-color); }
+
+    /* Hover-Effekt */
+    .custom-auth-button:hover .btn-bg {
+      fill: #f5f5f5;
+      stroke: #333333;
+    }
+
+    /* Responsivität */
+    @media (max-width: 480px) {
+      .custom-auth-button {
+        max-width: 250px; /* Etwas kleiner auf Handys */
+      }
+      .btn-text {
+        font-size: 12px;
+      }
+    }
+  </style>
+</button>
